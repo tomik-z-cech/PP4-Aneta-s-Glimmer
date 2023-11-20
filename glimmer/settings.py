@@ -30,8 +30,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = [
-    '8000-tomik-z-cech-pp4-aneta-s-da30e342lk.us2.codeanyapp.com',
-    'localhost'
+    '127.0.0.1',
+    'localhost',
+    'anetas-glimmer-05b4a3ceb113.herokuapp.com',
 ]
 
 
