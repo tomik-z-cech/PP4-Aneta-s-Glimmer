@@ -7,6 +7,6 @@ class Home(View):
     def get(self, request, *args, **kwargs):
         return render(
             request,
-            "base.html",
+            "index.html",
         )
 

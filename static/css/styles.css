@@ -1,3 +1,65 @@
-body{
-    background-color: aqua;
+/** VARIABLES **/
+
+:root{
+
+    /** COLOR PALETTE **/
+    --header-footer: blue;
+    --text-color: yellow;
+    --off-black: #000000;
+     
+    /** FONTS **/
+    --header-font: 'Agbalumo', sans-serif;
+    --text-font: 'Josefin Sans', arial;
 }
+
+/** -------------------------------- HEADER -------------------------- **/
+.navbar-expand-xl .navbar-collapse {
+    position: absolute;
+    right: 1%;
+}
+#logo{
+    max-width: 200px;
+    color: var(--text-color);
+}
+#logo:hover {
+    max-width: 200px;
+    color: var(--off-black);
+}
+#navbar{
+    background-color: var(--header-footer);
+}
+.header-text{
+    font-family: var(--header-font);
+
+}
+.active{
+    border-bottom: 2px solid var(--text-color);
+}
+.nav-link{
+    color: var(--text-color) !important;
+}
+.nav-link:hover{
+        color: var(--off-black) !important;
+        border-bottom: 1px solid var(--off-black) !important;
+}
+
+/** ------------------------------- FOOTER ---------------------------- **/
+footer {
+    background-color: var(--header-footer);
+    padding: 5px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: var(--header-font);
+  }
+
+  footer a{
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  footer a:hover{
+    text-decoration: none;
+    color: var(--off-black);
+    border-bottom: 1px solid var(--off-black);
+  }
