@@ -14,6 +14,9 @@ class UserProfile(models.Model):
     profile_picture = CloudinaryField('image', default='default_pp')
     marketing = models.BooleanField(default=True)
     
+    class Meta:
+        verbose_name = 'User Profile'
+    
     def __str__(self):
         return self.full_name
     
@@ -22,6 +25,9 @@ class UserProfile(models.Model):
 class StylesAvailable(models.Model):
     style_name = models.CharField(max_length=100)
     style_description = models.TextField()
+    
+    class Meta:
+        verbose_name = 'Available Style'
     
     def __str__(self):
         return self.style_name
@@ -40,6 +46,9 @@ class Artists(models.Model):
     bookings_total = models.PositiveIntegerField(default=0)
     slug = models.SlugField(max_length=100, unique=True)
     
+    class Meta:
+        verbose_name = 'Artist'
+    
     def __str__(self):
         return self.name
     
@@ -51,14 +60,18 @@ class Bookings(models.Model):
     booking_confirmed = models.BooleanField(default=False) 
     booking_done = models.BooleanField(default=False)
     
+    class Meta:
+        verbose_name = 'Booking'
+    
     def __str__(self):
         return f"{self.date.strftime('%d-%m-%Y %H:%M')} - {self.booked_artist.name}"
     
 # News
-class News(models.Model):
+class NewsPosts(models.Model):
     title = models.CharField(max_length=200, unique=True)
     heading_image = CloudinaryField('image', default='default_heading_image')
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='news')
+    post_body = models.TextField(blank=False, null=False, default='text')
     created_on = models.DateTimeField(auto_now_add=True)
     is_published = models.IntegerField(choices=IS_PUBLISHED, default=0)
     likes = models.ManyToManyField(User, related_name='news_likes', blank=True)
@@ -66,6 +79,7 @@ class News(models.Model):
     
     class Meta:
         ordering = ['-created_on']
+        verbose_name = 'News Post'
 
     def __str__(self):
         return self.title
@@ -76,7 +90,7 @@ class News(models.Model):
 # Comments
 class Comments(models.Model):
 
-    post = models.ForeignKey(News, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(NewsPosts, on_delete=models.CASCADE, related_name='comments')
     full_name = models.CharField(max_length=80)
     comment_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
@@ -84,6 +98,7 @@ class Comments(models.Model):
 
     class Meta:
         ordering = ['created_on']
+        verbose_name = 'Comment'
 
     def __str__(self):
         return f"Comment {self.comment_body} by {self.full_name}"
