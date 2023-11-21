@@ -2,10 +2,22 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+Menu for managing bookings
+<br>
+<br>
+<br>
+{% else %}
+Login to manage bookings
+<br>
+<br>
+<br>
+{% endif %}
+
 {% for news in news_list %}
     Heading image : {{ news.heading_image }}
     <br>
-    Title : {{ news.title }}
+    <a href="#">Title : {{ news.title }}</a>
     <br>
     Creator : {{ news.creator }}
     <br>
