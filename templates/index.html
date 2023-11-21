@@ -17,7 +17,7 @@ Login to manage bookings
 {% for news in news_list %}
     Heading image : {{ news.heading_image }}
     <br>
-    <a href="#">Title : {{ news.title }}</a>
+    <a href="{% url 'news-detail' slug=news.slug %}">Title : {{ news.title }}</a>
     <br>
     Creator : {{ news.creator }}
     <br>

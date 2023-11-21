@@ -26,7 +26,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    {% if user.is_authenticated %}
+                      <li class="nav-item mx-3">
+                        <a  class="nav-link header-text" href="{% url 'home' %}">Home</a>
+                      </li>
+                      <li class="nav-item mx-3">
+                        <a  class="nav-link header-text" href="#">Meet the Team</a>
+                      </li>
+                      <li class="nav-item mx-3">
+                        <a  class="nav-link header-text" href="#">|</a>
+                      </li>
+                      {% if user.is_authenticated %}
                         <li class="nav-item mx-3">
                             <a  class="nav-link header-text" href="{% url 'account_logout' %}">Logout</a>
                         </li>
@@ -37,7 +46,7 @@
                         <li class="nav-item mx-3">
                             <a class="nav-link header-text"  href="{% url 'account_login' %}">Login</a>
                         </li>
-                        {% endif %} 
+                      {% endif %} 
                     </ul>
                 </div>
             </div>
