@@ -13,6 +13,7 @@ class UserProfile(models.Model):
     email = models.EmailField()
     profile_picture = CloudinaryField('image', default='default_pp')
     marketing = models.BooleanField(default=True)
+    last_login = models.DateTimeField(blank=True, null=True)
     
     class Meta:
         verbose_name = 'User Profile'
@@ -34,6 +35,12 @@ class StylesAvailable(models.Model):
     
     def __str__(self):
         return self.style_name
+    
+    def number_of_likes(self):
+        return self.likes.count()
+    
+    def number_of_tries(self):
+        return self.want_to_try.count()
     
 
 # Style Comments
