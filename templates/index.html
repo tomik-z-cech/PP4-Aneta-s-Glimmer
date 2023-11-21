@@ -2,6 +2,18 @@
 
 {% block content %}
 
-Index.html
+{% for news in news_list %}
+    Heading image : {{ news.heading_image }}
+    <br>
+    Title : {{ news.title }}
+    <br>
+    Creator : {{ news.creator }}
+    <br>
+    Created : {{ news.created_on }}
+    <br>
+    Post Body : {{ news.post_body }}
+    <br>
+    <br>
+{% endfor %}
 
 {%endblock%}
