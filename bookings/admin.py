@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import NewsPosts, UserProfile, Comments, StylesAvailable, Artists, Bookings
+from .models import NewsPosts, UserProfile, NewsComments, StylesAvailable, Artists, Bookings, StylesComments
 from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(UserProfile)
@@ -13,11 +13,15 @@ class NewsPostAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('post_body')
     
-@admin.register(Comments)
+@admin.register(NewsComments)
 class CommentAdmin(admin.ModelAdmin):
 
     list_display = ('full_name', 'comment_body', 'post', 'approved')
-    
+
+@admin.register(StylesComments)
+class StylesCommentAdmin(admin.ModelAdmin):
+
+    list_display = ('full_name', 'comment_body', 'style', 'approved')    
 
 @admin.register(StylesAvailable)
 class StylesAvailableAdmin(admin.ModelAdmin):

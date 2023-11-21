@@ -26,6 +26,8 @@ class StylesAvailable(models.Model):
     style_name = models.CharField(max_length=100)
     style_description = models.TextField()
     sample_image = CloudinaryField('image', default='default_sample_image')
+    likes = models.ManyToManyField(User, related_name='style_likes', blank=True)
+    want_to_try = models.ManyToManyField(User, related_name='want_to_try', blank=True)
     
     class Meta:
         verbose_name = 'Available Style'
@@ -34,6 +36,21 @@ class StylesAvailable(models.Model):
         return self.style_name
     
 
+# Style Comments
+class StylesComments(models.Model):
+
+    style = models.ForeignKey(StylesAvailable, on_delete=models.CASCADE, related_name='style_comments')
+    full_name = models.CharField(max_length=80)
+    comment_body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
+        verbose_name = 'Style Comment'
+
+    def __str__(self):
+        return f"Comment {self.comment_body} by {self.full_name}"
 
 # Artists
 class Artists(models.Model):
@@ -88,10 +105,10 @@ class NewsPosts(models.Model):
     def number_of_likes(self):
         return self.likes.count()
     
-# Comments
-class Comments(models.Model):
+# News Comments
+class NewsComments(models.Model):
 
-    post = models.ForeignKey(NewsPosts, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(NewsPosts, on_delete=models.CASCADE, related_name='news_comments')
     full_name = models.CharField(max_length=80)
     comment_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
@@ -99,7 +116,7 @@ class Comments(models.Model):
 
     class Meta:
         ordering = ['created_on']
-        verbose_name = 'Comment'
+        verbose_name = 'News Comment'
 
     def __str__(self):
         return f"Comment {self.comment_body} by {self.full_name}"
