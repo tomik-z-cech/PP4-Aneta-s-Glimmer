@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
-from .models import NewsPosts
+from .models import NewsPosts, StylesAvailable
 
 class NewsList(generic.ListView):
     model = NewsPosts
@@ -13,3 +13,9 @@ class NewsDetailView(generic.DetailView):
     slug_field = 'slug'
     template_name = 'news_detail.html'
     context_object_name = 'news_detail'
+    
+class StylesView(generic.ListView):
+    model = StylesAvailable
+    queryset = StylesAvailable.objects.all()
+    template_name = 'styles.html'
+    context_object_name = 'styles_list'

@@ -25,6 +25,7 @@ class UserProfile(models.Model):
 class StylesAvailable(models.Model):
     style_name = models.CharField(max_length=100)
     style_description = models.TextField()
+    sample_image = CloudinaryField('image', default='default_sample_image')
     
     class Meta:
         verbose_name = 'Available Style'
@@ -37,7 +38,7 @@ class StylesAvailable(models.Model):
 # Artists
 class Artists(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    profile_picture = profile_picture = CloudinaryField('image', default='default_artist_pp')
+    profile_picture = CloudinaryField('image', default='default_artist_pp')
     bio = models.TextField()
     public_profile = models.URLField(blank=False, null=False)
     start_date = models.DateTimeField()

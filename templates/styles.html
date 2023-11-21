@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for style in styles_list %}
+    Sample image : {{ style.sample_image }}
+    <br>
+    Title : {{ style.style_name }}
+    <br>
+    Creator : {{ style.style_description }}
+    <br>
+    <br>
+{% endfor %}
+
+{%endblock%}
