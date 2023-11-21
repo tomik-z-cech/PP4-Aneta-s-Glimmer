@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.NewsList.as_view(), name='home'),
     path('news/<slug:slug>/', views.NewsDetailView.as_view(), name='news-detail'),
     path('styles/', views.StylesView.as_view(), name='styles'),
+    path('artists/', views.TeamView.as_view(), name='artists'),
     ]

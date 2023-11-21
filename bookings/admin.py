@@ -29,11 +29,12 @@ class StylesAvailableAdmin(admin.ModelAdmin):
     list_display = ('style_name',)
     
 @admin.register(Artists)
-class StylesAvailableAdmin(admin.ModelAdmin):
+class ArtistsAdmin(admin.ModelAdmin):
 
     list_display = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
     
 @admin.register(Bookings)
-class StylesAvailableAdmin(admin.ModelAdmin):
+class BookingsAdmin(admin.ModelAdmin):
 
     list_display = ('booked_artist',)

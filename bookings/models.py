@@ -65,7 +65,7 @@ class Artists(models.Model):
     profile_picture = CloudinaryField('image', default='default_artist_pp')
     bio = models.TextField()
     public_profile = models.URLField(blank=False, null=False)
-    start_date = models.DateTimeField()
+    start_date = models.DateField()
     styles = models.ManyToManyField(StylesAvailable, blank=False)
     rating = models.FloatField(default=5.0)
     bookings_total = models.PositiveIntegerField(default=0)

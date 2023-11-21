@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
-from .models import NewsPosts, StylesAvailable
+from .models import NewsPosts, StylesAvailable, Artists
 
 class NewsList(generic.ListView):
     model = NewsPosts
@@ -19,3 +19,9 @@ class StylesView(generic.ListView):
     queryset = StylesAvailable.objects.all()
     template_name = 'styles.html'
     context_object_name = 'styles_list'
+    
+class TeamView(generic.ListView):
+    model = Artists
+    queryset = Artists.objects.all()
+    template_name = 'artists.html'
+    context_object_name = 'artists_list'
