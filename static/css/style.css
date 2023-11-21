@@ -1,4 +1,7 @@
-/** VARIABLES **/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+/** -------------------------------- VARS ---------------------------- **/
 
 :root{
 
@@ -8,8 +11,8 @@
     --off-black: #000000;
      
     /** FONTS **/
-    --header-font: 'Agbalumo', sans-serif;
-    --text-font: 'Josefin Sans', arial;
+    --header-font: 'Lato', sans-serif;;
+    --text-font: 'Roboto', sans-serif;;
 }
 
 /** -------------------------------- HEADER -------------------------- **/
