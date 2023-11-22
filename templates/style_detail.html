@@ -12,8 +12,10 @@ Likes : {{ likes }}
 <br>
 Tries : {{ tries }}
 <br>
-Likes : {{ news_detail.number_of_likes}}
-
+Artists : 
+{% for filtered_artist in filtered_artists %}
+    {{ filtered_artist }}
+{% endfor %}
 
 
 {%endblock%}

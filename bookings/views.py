@@ -40,5 +40,6 @@ class StyleDetailView(generic.DetailView):
             "style_description" : style_selected.style_description,
             "sample_image": style_selected.sample_image,
             "likes": style_selected.number_of_likes,
-            "tries": style_selected.number_of_tries
+            "tries": style_selected.number_of_tries,
+            "filtered_artists": artists_with_selected_style
         })
