@@ -14,7 +14,13 @@ Tries : {{ tries }}
 <br>
 Artists : 
 {% for filtered_artist in filtered_artists %}
-    {{ filtered_artist }}
+    {% for detail in filtered_artist %}
+        {% if not forloop.counter|divisibleby:2 %}
+            {{ detail }}
+        {% else %}
+            {{ detail}}
+        {% endif %}
+    {% endfor %}
 {% endfor %}
 
 

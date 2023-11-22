@@ -2,7 +2,12 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from .models import NewsPosts, StylesAvailable, Artists
 
+
+# ----------------------- NEWS VIEWS --------------------- #
 class NewsList(generic.ListView):
+    """
+    Class generates view of all news posts for landing page
+    """
     model = NewsPosts
     queryset = NewsPosts.objects.filter(is_published=1).order_by('-created_on')
     template_name = 'index.html'
@@ -13,19 +18,15 @@ class NewsDetailView(generic.DetailView):
     slug_field = 'slug'
     template_name = 'news_detail.html'
     context_object_name = 'news_detail'
+
+# ----------------------- STYLES VIEWS --------------------- #
     
 class StylesView(generic.ListView):
     model = StylesAvailable
     queryset = StylesAvailable.objects.all()
     template_name = 'styles.html'
     context_object_name = 'styles_list'
-    
-class TeamView(generic.ListView):
-    model = Artists
-    queryset = Artists.objects.all()
-    template_name = 'artists.html'
-    context_object_name = 'artists_list'
-    
+
 class StyleDetailView(generic.DetailView):
     template_name = 'style_detail.html'
     model = StylesAvailable
@@ -33,13 +34,44 @@ class StyleDetailView(generic.DetailView):
     context_object_name = 'style_detail'
     def get(self, request, *args, **kwargs):
         style_selected = self.get_object()
-        artists_with_selected_style = Artists.objects.filter(styles__in=[style_selected])
-        print(artists_with_selected_style)
+        artists_with_style = Artists.objects.filter(styles__in=[style_selected])
+        artists_slug = artists_with_style.values_list('slug', flat=True)
+        filtered_artists = zip(artists_with_style, artists_slug)
         return render(request, self.template_name, {
             "style_name": style_selected.style_name,
             "style_description" : style_selected.style_description,
             "sample_image": style_selected.sample_image,
             "likes": style_selected.number_of_likes,
             "tries": style_selected.number_of_tries,
-            "filtered_artists": artists_with_selected_style
+            "filtered_artists": filtered_artists,
+        })
+        
+# ----------------------- TEAM VIEWS --------------------- # 
+
+class TeamView(generic.ListView):
+    model = Artists
+    queryset = Artists.objects.all()
+    template_name = 'artists.html'
+    context_object_name = 'artists_list'
+
+class TeamDetailView(generic.DetailView):
+    template_name = 'artist_detail.html'
+    model = Artists
+    slug_field = 'slug'
+    context_object_name = 'artist_detail'
+    def get(self, request, *args, **kwargs):
+        artist_selected = self.get_object()
+        styles_this_artist = StylesAvailable.objects.filter(artists__in=[artist_selected])
+        style_slug = styles_this_artist.values_list('slug', flat=True)
+        filtered_styles = zip(style_slug, styles_this_artist)
+        print(filtered_styles) 
+        return render(request, self.template_name, {
+            "name": artist_selected.name,
+            "profile_picture": artist_selected.profile_picture,
+            "bio": artist_selected.bio,
+            "public_profile": artist_selected.public_profile,
+            "start_date": artist_selected.start_date,
+            "rating": artist_selected.rating,
+            "bookings_total": artist_selected.bookings_total,
+            "filtered_styles": filtered_styles
         })

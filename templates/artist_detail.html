@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Name : {{ name }}</h1>
+<br>
+Profile picture : {{ profile_picture }} 
+<br>
+Bio : {{ bio }} 
+<br>
+Public profile : {{ public_profile }} 
+<br>
+Start date : {{ start_date }} 
+<br>
+Rating : {{ rating }}
+<br>
+Total bookings : {{ bookings_total }}
+<br>
+{{ name }} excells in these styles : 
+
+
+{% for filtered_style in filtered_styles %}
+    {% for detail in filtered_style %}
+        {% if not forloop.counter|divisibleby:2 %}
+            <a href="{% url 'style-detail' slug=detail %}">
+        {% else %}
+            {{ detail}}</a>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+{%endblock%}

@@ -4,7 +4,7 @@
 <h1>Our Team :</h1>
 <br>
 {% for artist in artists_list %}
-Name : {{ artist.name }}
+<a href="{% url 'artist-detail' slug=artist.slug %}">Name : {{ artist.name }}</a>
 <br>
 Profile picture : {{ artist.profile_picture }}
 <br>
