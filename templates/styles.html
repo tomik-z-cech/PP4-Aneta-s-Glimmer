@@ -5,7 +5,7 @@
 {% for style in styles_list %}
     Sample image : {{ style.sample_image }}
     <br>
-    Title : {{ style.style_name }}
+    <a href="{% url 'style-detail' slug=style.slug %}">Title : {{ style.style_name }}</a>
     <br>
     Description : {{ style.style_description }}
     <br>

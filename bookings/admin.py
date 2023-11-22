@@ -16,12 +16,12 @@ class NewsPostAdmin(SummernoteModelAdmin):
 @admin.register(NewsComments)
 class CommentAdmin(admin.ModelAdmin):
 
-    list_display = ('full_name', 'comment_body', 'post', 'approved')
+    list_display = ('username', 'comment_body', 'post', 'approved')
 
 @admin.register(StylesComments)
 class StylesCommentAdmin(admin.ModelAdmin):
 
-    list_display = ('full_name', 'comment_body', 'style', 'approved')    
+    list_display = ('username', 'comment_body', 'style', 'approved')    
 
 @admin.register(StylesAvailable)
 class StylesAvailableAdmin(admin.ModelAdmin):

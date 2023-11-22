@@ -25,3 +25,20 @@ class TeamView(generic.ListView):
     queryset = Artists.objects.all()
     template_name = 'artists.html'
     context_object_name = 'artists_list'
+    
+class StyleDetailView(generic.DetailView):
+    template_name = 'style_detail.html'
+    model = StylesAvailable
+    slug_field = 'slug'
+    context_object_name = 'style_detail'
+    def get(self, request, *args, **kwargs):
+        style_selected = self.get_object()
+        artists_with_selected_style = Artists.objects.filter(styles__in=[style_selected])
+        print(artists_with_selected_style)
+        return render(request, self.template_name, {
+            "style_name": style_selected.style_name,
+            "style_description" : style_selected.style_description,
+            "sample_image": style_selected.sample_image,
+            "likes": style_selected.number_of_likes,
+            "tries": style_selected.number_of_tries
+        })

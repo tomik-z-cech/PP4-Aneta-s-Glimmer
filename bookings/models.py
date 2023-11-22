@@ -48,7 +48,7 @@ class StylesAvailable(models.Model):
 class StylesComments(models.Model):
 
     style = models.ForeignKey(StylesAvailable, on_delete=models.CASCADE, related_name='style_comments')
-    full_name = models.CharField(max_length=80)
+    username = models.CharField(max_length=80)
     comment_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
@@ -117,7 +117,7 @@ class NewsPosts(models.Model):
 class NewsComments(models.Model):
 
     post = models.ForeignKey(NewsPosts, on_delete=models.CASCADE, related_name='news_comments')
-    full_name = models.CharField(max_length=80)
+    username = models.CharField(max_length=80)
     comment_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
