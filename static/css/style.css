@@ -16,6 +16,13 @@
     --header-font: 'Roboto', sans-serif;;
 }
 
+/** ------------------------------ GENERAL --------------------------- **/
+
+body{
+    background-color: var(--off-white);
+    font-family: var(--text-font);
+}
+
 /** -------------------------------- HEADER -------------------------- **/
 header{
     width: 100%;
