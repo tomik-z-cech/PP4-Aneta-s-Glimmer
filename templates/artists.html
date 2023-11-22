@@ -14,7 +14,13 @@ Public profile : {{ artist.public_profile }}
 <br>
 Since : {{ artist.start_date }}
 <br>
-Styles : {{ artist.styles }}
+Styles : 
+{% for style in artist.styles.all %}
+    {{ style.style_name }}
+    {% if not forloop.last %}
+        ,
+    {% endif %}
+{% endfor %}
 <br>
 Rating : {{ artist.rating }}
 <br>
