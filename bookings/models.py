@@ -29,6 +29,7 @@ class StylesAvailable(models.Model):
     sample_image = CloudinaryField('image', default='default_sample_image')
     likes = models.ManyToManyField(User, related_name='style_likes', blank=True)
     want_to_try = models.ManyToManyField(User, related_name='want_to_try', blank=True)
+    slug = models.SlugField(max_length=100, unique=True)
     
     class Meta:
         verbose_name = 'Available Style'

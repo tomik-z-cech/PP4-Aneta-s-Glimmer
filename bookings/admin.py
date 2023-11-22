@@ -27,6 +27,7 @@ class StylesCommentAdmin(admin.ModelAdmin):
 class StylesAvailableAdmin(admin.ModelAdmin):
 
     list_display = ('style_name',)
+    prepopulated_fields = {'slug': ('style_name',)}
     
 @admin.register(Artists)
 class ArtistsAdmin(admin.ModelAdmin):
