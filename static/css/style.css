@@ -6,16 +6,22 @@
 :root{
 
     /** COLOR PALETTE **/
-    --header-footer: blue;
-    --text-color: yellow;
-    --off-black: #000000;
+    --header-footer: rgba(247, 247, 247, 0.8);
+    --off-white: #f7f7f7;
+    --text-color: #111111;
+    --hover-color: #f8b500;
     
     /** FONTS **/
-    --header-font: 'Lato', sans-serif;;
-    --text-font: 'Roboto', sans-serif;;
+    --text-font: 'Lato', sans-serif;;
+    --header-font: 'Roboto', sans-serif;;
 }
 
 /** -------------------------------- HEADER -------------------------- **/
+header{
+    width: 100%;
+    top: 0;
+    position: fixed;
+}
 .navbar-expand-xl .navbar-collapse {
     position: absolute;
     right: 1%;
@@ -24,12 +30,10 @@
     max-width: 200px;
     color: var(--text-color);
 }
-#logo:hover {
-    max-width: 200px;
-    color: var(--off-black);
-}
 #navbar{
     background-color: var(--header-footer);
+    border-bottom: 1px solid var(--hover-color);
+    height: 90px;
 }
 .header-text{
     font-family: var(--header-font);
@@ -39,11 +43,12 @@
     border-bottom: 2px solid var(--text-color);
 }
 .nav-link{
+    font-family: var(--header-font);
     color: var(--text-color) !important;
+    font-size: 130%;
 }
 .nav-link:hover{
-        color: var(--off-black) !important;
-        border-bottom: 1px solid var(--off-black) !important;
+        color: var(--hover-color) !important;
 }
 
 /** ------------------------------- FOOTER ---------------------------- **/
@@ -53,16 +58,15 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    font-family: var(--header-font);
-  }
-
-  footer a{
+    border-top: 1px solid var(--hover-color);
+    height: 80px;
+}
+footer a{
     text-decoration: none;
     color: var(--text-color);
-  }
-
-  footer a:hover{
+    font-family: var(--header-font);
+}
+footer a:hover{
     text-decoration: none;
-    color: var(--off-black);
-    border-bottom: 1px solid var(--off-black);
-  }
+    color: var(--hover-color);
+}
