@@ -36,7 +36,7 @@ class StyleDetailView(generic.DetailView):
         style_selected = self.get_object()
         artists_with_style = Artists.objects.filter(styles__in=[style_selected])
         artists_slug = artists_with_style.values_list('slug', flat=True)
-        filtered_artists = zip(artists_with_style, artists_slug)
+        filtered_artists = zip(artists_slug, artists_with_style)
         return render(request, self.template_name, {
             "style_name": style_selected.style_name,
             "style_description" : style_selected.style_description,

@@ -16,9 +16,9 @@ Artists :
 {% for filtered_artist in filtered_artists %}
     {% for detail in filtered_artist %}
         {% if not forloop.counter|divisibleby:2 %}
-            {{ detail }}
+            <a href="{% url 'artist-detail' slug=detail %}">
         {% else %}
-            {{ detail}}
+            {{ detail}}</a>
         {% endif %}
     {% endfor %}
 {% endfor %}
