@@ -77,9 +77,12 @@ TEMPLATES = [
     },
 ]
 
+# Site settings
+SITE_ID = 1
+SITE_NAME = "Aneta's Glimmer"
+
 # Import paths
 WSGI_APPLICATION = 'glimmer.wsgi.application'
-SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'
@@ -161,4 +164,3 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
-
