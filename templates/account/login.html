@@ -5,6 +5,8 @@
     {% trans "Sign In" %}
 {% endblock head_title %}
 {% block content %}
+<div class="d-flex align-items-center justify-content-center wrapper">
+    <div>
     {% element h1 %}
         {% trans "Sign In" %}
     {% endelement %}
@@ -31,4 +33,6 @@
         {% endslot %}
     {% endelement %}
     {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+    </div>
+</div>
 {% endblock content %}

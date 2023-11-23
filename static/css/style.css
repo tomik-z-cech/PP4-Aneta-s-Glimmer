@@ -77,3 +77,9 @@ footer a:hover{
     text-decoration: none;
     color: var(--hover-color);
 }
+
+/** ------------------------------- FORMS ---------------------------- **/
+.wrapper{
+    height: 100vh;
+    width: 100vw;
+}
