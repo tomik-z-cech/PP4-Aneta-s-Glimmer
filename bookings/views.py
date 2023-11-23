@@ -64,7 +64,6 @@ class TeamDetailView(generic.DetailView):
         styles_this_artist = StylesAvailable.objects.filter(artists__in=[artist_selected])
         style_slug = styles_this_artist.values_list('slug', flat=True)
         filtered_styles = zip(style_slug, styles_this_artist)
-        print(filtered_styles) 
         return render(request, self.template_name, {
             "name": artist_selected.name,
             "profile_picture": artist_selected.profile_picture,
