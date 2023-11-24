@@ -1,33 +1,81 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-{% if user.is_authenticated %}
-<br>
-<br>
-<br>
-<br>
-{% else %}
-Login to manage bookings
-<br>
-<br>
-<br>
-{% endif %}
-<h1>News : </h1>
-<br>
-{% for news in news_list %}
-    Heading image : {{ news.heading_image }}
-    <br>
-    <a href="{% url 'news-detail' slug=news.slug %}">Title : {{ news.title }}</a>
-    <br>
-    Creator : {{ news.creator }}
-    <br>
-    Created : {{ news.created_on }}
-    <br>
-    Post Body : {{ news.post_body }}
-    <br>
-    Likes : {{ news.number_of_likes}}
-    <br><br>
-{% endfor %}
-
+<div class="wrapper">
+    {% if user.is_authenticated %}
+    {% else %}
+    {% endif %}
+    <div class="container-fluid">
+        <div class="row">
+            <h1>
+                Search
+            </h1> 
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <h1>
+                        News 
+                    </h1>
+                </div>
+                <div class="row">
+                    {% for news in news_list %}
+                        <p>
+                            Heading image : {{ news.heading_image }}
+                            <br>
+                            <a href="{% url 'news-detail' slug=news.slug %}">Title : {{ news.title }}</a>
+                            <br>
+                            Creator : {{ news.creator }}
+                            <br>
+                            Created : {{ news.created_on }}
+                            <br>
+                            Post Body : {{ news.post_body }}
+                            <br>
+                            Likes : {{ news.number_of_likes}}
+                            <br>
+                            Comments : 
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-4">
+            <div class="row">
+                <h1>
+                    Stats
+                </h1>
+            </div>
+            <div class="row">
+                <h2>
+                    Top artists :
+                </h2>
+                <br>
+                {% for top_artist in top_artists %}
+                <a href="{% url 'artist-detail' slug=top_artist.slug %}">Name : {{ top_artist.name }} - Rating : {{ top_artist.rating }}</a>
+                <br>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <h2>
+                    Top Styles :
+                </h2>
+                <br>
+                {% for top_style_like in top_styles_like %}
+                <a href="{% url 'style-detail' slug=top_style_like.slug %}">Style : {{ top_style_like.style_name }} - Likes : {{ top_style_like.number_of_likes }}</a>
+                <br>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <h2>
+                    Styles with most "want to try":
+                </h2>
+                <br>
+                {% for top_style_try in top_styles_try %}
+                <a href="{% url 'style-detail' slug=top_style_try.slug %}">Style : {{ top_style_try.style_name }} - Want's to try : {{ top_style_try.number_of_tries }}</a>
+                <br>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
 {%endblock%}

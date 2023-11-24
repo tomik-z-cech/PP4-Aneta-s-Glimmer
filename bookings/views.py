@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
+from django.db.models import Count
 from .models import NewsPosts, StylesAvailable, Artists
 
 
@@ -12,6 +13,17 @@ class NewsList(generic.ListView):
     queryset = NewsPosts.objects.filter(is_published=1).order_by('-created_on')
     template_name = 'index.html'
     context_object_name = 'news_list'
+    def get(self, request, *args, **kwargs):
+        news = NewsPosts.objects.all()
+        top_styles_like = StylesAvailable.objects.annotate(likes_num=Count('likes')).order_by('-likes_num')[:3]
+        top_styles_try = StylesAvailable.objects.annotate(want_to_try_num=Count('want_to_try')).order_by('-want_to_try_num')[:3]
+        top_artists = Artists.objects.all().order_by('-rating')[:3]
+        return render(request, self.template_name, {
+            "news_list": news,
+            "top_styles_like": top_styles_like,
+            "top_styles_try": top_styles_try,
+            "top_artists": top_artists,
+        })
 
 class NewsDetailView(generic.DetailView):
     model = NewsPosts
