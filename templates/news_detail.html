@@ -10,7 +10,7 @@ Creator : {{ news_detail.creator }}
 <br>
 Created : {{ news_detail.created_on }}
 <br>
-Post Body : {{ news_detail.post_body }}
+Post Body : {{ news_detail.post_body | safe }}
 <br>
 Likes : {{ news_detail.number_of_likes}}
 

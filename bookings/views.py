@@ -9,12 +9,9 @@ class NewsList(generic.ListView):
     """
     Class generates view of all news posts for landing page
     """
-    model = NewsPosts
-    queryset = NewsPosts.objects.filter(is_published=1).order_by('-created_on')
     template_name = 'index.html'
-    context_object_name = 'news_list'
     def get(self, request, *args, **kwargs):
-        news = NewsPosts.objects.all()
+        news = NewsPosts.objects.annotate(comments_num=Count('news_comments')).order_by('-created_on')
         top_styles_like = StylesAvailable.objects.annotate(likes_num=Count('likes')).order_by('-likes_num')[:3]
         top_styles_try = StylesAvailable.objects.annotate(want_to_try_num=Count('want_to_try')).order_by('-want_to_try_num')[:3]
         top_artists = Artists.objects.all().order_by('-rating')[:3]
