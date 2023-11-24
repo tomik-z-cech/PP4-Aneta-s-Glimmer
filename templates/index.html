@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 <div class="wrapper">
@@ -19,21 +20,52 @@
                     </h1>
                 </div>
                 <div class="row">
-                    {% for news in news_list %}
-                        <p>
-                            Heading image : {{ news.heading_image }}
-                            <br>
-                            <a href="{% url 'news-detail' slug=news.slug %}">Title : {{ news.title }}</a>
-                            <br>
-                            Creator : {{ news.creator }}
-                            <br>
-                            Created : {{ news.created_on }}
-                            <br>
-                            Likes : {{ news.number_of_likes}}
-                            <br>
-                            Comments : {{ news.comments_num }}
-                        </p>
-                    {% endfor %}
+                    <div id="carousel-news" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            {% for news in news_list %}
+                            {% if  forloop.counter == 1 %}
+                            <div class="carousel-item active">
+                                {% if 'default_heading_image' in news.heading_image.url %}
+                                    <img src="{% static 'images/logo.png' %}" class="d-block w-100" alt="{{ news.title }}">
+                                {% else %}
+                                    <img src="{{ news.heading_image.url }}" class="d-block w-100" alt="{{ news.title }}">
+                                {% endif %}
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>{{ news.title }}</h5>
+                                    <p>Created by : {{ news.creator }} on {{ news.created_on }}</p>
+                                    <p>Likes : {{ news.number_of_likes}} - Comments : {{ news.comments_num }}</p>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="carousel-item">
+                                {% if 'default_heading_image' in news.heading_image.url %}
+                                    <img src="{% static 'images/logo.png' %}" class="d-block w-100" alt="{{ news.title }}">
+                                {% else %}
+                                    <img src="{{ news.heading_image.url }}" class="d-block w-100" alt="{{ news.title }}">
+                                {% endif %}
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>{{ news.title }}</h5>
+                                    <p>Created by : {{ news.creator }} on {{ news.created_on }}</p>
+                                    <p>Likes : {{ news.number_of_likes}} - Comments : {{ news.comments_num }}</p> 
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                     <br>
                     <a href="{% url 'all-news' %}">All news !</a>
                 </div>
