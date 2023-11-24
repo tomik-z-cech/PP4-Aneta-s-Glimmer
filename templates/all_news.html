@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="wrapper">
+    {% if user.is_authenticated %}
+    {% else %}
+    {% endif %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <h1>
+                        News 
+                    </h1>
+                </div>
+                <div class="row">
+                    {% for news in news_list %}
+                        <p>
+                            Heading image : {{ news.heading_image }}
+                            <br>
+                            <a href="{% url 'news-detail' slug=news.slug %}">Title : {{ news.title }}</a>
+                            <br>
+                            Creator : {{ news.creator }}
+                            <br>
+                            Created : {{ news.created_on }}
+                            <br>
+                            Likes : {{ news.number_of_likes}}
+                            <br>
+                            Comments : {{ news.comments_num }}
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

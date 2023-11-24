@@ -4,14 +4,14 @@ from django.db.models import Count
 from .models import NewsPosts, StylesAvailable, Artists
 
 
-# ----------------------- NEWS VIEWS --------------------- #
-class NewsList(generic.ListView):
+# ----------------------- LANDING PAGE --------------------- #
+class LandingPageView(generic.ListView):
     """
     Class generates view of all news posts for landing page
     """
     template_name = 'index.html'
     def get(self, request, *args, **kwargs):
-        news = NewsPosts.objects.annotate(comments_num=Count('news_comments')).order_by('-created_on')
+        news = NewsPosts.objects.annotate(comments_num=Count('news_comments')).order_by('-created_on')[:3]
         top_styles_like = StylesAvailable.objects.annotate(likes_num=Count('likes')).order_by('-likes_num')[:3]
         top_styles_try = StylesAvailable.objects.annotate(want_to_try_num=Count('want_to_try')).order_by('-want_to_try_num')[:3]
         top_artists = Artists.objects.all().order_by('-rating')[:3]
@@ -21,6 +21,13 @@ class NewsList(generic.ListView):
             "top_styles_try": top_styles_try,
             "top_artists": top_artists,
         })
+
+# ----------------------- NEWS --------------------- #
+class AllNewsView(generic.ListView):
+    model = NewsPosts
+    queryset = NewsPosts.objects.all()
+    template_name = 'all_news.html'
+    context_object_name = 'news_list'
 
 class NewsDetailView(generic.DetailView):
     model = NewsPosts

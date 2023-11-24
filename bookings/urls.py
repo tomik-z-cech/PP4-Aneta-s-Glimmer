@@ -3,7 +3,8 @@ from django.urls import path
 
 
 urlpatterns = [
-    path('', views.NewsList.as_view(), name='home'),
+    path('', views.LandingPageView.as_view(), name='home'),
+    path('news', views.AllNewsView.as_view(), name='all-news'),
     path('news/<slug:slug>/', views.NewsDetailView.as_view(), name='news-detail'),
     path('styles/', views.StylesView.as_view(), name='styles'),
     path('styles/<slug:slug>/', views.StyleDetailView.as_view(), name='style-detail'),
