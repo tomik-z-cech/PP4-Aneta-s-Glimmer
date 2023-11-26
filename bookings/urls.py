@@ -11,4 +11,5 @@ urlpatterns = [
     path('artists/', views.TeamView.as_view(), name='artists'),
     path('artists/<slug:slug>/', views.TeamDetailView.as_view(), name='artist-detail'),
     path('details/', views.MyDetailsView.as_view(), name='my-details'),
+    path('deleteprofile/', views.DeleteMyProfileView.as_view(), name='delete-profile'),
     ]

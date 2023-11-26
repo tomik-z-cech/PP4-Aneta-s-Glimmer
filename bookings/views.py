@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.db.models import Count
-from .models import NewsPosts, StylesAvailable, Artists, UserProfile
+from .models import NewsPosts, StylesAvailable, Artists, UserProfile, User
 
 
 # ----------------------- LANDING PAGE --------------------- #
@@ -74,7 +74,6 @@ class TeamDetailView(generic.DetailView):
     template_name = 'artist_detail.html'
     model = Artists
     slug_field = 'slug'
-    # context_object_name = 'artist_detail'
     def get(self, request, *args, **kwargs):
         artist_selected = self.get_object()
         styles_this_artist = StylesAvailable.objects.filter(artists__in=[artist_selected])
@@ -102,3 +101,10 @@ class MyDetailsView(generic.ListView):
         return render(request, self.template_name, {
             "first_name": profile_selected.first_name,
         })
+        
+class DeleteMyProfileView(generic.ListView):
+    def get(self, request, *args, **kwargs):
+        model = User
+        logged_in_user = request.user
+        logged_in_user.delete()
+        return redirect('home')
