@@ -9,7 +9,7 @@ class UserProfileInline(admin.StackedInline):
 
 class ProfileAdmin(admin.ModelAdmin):
     inlines = (UserProfileInline, )
-    list_display = ('username', 'email', 'first_name', 'last_name', 'phone_number', 'marketing')
+    list_display = ('last_name', 'first_name', 'email', 'username', 'phone_number', 'marketing', 'email')
 
     def first_name(self, obj):
         return obj.userprofile.first_name if hasattr(obj, 'userprofile') else ''
