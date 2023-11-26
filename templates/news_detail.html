@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div class="wrapper">
 Heading image : {{ news_detail.heading_image }}
 <br>
 <h1>Title : {{ news_detail.title }}</h1>
@@ -13,7 +13,5 @@ Created : {{ news_detail.created_on }}
 Post Body : {{ news_detail.post_body | safe }}
 <br>
 Likes : {{ news_detail.number_of_likes}}
-
-
-
+</div>
 {%endblock%}

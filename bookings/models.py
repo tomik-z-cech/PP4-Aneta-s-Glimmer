@@ -11,7 +11,7 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=30, blank=False, null=True)
     last_name = models.CharField(max_length=30, blank=False, null=True)
     phone_number = models.CharField(max_length=15, blank=False, null=True)
-    marketing = models.BooleanField(default=True)
+    marketing = models.BooleanField()
     
     class Meta:
         verbose_name = 'User Profile'

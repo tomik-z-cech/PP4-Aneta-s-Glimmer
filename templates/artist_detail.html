@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div class="wrapper">
 <h1>Name : {{ name }}</h1>
 <br>
 Profile picture : {{ profile_picture }} 
@@ -28,5 +28,5 @@ Total bookings : {{ bookings_total }}
         {% endif %}
     {% endfor %}
 {% endfor %}
-
+</div>
 {%endblock%}
