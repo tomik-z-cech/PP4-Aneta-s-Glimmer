@@ -4,6 +4,8 @@
 <div class="wrapper">
 <h1>My details : </h1>
 
-    Name : {{ first_name }}
+    Name : {{ first_name }}<br>
+    <a href="{% url 'account_change_password' %}">Change password</a><br>
+    <a href="{% url 'account_email' %}">Change Email</a><br>
 </div>
 {%endblock%}
