@@ -1,12 +1,32 @@
 from django.contrib import admin
 from .models import NewsPosts, UserProfile, NewsComments, StylesAvailable, Artists, Bookings, StylesComments
+from django.contrib.auth.models import User
 from django_summernote.admin import SummernoteModelAdmin
 
-@admin.register(UserProfile)
-class ProfileAdmin(admin.ModelAdmin):
+class UserProfileInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
 
-    list_display = ('full_name',)
+class ProfileAdmin(admin.ModelAdmin):
+    inlines = (UserProfileInline, )
+    list_display = ('username', 'email', 'first_name', 'last_name', 'phone_number', 'marketing')
+
+    def first_name(self, obj):
+        return obj.userprofile.first_name if hasattr(obj, 'userprofile') else ''
+
+    def last_name(self, obj):
+        return obj.userprofile.last_name if hasattr(obj, 'userprofile') else ''
     
+    def phone_number(self, obj):
+        return obj.userprofile.phone_number if hasattr(obj, 'userprofile') else ''
+    
+    def marketing(self, obj):
+        return obj.userprofile.marketing if hasattr(obj, 'userprofile') else ''
+
+admin.site.unregister(User)
+admin.site.register(User, ProfileAdmin)    
+
+
 @admin.register(NewsPosts)
 class NewsPostAdmin(SummernoteModelAdmin):
 

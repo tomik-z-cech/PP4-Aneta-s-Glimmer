@@ -8,18 +8,16 @@ IS_PUBLISHED = ((0, 'Not Published'), (1, 'Published'))
 # User Profile
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=80, blank=False, null=False)
-    phone_number = models.CharField(max_length=15, blank=False, null=False)
-    email = models.EmailField()
-    profile_picture = CloudinaryField('image', default='default_pp')
+    first_name = models.CharField(max_length=30, blank=False, null=True)
+    last_name = models.CharField(max_length=30, blank=False, null=True)
+    phone_number = models.CharField(max_length=15, blank=False, null=True)
     marketing = models.BooleanField(default=True)
-    last_login = models.DateTimeField(blank=True, null=True)
     
     class Meta:
         verbose_name = 'User Profile'
     
     def __str__(self):
-        return self.full_name
+        return self.first_name
     
 
 # Styles Available

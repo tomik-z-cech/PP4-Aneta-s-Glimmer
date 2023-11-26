@@ -166,3 +166,8 @@ EMAIL_USE_TLS = True
 
 # AllAuth Pre-fix
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "Aneta's Glimmer - "
+
+# Custom register form declaration
+ACCOUNT_FORMS = {
+    'signup': 'bookings.forms.GlimmerSignupForm',
+}
