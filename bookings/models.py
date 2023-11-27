@@ -56,7 +56,7 @@ class StylesComments(models.Model):
         verbose_name = 'Style Comment'
 
     def __str__(self):
-        return f"Comment {self.comment_body} by {self.full_name}"
+        return f"Comment {self.comment_body} by {self.username}"
 
 # Artists
 class Artists(models.Model):
@@ -115,7 +115,7 @@ class NewsPosts(models.Model):
 class NewsComments(models.Model):
 
     post = models.ForeignKey(NewsPosts, on_delete=models.CASCADE, related_name='news_comments')
-    username = models.CharField(max_length=80)
+    username = models.ForeignKey(User, on_delete=models.CASCADE, related_name='news_comments')
     comment_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
@@ -125,5 +125,5 @@ class NewsComments(models.Model):
         verbose_name = 'News Comment'
 
     def __str__(self):
-        return f"Comment {self.comment_body} by {self.full_name}"
+        return f"Comment {self.comment_body} by {self.username}"
     
