@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.db.models import Count
 from .models import NewsPosts, StylesAvailable, Artists, UserProfile, User
-
+from .forms import UpdateDetailsForm
 
 # ----------------------- LANDING PAGE --------------------- #
 class LandingPageView(generic.ListView):
@@ -91,17 +91,23 @@ class TeamDetailView(generic.DetailView):
         })
         
 # ----------------------- MY PROFILE VIEWS --------------------- #
-
 class MyDetailsView(generic.ListView):
     template_name = 'my_details.html'
     model = UserProfile
     def get(self, request, *args, **kwargs):
         login_user = request.user
         profile_selected = login_user.userprofile
-        return render(request, self.template_name, {
-            "first_name": profile_selected.first_name,
-        })
-        
+        details_form = UpdateDetailsForm(instance=profile_selected)
+        return render(request, self.template_name,{
+            'details_form': details_form,
+            'username': login_user.username
+            })
+    def post(self, request, *args, **kwargs):
+        updated_profile = request.user.userprofile
+        form = UpdateDetailsForm(request.POST, instance=updated_profile)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
 class DeleteMyProfileView(generic.ListView):
     def get(self, request, *args, **kwargs):
         model = User

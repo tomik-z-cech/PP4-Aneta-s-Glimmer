@@ -19,3 +19,8 @@ class GlimmerSignupForm(SignupForm):
             )
         user.userprofile = user_profile
         return user
+    
+class UpdateDetailsForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['first_name', 'last_name', 'phone_number', 'marketing']
