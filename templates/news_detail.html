@@ -13,5 +13,16 @@ Created : {{ news_detail.created_on }}
 Post Body : {{ news_detail.post_body | safe }}
 <br>
 Likes : {{ news_detail.number_of_likes}}
+{% if user.is_authenticated %}
+{% for comment in comments %}
+<div>
+{{ comment.username }}
+{{ comment.comment_body }}
+{{ comment.created_on }}
+</div>
+{% endfor %}
+{% else %}
+Only logged in users can read comments.
+{% endif %}
 </div>
 {%endblock%}

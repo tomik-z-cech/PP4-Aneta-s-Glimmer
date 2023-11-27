@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.db.models import Count
-from .models import NewsPosts, StylesAvailable, Artists, UserProfile, User
+from .models import NewsPosts, StylesAvailable, Artists, UserProfile, User, NewsComments
 from .forms import UpdateDetailsForm
 
 # ----------------------- LANDING PAGE --------------------- #
@@ -34,12 +34,25 @@ class AllNewsView(generic.ListView):
         })
 
 class NewsDetailView(generic.DetailView):
-    model = NewsPosts
-    slug_field = 'slug'
     template_name = 'news_detail.html'
-    context_object_name = 'news_detail'
-    
-
+    def get(self, request, slug, *args, **kwargs):
+        search_query = NewsPosts.objects.filter(is_published=1)
+        post = get_object_or_404(search_query, slug=slug)
+        comments = NewsComments.objects.filter(approved=True).filter(post__in=[post]).order_by('created_on')
+        liked = False
+        if post.likes.filter(id=self.request.user.id).exists():
+            liked = True
+        return render(
+            request,
+            self.template_name,
+            {
+                "news_detail": post,
+                "comments": comments,
+                "commented": False,
+                "liked": liked,
+                # "comment_form": CommentForm(),
+            },
+        )
 # ----------------------- STYLES VIEWS --------------------- #
     
 class StylesView(generic.ListView):
@@ -113,6 +126,8 @@ class MyDetailsView(generic.ListView):
         if form.is_valid():
             form.save()
             return redirect('home')
+        
+        
 class DeleteMyProfileView(generic.ListView):
     def get(self, request, *args, **kwargs):
         model = User
