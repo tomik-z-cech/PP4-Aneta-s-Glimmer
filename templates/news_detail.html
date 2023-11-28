@@ -24,5 +24,25 @@ Likes : {{ news_detail.number_of_likes}}
 {% else %}
 Only logged in users can read comments.
 {% endif %}
+<strong>
+    {% if user.is_authenticated %}
+    <form class="d-inline" action="{% url 'news-like' news_detail.slug %}" method="POST">
+        {% csrf_token %}
+        {% if liked %}
+            <button type="submit" name="newspost_id" value="{{ news_detail.slug }}" class="btn-like">
+                Unlike
+            </button>
+        {% else %}
+        <button type="submit" name="newspost_id" value="{{ news_detail.slug }}" class="btn-like">
+            Like
+        </button>
+        {% endif %}
+    </form>
+    {% else %}
+    <span class="text-secondary"><i class="far fa-heart"></i></span>
+    {% endif %}
+</strong>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 {%endblock%}

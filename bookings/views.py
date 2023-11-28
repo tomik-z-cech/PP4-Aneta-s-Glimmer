@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views import generic
+from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.views import generic, View
 from django.db.models import Count
+from django.http import HttpResponseRedirect
 from .models import NewsPosts, StylesAvailable, Artists, UserProfile, User, NewsComments
 from .forms import UpdateDetailsForm
 
@@ -42,6 +43,7 @@ class NewsDetailView(generic.DetailView):
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
+        print(liked)
         return render(
             request,
             self.template_name,
@@ -53,6 +55,18 @@ class NewsDetailView(generic.DetailView):
                 # "comment_form": CommentForm(),
             },
         )
+        
+class NewsPostLike(View):
+    def post(self, request, slug):
+        post = get_object_or_404(NewsPosts, slug=slug)
+        
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+        
+        return HttpResponseRedirect(reverse('news-detail', args=[slug]))
+    
 # ----------------------- STYLES VIEWS --------------------- #
     
 class StylesView(generic.ListView):
