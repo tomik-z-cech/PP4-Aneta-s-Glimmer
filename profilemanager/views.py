@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import generic
-from .models import UserProfile, User
-from .forms import UpdateDetailsForm
+from bookings.models import UserProfile, User
+from profilemanager.forms import UpdateDetailsForm
 
 # ----------------------- MY PROFILE VIEWS --------------------- #
 class MyDetailsView(generic.ListView):
-    template_name = 'my_details.html'
+    template_name = 'profilemanager/my_details.html'
     model = UserProfile
     def get(self, request, *args, **kwargs):
         login_user = request.user

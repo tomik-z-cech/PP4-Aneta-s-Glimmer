@@ -1,6 +1,6 @@
 from django import forms
 from allauth.account.forms import SignupForm
-from .models import UserProfile
+from bookings.models import UserProfile
 
 class GlimmerSignupForm(SignupForm):
     first_name = forms.CharField(max_length=30, label='First Name', required=True)

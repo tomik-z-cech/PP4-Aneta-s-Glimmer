@@ -5,7 +5,7 @@
 <h1>My details : </h1><br>
 Changing details for user {{ username }}
 
-<form method="post" action="{% url 'my-details' %}">
+<form method="post" action="{% url 'profile-manager' %}">
     {% csrf_token %}
     {{ details_form.as_p }}
     <button type="submit">Save Changes</button>
