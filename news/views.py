@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.db.models import Count
 from django.http import HttpResponseRedirect
-from bookings.models import NewsPosts, NewsComments
+from news.models import NewsPosts, NewsComments
 
 # ----------------------- NEWS --------------------- #
 class AllNewsView(generic.ListView):

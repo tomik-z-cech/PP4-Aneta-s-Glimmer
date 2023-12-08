@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import NewsPosts, UserProfile, NewsComments, StylesAvailable, Artists, Bookings, StylesComments
+from styles.models import StylesAvailable, StylesComments
+from news.models import NewsPosts, NewsComments
+from profilemanager.models import UserProfile
+from artists.models import Artists
+from bookings.models import Bookings
 from django.contrib.auth.models import User
 from django_summernote.admin import SummernoteModelAdmin
 

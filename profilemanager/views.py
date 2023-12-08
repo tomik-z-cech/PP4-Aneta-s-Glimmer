@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
-from bookings.models import UserProfile, User
+from .models import User
+from profilemanager.models import UserProfile
 from profilemanager.forms import UpdateDetailsForm
 
 # ----------------------- MY PROFILE VIEWS --------------------- #

@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views import generic
 from django.db.models import Count
-from bookings.models import NewsPosts, StylesAvailable, Artists
+from news.models import NewsPosts
+from styles.models import StylesAvailable
+from artists.models import Artists
 
 # ----------------------- LANDING PAGE --------------------- #
 class LandingPageView(generic.ListView):

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
-from bookings.models import StylesAvailable, Artists
-
+from artists.models import Artists
+from styles.models import StylesAvailable
 
 # ----------------------- TEAM VIEWS --------------------- # 
 
