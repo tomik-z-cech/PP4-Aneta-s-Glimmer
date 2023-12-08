@@ -3,6 +3,6 @@ from styles import views
 
 
 urlpatterns = [
-    path("styles/", views.StylesView.as_view(), name="styles"),
-    path("styles/<slug:slug>/", views.StyleDetailView.as_view(), name="style-detail"),
+    path("", views.StylesView.as_view(), name="styles"),
+    path("<slug:slug>/", views.StyleDetailView.as_view(), name="style-detail"),
 ]
