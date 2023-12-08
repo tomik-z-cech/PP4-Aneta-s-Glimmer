@@ -3,73 +3,86 @@
 
 /** -------------------------------- VARS ---------------------------- **/
 
-:root{
+:root {
 
     /** COLOR PALETTE **/
     --header-footer: rgba(247, 247, 247, 0.8);
     --off-white: #f7f7f7;
     --text-color: #111111;
     --hover-color: #f8b500;
-    
+
     /** FONTS **/
-    --text-font: 'Lato', sans-serif;;
-    --header-font: 'Roboto', sans-serif;;
+    --text-font: 'Lato', sans-serif;
+    ;
+    --header-font: 'Roboto', sans-serif;
+    ;
 }
 
 /** ------------------------------ GENERAL --------------------------- **/
 
-body{
+body {
     background-color: var(--off-white);
     font-family: var(--text-font);
 }
+
 * {
     margin: 0;
     padding: 0;
     border: none;
 }
-header, footer{
+
+header,
+footer {
     z-index: 9;
 }
-.wrapper{
-    height: 100vh;
-    width: 100vw;
+
+.wrapper {
+    height: 100%;
+    width: 100%;
     top: 12vh;
     position: absolute;
 }
 
 /** -------------------------------- HEADER -------------------------- **/
-header{
+header {
     width: 100%;
     top: 0;
     position: fixed;
 }
+
 .navbar-expand-xl .navbar-collapse {
     position: absolute;
     right: 1%;
 }
-#logo{
+
+#logo {
     max-width: 200px;
     color: var(--text-color);
 }
-#navbar{
+
+#navbar {
     background-color: var(--header-footer);
     border-bottom: 1px solid var(--hover-color);
     height: 90px;
 }
-.header-text{
+
+.header-text {
     font-family: var(--header-font);
 
 }
-.active{
+
+.active {
     border-bottom: 2px solid var(--text-color);
 }
-.nav-link{
+
+.nav-link {
     font-family: var(--header-font);
     color: var(--text-color) !important;
     font-size: 130%;
 }
-.nav-link:hover{
-        color: var(--hover-color) !important;
+
+.nav-link:hover {
+    color: var(--hover-color) !important;
 }
 
 /** ------------------------------- FOOTER ---------------------------- **/
@@ -82,28 +95,31 @@ footer {
     border-top: 1px solid var(--hover-color);
     height: 80px;
 }
-footer a{
+
+footer a {
     text-decoration: none;
     color: var(--text-color);
     font-family: var(--header-font);
 }
-footer a:hover{
+
+footer a:hover {
     text-decoration: none;
     color: var(--hover-color);
 }
 
 /** ------------------------------- FORMS ---------------------------- **/
-.form-wrapper{
-    height: 100vh;
-    width: 100vw;
+.form-wrapper {
+    height: 100%;
+    width: 100%;
     position: absolute;
 }
 
 /** LOGIN **/
-.form{
+.form {
     background-color: #f8b500;
     padding: 1vh;
 }
-.form label{
+
+.form label {
     width: 50%;
 }

@@ -181,5 +181,5 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = "Aneta's Glimmer - "
 
 # Custom register form declaration
 ACCOUNT_FORMS = {
-    "signup": "bookings.forms.GlimmerSignupForm",
+    "signup": "profilemanager.forms.GlimmerSignupForm",
 }
