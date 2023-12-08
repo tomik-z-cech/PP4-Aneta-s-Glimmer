@@ -4,8 +4,17 @@
         "Aneta's",
         "anetas",
         "cloudinary",
+        "deleteprofile",
         "herokuapp",
         "socialaccount",
         "summernote"
+    ],
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "all",
+    "files.autoSave": "afterDelay",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length=79"
     ]
 }
