@@ -38,9 +38,10 @@ footer {
 
 .wrapper {
     height: 100%;
-    width: 100%;
+    width: 97%;
     top: 12vh;
     position: absolute;
+    left: 1.5%;
 }
 
 /** -------------------------------- HEADER -------------------------- **/

@@ -45,5 +45,5 @@ class NewsPostLike(View):
         else:
             post.likes.add(request.user)
         
-        return HttpResponseRedirect(reverse('news/news-detail', args=[slug]))
+        return HttpResponseRedirect(reverse('news-detail', args=[slug]))
     

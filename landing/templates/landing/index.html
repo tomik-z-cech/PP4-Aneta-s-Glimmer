@@ -3,9 +3,6 @@
 
 {% block content %}
 <div class="wrapper">
-    {% if user.is_authenticated %}
-    {% else %}
-    {% endif %}
     <div class="container-fluid">
         <div class="row">
             <h1>
@@ -77,22 +74,66 @@
             <div class="col-4">
             <div class="row">
                 <h1>
-                    Stats
+                    Statistics
                 </h1>
             </div>
             <div class="row">
-                <h2>
-                    Top artists :
-                </h2>
-                <br>
-                {% if top_artists|length == 0 %}
-                    <p>No artists to display.</p>
-                {% else %}
-                    {% for top_artist in top_artists %}
-                        <a href="{% url 'artist-detail' slug=top_artist.slug %}">Name : {{ top_artist.name }} - Rating : {{ top_artist.rating }}</a>
+                <div class="card">
+                    <h2 class="card-header">Top Artists : </h2>
+                    <div class="card-body">
+                        {% if top_artists|length == 0 %}
+                            <p>No artists to display.</p>
+                        {% else %}
+                            {% for top_artist in top_artists %}
+                                <a href="{% url 'artist-detail' slug=top_artist.slug %}">{{ top_artist.name }}
+                                    {% if top_artist.rating > 4.75 %}
+                                        {% for i in "12345" %}
+                                            <i class="bi bi-star-fill"></i>
+                                        {% endfor %}
+                                    {% elif top_artist.rating < 4.75  and top_artist.rating > 4.25 %}
+                                        {% for i in "1234" %}
+                                            <i class="bi bi-star-fill"></i>
+                                        {% endfor %}
+                                        <i class="bi bi-star-half"></i>
+                                    {% elif top_artist.rating < 4.25  and top_artist.rating > 3.75 %}
+                                        {% for i in "1234" %}
+                                            <i class="bi bi-star-fill"></i>
+                                        {% endfor %}
+                                    {% elif top_artist.rating < 3.75  and top_artist.rating > 3.25 %}
+                                        {% for i in "123" %}
+                                            <i class="bi bi-star-fill"></i>
+                                        {% endfor %}
+                                        <i class="bi bi-star-half"></i>
+                                    {% elif top_artist.rating < 3.25  and top_artist.rating > 2.75 %}
+                                        {% for i in "123" %}
+                                            <i class="bi bi-star-fill"></i>
+                                        {% endfor %}
+                                    {% elif top_artist.rating < 2.75  and top_artist.rating > 2.25 %}
+                                        {% for i in "12" %}
+                                            <i class="bi bi-star-fill"></i>
+                                        {% endfor %}
+                                        <i class="bi bi-star-half"></i>
+                                    {% elif top_artist.rating < 2.25  and top_artist.rating > 1.75 %}
+                                        {% for i in "12" %}
+                                            <i class="bi bi-star-fill"></i>
+                                        {% endfor %}
+                                    {% elif top_artist.rating < 1.75  and top_artist.rating > 1.25 %}
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-half"></i>
+                                    {% elif top_artist.rating < 1.25  and top_artist.rating > 0.75 %}
+                                        <i class="bi bi-star-fill"></i>
+                                    {% elif top_artist.rating < 0.75}
+                                        <i class="bi bi-star-half"></i>
+                                    {% else %}
+                                        Something went wrong.
+                                    {% endif %}
+                                </a>
+                                <br>
+                            {% endfor %}
+                        {% endif %}
                         <br>
-                    {% endfor %}
-                {% endif %}
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <h2>
