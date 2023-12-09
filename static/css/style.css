@@ -8,14 +8,16 @@
     /** COLOR PALETTE **/
     --header-footer: rgba(247, 247, 247, 0.8);
     --off-white: #f7f7f7;
-    --text-color: #111111;
-    --hover-color: #f8b500;
+    --darker-black: #111111;
+    --lighter-black: #2a2a2a;
+    --black: #000000;
+    --light-gold: #ffc62c;
+    --mid-gold: #f8b500;
+    --dark-gold: #c59000;
 
     /** FONTS **/
     --text-font: 'Lato', sans-serif;
-    ;
     --header-font: 'Roboto', sans-serif;
-    ;
 }
 
 /** ------------------------------ GENERAL --------------------------- **/
@@ -44,6 +46,10 @@ footer {
     left: 1.5%;
 }
 
+.add-shadow {
+    box-shadow: 8px 8px 8px var(--black);
+}
+
 /** -------------------------------- HEADER -------------------------- **/
 header {
     width: 100%;
@@ -58,12 +64,12 @@ header {
 
 #logo {
     max-width: 200px;
-    color: var(--text-color);
+    color: var(--darker-black);
 }
 
 #navbar {
     background-color: var(--header-footer);
-    border-bottom: 1px solid var(--hover-color);
+    border-bottom: 1px solid var(--mid-gold);
     height: 90px;
 }
 
@@ -73,17 +79,17 @@ header {
 }
 
 .active {
-    border-bottom: 2px solid var(--text-color);
+    border-bottom: 2px solid var(--darker-black);
 }
 
 .nav-link {
     font-family: var(--header-font);
-    color: var(--text-color) !important;
+    color: var(--darker-black) !important;
     font-size: 130%;
 }
 
 .nav-link:hover {
-    color: var(--hover-color) !important;
+    color: var(--mid-gold) !important;
 }
 
 /** ------------------------------- FOOTER ---------------------------- **/
@@ -93,19 +99,19 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid var(--hover-color);
+    border-top: 1px solid var(--mid-gold);
     height: 80px;
 }
 
 footer a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--darker-black);
     font-family: var(--header-font);
 }
 
 footer a:hover {
     text-decoration: none;
-    color: var(--hover-color);
+    color: var(--mid-gold);
 }
 
 /** ------------------------------- FORMS ---------------------------- **/
@@ -117,10 +123,19 @@ footer a:hover {
 
 /** LOGIN **/
 .form {
-    background-color: #f8b500;
+    background-color: var(--mid-gold);
     padding: 1vh;
 }
 
 .form label {
     width: 50%;
+}
+
+/** ---------------------------- LANDING PAGE ------------------------ **/
+.card {
+    background-color: var(--mid-gold);
+}
+
+.top-space {
+    margin-top: 3vh;
 }

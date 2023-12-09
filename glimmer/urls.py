@@ -2,6 +2,7 @@
 
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -12,4 +13,5 @@ urlpatterns = [
     path("styles/", include("styles.urls")),
     path("artists/", include("artists.urls")),
     path("profilemanager/", include("profilemanager.urls")),
+    path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.png'))
 ]

@@ -5,17 +5,22 @@
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
-            <h1>
-                Search
-            </h1> 
+            <div class="card add-shadow">
+                <div class="card-body">
+                    <form class="d-flex col-12" id="search-form" role="search">
+                        <input class="form-control me-2" type="search" id="search-query" placeholder="Search in news, styles and artists" aria-label="Search"/>
+                        <button class="btn btn-outline-success search-button" type="submit" id="search-submit">
+                            Search
+                        </button>
+                        <button class="btn btn-outline-success search-button" type="reset" id="search-reset">
+                            Reset
+                        </button>
+                    </form>
+                </div>
+            </div> 
         </div>
         <div class="row">
             <div class="col-8">
-                <div class="row">
-                    <h1>
-                        News 
-                    </h1>
-                </div>
                 <div class="row">
                     <div id="carousel-news" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
@@ -72,97 +77,92 @@
                 </div>
             </div>
             <div class="col-4">
-            <div class="row">
-                <h1>
-                    Statistics
-                </h1>
-            </div>
-            <div class="row">
-                <div class="card">
-                    <h2 class="card-header">Top Artists : </h2>
-                    <div class="card-body">
-                        {% if top_artists|length == 0 %}
-                            <p>No artists to display.</p>
-                        {% else %}
-                            {% for top_artist in top_artists %}
-                                <a href="{% url 'artist-detail' slug=top_artist.slug %}">{{ top_artist.name }}
-                                    {% if top_artist.rating > 4.75 %}
-                                        {% for i in "12345" %}
+                <div class="row">
+                    <div class="card add-shadow top-space">
+                        <h2 class="card-header">Top Artists : </h2>
+                        <div class="card-body">
+                            {% if top_artists|length == 0 %}
+                                <p>No artists to display.</p>
+                            {% else %}
+                                {% for top_artist in top_artists %}
+                                    <a href="{% url 'artist-detail' slug=top_artist.slug %}">{{ top_artist.name }}
+                                        {% if top_artist.rating > 4.75 %}
+                                            {% for i in "12345" %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                        {% elif top_artist.rating < 4.75  and top_artist.rating > 4.25 %}
+                                            {% for i in "1234" %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                            <i class="bi bi-star-half"></i>
+                                        {% elif top_artist.rating < 4.25  and top_artist.rating > 3.75 %}
+                                            {% for i in "1234" %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                        {% elif top_artist.rating < 3.75  and top_artist.rating > 3.25 %}
+                                            {% for i in "123" %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                            <i class="bi bi-star-half"></i>
+                                        {% elif top_artist.rating < 3.25  and top_artist.rating > 2.75 %}
+                                            {% for i in "123" %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                        {% elif top_artist.rating < 2.75  and top_artist.rating > 2.25 %}
+                                            {% for i in "12" %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                            <i class="bi bi-star-half"></i>
+                                        {% elif top_artist.rating < 2.25  and top_artist.rating > 1.75 %}
+                                            {% for i in "12" %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                        {% elif top_artist.rating < 1.75  and top_artist.rating > 1.25 %}
                                             <i class="bi bi-star-fill"></i>
-                                        {% endfor %}
-                                    {% elif top_artist.rating < 4.75  and top_artist.rating > 4.25 %}
-                                        {% for i in "1234" %}
+                                            <i class="bi bi-star-half"></i>
+                                        {% elif top_artist.rating < 1.25  and top_artist.rating > 0.75 %}
                                             <i class="bi bi-star-fill"></i>
-                                        {% endfor %}
-                                        <i class="bi bi-star-half"></i>
-                                    {% elif top_artist.rating < 4.25  and top_artist.rating > 3.75 %}
-                                        {% for i in "1234" %}
-                                            <i class="bi bi-star-fill"></i>
-                                        {% endfor %}
-                                    {% elif top_artist.rating < 3.75  and top_artist.rating > 3.25 %}
-                                        {% for i in "123" %}
-                                            <i class="bi bi-star-fill"></i>
-                                        {% endfor %}
-                                        <i class="bi bi-star-half"></i>
-                                    {% elif top_artist.rating < 3.25  and top_artist.rating > 2.75 %}
-                                        {% for i in "123" %}
-                                            <i class="bi bi-star-fill"></i>
-                                        {% endfor %}
-                                    {% elif top_artist.rating < 2.75  and top_artist.rating > 2.25 %}
-                                        {% for i in "12" %}
-                                            <i class="bi bi-star-fill"></i>
-                                        {% endfor %}
-                                        <i class="bi bi-star-half"></i>
-                                    {% elif top_artist.rating < 2.25  and top_artist.rating > 1.75 %}
-                                        {% for i in "12" %}
-                                            <i class="bi bi-star-fill"></i>
-                                        {% endfor %}
-                                    {% elif top_artist.rating < 1.75  and top_artist.rating > 1.25 %}
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i>
-                                    {% elif top_artist.rating < 1.25  and top_artist.rating > 0.75 %}
-                                        <i class="bi bi-star-fill"></i>
-                                    {% elif top_artist.rating < 0.75}
-                                        <i class="bi bi-star-half"></i>
-                                    {% else %}
-                                        Something went wrong.
-                                    {% endif %}
-                                </a>
-                                <br>
-                            {% endfor %}
-                        {% endif %}
-                        <br>
+                                        {% elif top_artist.rating < 0.75}
+                                            <i class="bi bi-star-half"></i>
+                                        {% else %}
+                                            Something went wrong.
+                                        {% endif %}
+                                    </a>
+                                    <br>
+                                {% endfor %}
+                            {% endif %}
+                            <br>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <h2>
-                    Top Styles :
-                </h2>
-                <br>
-                {% if top_styles_like|length == 0 %}
-                    <p>No styles to display.</p>
-                {% else %}
-                    {% for top_style_like in top_styles_like %}
-                    <a href="{% url 'style-detail' slug=top_style_like.slug %}">Style : {{ top_style_like.style_name }} - Likes : {{ top_style_like.number_of_likes }}</a>
+                <div class="row">
+                    <h2>
+                        Top Styles :
+                    </h2>
                     <br>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="row">
-                <h2>
-                    Styles with most "want to try":
-                </h2>
-                <br>
-                {% if top_styles_like|length == 0 %}
-                    <p>No styles to display.</p>
-                {% else %}
-                    {% for top_style_try in top_styles_try %}
-                    <a href="{% url 'style-detail' slug=top_style_try.slug %}">Style : {{ top_style_try.style_name }} - Want's to try : {{ top_style_try.number_of_tries }}</a>
+                    {% if top_styles_like|length == 0 %}
+                        <p>No styles to display.</p>
+                    {% else %}
+                        {% for top_style_like in top_styles_like %}
+                        <a href="{% url 'style-detail' slug=top_style_like.slug %}">Style : {{ top_style_like.style_name }} - Likes : {{ top_style_like.number_of_likes }}</a>
+                        <br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <h2>
+                        Styles with most "want to try":
+                    </h2>
                     <br>
-                    {% endfor %}
-                {% endif %}
-            </div>
+                    {% if top_styles_like|length == 0 %}
+                        <p>No styles to display.</p>
+                    {% else %}
+                        {% for top_style_try in top_styles_try %}
+                        <a href="{% url 'style-detail' slug=top_style_try.slug %}">Style : {{ top_style_try.style_name }} - Wants to try : {{ top_style_try.number_of_tries }}</a>
+                        <br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
