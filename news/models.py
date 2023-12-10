@@ -4,6 +4,8 @@ from cloudinary.models import CloudinaryField
 
 # Set variable for published posts
 IS_PUBLISHED = ((0, 'Not Published'), (1, 'Published'))
+# Set variable for approved comments
+IS_APPROVED = ((0, 'Not Approved'), (1, 'Approved'))
 
 # News
 class NewsPosts(models.Model):
@@ -33,7 +35,7 @@ class NewsComments(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE, related_name='news_comments')
     comment_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)
+    approved = models.IntegerField(choices=IS_APPROVED, default=0)
 
     class Meta:
         ordering = ['created_on']

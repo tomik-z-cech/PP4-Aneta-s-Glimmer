@@ -131,6 +131,8 @@ footer a:hover {
 .card {
     background-color: var(--mid-gold);
     padding: 0;
+    opacity: 0.95;
+
 }
 
 .card-header {

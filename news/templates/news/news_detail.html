@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="wrapper">
@@ -21,8 +22,14 @@ Likes : {{ news_detail.number_of_likes}}
 {{ comment.created_on }}
 </div>
 {% endfor %}
+<form method="post">
+    {{ news_comment_form | crispy }}
+    {% csrf_token %}
+    <button type="submit">Comment</button>
+</form>
+
 {% else %}
-Only logged in users can read comments.
+Only logged in users can read and add comments.
 {% endif %}
 <strong>
     {% if user.is_authenticated %}
