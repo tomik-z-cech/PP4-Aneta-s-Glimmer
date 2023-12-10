@@ -74,3 +74,4 @@ class NewsPostLike(View):
         
         return HttpResponseRedirect(reverse('news-detail', args=[slug]))
     
+

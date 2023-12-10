@@ -22,5 +22,43 @@ Artists :
         {% endif %}
     {% endfor %}
 {% endfor %}
+<br>
+<strong>
+    {% if user.is_authenticated %}
+    <form class="d-inline" action="{% url 'style-like' slug %}" method="POST">
+        {% csrf_token %}
+        {% if liked %}
+            <button type="submit" name="newspost_id" value="{{ slug }}" class="btn-like">
+                Unlike
+            </button>
+        {% else %}
+        <button type="submit" name="newspost_id" value="{{ slug }}" class="btn-like">
+            Like
+        </button>
+        {% endif %}
+    </form>
+    {% else %}
+    <span class="text-secondary"><i class="far fa-heart"></i></span>
+    {% endif %}
+</strong>
+<br>
+<strong>
+    {% if user.is_authenticated %}
+    <form class="d-inline" action="{% url 'style-try' slug %}" method="POST">
+        {% csrf_token %}
+        {% if want_to_try %}
+            <button type="submit" name="newspost_id" value="{{ slug }}" class="btn-like">
+                Untry
+            </button>
+        {% else %}
+        <button type="submit" name="newspost_id" value="{{ slug }}" class="btn-like">
+            Try
+        </button>
+        {% endif %}
+    </form>
+    {% else %}
+    <span class="text-secondary"><i class="far fa-heart"></i></span>
+    {% endif %}
+</strong>
 </div>
 {%endblock%}
