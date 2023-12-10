@@ -20,6 +20,7 @@ class NewsDetailView(generic.DetailView):
         search_query = NewsPosts.objects.filter(is_published=1)
         post = get_object_or_404(search_query, slug=slug)
         comments = NewsComments.objects.filter(approved=True).filter(post__in=[post]).order_by('created_on')
+        users_liked = post.likes.all()
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -32,6 +33,7 @@ class NewsDetailView(generic.DetailView):
                 "commented": False,
                 "liked": liked,
                 "news_comment_form": NewsCommentForm(),
+                "users_liked": users_liked,
             },
         )
     def post(self, request, slug, *args, **kwargs):

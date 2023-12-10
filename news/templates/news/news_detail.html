@@ -22,6 +22,10 @@ Likes : {{ news_detail.number_of_likes}}
 {{ comment.created_on }}
 </div>
 {% endfor %}
+Liked by : 
+{% for user in users_liked %}
+{{ user }}
+{% endfor %}
 <form method="post">
     {{ news_comment_form | crispy }}
     {% csrf_token %}
