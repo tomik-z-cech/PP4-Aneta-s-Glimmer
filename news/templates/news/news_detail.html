@@ -22,10 +22,25 @@ Likes : {{ news_detail.number_of_likes}}
 {{ comment.created_on }}
 </div>
 {% endfor %}
-Liked by : 
-{% for user in users_liked %}
-{{ user }}
-{% endfor %}
+Liked by :
+<a href="#" data-bs-toggle="modal" data-bs-target="#likesModal">
+{% if users_liked|length < 4 %}
+    {% for user in users_liked %}
+        {{ user }}
+        {% if  forloop.counter < users_liked|length %}
+            ,
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {% for user in users_liked|slice:":3" %}
+        {{ user }}
+        {% if  forloop.counter < 3 %}
+            ,
+        {% endif %}
+    {% endfor %}
+    and {{ users_liked|slice:"3:"|length }} more
+{% endif %}
+</a>
 <form method="post">
     {{ news_comment_form | crispy }}
     {% csrf_token %}
@@ -53,7 +68,27 @@ Only logged in users can read and add comments.
     <span class="text-secondary"><i class="far fa-heart"></i></span>
     {% endif %}
 </strong>
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="likesModal" tabindex="-1" aria-labelledby="likesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="likesModalLabel">Likes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                This people like this post :
+                <br>
+                {% for user in users_liked %}
+                    {{ user }}
+                    <br>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+            </div>
+        </div>
+    </div>
 </div>
 {%endblock%}
