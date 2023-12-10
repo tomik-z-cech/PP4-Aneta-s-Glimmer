@@ -26,6 +26,8 @@ class StyleDetailView(generic.DetailView):
         artists_with_style = Artists.objects.filter(styles__in=[style_selected])
         artists_slug = artists_with_style.values_list("slug", flat=True)
         filtered_artists = zip(artists_slug, artists_with_style)
+        users_liked_styles = style_selected.likes.all()
+        users_want_to_try_styles = style_selected.want_to_try.all()
         liked = False
         if style_selected.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -44,7 +46,9 @@ class StyleDetailView(generic.DetailView):
                 "slug": style_selected.slug,
                 "filtered_artists": filtered_artists,
                 "liked": liked,
-                "want_to_try": want_to_try
+                "want_to_try": want_to_try,
+                "users_liked": users_liked_styles,
+                "users_want_to_try": users_want_to_try_styles
             },
         )
         
