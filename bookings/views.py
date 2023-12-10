@@ -1,31 +1,19 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views import generic
-from .models import UserProfile, User
-from .forms import UpdateDetailsForm
+from bookings.models import Bookings
 
-# ----------------------- MY PROFILE VIEWS --------------------- #
-class MyDetailsView(generic.ListView):
-    template_name = 'my_details.html'
-    model = UserProfile
+
+class MyBookingsView(generic.ListView):
+    template_name = "bookings/bookings.html"
+    model = Bookings
+
     def get(self, request, *args, **kwargs):
         login_user = request.user
-        profile_selected = login_user.userprofile
-        details_form = UpdateDetailsForm(instance=profile_selected)
-        return render(request, self.template_name,{
-            'details_form': details_form,
-            'username': login_user.username
-            })
-    def post(self, request, *args, **kwargs):
-        updated_profile = request.user.userprofile
-        form = UpdateDetailsForm(request.POST, instance=updated_profile)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-        
-        
-class DeleteMyProfileView(generic.ListView):
-    def get(self, request, *args, **kwargs):
-        model = User
-        logged_in_user = request.user
-        logged_in_user.delete()
-        return redirect('home')
+        user_bookings = Bookings.objects.filter(username=login_user)
+        return render(
+            request,
+            self.template_name,
+            {
+                "bookings": user_bookings,
+            },
+        )
