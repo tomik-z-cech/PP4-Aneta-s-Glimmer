@@ -42,23 +42,25 @@
                       <li class="nav-item mx-3">
                         <a  class="nav-link header-text" href="#">|</a>
                       </li>
+                      <!-- If User IS authenticated -->
                       {% if user.is_authenticated %}
-                        <li class="nav-item mx-3">
-                          <a  class="nav-link header-text" href="#">My Bookings</a>
-                        </li>
-                        <li class="nav-item mx-3">
-                          <a  class="nav-link header-text" href="{% url 'profile-manager' %}">My Profile</a>
-                        </li>
-                        <li class="nav-item mx-3">
-                          <a  class="nav-link header-text" href="{% url 'account_logout' %}">Logout</a>
-                        </li>
+                          <li class="nav-item mx-3">
+                            <a  class="nav-link header-text" href="#">My Bookings</a>
+                          </li>
+                          <li class="nav-item mx-3">
+                            <a  class="nav-link header-text" href="{% url 'profile-manager' %}">My Profile</a>
+                          </li>
+                          <li class="nav-item mx-3">
+                            <a  class="nav-link header-text" href="{% url 'account_logout' %}">Logout</a>
+                          </li>
+                        <!-- If User NOT authenticated -->
                         {% else %}
-                        <li class="nav-item mx-3">
-                          <a  class="nav-link header-text" href="{% url 'account_signup' %}">Register</a>
-                        </li>
-                        <li class="nav-item mx-3">
-                          <a class="nav-link header-text"  href="{% url 'account_login' %}">Login</a>
-                        </li>
+                          <li class="nav-item mx-3">
+                            <a  class="nav-link header-text" href="{% url 'account_signup' %}">Register</a>
+                          </li>
+                          <li class="nav-item mx-3">
+                            <a class="nav-link header-text"  href="{% url 'account_login' %}">Login</a>
+                          </li>
                       {% endif %} 
                     </ul>
                 </div>

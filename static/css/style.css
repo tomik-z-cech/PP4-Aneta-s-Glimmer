@@ -78,10 +78,6 @@ header {
 
 }
 
-.active {
-    border-bottom: 2px solid var(--darker-black);
-}
-
 .nav-link {
     font-family: var(--header-font);
     color: var(--darker-black) !important;
@@ -134,8 +130,33 @@ footer a:hover {
 /** ---------------------------- LANDING PAGE ------------------------ **/
 .card {
     background-color: var(--mid-gold);
+    padding: 0;
+}
+
+.card-header {
+    text-align: center;
 }
 
 .top-space {
     margin-top: 3vh;
+}
+
+#news-carousel {
+    width: 95%;
+    height: 66vh;
+}
+
+.carousel-picture {
+    height: 62vh;
+    border-radius: 5px;
+    border: 2px solid var(--darker-black);
+}
+
+.stats-card {
+    height: 20vh;
+}
+
+.carousel-caption {
+    background-color: var(--lighter-black);
+    border-radius: 5px;
 }
