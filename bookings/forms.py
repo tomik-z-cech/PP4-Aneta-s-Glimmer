@@ -4,13 +4,14 @@ from datetime import datetime, timedelta
 from bookings.models import Bookings
 
 class CreateBookingForm(forms.ModelForm):
+    
     class Meta:
         model = Bookings
         fields = (
+            "booked_style",
+            "booked_artist",
             "date",
             "time",
-            "booked_artist",
-            "booked_style"
         )
 
     date = forms.DateField(

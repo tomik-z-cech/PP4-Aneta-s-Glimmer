@@ -3,10 +3,39 @@
 
 {% block content %}
 <div class="wrapper">
-    <form method="post" action="{% url 'new-booking' %}">
-        {% csrf_token %}
-        {{ new_booking_form|crispy }}
-        <button type="submit">Submit</button>
-    </form>
+<form method="post" enctype="multipart/form-data" id="newBookingForm">
+    {% csrf_token %}
+    {{ new_booking_form | crispy }}
+
+
+
+    <input type="submit" value="Submit">
+</form>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $("#id_booked_artist, #id_date, #id_time").hide();
+        $("#id_booked_style").change(function () {
+            let selectedValue = $(this).val();
+            $.ajax({
+                url: '/bookings/booking-options/',
+                method: 'GET',
+                data: {
+                    field_name: "#id_booked_style",
+                    selected_value: selectedValue},
+                success: function (data) {
+                    $("#id_booked_artist").empty();
+                    for (let i = 0; i < data.options.length; i++) {
+                        $("#id_booked_artist").append('<option value="' + data.options[i] + '">' + data.options[i] + '</option>');
+                        $("#id_booked_artist").show();
+                    }
+                }
+            });
+        });
+        $("#id_booked_artist").change(function () {
+            $("#id_date").show();
+        });
+    });
+</script>
 {%endblock%}
