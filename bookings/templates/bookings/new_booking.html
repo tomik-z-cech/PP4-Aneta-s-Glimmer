@@ -5,7 +5,7 @@
 <div class="wrapper">
     <form method="post" action="{% url 'new-booking' %}">
         {% csrf_token %}
-        {{ form|crispy }}
+        {{ new_booking_form|crispy }}
         <button type="submit">Submit</button>
     </form>
 </div>
