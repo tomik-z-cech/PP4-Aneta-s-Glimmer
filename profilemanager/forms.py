@@ -6,7 +6,8 @@ class GlimmerSignupForm(SignupForm):
     first_name = forms.CharField(max_length=30, label='First Name', required=True)
     last_name = forms.CharField(max_length=30, label='Last Name', required=True)
     phone_number = forms.CharField(max_length=15, label='Phone Number', required=True)
-    marketing = forms.BooleanField(label='Marketing option', required=False, initial=True)
+    marketing = forms.BooleanField(label='Would you like to receive marketing materials ?', required=False, initial=True)
+    t_and_c = forms.BooleanField(label='Agree to terms and conditions ?', required=True, initial=False)
 
     def save(self, request):
         user = super(GlimmerSignupForm, self).save(request)
@@ -23,4 +24,4 @@ class GlimmerSignupForm(SignupForm):
 class UpdateDetailsForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['first_name', 'last_name', 'phone_number', 'marketing']
+        fields = ['first_name', 'last_name', 'phone_number', 'marketing','t_and_c']
