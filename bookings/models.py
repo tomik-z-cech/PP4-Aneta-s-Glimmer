@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from artists.models import Artists
 from styles.models import StylesAvailable
 
+BOOKING_STATUS = ((0, 'Pending'), (1, 'Confirmed'), (2, 'Done'))
+
 
 # Booking
 class Bookings(models.Model):
@@ -10,8 +12,7 @@ class Bookings(models.Model):
     date_time = models.DateTimeField()
     booked_artist = models.ForeignKey(Artists, on_delete=models.CASCADE, related_name='booking')
     booked_style = models.ForeignKey(StylesAvailable, on_delete=models.CASCADE, related_name='booking')
-    booking_confirmed = models.BooleanField(default=False)
-    booking_done = models.BooleanField(default=False)
+    booking_status = models.IntegerField(choices=BOOKING_STATUS, default=0)
 
     class Meta:
         verbose_name = 'Booking'
