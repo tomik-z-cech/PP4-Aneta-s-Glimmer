@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import generic
@@ -93,19 +94,30 @@ class NewBookingView(generic.ListView):
     def post(self, request, *args, **kwargs):
         booking_form = self.form(data=request.POST)
         if booking_form.is_valid():
-            print("VALID")
             # print(request.POST)
             date_converted = datetime.strptime(request.POST["date"], "%Y-%m-%d").date()
             time_converted = datetime.strptime(request.POST["time"], "%H:%M:%S").time()
             booking_form.instance.username = request.user
             new_booking = booking_form.save(commit=False)
-            new_booking.date_time = datetime.combine(
-                date_converted, time_converted
-            )
+            new_booking.date_time = datetime.combine(date_converted, time_converted)
+            # --- Confirmation email ---
+            # Prefixes
+            recipient = [
+                "anetasglimmer@gmail.com"
+            ]  # Send the email to myself as confirmation
+            recipient.append(request.user.email)  # Add email of user creating booking
+            subject = "Booking at Aneta's Glimmer"
+            from_address = "anetasglimmer@gmail.com"
+            date_email = date_converted.strftime("%d.%m.%Y")
+            time_email = time_converted.strftime("%H:%M")
+            artists_email = Artists.objects.filter(id=request.POST["booked_artist"])
+            for artist in artists_email:
+                artist_email = artist.name
+            message = f"We are sending you this email to let you know that your booking for {date_email} at {time_email} with {artist_email} is pending confirmation. See you then ;)"
+            # Send the email
+            send_mail(subject, message, from_address, recipient)
+            # Save booking into database
             new_booking.save()
         else:
-            print("NOT VALID")
-            print(request.POST)
-            print(booking_form.errors)
             booking_form = self.form()
         return redirect("my-bookings")

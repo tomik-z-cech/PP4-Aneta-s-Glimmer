@@ -2,7 +2,54 @@
 
 {% block content %}
 <div class="wrapper">
-    {{ bookings }}
+    <h2>Pending</h2>
+    {% for booking in bookings %}
+        {% if booking.booking_status == 0 %}
+            {{ booking.booking_status }} 
+            - 
+            {{ booking.booked_style }}
+            - 
+            {{ booking.booked_artist }}
+            - 
+            {{ booking.date_time|time:"H:i" }}
+            - 
+            {{ booking.date_time|date:"d.m.Y" }}
+            <br>
+        {% endif %}
+    {% endfor %}
+    <br>
+    <h2>Confirmed</h2>
+    {% for booking in bookings %}
+        {% if booking.booking_status == 1 %}
+            {{ booking.booking_status }} 
+            - 
+            {{ booking.booked_style }}
+            - 
+            {{ booking.booked_artist }}
+            - 
+            {{ booking.date_time|time:"H:i" }}
+            - 
+            {{ booking.date_time|date:"d.m.Y" }}
+            <br>
+        {% endif %}
+    {% endfor %}
+    <br>
+    <h2>Done</h2>
+    {% for booking in bookings %}
+        {% if booking.booking_status == 2 %}
+            {{ booking.booking_status }} 
+            - 
+            {{ booking.booked_style }}
+            - 
+            {{ booking.booked_artist }}
+            - 
+            {{ booking.date_time|time:"H:i" }}
+            - 
+            {{ booking.date_time|date:"d.m.Y" }}
+            <br>
+        {% endif %}
+    {% endfor %}
+    <br>
     <a href="{% url 'new-booking' %}">New booking</a>
 </div>
 
