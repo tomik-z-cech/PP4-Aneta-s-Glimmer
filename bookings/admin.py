@@ -5,4 +5,5 @@ from bookings.models import Bookings
 @admin.register(Bookings)
 class BookingsAdmin(admin.ModelAdmin):
 
-    list_display = ('booked_artist',)
+    list_display = ('date_time','booked_artist','booked_style','booking_status')
+    ordering = ('-date_time',)
