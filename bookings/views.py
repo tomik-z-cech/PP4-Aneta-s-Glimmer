@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from bookings.models import Bookings
 from bookings.forms import CreateBookingForm
+from styles.models import StylesAvailable
+from artists.models import Artists
 
 
 class MyBookingsView(generic.ListView):
@@ -36,18 +38,21 @@ class NewBookingView(generic.ListView):
         )
 
     def booking_options(request):
+        options = []
         selected_value = request.GET.get("selected_value", None)
         field_name = request.GET.get("field_name", None)
         if field_name == "#id_booked_style":
+            artists_with_style = Artists.objects.filter(styles__in=[selected_value]).order_by("-rating")
+            for artist in artists_with_style:
+                rating_string = str(artist.rating)
+                options.append(artist.name + " - Rating : " + rating_string)
+            data = {"options": options}
+        elif field_name == "#id_date":
             options = ["Option 1", "Option 2", "Option 3"]
-            data = {"next": "#id_booked_artist", "options": options}
-        elif field_name == "#id_booked_artist":
-            options = ["Option 1", "Option 2", "Option 3"]
-            data = {"next": "#id_date"}
+            data = {"options": options}
         return JsonResponse(data)
 
     def form_valid(self, form):
-        # Handle form submission and save data
         form.save()
         return super().form_valid(form)
 

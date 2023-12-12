@@ -36,6 +36,23 @@
         $("#id_booked_artist").change(function () {
             $("#id_date").show();
         });
+        $("#id_date").change(function () {
+            let selectedValue = $(this).val();
+            $.ajax({
+                url: '/bookings/booking-options/',
+                method: 'GET',
+                data: {
+                    field_name: "#id_date",
+                    selected_value: selectedValue},
+                success: function (data) {
+                    $("#id_time").empty();
+                    for (let i = 0; i < data.options.length; i++) {
+                        $("#id_time").append('<option value="' + data.options[i] + '">' + data.options[i] + '</option>');
+                        $("#id_time").show();
+                    }
+                }
+            });
+        });
     });
 </script>
 {%endblock%}
