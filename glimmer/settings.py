@@ -21,6 +21,7 @@ DEBUG = os.environ.get("DEV_PRODUCTION", False)
 # I frame security setting
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
+
 # List of allowed hosts
 ALLOWED_HOSTS = [
     "127.0.0.1",
