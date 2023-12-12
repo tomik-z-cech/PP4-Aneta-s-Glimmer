@@ -5,6 +5,8 @@
     <h2>Pending</h2>
     {% for booking in bookings %}
         {% if booking.booking_status == 0 %}
+            {{ booking.pk }}
+            -
             {{ booking.booking_status }} 
             - 
             {{ booking.booked_style }}
@@ -14,6 +16,11 @@
             {{ booking.date_time|time:"H:i" }}
             - 
             {{ booking.date_time|date:"d.m.Y" }}
+            -
+            <a href="#">Edit</a>
+            -
+            <a href="{% url 'cancel-booking' pk=booking.pk %}">Cancel</a>
+            <!--<a href="#" data-bs-toggle="modal" data-bs-target="#cancelBookingModal" data-pk="{{ booking.pk }}">Cancel</a>-->
             <br>
         {% endif %}
     {% endfor %}
@@ -21,6 +28,8 @@
     <h2>Confirmed</h2>
     {% for booking in bookings %}
         {% if booking.booking_status == 1 %}
+            {{ booking.pk }}
+            -
             {{ booking.booking_status }} 
             - 
             {{ booking.booked_style }}
@@ -30,6 +39,11 @@
             {{ booking.date_time|time:"H:i" }}
             - 
             {{ booking.date_time|date:"d.m.Y" }}
+            -
+            <a href="#">Edit</a>
+            -
+            <a href="{% url 'cancel-booking' pk=booking.pk %}">Cancel</a>
+            <!--<a href="#" data-bs-toggle="modal" data-bs-target="#cancelBookingModal" data-pk="{{ booking.pk }}">Cancel</a>-->
             <br>
         {% endif %}
     {% endfor %}
@@ -37,6 +51,8 @@
     <h2>Done</h2>
     {% for booking in bookings %}
         {% if booking.booking_status == 2 %}
+            {{ booking.pk }}
+            -
             {{ booking.booking_status }} 
             - 
             {{ booking.booked_style }}
@@ -46,11 +62,13 @@
             {{ booking.date_time|time:"H:i" }}
             - 
             {{ booking.date_time|date:"d.m.Y" }}
+            -
+            <a href="#">Leave review</a>
+            <br>
             <br>
         {% endif %}
     {% endfor %}
     <br>
     <a href="{% url 'new-booking' %}">New booking</a>
-</div>
 
 {%endblock%}
