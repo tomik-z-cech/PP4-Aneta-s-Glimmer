@@ -2,9 +2,10 @@ from django import forms
 from django.utils import timezone
 from datetime import datetime, timedelta
 from bookings.models import Bookings
+from styles.models import StylesAvailable
+
 
 class CreateBookingForm(forms.ModelForm):
-    
     class Meta:
         model = Bookings
         fields = (
@@ -14,34 +15,40 @@ class CreateBookingForm(forms.ModelForm):
             "time",
         )
 
+    booked_style = forms.ModelChoiceField(queryset=StylesAvailable.objects.all())
+
     date = forms.DateField(
         label="Date",
         widget=forms.TextInput(attrs={"type": "date"}),
-        help_text="* Please select date of your visit",
     )
 
-    time = forms.ChoiceField(
+    time = forms.TimeField(
         label="Time",
-        choices=[(f"{h:02d}:00", f"{h:02d}:00") for h in range(9, 17, 1)],
         widget=forms.Select,
-        help_text="* Please select time of your visit",
     )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         min_extra_days = 2
         min_date = timezone.now() + timedelta(days=min_extra_days)
-        self.fields['date'].widget.attrs.update({'min': min_date.date()})
+        self.fields["date"].widget.attrs.update({"min": min_date.date()})
+        style_choices = StylesAvailable.objects.values_list("id", "style_name")
+        default_choice = [("0", "Select Style")]
+        self.fields["booked_style"].choices = default_choice + list(style_choices)
 
     def clean(self):
         cleaned_data = super().clean()
-        date = cleaned_data.get('date')
-        time = cleaned_data.get('time')
-
-        # Combine date and time to create date_time
+        date = cleaned_data.get("date")
+        time = cleaned_data.get("time")
         if date and time:
+            #print('----------------------')
+            #print('COMBINE')
             date_time = datetime.combine(date, time)
+            #print(date_time)
+            #print('----------------------')
             cleaned_data["date_time"] = timezone.make_aware(date_time)
+            #print('CLEANED')
+            #print(cleaned_data)
+            #print('----------------------')
 
         return cleaned_data
-    
