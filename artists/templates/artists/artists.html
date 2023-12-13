@@ -5,18 +5,18 @@
 <h1>Our Team :</h1>
 <br>
 {% for artist in artists_list %}
-<a href="{% url 'artist-detail' slug=artist.slug %}">Name : {{ artist.name }}</a>
+<a href="{% url 'artist-detail' slug=artist.artist.slug %}">Name : {{ artist.artist.name }}</a>
 <br>
-Profile picture : {{ artist.profile_picture }}
+Profile picture : {{ artist.artist.profile_picture }}
 <br>
-Bio : {{ artist.bio }}
+Bio : {{ artist.artist.bio }}
 <br>
-Public profile : {{ artist.public_profile }}
+Public profile : {{ artist.artist.public_profile }}
 <br>
-Since : {{ artist.start_date }}
+Since : {{ artist.artist.start_date }}
 <br>
 Styles : 
-{% for style in artist.styles.all %}
+{% for style in artist.artist.styles.all %}
     {{ style.style_name }}
     {% if not forloop.last %}
         ,
@@ -25,7 +25,7 @@ Styles :
 <br>
 Rating : {{ artist.rating }}
 <br>
-Total bookings : {{ artist.bookings_total }}
+Total bookings : {{ artist.rating_count }}
 <br><br>
 {% endfor %}
 </div>
