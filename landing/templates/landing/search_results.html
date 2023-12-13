@@ -5,15 +5,31 @@
 {% block content %}
 <div class="wrapper">
 <form method="get" action="{% url 'search' %}">
-    {{ form.as_p }}
+    {{ search_form.as_p }}
     <button type="submit">Search</button>
 </form>
-<h3>Results in artists</h3>
-{% for result in artists_results %}
+<h3>Results in news</h3>
+{% for news in news_results %}
     <p>
-        {{ result.name }}
-        <br>
-        {{ result.bio }}
+        <a href="{% url 'news-detail' slug=news.slug %}">
+            {{ news.title }}
+        </a>
+    </p>
+{% endfor %}
+<h3>Results in artists</h3>
+{% for artist in artists_results %}
+    <p>
+        <a href="{% url 'artist-detail' slug=artist.slug %}">
+            {{ artist.name }}
+        </a>
+    </p>
+{% endfor %}
+<h3>Results in styles</h3>
+{% for style in styles_results %}
+    <p>
+        <a href="{% url 'style-detail' slug=style.slug %}">
+            {{ style.style_name }}
+        </a>
     </p>
 {% endfor %}
 {%endblock%}

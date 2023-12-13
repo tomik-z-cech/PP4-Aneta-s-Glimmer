@@ -56,11 +56,13 @@ class LandingPageView(generic.ListView):
     def search(request):
         search_form = SearchBarForm(request.GET)
         artists = Artists.objects.all()
+        news = NewsPosts.objects.all()
+        styles = StylesAvailable.objects.all()
 
         if search_form.is_valid():
             search_query = search_form.cleaned_data.get('search_query')
             if search_query:
-                artists_result = artists.filter(name__icontains=search_query)
-        else:
-            print('not valid')
-        return render(request, 'landing/search_results.html', {'artists_results': artists_result, 'search_form': search_form})
+                news_results = news.filter(title__icontains=search_query)
+                artists_results = artists.filter(name__icontains=search_query)
+                styles_results = styles.filter(style_name__icontains=search_query)
+        return render(request, 'landing/search_results.html', {'styles_results': styles_results, 'news_results': news_results, 'artists_results': artists_results, 'search_form': search_form})
