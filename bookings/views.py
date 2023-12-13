@@ -31,7 +31,6 @@ class MyBookingsView(generic.ListView):
     
     def cancel_request(request, request_booking_pk):
         requested_booking = Bookings.objects.get(pk=request_booking_pk)  # Get booking
-        print(requested_booking)
         return render(  # Render template
             request,
             "bookings/booking_cancel_confirm.html",

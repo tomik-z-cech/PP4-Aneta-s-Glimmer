@@ -41,14 +41,7 @@ class CreateBookingForm(forms.ModelForm):
         date = cleaned_data.get("date")
         time = cleaned_data.get("time")
         if date and time:
-            #print('----------------------')
-            #print('COMBINE')
             date_time = datetime.combine(date, time)
-            #print(date_time)
-            #print('----------------------')
             cleaned_data["date_time"] = timezone.make_aware(date_time)
-            #print('CLEANED')
-            #print(cleaned_data)
-            #print('----------------------')
 
         return cleaned_data
