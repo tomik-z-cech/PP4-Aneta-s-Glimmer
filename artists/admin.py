@@ -5,7 +5,6 @@ from artists.models import Artists
 @admin.register(Artists)
 class ArtistsAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'bookings_total', 'rating')
+    list_display = ('name',)
     prepopulated_fields = {'slug': ('name',)}
-    ordering = ('-rating',)
     

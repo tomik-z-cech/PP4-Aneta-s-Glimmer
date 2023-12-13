@@ -130,6 +130,13 @@
                                         {% else %}
                                             Something went wrong.
                                         {% endif %}
+                                    - 
+                                    based on {{ top_artist.rating_count }}
+                                    {% if top_artist.rating_count > 1 %}
+                                        reviews
+                                    {% else %}
+                                        review
+                                    {% endif %}
                                     </a>
                                     <br>
                                 {% endfor %}

@@ -13,6 +13,8 @@ class Bookings(models.Model):
     booked_artist = models.ForeignKey(Artists, on_delete=models.CASCADE, related_name='booking')
     booked_style = models.ForeignKey(StylesAvailable, on_delete=models.CASCADE, related_name='booking')
     booking_status = models.IntegerField(choices=BOOKING_STATUS, default=0)
+    rating = models.FloatField(default=0)
+    is_rated = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Booking'
