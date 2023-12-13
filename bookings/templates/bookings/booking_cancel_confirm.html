@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="wrapper">
+{% for booking in bookings %}
+    Sure ?
+<br>
+You are about to cancel booking for {{ booking.date_time }} with {{booking.booked_artist}} and we meant to be doing {{ booking.booked_style }}.
+<br>
+Proceed ?
+<br>
+<a href="{% url 'my-bookings' %}">No, take me back</a>
+<br>
+<a href="{% url 'cancel-booking' cancel_booking_pk=booking.pk%}">Yes, cancel</a>
+{% endfor %} 
+</div>
+{%endblock%}

@@ -28,6 +28,17 @@ class MyBookingsView(generic.ListView):
                 "bookings": user_bookings,
             },
         )
+    
+    def cancel_request(request, request_booking_pk):
+        requested_booking = Bookings.objects.filter(pk=request_booking_pk)  # Filter bookings
+        print(requested_booking)
+        return render(  # Render template
+            request,
+            "bookings/booking_cancel_confirm.html",
+            {
+                "bookings": requested_booking
+            },
+        )
 
 
 class NewBookingView(generic.ListView):
@@ -161,10 +172,23 @@ class NewBookingView(generic.ListView):
         else:
             booking_form = self.form()
         return redirect("my-bookings")  # Redirect back to my-bookings
-
+    
 
 class CancelBookingView(generic.ListView):
-    def get(self, request, *args, **kwargs):
-        # selected_booking = get_object_or_404(Bookings, pk=pk)
-        # selected_booking.delete()
-        return redirect("my-bookings")
+    def get(self, request, cancel_booking_pk, *args, **kwargs):
+        bookings_to_cancel = Bookings.objects.filter(pk=cancel_booking_pk) # Queryset for booking to cancel
+        # Prefixes for confirmation email
+        recipient = [
+            "anetasglimmer@gmail.com"
+        ]  # Send the email to myself as confirmation
+        recipient.append(request.user.email)  # Add email of user cancelling booking
+        subject = "Cancelled Booking at Aneta's Glimmer"  # Subject
+        from_address = "anetasglimmer@gmail.com"  # From
+        for booking in bookings_to_cancel:
+            date_email = booking.date_time.strftime("%d.%m.%Y")  # Stringify date for email
+            time_email = booking.date_time.strftime("%H:%M")  # Stringify time for email
+            artist_email = booking.booked_artist # Name of artist for email
+        message = f"We are sending you this email to confirm that your booking for {date_email} at {time_email} with {artist_email} was cancelled. We are sorry to see that :( "
+        send_mail(subject, message, from_address, recipient)  # Send the email
+        bookings_to_cancel.delete() # Delete booking from DB
+        return redirect("my-bookings") # Return to my bookings

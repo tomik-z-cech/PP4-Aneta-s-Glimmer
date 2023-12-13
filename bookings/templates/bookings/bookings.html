@@ -19,8 +19,7 @@
             -
             <a href="#">Edit</a>
             -
-            <a href="{% url 'cancel-booking' pk=booking.pk %}">Cancel</a>
-            <!--<a href="#" data-bs-toggle="modal" data-bs-target="#cancelBookingModal" data-pk="{{ booking.pk }}">Cancel</a>-->
+            <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}">Cancel</a>
             <br>
         {% endif %}
     {% endfor %}
@@ -42,8 +41,7 @@
             -
             <a href="#">Edit</a>
             -
-            <a href="{% url 'cancel-booking' pk=booking.pk %}">Cancel</a>
-            <!--<a href="#" data-bs-toggle="modal" data-bs-target="#cancelBookingModal" data-pk="{{ booking.pk }}">Cancel</a>-->
+            <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}">Cancel</a>
             <br>
         {% endif %}
     {% endfor %}
