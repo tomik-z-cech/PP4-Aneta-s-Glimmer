@@ -5,6 +5,7 @@ from news.models import NewsPosts
 from styles.models import StylesAvailable
 from artists.models import Artists
 from bookings.models import Bookings
+from landing.forms import SearchBarForm
 
 
 # ----------------------- LANDING PAGE --------------------- #
@@ -16,6 +17,7 @@ class LandingPageView(generic.ListView):
     template_name = "landing/index.html"
 
     def get(self, request, *args, **kwargs):
+        search_form = SearchBarForm()
         news = NewsPosts.objects.annotate(
             comments_num=Count("news_comments", filter=Q(news_comments__approved=1))
         ).filter(is_published=1)[:3]
@@ -46,5 +48,19 @@ class LandingPageView(generic.ListView):
                 "top_styles_like": top_styles_like,
                 "top_styles_try": top_styles_try,
                 "top_artists": top_artists,
+                "search_form": search_form
             },
         )
+    
+
+    def search(request):
+        search_form = SearchBarForm(request.GET)
+        artists = Artists.objects.all()
+
+        if search_form.is_valid():
+            search_query = search_form.cleaned_data.get('search_query')
+            if search_query:
+                artists_result = artists.filter(name__icontains=search_query)
+        else:
+            print('not valid')
+        return render(request, 'landing/search_results.html', {'artists_results': artists_result, 'search_form': search_form})

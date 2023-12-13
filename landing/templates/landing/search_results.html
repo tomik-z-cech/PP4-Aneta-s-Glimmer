@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="wrapper">
+<form method="get" action="{% url 'search' %}">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+<h3>Results in artists</h3>
+{% for result in artists_results %}
+    <p>
+        {{ result.name }}
+        <br>
+        {{ result.bio }}
+    </p>
+{% endfor %}
+{%endblock%}
