@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.core.mail import send_mail
 from bookings.models import Bookings
+from artists.models import Artists
 from django.contrib.auth.models import User
 
 
 # Register your models here.
 @admin.register(Bookings)
 class BookingsAdmin(admin.ModelAdmin):
-    list_display = ("date_time", "booked_artist", "booked_style", "booking_status")
+    list_display = ("date_time","username", "booked_artist", "booked_style", "booking_status")
     ordering = ("-date_time",)
     actions = ["confirm_bookings","done_bookings"]
     list_filter = ('booking_status',)
