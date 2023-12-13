@@ -10,6 +10,7 @@ class BookingsAdmin(admin.ModelAdmin):
     list_display = ("date_time", "booked_artist", "booked_style", "booking_status")
     ordering = ("-date_time",)
     actions = ["confirm_bookings","done_bookings"]
+    list_filter = ('booking_status',)
 
     def confirm_bookings(self, request, queryset):
         # Prefixes for confirmation email
