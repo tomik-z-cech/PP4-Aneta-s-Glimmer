@@ -188,3 +188,13 @@ class CancelBookingView(generic.ListView):
         send_mail(subject, message, from_address, recipient)  # Send the email
         booking_to_cancel.delete() # Delete booking from DB
         return redirect("my-bookings") # Return to my bookings
+
+class RateBookingView(generic.ListView):
+    def get(self, request, rate_booking_pk, score, *args, **kwargs):
+        print(rate_booking_pk, score)
+        booking_to_rate = Bookings.objects.get(pk=rate_booking_pk)
+        booking_to_rate.is_rated = 1 # Change status
+        booking_to_rate.rating = score # Add rating
+        booking_to_rate.save() # Save
+        return redirect("my-bookings") # Return to my bookings
+        

@@ -61,7 +61,15 @@
             - 
             {{ booking.date_time|date:"d.m.Y" }}
             -
-            <a href="#">Leave review</a>
+            {% if booking.is_rated == False %}
+                <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=1 %}">1</a>
+                <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=2 %}">2</a>
+                <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=3 %}">3</a>
+                <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=4 %}">4</a>
+                <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=5 %}">5</a>
+            {% else %}
+                Thank you for review !
+            {% endif %}
             <br>
             <br>
         {% endif %}

@@ -14,4 +14,5 @@ urlpatterns = [
         name="cancel-request",
     ),
     path("cancel-booking/<int:cancel_booking_pk>/", views.CancelBookingView.as_view(), name="cancel-booking"),
+    path("rate-booking/<int:rate_booking_pk><int:score>/", views.RateBookingView.as_view(), name="rate-booking"),
 ]
