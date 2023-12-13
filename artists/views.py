@@ -9,15 +9,12 @@ from bookings.models import Bookings
 
 class TeamView(generic.ListView):
     template_name = "artists/artists.html"
-
     def get(self, request, *args, **kwargs):
         artists = Artists.objects.all()
         artists_to_send = []
         for artist in artists:
             valid_bookings_count = 0
             rating_total = 0
-            print("--------START-----")
-            print(artist.name)
             valid_bookings = Bookings.objects.filter(is_rated=True).filter(
                 booked_artist=artist.id
             )
@@ -34,7 +31,6 @@ class TeamView(generic.ListView):
                     "rating_count": valid_bookings_count,
                 }
             )
-        print(artists_to_send)
         return render(
             request,
             self.template_name,
@@ -56,6 +52,18 @@ class TeamDetailView(generic.DetailView):
         )
         style_slug = styles_this_artist.values_list("slug", flat=True)
         filtered_styles = zip(style_slug, styles_this_artist)
+        valid_bookings_count = 0
+        rating_total = 0
+        valid_bookings = Bookings.objects.filter(is_rated=True).filter(
+                booked_artist=artist_selected.id
+            )
+        for valid_booking in valid_bookings:
+            valid_bookings_count = valid_bookings_count + 1
+            rating_total = rating_total + valid_booking.rating
+            rating = rating_total / valid_bookings_count
+        if valid_bookings_count == 0:
+                rating = 0
+        print(rating, valid_bookings_count)
         return render(
             request,
             self.template_name,
@@ -65,8 +73,9 @@ class TeamDetailView(generic.DetailView):
                 "bio": artist_selected.bio,
                 "public_profile": artist_selected.public_profile,
                 "start_date": artist_selected.start_date,
-                "rating": artist_selected.rating,
-                "bookings_total": artist_selected.bookings_total,
                 "filtered_styles": filtered_styles,
+                "rating": rating,
+                "bookings_total": valid_bookings_count
+                
             },
         )

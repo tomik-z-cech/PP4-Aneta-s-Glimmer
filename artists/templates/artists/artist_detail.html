@@ -12,9 +12,14 @@ Public profile : {{ public_profile }}
 <br>
 Start date : {{ start_date }} 
 <br>
-Rating : {{ rating }}
-<br>
-Total bookings : {{ bookings_total }}
+{% if rating != 0 %}
+    Rating : {{ rating }}
+    <br>
+    Total bookings : {{ bookings_total }}
+    <br>
+{% else %}
+    No reviews yet.
+{% endif %}
 <br>
 {{ name }} excells in these styles : 
 
