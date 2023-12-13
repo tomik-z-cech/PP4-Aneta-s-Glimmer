@@ -80,8 +80,6 @@ class NewBookingView(generic.ListView):
             ]  # Heading option for Select artist field
             artists_with_style = Artists.objects.filter(
                 styles__in=[received_value]
-            ).order_by(
-                "-rating"
             )  # Queryset for artists with the selected style
             for artist in artists_with_style:  # For each artist
                 artist_id = str(artist.id)  # Stringify id field
