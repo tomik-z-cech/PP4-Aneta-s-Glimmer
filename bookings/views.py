@@ -30,13 +30,13 @@ class MyBookingsView(generic.ListView):
         )
     
     def cancel_request(request, request_booking_pk):
-        requested_booking = Bookings.objects.filter(pk=request_booking_pk)  # Filter bookings
+        requested_booking = Bookings.objects.get(pk=request_booking_pk)  # Get booking
         print(requested_booking)
         return render(  # Render template
             request,
             "bookings/booking_cancel_confirm.html",
             {
-                "bookings": requested_booking
+                "booking_to_cancel": requested_booking
             },
         )
 
@@ -157,16 +157,15 @@ class NewBookingView(generic.ListView):
                 "anetasglimmer@gmail.com"
             ]  # Send the email to myself as confirmation
             recipient.append(request.user.email)  # Add email of user creating booking
-            subject = "Booking at Aneta's Glimmer"  # Subject
+            subject = "New Booking at Aneta's Glimmer"  # Subject
             from_address = "anetasglimmer@gmail.com"  # From
             date_email = date_converted.strftime("%d.%m.%Y")  # Stringify date for email
             time_email = time_converted.strftime("%H:%M")  # Stringify time for email
-            artists_email = Artists.objects.filter(
+            select_artist = Artists.objects.get(
                 id=request.POST["booked_artist"]
             )  # Queryset to select artist by id
-            for artist in artists_email:
-                artist_email = artist.name  # Save artist's name for email
-            message = f"We are sending you this email to let you know that your booking for {date_email} at {time_email} with {artist_email} is pending confirmation. See you then ;)"
+            artist_email = select_artist.name  # Save artist's name for email
+            message = f"We are sending you this email to let you know that your booking for {date_email} at {time_email} with {artist_email} is pending confirmation. We will confirm that shortly ;)"
             send_mail(subject, message, from_address, recipient)  # Send the email
             new_booking.save()  # Save booking into database
         else:
@@ -176,7 +175,7 @@ class NewBookingView(generic.ListView):
 
 class CancelBookingView(generic.ListView):
     def get(self, request, cancel_booking_pk, *args, **kwargs):
-        bookings_to_cancel = Bookings.objects.filter(pk=cancel_booking_pk) # Queryset for booking to cancel
+        booking_to_cancel = Bookings.objects.get(pk=cancel_booking_pk) # Queryset for booking to cancel
         # Prefixes for confirmation email
         recipient = [
             "anetasglimmer@gmail.com"
@@ -184,11 +183,9 @@ class CancelBookingView(generic.ListView):
         recipient.append(request.user.email)  # Add email of user cancelling booking
         subject = "Cancelled Booking at Aneta's Glimmer"  # Subject
         from_address = "anetasglimmer@gmail.com"  # From
-        for booking in bookings_to_cancel:
-            date_email = booking.date_time.strftime("%d.%m.%Y")  # Stringify date for email
-            time_email = booking.date_time.strftime("%H:%M")  # Stringify time for email
-            artist_email = booking.booked_artist # Name of artist for email
-        message = f"We are sending you this email to confirm that your booking for {date_email} at {time_email} with {artist_email} was cancelled. We are sorry to see that :( "
+        date_email = booking_to_cancel.date_time.strftime("%d.%m.%Y")  # Stringify date for email
+        time_email = booking_to_cancel.date_time.strftime("%H:%M")  # Stringify time for email
+        message = f"We are sending you this email to confirm that your booking for {date_email} at {time_email} with {booking_to_cancel.booked_artist} was cancelled. We are sorry to see that :( "
         send_mail(subject, message, from_address, recipient)  # Send the email
-        bookings_to_cancel.delete() # Delete booking from DB
+        booking_to_cancel.delete() # Delete booking from DB
         return redirect("my-bookings") # Return to my bookings
