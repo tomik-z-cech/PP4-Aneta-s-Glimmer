@@ -8,6 +8,7 @@ from bookings.models import Bookings
 from bookings.forms import BookingForm
 from artists.models import Artists
 
+
 class BookingOptionsView(generic.ListView):
     def booking_options(request):
         """
@@ -100,15 +101,13 @@ class MyBookingsView(generic.ListView):
                 "bookings": user_bookings,
             },
         )
-    
+
     def cancel_request(request, request_booking_pk):
         requested_booking = Bookings.objects.get(pk=request_booking_pk)  # Get booking
         return render(  # Render template
             request,
             "bookings/booking_cancel_confirm.html",
-            {
-                "booking_to_cancel": requested_booking
-            },
+            {"booking_to_cancel": requested_booking},
         )
 
 
@@ -163,13 +162,13 @@ class NewBookingView(generic.ListView):
                 id=request.POST["booked_artist"]
             )  # Queryset to select artist by id
             artist_email = select_artist.name  # Save artist's name for email
-            message = f"We are sending you this email to let you know that your booking for {date_email} at {time_email} with {artist_email} is pending confirmation. We will confirm that shortly ;)"
+            message = f"Hello from Aneta's Glimmer {request.user}, We are sending you this email to let you know that your booking for {date_email} at {time_email} with {artist_email} is pending confirmation. We will confirm that shortly ;)"
             send_mail(subject, message, from_address, recipient)  # Send the email
             new_booking.save()  # Save booking into database
         else:
             booking_form = self.form()
         return redirect("my-bookings")  # Redirect back to my-bookings
-    
+
 
 class EditBookingView(generic.ListView):
     """
@@ -185,41 +184,52 @@ class EditBookingView(generic.ListView):
         Function generates booking form into template
         """
         booking_instance = Bookings.objects.get(pk=edit_booking_pk)
-        edit_booking_form = BookingForm(instance=booking_instance)
-        print(edit_booking_pk)
-        print(edit_booking_form)
+        style_edit_form = booking_instance.booked_style
+        artist_edit_form = booking_instance.booked_artist
+        date_edit_form = booking_instance.date_time.date()
+        time_edit_form = booking_instance.date_time.strftime('%H:%M')
+        edit_booking_form = BookingForm(
+            initial={
+                "booked_style": style_edit_form,
+                "booked_artist": artist_edit_form,
+                "date": date_edit_form,
+            }
+        )
         return render(
             request,
             self.template_name,
             {
                 "edit_booking_form": edit_booking_form,  # Booking form
+                "initial_time": time_edit_form
             },
         )
 
-
-    def post(self, request, *args, **kwargs):
+    def post(self, request, edit_booking_pk, *args, **kwargs):
         """
         Function triggers when submit button on booking form is pressed
         """
+        edited_booking = Bookings.objects.get(pk=edit_booking_pk)
         booking_form = self.form(data=request.POST)
+        
         if booking_form.is_valid():
             date_converted = datetime.strptime(
                 request.POST["date"], "%Y-%m-%d"
             ).date()  # Convert str date to datetime date
             time_converted = datetime.strptime(
                 request.POST["time"], "%H:%M:%S"
-            ).time()  # Conver str time to datetime time
-            booking_form.instance.username = request.user  # Request username
-            new_booking = booking_form.save(commit=False)
-            new_booking.date_time = datetime.combine(
+            ).time()  # Convert str time to datetime time
+            edited_booking.booked_artist = booking_form.cleaned_data['booked_artist']
+            edited_booking.booked_style = booking_form.cleaned_data['booked_style']
+            edited_booking.date_time = datetime.combine(
                 date_converted, time_converted
-            )  # Combine date and time
+            )
+            edited_booking.booking_status = 0
             # Prefixes for confirmation email
             recipient = [
                 "anetasglimmer@gmail.com"
             ]  # Send the email to myself as confirmation
             recipient.append(request.user.email)  # Add email of user creating booking
-            subject = "New Booking at Aneta's Glimmer"  # Subject
+            subject = "Changed Booking at Aneta's Glimmer"  # Subject
             from_address = "anetasglimmer@gmail.com"  # From
             date_email = date_converted.strftime("%d.%m.%Y")  # Stringify date for email
             time_email = time_converted.strftime("%H:%M")  # Stringify time for email
@@ -227,16 +237,19 @@ class EditBookingView(generic.ListView):
                 id=request.POST["booked_artist"]
             )  # Queryset to select artist by id
             artist_email = select_artist.name  # Save artist's name for email
-            message = f"We are sending you this email to let you know that your booking for {date_email} at {time_email} with {artist_email} is pending confirmation. We will confirm that shortly ;)"
-            # send_mail(subject, message, from_address, recipient)  # Send the email
-            # new_booking.save()  # Save booking into database
+            message = f"Hello from Aneta's Glimmer {request.user}, We are sending you this email to let you know that your booking was changed to {date_email} at {time_email} with {artist_email}. Please note, that if your booking was previously confirmed, it is now pending confirmation. We will confirm that shortly ;)"
+            send_mail(subject, message, from_address, recipient)  # Send the email
+            edited_booking.save()  # Save booking into database
         else:
             booking_form = self.form()
         return redirect("my-bookings")  # Redirect back to my-bookings
 
+
 class CancelBookingView(generic.ListView):
     def get(self, request, cancel_booking_pk, *args, **kwargs):
-        booking_to_cancel = Bookings.objects.get(pk=cancel_booking_pk) # Queryset for booking to cancel
+        booking_to_cancel = Bookings.objects.get(
+            pk=cancel_booking_pk
+        )  # Queryset for booking to cancel
         # Prefixes for confirmation email
         recipient = [
             "anetasglimmer@gmail.com"
@@ -244,19 +257,22 @@ class CancelBookingView(generic.ListView):
         recipient.append(request.user.email)  # Add email of user cancelling booking
         subject = "Cancelled Booking at Aneta's Glimmer"  # Subject
         from_address = "anetasglimmer@gmail.com"  # From
-        date_email = booking_to_cancel.date_time.strftime("%d.%m.%Y")  # Stringify date for email
-        time_email = booking_to_cancel.date_time.strftime("%H:%M")  # Stringify time for email
-        message = f"We are sending you this email to confirm that your booking for {date_email} at {time_email} with {booking_to_cancel.booked_artist} was cancelled. We are sorry to see that :( "
+        date_email = booking_to_cancel.date_time.strftime(
+            "%d.%m.%Y"
+        )  # Stringify date for email
+        time_email = booking_to_cancel.date_time.strftime(
+            "%H:%M"
+        )  # Stringify time for email
+        message = f"Hello from Aneta's Glimmer {request.user}, We are sending you this email to confirm that your booking for {date_email} at {time_email} with {booking_to_cancel.booked_artist} was cancelled. We are sorry to see that :( "
         send_mail(subject, message, from_address, recipient)  # Send the email
-        booking_to_cancel.delete() # Delete booking from DB
-        return redirect("my-bookings") # Return to my bookings
+        booking_to_cancel.delete()  # Delete booking from DB
+        return redirect("my-bookings")  # Return to my bookings
+
 
 class RateBookingView(generic.ListView):
     def get(self, request, rate_booking_pk, score, *args, **kwargs):
-        print(rate_booking_pk, score)
         booking_to_rate = Bookings.objects.get(pk=rate_booking_pk)
-        booking_to_rate.is_rated = 1 # Change status
-        booking_to_rate.rating = score # Add rating
-        booking_to_rate.save() # Save
-        return redirect("my-bookings") # Return to my bookings
-        
+        booking_to_rate.is_rated = 1  # Change status
+        booking_to_rate.rating = score  # Add rating
+        booking_to_rate.save()  # Save
+        return redirect("my-bookings")  # Return to my bookings
