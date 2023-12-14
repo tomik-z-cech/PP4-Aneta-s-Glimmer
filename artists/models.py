@@ -5,6 +5,9 @@ from styles.models import StylesAvailable
 
 # Artists
 class Artists(models.Model):
+    """
+    Artists Database Model
+    """
     name = models.CharField(max_length=100, unique=True)
     profile_picture = CloudinaryField('image', default='default_artist_pp')
     bio = models.TextField()
