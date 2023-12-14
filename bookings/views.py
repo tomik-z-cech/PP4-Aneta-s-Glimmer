@@ -1,5 +1,5 @@
 # Imports
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -94,11 +94,24 @@ class MyBookingsView(generic.ListView):
         """Method GET filters all bookings by user"""
         login_user = request.user  # Request logged in user
         user_bookings = Bookings.objects.filter(username=login_user)  # Filter bookings
+        # ---
+        last_minutes = []
+        all_artists = Artists.objects.all()
+        tommorrow = datetime.now().date() + timedelta(days=1)
+        for artist in all_artists:
+            bookings_tommorrow = Bookings.objects.filter(booked_artist=artist, date_time__date=tommorrow).count()
+            free_slots = 8 - bookings_tommorrow
+            last_minutes.append({
+                "name": artist.name,
+                "free_slots": free_slots
+            })
+        # ---
         return render(  # Render template
             request,
             self.template_name,
             {
                 "bookings": user_bookings,
+                "last_minutes": last_minutes
             },
         )
 
