@@ -17,7 +17,7 @@
             - 
             {{ booking.date_time|date:"d.m.Y" }}
             -
-            <a href="#">Edit</a>
+            <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}">Edit</a>
             -
             <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}">Cancel</a>
             <br>
@@ -39,7 +39,7 @@
             - 
             {{ booking.date_time|date:"d.m.Y" }}
             -
-            <a href="#">Edit</a>
+            <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}">Edit</a>
             -
             <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}">Cancel</a>
             <br>

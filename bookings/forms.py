@@ -5,7 +5,7 @@ from bookings.models import Bookings
 from styles.models import StylesAvailable
 
 
-class CreateBookingForm(forms.ModelForm):
+class BookingForm(forms.ModelForm):
     class Meta:
         model = Bookings
         fields = (

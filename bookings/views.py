@@ -2,65 +2,13 @@
 from datetime import datetime
 from django.core.mail import send_mail
 from django.http import JsonResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views import generic
 from bookings.models import Bookings
-from bookings.forms import CreateBookingForm
+from bookings.forms import BookingForm
 from artists.models import Artists
 
-
-class MyBookingsView(generic.ListView):
-    """
-    Class for viewing all bookings for logged in user
-    """
-
-    template_name = "bookings/bookings.html"  # Template
-    model = Bookings
-
-    def get(self, request, *args, **kwargs):
-        """Method GET filters all bookings by user"""
-        login_user = request.user  # Request logged in user
-        user_bookings = Bookings.objects.filter(username=login_user)  # Filter bookings
-        return render(  # Render template
-            request,
-            self.template_name,
-            {
-                "bookings": user_bookings,
-            },
-        )
-    
-    def cancel_request(request, request_booking_pk):
-        requested_booking = Bookings.objects.get(pk=request_booking_pk)  # Get booking
-        return render(  # Render template
-            request,
-            "bookings/booking_cancel_confirm.html",
-            {
-                "booking_to_cancel": requested_booking
-            },
-        )
-
-
-class NewBookingView(generic.ListView):
-    """
-    Class for creating new bookings
-    """
-
-    template_name = "bookings/new_booking.html"  # Template
-    form = CreateBookingForm  # New bookings form
-    success_url = "/bookings/"  # URL to redirect after successful booking
-
-    def get(self, request, *args, **kwargs):
-        """
-        Function generates booking form into template
-        """
-        return render(
-            request,
-            self.template_name,
-            {
-                "new_booking_form": CreateBookingForm(),  # Booking form
-            },
-        )
-
+class BookingOptionsView(generic.ListView):
     def booking_options(request):
         """
         Function returns data to the template based on user selection
@@ -132,6 +80,59 @@ class NewBookingView(generic.ListView):
             data = {"options": options}  # Data to send back
         return JsonResponse(data)  # Return with JSON response
 
+
+class MyBookingsView(generic.ListView):
+    """
+    Class for viewing all bookings for logged in user
+    """
+
+    template_name = "bookings/bookings.html"  # Template
+    model = Bookings
+
+    def get(self, request, *args, **kwargs):
+        """Method GET filters all bookings by user"""
+        login_user = request.user  # Request logged in user
+        user_bookings = Bookings.objects.filter(username=login_user)  # Filter bookings
+        return render(  # Render template
+            request,
+            self.template_name,
+            {
+                "bookings": user_bookings,
+            },
+        )
+    
+    def cancel_request(request, request_booking_pk):
+        requested_booking = Bookings.objects.get(pk=request_booking_pk)  # Get booking
+        return render(  # Render template
+            request,
+            "bookings/booking_cancel_confirm.html",
+            {
+                "booking_to_cancel": requested_booking
+            },
+        )
+
+
+class NewBookingView(generic.ListView):
+    """
+    Class for creating new bookings
+    """
+
+    template_name = "bookings/new_booking.html"  # Template
+    form = BookingForm  # New bookings form
+    success_url = "/bookings/"  # URL to redirect after successful booking
+
+    def get(self, request, *args, **kwargs):
+        """
+        Function generates booking form into template
+        """
+        return render(
+            request,
+            self.template_name,
+            {
+                "new_booking_form": BookingForm(),  # Booking form
+            },
+        )
+
     def post(self, request, *args, **kwargs):
         """
         Function triggers when submit button on booking form is pressed
@@ -169,6 +170,69 @@ class NewBookingView(generic.ListView):
             booking_form = self.form()
         return redirect("my-bookings")  # Redirect back to my-bookings
     
+
+class EditBookingView(generic.ListView):
+    """
+    Class for creating new bookings
+    """
+
+    template_name = "bookings/edit_booking.html"  # Template
+    form = BookingForm  # New bookings form
+    success_url = "/bookings/"  # URL to redirect after successful booking
+
+    def get(self, request, edit_booking_pk, *args, **kwargs):
+        """
+        Function generates booking form into template
+        """
+        booking_instance = Bookings.objects.get(pk=edit_booking_pk)
+        edit_booking_form = BookingForm(instance=booking_instance)
+        print(edit_booking_pk)
+        print(edit_booking_form)
+        return render(
+            request,
+            self.template_name,
+            {
+                "edit_booking_form": edit_booking_form,  # Booking form
+            },
+        )
+
+
+    def post(self, request, *args, **kwargs):
+        """
+        Function triggers when submit button on booking form is pressed
+        """
+        booking_form = self.form(data=request.POST)
+        if booking_form.is_valid():
+            date_converted = datetime.strptime(
+                request.POST["date"], "%Y-%m-%d"
+            ).date()  # Convert str date to datetime date
+            time_converted = datetime.strptime(
+                request.POST["time"], "%H:%M:%S"
+            ).time()  # Conver str time to datetime time
+            booking_form.instance.username = request.user  # Request username
+            new_booking = booking_form.save(commit=False)
+            new_booking.date_time = datetime.combine(
+                date_converted, time_converted
+            )  # Combine date and time
+            # Prefixes for confirmation email
+            recipient = [
+                "anetasglimmer@gmail.com"
+            ]  # Send the email to myself as confirmation
+            recipient.append(request.user.email)  # Add email of user creating booking
+            subject = "New Booking at Aneta's Glimmer"  # Subject
+            from_address = "anetasglimmer@gmail.com"  # From
+            date_email = date_converted.strftime("%d.%m.%Y")  # Stringify date for email
+            time_email = time_converted.strftime("%H:%M")  # Stringify time for email
+            select_artist = Artists.objects.get(
+                id=request.POST["booked_artist"]
+            )  # Queryset to select artist by id
+            artist_email = select_artist.name  # Save artist's name for email
+            message = f"We are sending you this email to let you know that your booking for {date_email} at {time_email} with {artist_email} is pending confirmation. We will confirm that shortly ;)"
+            # send_mail(subject, message, from_address, recipient)  # Send the email
+            # new_booking.save()  # Save booking into database
+        else:
+            booking_form = self.form()
+        return redirect("my-bookings")  # Redirect back to my-bookings
 
 class CancelBookingView(generic.ListView):
     def get(self, request, cancel_booking_pk, *args, **kwargs):
