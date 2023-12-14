@@ -85,41 +85,41 @@
                             {% else %}
                                 {% for top_artist in top_artists %}
                                     <a href="{% url 'artist-detail' slug=top_artist.slug %}">{{ top_artist.name }}
-                                        {% if top_artist.rating > 4.75 %}
+                                        {% if top_artist.rating >= 4.75 %}
                                             {% for i in "12345" %}
                                                 <i class="bi bi-star-fill"></i>
                                             {% endfor %}
-                                        {% elif top_artist.rating < 4.75  and top_artist.rating > 4.25 %}
+                                        {% elif top_artist.rating < 4.75  and top_artist.rating >= 4.25 %}
                                             {% for i in "1234" %}
                                                 <i class="bi bi-star-fill"></i>
                                             {% endfor %}
                                             <i class="bi bi-star-half"></i>
-                                        {% elif top_artist.rating < 4.25  and top_artist.rating > 3.75 %}
+                                        {% elif top_artist.rating < 4.25  and top_artist.rating >= 3.75 %}
                                             {% for i in "1234" %}
                                                 <i class="bi bi-star-fill"></i>
                                             {% endfor %}
-                                        {% elif top_artist.rating < 3.75  and top_artist.rating > 3.25 %}
+                                        {% elif top_artist.rating < 3.75  and top_artist.rating >= 3.25 %}
                                             {% for i in "123" %}
                                                 <i class="bi bi-star-fill"></i>
                                             {% endfor %}
                                             <i class="bi bi-star-half"></i>
-                                        {% elif top_artist.rating < 3.25  and top_artist.rating > 2.75 %}
+                                        {% elif top_artist.rating < 3.25  and top_artist.rating >= 2.75 %}
                                             {% for i in "123" %}
                                                 <i class="bi bi-star-fill"></i>
                                             {% endfor %}
-                                        {% elif top_artist.rating < 2.75  and top_artist.rating > 2.25 %}
+                                        {% elif top_artist.rating < 2.75  and top_artist.rating >= 2.25 %}
                                             {% for i in "12" %}
                                                 <i class="bi bi-star-fill"></i>
                                             {% endfor %}
                                             <i class="bi bi-star-half"></i>
-                                        {% elif top_artist.rating < 2.25  and top_artist.rating > 1.75 %}
+                                        {% elif top_artist.rating < 2.25  and top_artist.rating >= 1.75 %}
                                             {% for i in "12" %}
                                                 <i class="bi bi-star-fill"></i>
                                             {% endfor %}
-                                        {% elif top_artist.rating < 1.75  and top_artist.rating > 1.25 %}
+                                        {% elif top_artist.rating < 1.75  and top_artist.rating >= 1.25 %}
                                             <i class="bi bi-star-fill"></i>
                                             <i class="bi bi-star-half"></i>
-                                        {% elif top_artist.rating < 1.25  and top_artist.rating > 0.75 %}
+                                        {% elif top_artist.rating < 1.25  and top_artist.rating >= 0.75 %}
                                             <i class="bi bi-star-fill"></i>
                                         {% elif top_artist.rating < 0.75}
                                             <i class="bi bi-star-half"></i>
