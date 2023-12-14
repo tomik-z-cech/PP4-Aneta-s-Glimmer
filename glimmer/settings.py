@@ -89,7 +89,7 @@ SITE_ID = 1
 
 # Import paths
 WSGI_APPLICATION = "glimmer.wsgi.application"
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/bookings/"
 LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 
