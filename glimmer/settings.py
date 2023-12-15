@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "bookings",
     "artists",
     "profilemanager",
+    "administrator",
 ]
 
 # Middleware definition

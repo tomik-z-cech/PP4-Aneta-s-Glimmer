@@ -14,5 +14,6 @@ urlpatterns = [
     path("artists/", include("artists.urls")),
     path("profilemanager/", include("profilemanager.urls")),
     path("bookings/", include("bookings.urls")),
+    path("administrator/", include("administrator.urls")),
     path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.png'))
 ]
