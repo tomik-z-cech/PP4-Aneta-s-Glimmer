@@ -1,11 +1,12 @@
 # Imports
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from datetime import datetime, timedelta
 from django.core.mail import send_mail
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.http import JsonResponse, Http404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from bookings.models import Bookings
 from bookings.forms import BookingForm
@@ -152,7 +153,7 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
             ):
                 slots_left_today = 1
             else:
-                return 0
+                slots_left_today = 0
             free_today = slots_left_today - bookings_today_after_now
             last_minutes.append(
                 {
@@ -170,13 +171,16 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
 
     @login_required
     def cancel_request(request, request_booking_pk):
-        requested_booking = Bookings.objects.get(pk=request_booking_pk)  # Get booking
-        return render(  # Render template
-            request,
-            "bookings/booking_cancel_confirm.html",
-            {"booking_to_cancel": requested_booking},
-        )
-
+        
+        requested_booking = get_object_or_404(Bookings, pk=request_booking_pk)  # Get booking
+        if request.user == requested_booking.username:
+            return render(  # Render template
+                request,
+                "bookings/booking_cancel_confirm.html",
+                {"booking_to_cancel": requested_booking},
+            )
+        else:
+            raise PermissionDenied("You do not have permission access !")
 
 class NewBookingView(LoginRequiredMixin, generic.ListView):
     """
@@ -237,7 +241,7 @@ class NewBookingView(LoginRequiredMixin, generic.ListView):
         return redirect("my-bookings")  # Redirect back to my-bookings
 
 
-class EditBookingView(LoginRequiredMixin, generic.ListView):
+class EditBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     """
     Class for creating new bookings
     """
@@ -245,12 +249,16 @@ class EditBookingView(LoginRequiredMixin, generic.ListView):
     template_name = "bookings/edit_booking.html"  # Template
     form = BookingForm  # New bookings form
     success_url = "/bookings/"  # URL to redirect after successful booking
+    
+    def test_func(self):
+        booking = get_object_or_404(Bookings, pk=self.kwargs['edit_booking_pk'])
+        return self.request.user == booking.username
 
     def get(self, request, edit_booking_pk, *args, **kwargs):
         """
         Function generates booking form into template
         """
-        booking_instance = Bookings.objects.get(pk=edit_booking_pk)
+        booking_instance = get_object_or_404(Bookings, pk=edit_booking_pk)
         style_edit_form = booking_instance.booked_style
         artist_edit_form = booking_instance.booked_artist
         date_edit_form = booking_instance.date_time.date()
@@ -275,7 +283,7 @@ class EditBookingView(LoginRequiredMixin, generic.ListView):
         """
         Function triggers when submit button on booking form is pressed
         """
-        edited_booking = Bookings.objects.get(pk=edit_booking_pk)
+        edited_booking = get_object_or_404(Bookings, pk=edit_booking_pk)
         booking_form = self.form(data=request.POST)
 
         if booking_form.is_valid():
@@ -298,7 +306,7 @@ class EditBookingView(LoginRequiredMixin, generic.ListView):
             from_address = "anetasglimmer@gmail.com"  # From
             date_email = date_converted.strftime("%d.%m.%Y")  # Stringify date for email
             time_email = time_converted.strftime("%H:%M")  # Stringify time for email
-            select_artist = Artists.objects.get(
+            select_artist = get_object_or_404(Artists,
                 id=request.POST["booked_artist"]
             )  # Queryset to select artist by id
             artist_email = select_artist.name  # Save artist's name for email
@@ -310,9 +318,14 @@ class EditBookingView(LoginRequiredMixin, generic.ListView):
         return redirect("my-bookings")  # Redirect back to my-bookings
 
 
-class CancelBookingView(LoginRequiredMixin, generic.ListView):
+class CancelBookingView(LoginRequiredMixin,UserPassesTestMixin, generic.ListView):
+    
+    def test_func(self):
+        booking = get_object_or_404(Bookings, pk=self.kwargs['cancel_booking_pk'])
+        return self.request.user == booking.username
+    
     def get(self, request, cancel_booking_pk, *args, **kwargs):
-        booking_to_cancel = Bookings.objects.get(
+        booking_to_cancel = get_object_or_404(Bookings,
             pk=cancel_booking_pk
         )  # Queryset for booking to cancel
         # Prefixes for confirmation email
@@ -334,10 +347,18 @@ class CancelBookingView(LoginRequiredMixin, generic.ListView):
         return redirect("my-bookings")  # Return to my bookings
 
 
-class RateBookingView(LoginRequiredMixin, generic.ListView):
+class RateBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    
+    def test_func(self):
+        booking = get_object_or_404(Bookings, pk=self.kwargs['rate_booking_pk'])
+        return self.request.user == booking.username
+    
     def get(self, request, rate_booking_pk, score, *args, **kwargs):
-        booking_to_rate = Bookings.objects.get(pk=rate_booking_pk)
-        booking_to_rate.is_rated = 1  # Change status
-        booking_to_rate.rating = score  # Add rating
-        booking_to_rate.save()  # Save
-        return redirect("my-bookings")  # Return to my bookings
+        booking_to_rate = get_object_or_404(Bookings, pk=rate_booking_pk)
+        if booking_to_rate.is_rated != 1:
+            booking_to_rate.is_rated = 1  # Change status
+            booking_to_rate.rating = score  # Add rating
+            booking_to_rate.save()  # Save
+            return redirect("my-bookings")  # Return to my bookings
+        else:
+            raise Http404("Already rated !")
