@@ -1,5 +1,7 @@
-# PEP8
+
 # Imports
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.db.models import Count, Q
@@ -118,7 +120,7 @@ class NewsDetailView(generic.DetailView):
         )
 
 
-class NewsPostLike(View):
+class NewsPostLike(LoginRequiredMixin, View):
     """
     View sets likes on News Posts
     """
