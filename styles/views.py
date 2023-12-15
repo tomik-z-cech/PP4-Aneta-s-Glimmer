@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 from django.views import generic, View
@@ -52,7 +53,7 @@ class StyleDetailView(generic.DetailView):
             },
         )
         
-class StyleLike(View):
+class StyleLike(LoginRequiredMixin, View):
     def post(self, request, slug):
         style = get_object_or_404(StylesAvailable, slug=slug)
         
@@ -63,7 +64,7 @@ class StyleLike(View):
         
         return HttpResponseRedirect(reverse('style-detail', args=[slug]))
     
-class StyleTry(View):
+class StyleTry(LoginRequiredMixin, View):
     def post(self, request, slug):
         style = get_object_or_404(StylesAvailable, slug=slug)
         
