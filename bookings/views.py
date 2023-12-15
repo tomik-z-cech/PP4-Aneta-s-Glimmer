@@ -1,4 +1,6 @@
 # Imports
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from datetime import datetime, timedelta
 from django.core.mail import send_mail
@@ -11,6 +13,7 @@ from artists.models import Artists
 
 
 class BookingOptionsView(generic.ListView):
+    @login_required
     def booking_options(request):
         """
         Function returns data to the template based on user selection
@@ -83,7 +86,7 @@ class BookingOptionsView(generic.ListView):
         return JsonResponse(data)  # Return with JSON response
 
 
-class MyBookingsView(generic.ListView):
+class MyBookingsView(LoginRequiredMixin, generic.ListView):
     """
     Class for viewing all bookings for logged in user
     """
@@ -102,43 +105,70 @@ class MyBookingsView(generic.ListView):
         tommorrow = timezone.now().date() + timedelta(days=1)
         for artist in all_artists:
             # ---
-            bookings_tommorrow = Bookings.objects.filter(booked_artist=artist, date_time__date=tommorrow).count()
+            bookings_tommorrow = Bookings.objects.filter(
+                booked_artist=artist, date_time__date=tommorrow
+            ).count()
             free_tommorrow = 8 - bookings_tommorrow
             # ---
-            bookings_today_after_now = Bookings.objects.filter(booked_artist=artist, date_time__date=today, date_time__gt=timezone.now()).count()
+            bookings_today_after_now = Bookings.objects.filter(
+                booked_artist=artist,
+                date_time__date=today,
+                date_time__gt=timezone.now(),
+            ).count()
             time_now = timezone.now().time()
-            if time_now >= datetime.strptime('09:00', '%H:%M').time() and time_now < datetime.strptime('10:00', '%H:%M').time():
+            if (
+                time_now >= datetime.strptime("09:00", "%H:%M").time()
+                and time_now < datetime.strptime("10:00", "%H:%M").time()
+            ):
                 slots_left_today = 7
-            elif time_now >= datetime.strptime('10:00', '%H:%M').time() and time_now < datetime.strptime('11:00', '%H:%M').time():
+            elif (
+                time_now >= datetime.strptime("10:00", "%H:%M").time()
+                and time_now < datetime.strptime("11:00", "%H:%M").time()
+            ):
                 slots_left_today = 6
-            elif time_now >= datetime.strptime('11:00', '%H:%M').time() and time_now < datetime.strptime('12:00', '%H:%M').time():
+            elif (
+                time_now >= datetime.strptime("11:00", "%H:%M").time()
+                and time_now < datetime.strptime("12:00", "%H:%M").time()
+            ):
                 slots_left_today = 5
-            elif time_now >= datetime.strptime('12:00', '%H:%M').time() and time_now < datetime.strptime('13:00', '%H:%M').time():
+            elif (
+                time_now >= datetime.strptime("12:00", "%H:%M").time()
+                and time_now < datetime.strptime("13:00", "%H:%M").time()
+            ):
                 slots_left_today = 4
-            elif time_now >= datetime.strptime('13:00', '%H:%M').time() and time_now < datetime.strptime('14:00', '%H:%M').time():
+            elif (
+                time_now >= datetime.strptime("13:00", "%H:%M").time()
+                and time_now < datetime.strptime("14:00", "%H:%M").time()
+            ):
                 slots_left_today = 3
-            elif time_now >= datetime.strptime('14:00', '%H:%M').time() and time_now < datetime.strptime('15:00', '%H:%M').time():
+            elif (
+                time_now >= datetime.strptime("14:00", "%H:%M").time()
+                and time_now < datetime.strptime("15:00", "%H:%M").time()
+            ):
                 slots_left_today = 2
-            elif time_now >= datetime.strptime('15:00', '%H:%M').time() and time_now < datetime.strptime('16:00', '%H:%M').time():
+            elif (
+                time_now >= datetime.strptime("15:00", "%H:%M").time()
+                and time_now < datetime.strptime("16:00", "%H:%M").time()
+            ):
                 slots_left_today = 1
             else:
                 return 0
             free_today = slots_left_today - bookings_today_after_now
-            last_minutes.append({
-                "name": artist.name,
-                "free_today": free_today,
-                "free_tomorrow": free_tommorrow,
-            })
+            last_minutes.append(
+                {
+                    "name": artist.name,
+                    "free_today": free_today,
+                    "free_tomorrow": free_tommorrow,
+                }
+            )
         # ---
         return render(  # Render template
             request,
             self.template_name,
-            {
-                "bookings": user_bookings,
-                "last_minutes": last_minutes
-            },
+            {"bookings": user_bookings, "last_minutes": last_minutes},
         )
 
+    @login_required
     def cancel_request(request, request_booking_pk):
         requested_booking = Bookings.objects.get(pk=request_booking_pk)  # Get booking
         return render(  # Render template
@@ -148,7 +178,7 @@ class MyBookingsView(generic.ListView):
         )
 
 
-class NewBookingView(generic.ListView):
+class NewBookingView(LoginRequiredMixin, generic.ListView):
     """
     Class for creating new bookings
     """
@@ -207,7 +237,7 @@ class NewBookingView(generic.ListView):
         return redirect("my-bookings")  # Redirect back to my-bookings
 
 
-class EditBookingView(generic.ListView):
+class EditBookingView(LoginRequiredMixin, generic.ListView):
     """
     Class for creating new bookings
     """
@@ -224,7 +254,7 @@ class EditBookingView(generic.ListView):
         style_edit_form = booking_instance.booked_style
         artist_edit_form = booking_instance.booked_artist
         date_edit_form = booking_instance.date_time.date()
-        time_edit_form = booking_instance.date_time.strftime('%H:%M')
+        time_edit_form = booking_instance.date_time.strftime("%H:%M")
         edit_booking_form = BookingForm(
             initial={
                 "booked_style": style_edit_form,
@@ -237,7 +267,7 @@ class EditBookingView(generic.ListView):
             self.template_name,
             {
                 "edit_booking_form": edit_booking_form,  # Booking form
-                "initial_time": time_edit_form
+                "initial_time": time_edit_form,
             },
         )
 
@@ -247,7 +277,7 @@ class EditBookingView(generic.ListView):
         """
         edited_booking = Bookings.objects.get(pk=edit_booking_pk)
         booking_form = self.form(data=request.POST)
-        
+
         if booking_form.is_valid():
             date_converted = datetime.strptime(
                 request.POST["date"], "%Y-%m-%d"
@@ -255,11 +285,9 @@ class EditBookingView(generic.ListView):
             time_converted = datetime.strptime(
                 request.POST["time"], "%H:%M:%S"
             ).time()  # Convert str time to datetime time
-            edited_booking.booked_artist = booking_form.cleaned_data['booked_artist']
-            edited_booking.booked_style = booking_form.cleaned_data['booked_style']
-            edited_booking.date_time = datetime.combine(
-                date_converted, time_converted
-            )
+            edited_booking.booked_artist = booking_form.cleaned_data["booked_artist"]
+            edited_booking.booked_style = booking_form.cleaned_data["booked_style"]
+            edited_booking.date_time = datetime.combine(date_converted, time_converted)
             edited_booking.booking_status = 0
             # Prefixes for confirmation email
             recipient = [
@@ -282,7 +310,7 @@ class EditBookingView(generic.ListView):
         return redirect("my-bookings")  # Redirect back to my-bookings
 
 
-class CancelBookingView(generic.ListView):
+class CancelBookingView(LoginRequiredMixin, generic.ListView):
     def get(self, request, cancel_booking_pk, *args, **kwargs):
         booking_to_cancel = Bookings.objects.get(
             pk=cancel_booking_pk
@@ -306,7 +334,7 @@ class CancelBookingView(generic.ListView):
         return redirect("my-bookings")  # Return to my bookings
 
 
-class RateBookingView(generic.ListView):
+class RateBookingView(LoginRequiredMixin, generic.ListView):
     def get(self, request, rate_booking_pk, score, *args, **kwargs):
         booking_to_rate = Bookings.objects.get(pk=rate_booking_pk)
         booking_to_rate.is_rated = 1  # Change status
