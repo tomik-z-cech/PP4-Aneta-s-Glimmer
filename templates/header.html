@@ -1,0 +1,58 @@
+{% load static %}
+<header>
+<nav class="navbar navbar-expand-xl navbar-light" id="navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" id="logo" >
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item mx-3">
+                <a  class="nav-link header-text" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a  class="nav-link header-text" href="{% url 'all-news' %}">All News</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a  class="nav-link header-text" href="{% url 'styles' %}">Styles</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a  class="nav-link header-text" href="{% url 'artists' %}">Meet the Team</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a  class="nav-link header-text" href="#">|</a>
+              </li>
+              <!-- If User IS authenticated -->
+              {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                  <li class="nav-item mx-3">
+                    <a  class="nav-link header-text" href="{% url 'all-admin' %}">Admin</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item mx-3">
+                    <a  class="nav-link header-text" href="{% url 'my-bookings' %}">My Bookings</a>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <a  class="nav-link header-text" href="{% url 'profile-manager' %}">My Profile</a>
+                  </li>
+                {% endif %}
+                  <li class="nav-item mx-3">
+                    <a  class="nav-link header-text" href="{% url 'account_logout' %}">Logout</a>
+                  </li>
+                <!-- If User NOT authenticated -->
+                {% else %}
+                  <li class="nav-item mx-3">
+                    <a  class="nav-link header-text" href="{% url 'account_signup' %}">Register</a>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <a class="nav-link header-text"  href="{% url 'account_login' %}">Login</a>
+                  </li>
+              {% endif %} 
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>
