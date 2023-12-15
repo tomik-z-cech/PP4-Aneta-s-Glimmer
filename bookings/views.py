@@ -102,7 +102,7 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
             print('Superuser')
             return redirect("all-admin")
         else:
-            user_bookings = Bookings.objects.filter(username=login_user)  # Filter bookings
+            user_bookings = Bookings.objects.filter(username=login_user).order_by('-date_time')  # Filter bookings
             # ---
             last_minutes = []
             all_artists = Artists.objects.all()
