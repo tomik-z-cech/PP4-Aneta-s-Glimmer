@@ -1,3 +1,4 @@
+# PEP8
 # Imports
 from django.contrib import admin
 from artists.models import Artists

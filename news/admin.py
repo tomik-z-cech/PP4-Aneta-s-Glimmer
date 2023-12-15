@@ -1,4 +1,5 @@
-# Imports
+# PEP8
+# # Imports
 from django.contrib import admin
 from news.models import NewsPosts, NewsComments
 from django_summernote.admin import SummernoteModelAdmin
