@@ -78,7 +78,7 @@
     <a href="{% url 'new-booking' %}">New booking</a>
     <br>
     {% for last_minute in last_minutes %}
-        {{ last_minute.name }} - {{ last_minute.free_slots }}
+        {{ last_minute.name }} - {{ last_minute.free_today }} - {{ last_minute.free_tomorrow }}
         <br>
     {% endfor %}
 {%endblock%}

@@ -1,4 +1,6 @@
 # Imports
+from django.db.models import Case, When, IntegerField, Value
+from django.utils import timezone
 from datetime import datetime, timedelta
 from django.core.mail import send_mail
 from django.http import JsonResponse
@@ -97,13 +99,36 @@ class MyBookingsView(generic.ListView):
         # ---
         last_minutes = []
         all_artists = Artists.objects.all()
-        tommorrow = datetime.now().date() + timedelta(days=1)
+        today = timezone.now().date()
+        tommorrow = timezone.now().date() + timedelta(days=1)
         for artist in all_artists:
+            # ---
             bookings_tommorrow = Bookings.objects.filter(booked_artist=artist, date_time__date=tommorrow).count()
-            free_slots = 8 - bookings_tommorrow
+            free_tommorrow = 8 - bookings_tommorrow
+            # ---
+            bookings_today_after_now = Bookings.objects.filter(booked_artist=artist, date_time__date=today, date_time__gt=timezone.now()).count()
+            time_now = timezone.now().time()
+            if time_now >= datetime.strptime('09:00', '%H:%M').time() and time_now < datetime.strptime('10:00', '%H:%M').time():
+                slots_left_today = 7
+            elif time_now >= datetime.strptime('10:00', '%H:%M').time() and time_now < datetime.strptime('11:00', '%H:%M').time():
+                slots_left_today = 6
+            elif time_now >= datetime.strptime('11:00', '%H:%M').time() and time_now < datetime.strptime('12:00', '%H:%M').time():
+                slots_left_today = 5
+            elif time_now >= datetime.strptime('12:00', '%H:%M').time() and time_now < datetime.strptime('13:00', '%H:%M').time():
+                slots_left_today = 4
+            elif time_now >= datetime.strptime('13:00', '%H:%M').time() and time_now < datetime.strptime('14:00', '%H:%M').time():
+                slots_left_today = 3
+            elif time_now >= datetime.strptime('14:00', '%H:%M').time() and time_now < datetime.strptime('15:00', '%H:%M').time():
+                slots_left_today = 2
+            elif time_now >= datetime.strptime('15:00', '%H:%M').time() and time_now < datetime.strptime('16:00', '%H:%M').time():
+                slots_left_today = 1
+            else:
+                return 0
+            free_today = slots_left_today - bookings_today_after_now
             last_minutes.append({
                 "name": artist.name,
-                "free_slots": free_slots
+                "free_today": free_today,
+                "free_tomorrow": free_tommorrow,
             })
         # ---
         return render(  # Render template
