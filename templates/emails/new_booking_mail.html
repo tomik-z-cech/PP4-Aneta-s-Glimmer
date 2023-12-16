@@ -1,22 +1,24 @@
-<center>
-<img src="https://raw.githubusercontent.com/tomik-z-cech/PP4-Aneta-s-Glimmer/main/templates/emails/email_logo.png" alt="Logo" />
-</center>
-<br>
-<font color="black" size="4" face="Arial">Hello from Aneta's Glimmer {{user}},</font>
-<br><br> 
-<font color="black" size="4" face="Arial">We are sending you this email to let you know that your booking reference number</font>
-<font color="gold" size="5"> {{ ref_number }}</font>
-<font color="black" size="4" face="Arial">for</font>
-<font color="gold" size="5"> {{date}}</font>
-<font color="black" size="4" face="Arial">at</font>
-<font color="gold" size="5"> {{time}} </font>
-<font color="black" size="4" face="Arial">with</font>
-<font color="gold" size="5"> {{artist}} </font>
-<font color="black" size="4" face="Arial">is pending confirmation.</font>
-<br><br>
-<font color="black" size="4" face="Arial">We will confirm that shortly ;)</font>
-<br><br>
-<font color="black" size="4" face="Arial">Sincinerly, Aneta's Glimmer Team</font>
-<br>
-<a href="https://anetas-glimmer-05b4a3ceb113.herokuapp.com/">www.anetas-glimmer.ie</a>
-</font>
+<div style="background-color: #f7f7f7; text-align: center; padding: 20px;">
+    <p style="color: #111111;">
+        <img src="https://raw.githubusercontent.com/tomik-z-cech/PP4-Aneta-s-Glimmer/main/templates/emails/email_logo.png" alt="Logo" />
+    </p>
+    <p style="color: #111111;">
+        Hello from Aneta's Glimmer {{user}},
+    </p>
+    <p style="color: #111111;"> 
+        We are sending you this email to let you know that your booking reference number
+        <span style="color: #c59000;"> {{ ref_number }} </span>
+        has been created and pending confirmation. The booking is for
+        <span style="color: #c59000;"> {{date}} </span>
+        at
+        <span style="color: #c59000;"> {{time}} </span>
+        with
+        <span style="color: #c59000;"> {{artist}}</span>
+        .
+    </p>
+    <p style="color: #111111;">
+        We will confirm that shortly ;)
+        <br>
+        <a href="https://anetas-glimmer-05b4a3ceb113.herokuapp.com/">www.anetas-glimmer.ie</a>
+    </p>
+</div>

@@ -241,7 +241,7 @@ class NewBookingView(LoginRequiredMixin, generic.ListView):
             )  # Queryset to select artist by id
             artist_email = select_artist.name  # Save artist's name for email
             html_message = render_to_string('emails/new_booking_mail.html', {
-                "user": request.user.first_name,
+                "user": request.user.username,
                 "date": date_email,
                 "time": time_email,
                 "artist": artist_email,
@@ -326,7 +326,7 @@ class EditBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
             )  # Queryset to select artist by id
             artist_email = select_artist.name  # Save artist's name for email
             html_message = render_to_string('emails/edit_booking_mail.html', {
-                "user": request.user.first_name,
+                "user": request.user.username,
                 "date": date_email,
                 "time": time_email,
                 "artist": artist_email,
@@ -364,7 +364,7 @@ class CancelBookingView(LoginRequiredMixin,UserPassesTestMixin, generic.ListView
             "%H:%M"
         )  # Stringify time for email
         html_message = render_to_string('emails/cancel_booking_mail.html', {
-            "user": request.user.first_name,
+            "user": request.user.username,
             "date": date_email,
             "time": time_email,
             "artist": booking_to_cancel.booked_artist,
