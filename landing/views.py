@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.views import generic
 from django.db.models import Count, Q
@@ -32,14 +33,25 @@ class LandingPageView(generic.ListView):
         for artist in artists:
             valid_bookings_count = 0
             rating_total = 0
-            valid_bookings = Bookings.objects.filter(is_rated=True).filter(booked_artist=artist.id)
+            valid_bookings = Bookings.objects.filter(is_rated=True).filter(
+                booked_artist=artist.id
+            )
             for valid_booking in valid_bookings:
                 valid_bookings_count = valid_bookings_count + 1
                 rating_total = rating_total + valid_booking.rating
             if valid_bookings_count != 0:
                 rating = rating_total / valid_bookings_count
-                top_artists_all.append({"name": artist.name, "rating": rating, "rating_count": valid_bookings_count, "slug": artist.slug})
-                top_artists = sorted(top_artists_all, key=lambda x: x['rating'], reverse=True)[:3]
+                top_artists_all.append(
+                    {
+                        "name": artist.name,
+                        "rating": rating,
+                        "rating_count": valid_bookings_count,
+                        "slug": artist.slug,
+                    }
+                )
+                top_artists = sorted(
+                    top_artists_all, key=lambda x: x["rating"], reverse=True
+                )[:3]
         return render(
             request,
             self.template_name,
@@ -48,10 +60,9 @@ class LandingPageView(generic.ListView):
                 "top_styles_like": top_styles_like,
                 "top_styles_try": top_styles_try,
                 "top_artists": top_artists,
-                "search_form": search_form
+                "search_form": search_form,
             },
         )
-    
 
     def search(request):
         search_form = SearchBarForm(request.GET)
@@ -60,9 +71,18 @@ class LandingPageView(generic.ListView):
         styles = StylesAvailable.objects.all()
 
         if search_form.is_valid():
-            search_query = search_form.cleaned_data.get('search_query')
+            search_query = search_form.cleaned_data.get("search_query")
             if search_query:
                 news_results = news.filter(title__icontains=search_query)
                 artists_results = artists.filter(name__icontains=search_query)
                 styles_results = styles.filter(style_name__icontains=search_query)
-        return render(request, 'landing/search_results.html', {'styles_results': styles_results, 'news_results': news_results, 'artists_results': artists_results, 'search_form': search_form})
+        return render(
+            request,
+            "landing/search_results.html",
+            {
+                "styles_results": styles_results,
+                "news_results": news_results,
+                "artists_results": artists_results,
+                "search_form": search_form,
+            },
+        )
