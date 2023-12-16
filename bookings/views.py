@@ -354,17 +354,25 @@ class CancelBookingView(LoginRequiredMixin,UserPassesTestMixin, generic.ListView
         recipient = [
             "anetasglimmer@gmail.com"
         ]  # Send the email to myself as confirmation
-        recipient.append(request.user.email)  # Add email of user cancelling booking
+        recipient.append(request.user.email)  # Add email of user creating booking
         subject = "Cancelled Booking at Aneta's Glimmer"  # Subject
         from_address = "anetasglimmer@gmail.com"  # From
         date_email = booking_to_cancel.date_time.strftime(
             "%d.%m.%Y"
-        )  # Stringify date for email
+        )    # Stringify date for email
         time_email = booking_to_cancel.date_time.strftime(
             "%H:%M"
         )  # Stringify time for email
-        message = f"Hello from Aneta's Glimmer {request.user}, We are sending you this email to confirm that your booking for {date_email} at {time_email} with {booking_to_cancel.booked_artist} was cancelled. We are sorry to see that :( "
-        send_mail(subject, message, from_address, recipient)  # Send the email
+        html_message = render_to_string('emails/cancel_booking_mail.html', {
+            "user": request.user.first_name,
+            "date": date_email,
+            "time": time_email,
+            "artist": booking_to_cancel.booked_artist,
+            "ref_number": booking_to_cancel.pk
+            })
+        message = strip_tags(html_message)
+        from_address = "anetasglimmer@gmail.com"  # From
+        send_mail(subject, message, from_address, recipient, html_message=html_message)
         booking_to_cancel.delete()  # Delete booking from DB
         return redirect("my-bookings")  # Return to my bookings
 
