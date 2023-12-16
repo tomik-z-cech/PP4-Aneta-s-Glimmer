@@ -92,11 +92,11 @@ header {
 footer {
     background-color: var(--header-footer);
     padding: 5px 0;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     border-top: 1px solid var(--mid-gold);
-    height: 80px;
+    height: 0px;
+    bottom: 0px;
+    position: absolute;
 }
 
 footer a {
