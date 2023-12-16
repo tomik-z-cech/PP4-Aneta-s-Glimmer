@@ -1,12 +1,14 @@
 # Imports
-from django.core.exceptions import PermissionDenied
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.decorators import login_required
-from django.utils import timezone
-from datetime import datetime, timedelta
-from django.core.mail import send_mail
-from django.http import JsonResponse, Http404
-from django.shortcuts import render, redirect, get_object_or_404
+from django.core.exceptions import PermissionDenied # Throws 403 
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin # Views security
+from django.contrib.auth.decorators import login_required # Methods security
+from django.utils import timezone # Time format with timezone stamp + strip tags
+from django.utils.html import strip_tags
+from datetime import datetime, timedelta # Time functions
+from django.core.mail import send_mail # Email
+from django.template.loader import render_to_string
+from django.http import JsonResponse, Http404 # Responses
+from django.shortcuts import render, redirect, get_object_or_404 # Responses
 from django.views import generic
 from bookings.models import Bookings
 from bookings.forms import BookingForm
@@ -224,6 +226,8 @@ class NewBookingView(LoginRequiredMixin, generic.ListView):
             new_booking.date_time = datetime.combine(
                 date_converted, time_converted
             )  # Combine date and time
+            new_booking.save()  # Save booking into database
+            print(new_booking.pk)
             # Prefixes for confirmation email
             recipient = [
                 "anetasglimmer@gmail.com"
@@ -237,9 +241,16 @@ class NewBookingView(LoginRequiredMixin, generic.ListView):
                 id=request.POST["booked_artist"]
             )  # Queryset to select artist by id
             artist_email = select_artist.name  # Save artist's name for email
-            message = f"Hello from Aneta's Glimmer {request.user}, We are sending you this email to let you know that your booking for {date_email} at {time_email} with {artist_email} is pending confirmation. We will confirm that shortly ;)"
-            send_mail(subject, message, from_address, recipient)  # Send the email
-            new_booking.save()  # Save booking into database
+            html_message = render_to_string('emails/new_booking_mail.html', {
+                "user": request.user.first_name,
+                "date": date_email,
+                "time": time_email,
+                "artist": artist_email,
+                "ref_number": new_booking.pk
+                })
+            message = strip_tags(html_message)
+            from_address = "anetasglimmer@gmail.com"  # From
+            send_mail(subject, message, from_address, recipient, html_message=html_message)
         else:
             booking_form = self.form()
         return redirect("my-bookings")  # Redirect back to my-bookings
