@@ -220,14 +220,13 @@ class NewBookingView(LoginRequiredMixin, generic.ListView):
             ).date()  # Convert str date to datetime date
             time_converted = datetime.strptime(
                 request.POST["time"], "%H:%M:%S"
-            ).time()  # Conver str time to datetime time
+            ).time()  # Convert str time to datetime time
             booking_form.instance.username = request.user  # Request username
             new_booking = booking_form.save(commit=False)
             new_booking.date_time = datetime.combine(
                 date_converted, time_converted
             )  # Combine date and time
             new_booking.save()  # Save booking into database
-            print(new_booking.pk)
             # Prefixes for confirmation email
             recipient = [
                 "anetasglimmer@gmail.com"
@@ -312,6 +311,7 @@ class EditBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
             edited_booking.booked_style = booking_form.cleaned_data["booked_style"]
             edited_booking.date_time = datetime.combine(date_converted, time_converted)
             edited_booking.booking_status = 0
+            edited_booking.save()  # Save booking into database
             # Prefixes for confirmation email
             recipient = [
                 "anetasglimmer@gmail.com"
@@ -321,13 +321,20 @@ class EditBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
             from_address = "anetasglimmer@gmail.com"  # From
             date_email = date_converted.strftime("%d.%m.%Y")  # Stringify date for email
             time_email = time_converted.strftime("%H:%M")  # Stringify time for email
-            select_artist = get_object_or_404(Artists,
+            select_artist = Artists.objects.get(
                 id=request.POST["booked_artist"]
             )  # Queryset to select artist by id
             artist_email = select_artist.name  # Save artist's name for email
-            message = f"Hello from Aneta's Glimmer {request.user}, We are sending you this email to let you know that your booking was changed to {date_email} at {time_email} with {artist_email}. Please note, that if your booking was previously confirmed, it is now pending confirmation. We will confirm that shortly ;)"
-            send_mail(subject, message, from_address, recipient)  # Send the email
-            edited_booking.save()  # Save booking into database
+            html_message = render_to_string('emails/edit_booking_mail.html', {
+                "user": request.user.first_name,
+                "date": date_email,
+                "time": time_email,
+                "artist": artist_email,
+                "ref_number": edited_booking.pk
+                })
+            message = strip_tags(html_message)
+            from_address = "anetasglimmer@gmail.com"  # From
+            send_mail(subject, message, from_address, recipient, html_message=html_message)
         else:
             booking_form = self.form()
         return redirect("my-bookings")  # Redirect back to my-bookings
