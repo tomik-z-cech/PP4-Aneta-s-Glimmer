@@ -1,8 +1,10 @@
 {% load static %}
+<!-- Header -->
 <header>
 <nav class="navbar navbar-expand-xl navbar-light" id="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">
+      <!-- Navbar -->  
+      <a class="navbar-brand" href="{% url 'home' %}">
             <img src="{% static 'images/logo.png' %}" id="logo" >
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,10 +29,12 @@
               </li>
               <!-- If User IS authenticated -->
               {% if user.is_authenticated %}
+                <!-- SUPERUSER -->
                 {% if user.is_superuser %}
                   <li class="nav-item mx-3">
                     <a  class="nav-link header-text" href="{% url 'all-admin' %}">Admin</a>
                   </li>
+                <!-- USER -->
                 {% else %}
                   <li class="nav-item mx-3">
                     <a  class="nav-link header-text" href="{% url 'my-bookings' %}">My Bookings</a>
