@@ -22,11 +22,11 @@
                         {% else %}
                         <div class="col-lg-4 col-sm-12 order-lg-last">
                         {% endif %}
-                            <a href="{% url 'style-detail' slug=style.slug %}" aria="Details of {{ style_detail.style_name }}">
+                            <a href="{% url 'style-detail' slug=style.slug %}" aria="Details of {{ style.style_name }}">
                                 {% if "default_sample_image" in style.sample_image.url %}
-                                    <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
+                                    <img src="{% static 'images/default_sample_image.png' %}" class="img-fluid artist-profile-pic" alt="{{ style.style_name }}">
                                 {% else %}
-                                    <img src="{{ style.sample_image.url }}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
+                                    <img src="{{ style.sample_image.url }}" class="img-fluid artist-profile-pic" alt="{{ style.style_name }}">
                                 {% endif %}
                             </a>
                         </div>
