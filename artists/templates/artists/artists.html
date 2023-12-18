@@ -22,7 +22,7 @@
                         {% else %}
                             <div class="col-lg-4 col-sm-12 order-lg-last">
                         {% endif %}
-                            <a href="{% url 'artist-detail' slug=artist.artist.slug %}">
+                            <a href="{% url 'artist-detail' slug=artist.artist.slug %}" aria="Details of {{ artist.name }}">
                                 {% if "default_artist_pp" in artist.artist.profile_picture.url %}
                                     <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
                                 {% else %}
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-lg-8 col-sm-12 artist-detail">
                             <h2>
-                                <a href="{% url 'artist-detail' slug=artist.artist.slug %}">{{ artist.artist.name }}</a>
+                                <a href="{% url 'artist-detail' slug=artist.artist.slug %}" aria="Details of {{ artist.name }}">{{ artist.artist.name }}</a>
                             </h2>
                             <span>
                             {% if artist.rating >= 4.75 %}
@@ -112,7 +112,7 @@
                             </p>
                             <hr />
                             <div class="container text-center">
-                                <a href="{% url 'new-booking' %}">
+                                <a href="{% url 'new-booking' %}" aria="New booking with {{ artist.name }}>
                                     <button type="button" class="btn btn-success button-shadow">New booking with {{artist.artist.name }}</button>
                                 </a>
                             </div>

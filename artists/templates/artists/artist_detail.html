@@ -1,37 +1,127 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="wrapper">
-<h1>Name : {{ artist_selected.name }}</h1>
-<br>
-Profile picture : {{ artist_selected.profile_picture }} 
-<br>
-Bio : {{ artist_selected.bio }} 
-<br>
-Public profile : {{ artist_selected.public_profile }} 
-<br>
-Start date : {{ artist_selected.start_date }} 
-<br>
-{% if rating != 0 %}
-    Rating : {{ rating }}
-    <br>
-    Total bookings : {{ bookings_total }}
-    <br>
-{% else %}
-    No reviews yet.
-{% endif %}
-<br>
-{{ name }} excells in these styles : 
-
-
-{% for filtered_style in filtered_styles %}
-    {% for detail in filtered_style %}
-        {% if not forloop.counter|divisibleby:2 %}
-            <a href="{% url 'style-detail' slug=detail %}">
-        {% else %}
-            {{ detail}}</a>
-        {% endif %}
-    {% endfor %}
-{% endfor %}
+<div class="container wrapper d-flex align-items-center justify-content-center" style="background: url('{% static "images/background-artists.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="artists-list-container-right add-shadow w-90">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 order-lg-last">
+                {% if "default_artist_pp" in artist_selected.profile_picture.url %}
+                    <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
+                {% else %}
+                    <img src="{{ artist_selected.profile_picture.url }}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
+                {% endif %}
+            </div>
+            <div class="col-lg-8 col-sm-12 artist-detail">
+                <h2>
+                    {{ artist_selected.name }}
+                </h2>
+                <span>
+                {% if rating >= 4.75 %}
+                    {% for i in "12345" %}
+                        <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
+                    {% endfor %}
+                {% elif rating < 4.75 and rating >= 4.25 %}
+                    {% for i in "1234" %}
+                        <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
+                    {% endfor %}
+                    <img src="{% static 'images/icons/half_star.png' %}" class="star" alt="{{ artist.rating }}">
+                {% elif rating < 4.25 and rating >= 3.75 %}
+                    {% for i in "1234" %}
+                        <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
+                    {% endfor %}
+                {% elif rating < 3.75 and rating >= 3.25 %}
+                    {% for i in "123" %}
+                        <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
+                    {% endfor %}
+                    <img src="{% static 'images/icons/half_star.png' %}" class="star" alt="{{ artist.rating }}">
+                {% elif rating < 3.25 and rating >= 2.75 %}
+                    {% for i in "123" %}
+                        <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
+                    {% endfor %}
+                {% elif rating < 2.75 and rating >= 2.25 %}
+                    {% for i in "12" %}
+                        <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
+                    {% endfor %}
+                    <img src="{% static 'images/icons/half_star.png' %}" class="star" alt="{{ artist.rating }}">
+                {% elif rating < 2.25 and rating >= 1.75 %}
+                    {% for i in "12" %}
+                        <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
+                    {% endfor %}
+                {% elif rating < 1.75 and rating >= 1.25 %}
+                    <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
+                    <img src="{% static 'images/icons/half_star.png' %}" class="star" alt="{{ artist.rating }}">
+                {% elif rating < 1.25 and rating >= 0.75 %}
+                    <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
+                {% elif rating < 0.75 and rating >= 0.25 %}
+                    <img src="{% static 'images/icons/half_star.png' %}" class="star" alt="{{ artist.rating }}">
+                {% else %}
+                    {{ artist_selected.name }} has no reviews yet.
+                {% endif %}
+                </span>
+                <p>
+                {% if bookings_total == 0 %}
+                {% elif bookings_total == 1 %}
+                    Based on
+                    &nbsp
+                    <strong>
+                        {{ bookings_total }}
+                    </strong>
+                    &nbsp
+                    review.
+                {% else %}
+                    Based on
+                    &nbsp
+                    <strong>
+                        {{ bookings_total }}
+                    </strong>
+                    &nbsp
+                    reviews.
+                {% endif %}
+                </p>
+                <hr />
+                <p>
+                    <strong>
+                        {{ artist_selected.name }}
+                    </strong>
+                    is with us since 
+                    <strong>
+                        {{ artist_selected.start_date|date:"d.m.Y" }}
+                    </strong>
+                </p>
+                <p>
+                    {{ artist_selected.bio }}
+                </p>
+                <hr />
+                <p class="text-center">
+                    <strong>
+                        Styles {{ artist_selected.name }} excells in: 
+                    </strong>
+                    <br>
+                    {% for filtered_style in filtered_styles %}
+                        {% for detail in filtered_style %}
+                            {% if not forloop.counter|divisibleby:2 %}
+                                <a href="{% url 'style-detail' slug=detail %}" aria="{{ detail }}">
+                            {% else %}
+                                {{ detail}}</a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </p>
+                <hr />
+                <p>
+                    <a href="{{ artist_selected.public_profile }}" aria="Public profile of {{ artist_selected.name }}" target="_blank">
+                    {{ artist_selected.public_profile }}
+                    </a>
+                </p>
+                <hr />
+                <div class="container text-center">
+                    <a href="{% url 'new-booking' %}" aria="New booking with {{artist_selected.name }}">
+                        <button type="button" class="btn btn-success button-shadow">New booking with {{artist_selected.name }}</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {%endblock%}
