@@ -12,18 +12,18 @@
         <br>
         {% for artist in artists_list %}
             {% if not forloop.counter|divisibleby:2 %}
-                <div class="artists-list-container-left add-shadow float-start">
+                <div class="artists-list-container-left add-shadow float-start w-75 text-center">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-lg-4 col-sm-12">
                             <a href="{% url 'artist-detail' slug=artist.artist.slug %}">
                                 {% if "default_artist_pp" in artist.artist.profile_picture.url %}
-                                    <img src="{% static 'images/default_pp.jpg' %}" class="artist-profile-pic" alt="{{ artist.artist.name }}">
+                                    <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
                                 {% else %}
-                                    <img src="{{ artist.artist.profile_picture.url }}" class="artist-profile-pic" alt="{{ artist.artist.name }}">
+                                    <img src="{{ artist.artist.profile_picture.url }}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
                                 {% endif %}
                             </a>
                         </div>
-                        <div class="col-9 text-center">
+                        <div class="col-lg-8 col-sm-12 text-center">
                             <h2>
                                 <a href="{% url 'artist-detail' slug=artist.artist.slug %}">{{ artist.artist.name }}</a>
                             </h2>
@@ -87,7 +87,7 @@
                             <hr>
                             <p>
                                 <strong>
-                                    Styles {{ artist.artist.name }} excells in : 
+                                    Styles {{ artist.artist.name }} excells in: 
                                 </strong>
                                 <br>
                                 {% for style in artist.artist.styles.all %}
@@ -107,9 +107,18 @@
                     </div>
                 </div>
             {% else %}
-            <div class="artists-list-container-right add-shadow float-end">
+            <div class="artists-list-container-right add-shadow float-end w-75">
                 <div class="row">
-                    <div class="col-9 text-center">
+                    <div class="col-lg-4 col-sm-12 order-lg-2">
+                        <a href="{% url 'artist-detail' slug=artist.artist.slug %}">
+                            {% if "default_artist_pp" in artist.artist.profile_picture.url %}
+                                <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
+                            {% else %}
+                                <img src="{{ artist.artist.profile_picture.url }}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="col-lg-8 col-sm-12 text-center order-lg-1">
                         <h2>
                             <a href="{% url 'artist-detail' slug=artist.artist.slug %}">{{ artist.artist.name }}</a>
                         </h2>
@@ -173,7 +182,7 @@
                         <hr>
                         <p>
                             <strong>
-                                Styles {{ artist.artist.name }} excells in : 
+                                Styles {{ artist.artist.name }} excells in: 
                             </strong>
                             <br>
                             {% for style in artist.artist.styles.all %}
@@ -189,15 +198,6 @@
                                 <button type="button" class="btn btn-success button-shadow">New booking with {{artist.artist.name }}</button>
                             </a>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="{% url 'artist-detail' slug=artist.artist.slug %}">
-                            {% if "default_artist_pp" in artist.artist.profile_picture.url %}
-                                <img src="{% static 'images/default_pp.jpg' %}" class="artist-profile-pic" alt="{{ artist.artist.name }}">
-                            {% else %}
-                                <img src="{{ artist.artist.profile_picture.url }}" class="artist-profile-pic" alt="{{ artist.artist.name }}">
-                            {% endif %}
-                        </a>
                     </div>
                 </div>    
             </div>

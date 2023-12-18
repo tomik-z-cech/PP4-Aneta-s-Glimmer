@@ -210,7 +210,6 @@ footer a:hover {
 /** ---------------------------- ARTISTS ------------------------ **/
 
 .artists-list-container-left {
-    width: 65vw;
     background-color: var(--light-gold);
     margin: 2vh;
     padding: 2vh;
@@ -227,7 +226,6 @@ footer a:hover {
 }
 
 .artists-list-container-right {
-    width: 65vw;
     background-color: var(--mid-gold);
     margin: 2vh;
     padding: 2vh;
@@ -249,7 +247,5 @@ footer a:hover {
 }
 
 .artist-profile-pic {
-    width: 15vw;
-    height: 18vw;
     border: 0.8vh solid var(--dark-gold);
 }
