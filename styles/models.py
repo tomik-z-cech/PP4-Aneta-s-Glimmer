@@ -28,7 +28,9 @@ class StylesAvailable(models.Model):
 class StylesComments(models.Model):
 
     style = models.ForeignKey(StylesAvailable, on_delete=models.CASCADE, related_name='style_comments')
-    username = models.CharField(max_length=80)
+    creator = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="styles"
+    )
     comment_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
@@ -38,5 +40,5 @@ class StylesComments(models.Model):
         verbose_name = 'Style Comment'
 
     def __str__(self):
-        return f"Comment {self.comment_body} by {self.username}"
+        return f"Comment {self.comment_body} by {self.creator}"
 

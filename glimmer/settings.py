@@ -169,7 +169,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_EMAIL_REQUIRED = True
-MAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"  # new
+MAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 # Gmail settings
 EMAIL_HOST = "smtp.gmail.com"
