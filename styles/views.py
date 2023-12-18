@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 from django.views import generic, View
+from django.db.models import Count, Q
 from styles.models import StylesAvailable
 from artists.models import Artists
 
@@ -10,10 +11,19 @@ from artists.models import Artists
 
 
 class StylesView(generic.ListView):
-    model = StylesAvailable
-    queryset = StylesAvailable.objects.all()
     template_name = "styles/styles.html"
-    context_object_name = "styles_list"
+    
+    def get(self, request, *args, **kwargs):
+        # Select all news
+        styles_list = StylesAvailable.objects.annotate(comments_num=Count("style_comments", filter=Q(style_comments__approved=1))).all()
+        # Render template and send news
+        return render(
+            request,
+            self.template_name,
+            {
+                "styles_list": styles_list,
+            },
+        )
 
 
 class StyleDetailView(generic.DetailView):

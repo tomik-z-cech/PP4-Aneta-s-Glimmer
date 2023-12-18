@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="wrapper">
+<div class="container wrapper" style="background: url('{% static "images/background-artists.jpg" %}') no-repeat fixed top right / cover;">
 <h1>Title : {{ style_name }}</h1>
 <br>
 Style image : {{ sample_image }}

@@ -6,11 +6,12 @@
     <div class="container wrapper" style="background: url('{% static "images/background-artists.jpg" %}') no-repeat fixed top right / cover;">
         <div clas="row">
             <div class="col-12 text-center add-shadow heading">
-                <h1>Team</h1>
+                <h1>The Dream Team @ Aneta's Glimmer</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
+            <!-- Loop to display all artists -->
             {% for artist in artists_list %}
                 <!-- If odd iteration display left else display right -->
                 {% if not forloop.counter|divisibleby:2 %}
