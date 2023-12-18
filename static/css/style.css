@@ -144,6 +144,16 @@ footer a:hover {
     color: var(--mid-gold);
 }
 
+@media screen and (max-width: 768px) {
+    .hide-less-768px {
+        display: none;
+    }
+
+    footer {
+        font-size: 95%;
+    }
+}
+
 /** ------------------------------- FORMS ---------------------------- **/
 .form-wrapper {
     height: 100%;
