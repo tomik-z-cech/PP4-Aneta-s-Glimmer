@@ -6,6 +6,7 @@
     <div class="list-container-right add-shadow w-90">
         <div class="row">
             <div class="col-lg-4 col-sm-12 order-lg-last">
+                <!-- If no profile picture, display default profile picture -->
                 {% if "default_artist_pp" in artist_selected.profile_picture.url %}
                     <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
                 {% else %}
@@ -17,6 +18,7 @@
                     {{ artist_selected.name }}
                 </h2>
                 <span>
+                <!-- Star rating -->
                 {% if rating >= 4.75 %}
                     {% for i in "12345" %}
                         <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
@@ -60,6 +62,7 @@
                 {% endif %}
                 </span>
                 <p>
+                <!-- Reviews wording -->
                 {% if bookings_total == 0 %}
                 {% elif bookings_total == 1 %}
                     Based on
@@ -93,6 +96,7 @@
                     {{ artist_selected.bio }}
                 </p>
                 <hr />
+                <!-- List of styles linked with artist -->
                 <p class="text-center">
                     <strong>
                         Styles {{ artist_selected.name }} excells in: 
@@ -115,6 +119,7 @@
                     </a>
                 </p>
                 <hr />
+                <!-- Booking button -->
                 <div class="container text-center">
                     <a href="{% url 'new-booking' %}" aria="New booking with {{artist_selected.name }}">
                         <button type="button" class="btn btn-success button-shadow">New booking with {{artist_selected.name }}</button>

@@ -12,18 +12,21 @@
         <div class="row">
             <div class="col-12">
             {% for artist in artists_list %}
+                <!-- If odd iteration display left else display right -->
                 {% if not forloop.counter|divisibleby:2 %}
                     <div class="list-container-left add-shadow float-start w-75">
                 {% else %}
                     <div class="list-container-right add-shadow float-end w-75">
                 {% endif %}
                     <div class="row">
+                        <!-- If odd iteration display profile picture left else display right -->
                         {% if not forloop.counter|divisibleby:2 %}
                             <div class="col-lg-4 col-sm-12">
                         {% else %}
                             <div class="col-lg-4 col-sm-12 order-lg-last">
                         {% endif %}
                             <a href="{% url 'artist-detail' slug=artist.artist.slug %}" aria="Details of {{ artist.name }}">
+                                <!-- If no profile picture, display default profile picture -->
                                 {% if "default_artist_pp" in artist.artist.profile_picture.url %}
                                     <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
                                 {% else %}
@@ -36,6 +39,7 @@
                                 <a href="{% url 'artist-detail' slug=artist.artist.slug %}" aria="Details of {{ artist.name }}">{{ artist.artist.name }}</a>
                             </h2>
                             <span>
+                            <!-- Star rating -->
                             {% if artist.rating >= 4.75 %}
                                 {% for i in "12345" %}
                                     <img src="{% static 'images/icons/star.png' %}" class="star" alt="{{ artist.rating }}">
@@ -79,8 +83,10 @@
                             {% endif %}
                             </span>
                             <p>
+                            <!-- If no rating display nothing -->
                             {% if artist.rating_count == 0 %}
                             {% elif artist.rating_count == 1 %}
+                                <!-- If 1 rating display "review" -->
                                 Based on
                                 &nbsp
                                 <strong>
@@ -88,6 +94,7 @@
                                 </strong>
                                 &nbsp
                                 review.
+                            <!-- If more ratings display "reviews" -->
                             {% else %}
                                 Based on
                                 &nbsp
@@ -99,6 +106,7 @@
                             {% endif %}
                             </p>
                             <hr />
+                            <!-- List of styles connected with artist -->
                             <p class="text-center">
                                 <strong>
                                     Styles {{ artist.artist.name }} excells in: 
@@ -106,14 +114,16 @@
                                 <br>
                                 {% for style in artist.artist.styles.all %}
                                     {{ style.style_name }}
+                                    <!-- If not last iteration display comma -->
                                     {% if not forloop.last %}
                                         ,
                                     {% endif %}
                                 {% endfor %}
                             </p>
                             <hr />
+                            <!-- Booking button -->
                             <div class="container text-center">
-                                <a href="{% url 'new-booking' %}" aria="New booking with {{ artist.name }}>
+                                <a href="{% url 'new-booking' %}" aria="New booking with {{ artist.name }}">
                                     <button type="button" class="btn btn-success button-shadow">New booking with {{artist.artist.name }}</button>
                                 </a>
                             </div>
@@ -121,7 +131,6 @@
                     </div>
                 </div>
             {% endfor %}
-                <div class="clearfix"></div>
             </div>
         </div>
     </div>
