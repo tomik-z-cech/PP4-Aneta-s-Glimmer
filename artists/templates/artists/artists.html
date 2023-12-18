@@ -9,13 +9,14 @@
                 <h1>Team</h1>
             </div>
         </div>
-        <br>
-        {% for artist in artists_list %}
-            {% if not forloop.counter|divisibleby:2 %}
-                <div class="artists-list-container-left add-shadow float-start w-75">
-            {% else %}
-                <div class="artists-list-container-right add-shadow float-end w-75">
-            {% endif %}
+        <div class="row">
+            <div class="col-12">
+            {% for artist in artists_list %}
+                {% if not forloop.counter|divisibleby:2 %}
+                    <div class="list-container-left add-shadow float-start w-75">
+                {% else %}
+                    <div class="list-container-right add-shadow float-end w-75">
+                {% endif %}
                     <div class="row">
                         {% if not forloop.counter|divisibleby:2 %}
                             <div class="col-lg-4 col-sm-12">
@@ -30,7 +31,7 @@
                                 {% endif %}
                             </a>
                         </div>
-                        <div class="col-lg-8 col-sm-12 artist-detail">
+                        <div class="col-lg-8 col-sm-12 list-detail">
                             <h2>
                                 <a href="{% url 'artist-detail' slug=artist.artist.slug %}" aria="Details of {{ artist.name }}">{{ artist.artist.name }}</a>
                             </h2>
@@ -119,7 +120,9 @@
                         </div>
                     </div>
                 </div>
-        {% endfor %}
-        <div class="clearfix"></div>
+            {% endfor %}
+                <div class="clearfix"></div>
+            </div>
+        </div>
     </div>
 {%endblock%}

@@ -234,37 +234,37 @@ footer a:hover {
     border-radius: 5px;
 }
 
-/** ---------------------------- ARTISTS ------------------------ **/
+/** ---------------------------- ARTISTS, STYLES ------------------------ **/
 
-.artists-list-container-left {
+.list-container-left {
     background-color: var(--light-gold);
     margin: 2vh;
     padding: 2vh;
 }
 
-.artists-list-container-left a {
+.list-container-left a {
     color: var(--darker-black);
     text-decoration: none;
     font-family: var(--header-font);
 }
 
-.artists-list-container-left p {
+.list-container-left p {
     font-family: var(--header-font);
 }
 
-.artists-list-container-right {
+.list-container-right {
     background-color: var(--mid-gold);
     margin: 2vh;
     padding: 2vh;
 }
 
-.artists-list-container-right a {
+.list-container-right a {
     color: var(--darker-black);
     text-decoration: none;
     font-family: var(--header-font);
 }
 
-.artists-list-container-right p {
+.list-container-right p {
     font-family: var(--header-font);
 }
 
@@ -277,9 +277,14 @@ footer a:hover {
     border: 0.8vh solid var(--dark-gold);
 }
 
-.artist-detail {
+.list-detail {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
+}
+
+.custom-icon {
+    height: 6vh;
+    width: 6vh;
 }
