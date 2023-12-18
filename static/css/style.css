@@ -6,7 +6,7 @@
 :root {
 
     /** COLOR PALETTE **/
-    --header-footer: rgba(247, 247, 247, 0.8);
+    --header-footer: rgba(247, 247, 247, 1);
     --off-white: #f7f7f7;
     --darker-black: #111111;
     --lighter-black: #2a2a2a;
@@ -122,6 +122,19 @@ header {
 
 .nav-link:hover {
     color: var(--mid-gold) !important;
+}
+
+.navbar-expand-xl .navbar-collapse {
+    position: absolute;
+    right: 1%;
+    background-color: var(--header-footer);
+}
+
+@media screen and (max-width: 1199px) {
+    .navbar-expand-xl .navbar-collapse {
+        position: relative;
+        right: 1%;
+    }
 }
 
 /** ------------------------------- FOOTER ---------------------------- **/

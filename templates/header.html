@@ -13,46 +13,86 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item mx-3">
-                <a  class="nav-link header-text" href="{% url 'home' %}">Home</a>
+                <a  class="nav-link header-text" href="{% url 'home' %}">
+                  <i class="bi bi-house-door"></i>
+                  &nbsp
+                  Home
+                </a>
               </li>
               <li class="nav-item mx-3">
-                <a  class="nav-link header-text" href="{% url 'all-news' %}">All News</a>
+                <a  class="nav-link header-text" href="{% url 'all-news' %}">
+                  <i class="bi bi-newspaper"></i>
+                  &nbsp
+                  News
+                </a>
               </li>
               <li class="nav-item mx-3">
-                <a  class="nav-link header-text" href="{% url 'styles' %}">Styles</a>
+                <a  class="nav-link header-text" href="{% url 'styles' %}">
+                  <i class="bi bi-list-stars"></i>
+                  &nbsp
+                  Styles
+                </a>
               </li>
               <li class="nav-item mx-3">
-                <a  class="nav-link header-text" href="{% url 'artists' %}">Meet the Team</a>
+                <a  class="nav-link header-text" href="{% url 'artists' %}">
+                  <i class="bi bi-people-fill"></i>
+                  &nbsp
+                  Team
+                </a>
               </li>
               <li class="nav-item mx-3">
-                <a  class="nav-link header-text" href="#">|</a>
+                <span  class="nav-link header-text">|</span>
               </li>
               <!-- If User IS authenticated -->
               {% if user.is_authenticated %}
                 <!-- SUPERUSER -->
                 {% if user.is_superuser %}
                   <li class="nav-item mx-3">
-                    <a  class="nav-link header-text" href="{% url 'all-admin' %}">Admin</a>
+                    <a  class="nav-link header-text" href="{% url 'all-admin' %}">
+                      <i class="bi bi-person-gear"></i>
+                      &nbsp
+                      Admin
+                    </a>
                   </li>
                 <!-- USER -->
                 {% else %}
                   <li class="nav-item mx-3">
-                    <a  class="nav-link header-text" href="{% url 'my-bookings' %}">My Bookings</a>
+                    <a  class="nav-link header-text" href="{% url 'my-bookings' %}">
+                      <i class="bi bi-journal-bookmark"></i>
+                      &nbsp
+                      My Bookings
+                    </a>
                   </li>
                   <li class="nav-item mx-3">
-                    <a  class="nav-link header-text" href="{% url 'profile-manager' %}">My Profile</a>
+                    <a  class="nav-link header-text" href="{% url 'profile-manager' %}">
+                      <i class="bi bi-person-check"></i>
+                      &nbsp
+                      My Profile
+                    </a>
                   </li>
                 {% endif %}
                   <li class="nav-item mx-3">
-                    <a  class="nav-link header-text" href="{% url 'account_logout' %}">Logout</a>
+                    <a  class="nav-link header-text" href="{% url 'account_logout' %}">
+                      <i class="bi bi-box-arrow-right"></i>
+                      &nbsp
+                      Logout
+                    </a>
                   </li>
                 <!-- If User NOT authenticated -->
                 {% else %}
                   <li class="nav-item mx-3">
-                    <a  class="nav-link header-text" href="{% url 'account_signup' %}">Register</a>
+                    <a  class="nav-link header-text" href="{% url 'account_signup' %}">
+                      <i class="bi bi-key-fill"></i>
+                      &nbsp
+                      Register
+                    </a>
                   </li>
                   <li class="nav-item mx-3">
-                    <a class="nav-link header-text"  href="{% url 'account_login' %}">Login</a>
+                    <a class="nav-link header-text"  href="{% url 'account_login' %}">
+                      <i class="bi bi-house-lock-fill"></i>
+                      &nbsp
+                      Login
+                    </a>
                   </li>
               {% endif %} 
             </ul>

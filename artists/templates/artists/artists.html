@@ -6,7 +6,7 @@
     <div class="container wrapper" style="background: url('{% static "images/background-artists.jpg" %}') no-repeat fixed top right / cover;">
         <div clas="row">
             <div class="col-12 text-center add-shadow heading">
-                <h1>Meet the Team</h1>
+                <h1>Team</h1>
             </div>
         </div>
         <br>
@@ -71,17 +71,21 @@
                             <p>
                             {% if artist.rating_count == 0 %}
                             {% elif artist.rating_count == 1 %}
-                                Based on 
+                                Based on
+                                &nbsp
                                 <strong>
                                     {{ artist.rating_count }}
                                 </strong>
-                                 review.
+                                &nbsp
+                                review.
                             {% else %}
-                                Based on 
+                                Based on
+                                &nbsp
                                 <strong>
                                     {{ artist.rating_count }}
                                 </strong>
-                                 reviews.
+                                &nbsp
+                                reviews.
                             {% endif %}
                             </p>
                             <hr>
@@ -166,17 +170,21 @@
                         <p>
                         {% if artist.rating_count == 0 %}
                         {% elif artist.rating_count == 1 %}
-                            Based on 
+                            Based on
+                            &nbsp
                             <strong>
                                 {{ artist.rating_count }}
                             </strong>
-                             review.
+                            &nbsp
+                            review.
                         {% else %}
-                            Based on 
+                            Based on
+                            &nbsp
                             <strong>
                                 {{ artist.rating_count }}
                             </strong>
-                             reviews.
+                            &nbsp
+                            reviews.
                         {% endif %}
                         </p>
                         <hr>
