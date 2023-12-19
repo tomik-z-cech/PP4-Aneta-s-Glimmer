@@ -250,7 +250,7 @@ label[for="id_comment_body"] {
     border-radius: 5px;
 }
 
-/** ---------------------------- ARTISTS, STYLES ------------------------ **/
+/** ---------------------------- ARTISTS, STYLES, NEWS ------------------------ **/
 
 .list-container-left {
     background-color: var(--light-gold-op);
@@ -289,7 +289,7 @@ label[for="id_comment_body"] {
     width: 3.5vh;
 }
 
-.artist-profile-pic {
+.main-pic {
     border: 0.8vh solid var(--dark-gold);
 }
 
@@ -303,4 +303,10 @@ label[for="id_comment_body"] {
 .custom-icon {
     height: 6vh;
     width: 6vh;
+}
+
+/** ---------------------- MODALS ------------------------ **/
+
+.modal-content {
+    background-color: var(--mid-gold);
 }

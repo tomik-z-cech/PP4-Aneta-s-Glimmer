@@ -8,9 +8,9 @@
             <div class="col-lg-4 col-sm-12 order-lg-last">
                 <!-- If no profile picture, display default profile picture -->
                 {% if "default_artist_pp" in artist_selected.profile_picture.url %}
-                    <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
+                    <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid main-pic" alt="{{ artist.artist.name }}">
                 {% else %}
-                    <img src="{{ artist_selected.profile_picture.url }}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
+                    <img src="{{ artist_selected.profile_picture.url }}" class="img-fluid main-pic" alt="{{ artist.artist.name }}">
                 {% endif %}
             </div>
             <div class="col-lg-8 col-sm-12 artist-detail text-center">

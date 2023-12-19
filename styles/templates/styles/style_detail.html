@@ -9,9 +9,9 @@
             <div class="col-lg-4 col-sm-12">
                 <!-- Sample image - default or existing -->
                 {% if "default_sample_image" in style.sample_image.url %}
-                    <img src="{% static 'images/default_sample_image.png' %}" class="img-fluid artist-profile-pic" alt="{{ style.style_name }}">
+                    <img src="{% static 'images/default_sample_image.png' %}" class="img-fluid main-pic" alt="{{ style.style_name }}">
                 {% else %}
-                    <img src="{{ style.sample_image.url }}" class="img-fluid artist-profile-pic" alt="{{ style.style_name }}">
+                    <img src="{{ style.sample_image.url }}" class="img-fluid main-pic" alt="{{ style.style_name }}">
                 {% endif %}
             </div>
             <!-- Details of selected style -->
@@ -214,19 +214,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="likesModalLabel">Likes</h5>
+                <h2 class="modal-title" id="likesModalLabel">Likes</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                This people like this post :
-                <br>
+            <div class="modal-body text-center">
                 {% for user in users_liked %}
                     {{ user }}
                     <br>
                 {% endfor %}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                <button type="button" class="btn btn-warning button-shadow" data-bs-dismiss="modal">Back</button>
             </div>
         </div>
     </div>
@@ -236,19 +234,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="triesModalLabel">Likes</h5>
+                <h2 class="modal-title" id="triesModalLabel">Want to try</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                This people like this post :
-                <br>
+            <div class="modal-body text-center">
                 {% for user in users_want_to_try %}
                     {{ user }}
                     <br>
                 {% endfor %}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                <button type="button" class="btn btn-warning button-shadow" data-bs-dismiss="modal">Back</button>
             </div>
         </div>
     </div>
