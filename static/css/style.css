@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
 /** -------------------------------- VARS ---------------------------- **/
@@ -12,12 +12,14 @@
     --lighter-black: #2a2a2a;
     --black: #000000;
     --light-gold: #ffc62c;
+    --light-gold-op: rgba(255, 198, 44, 0.7);
     --mid-gold: #f8b500;
+    --mid-gold-op: rgba(248, 181, 0, 0.7);
     --dark-gold: #c59000;
 
     /** FONTS **/
-    --text-font: 'Lato', sans-serif;
-    --header-font: 'Sriracha', sans-serif;
+    --text-font: 'Sriracha', sans-serif;
+    --header-font: 'Permanent Marker', sans-serif;
 }
 
 /** ------------------------------ GENERAL --------------------------- **/
@@ -56,15 +58,23 @@ footer {
 }
 
 h1 {
-    font-family: var(--header-font)
+    font-family: var(--text-font);
+    text-shadow: 2px 2px 4px var(--lighter-black);
 }
 
 h2 {
-    font-family: var(--header-font)
+    font-family: var(--header-font);
+    text-shadow: 2px 2px 4px var(--lighter-black);
+}
+
+
+h3 {
+    font-size: 120%;
+    font-family: var(--text-font)
 }
 
 .heading {
-    background-color: var(--light-gold);
+    background-color: var(--light-gold-op);
     margin-top: 2vh;
 }
 
@@ -73,12 +83,6 @@ hr {
     width: 96%;
     color: var(--darker-black);
     height: 2px;
-}
-
-.line {
-    float: left;
-    width: 731px;
-    height: 10px;
 }
 
 @media screen and (min-height: 600px) and (max-height: 768px) {
@@ -182,25 +186,42 @@ footer a:hover {
 }
 
 /** ------------------------------- FORMS ---------------------------- **/
-.form-wrapper {
-    height: 100%;
-    width: 100%;
-    position: absolute;
+
+/** COMMENTS **/
+
+#form-register {
+    padding: 2vh;
 }
 
 /** LOGIN **/
-.form {
-    background-color: var(--mid-gold);
+.form-login {
+    background-color: var(--mid-gold-op);
     padding: 1vh;
 }
 
-.form label {
+#form-register label {
     width: 50%;
+}
+
+.form-background {
+    background-color: var(--mid-gold-op)
+}
+
+/** COMMENTS **/
+
+#id_comment_body {
+    background: none;
+    border: 2px solid var(--darker-black);
+    font-family: var(--text-font)
+}
+
+label[for="id_comment_body"] {
+    display: none;
 }
 
 /** ---------------------------- LANDING PAGE ------------------------ **/
 .card {
-    background-color: var(--mid-gold);
+    background-color: var(--mid-gold-op);
     padding: 0;
     opacity: 0.95;
 
@@ -234,10 +255,10 @@ footer a:hover {
     border-radius: 5px;
 }
 
-/** ---------------------------- ARTISTS, STYLES ------------------------ **/
+/** ---------------------------- ARTISTS, STYLES, NEWS ------------------------ **/
 
 .list-container-left {
-    background-color: var(--light-gold);
+    background-color: var(--light-gold-op);
     margin: 2vh;
     padding: 2vh;
 }
@@ -245,15 +266,15 @@ footer a:hover {
 .list-container-left a {
     color: var(--darker-black);
     text-decoration: none;
-    font-family: var(--header-font);
+    font-family: var(--text-font);
 }
 
 .list-container-left p {
-    font-family: var(--header-font);
+    font-family: var(--text-font);
 }
 
 .list-container-right {
-    background-color: var(--mid-gold);
+    background-color: var(--mid-gold-op);
     margin: 2vh;
     padding: 2vh;
 }
@@ -261,11 +282,11 @@ footer a:hover {
 .list-container-right a {
     color: var(--darker-black);
     text-decoration: none;
-    font-family: var(--header-font);
+    font-family: var(--text-font);
 }
 
 .list-container-right p {
-    font-family: var(--header-font);
+    font-family: var(--text-font);
 }
 
 .star {
@@ -273,7 +294,7 @@ footer a:hover {
     width: 3.5vh;
 }
 
-.artist-profile-pic {
+.main-pic {
     border: 0.8vh solid var(--dark-gold);
 }
 
@@ -287,4 +308,40 @@ footer a:hover {
 .custom-icon {
     height: 6vh;
     width: 6vh;
+}
+
+/** ---------------------- MODALS ------------------------ **/
+
+.modal-content {
+    background-color: var(--mid-gold);
+}
+
+
+
+
+.text-container {
+    max-height: 100px;
+    overflow: hidden;
+    position: relative;
+    background: none;
+}
+
+.long-text {
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+.read-more-link {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--dark-gold);
+    padding: 0 10px;
+    text-decoration: none;
+    display: none;
+}
+
+.text-container:hover .read-more-link {
+    display: block;
 }

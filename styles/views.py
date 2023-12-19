@@ -14,10 +14,12 @@ from styles.forms import StylesCommentForm
 
 class StylesView(generic.ListView):
     template_name = "styles/styles.html"
-    
+
     def get(self, request, *args, **kwargs):
         # Select all news
-        styles_list = StylesAvailable.objects.annotate(comments_num=Count("style_comments", filter=Q(style_comments__approved=1))).all()
+        styles_list = StylesAvailable.objects.annotate(
+            comments_num=Count("style_comments", filter=Q(style_comments__approved=1))
+        ).all()
         # Render template and send news
         return render(
             request,
@@ -41,7 +43,11 @@ class StyleDetailView(generic.DetailView):
         filtered_artists = zip(artists_slug, artists_with_style)
         users_liked_styles = style_selected.likes.all()
         users_want_to_try_styles = style_selected.want_to_try.all()
-        comments = StylesComments.objects.filter(style__in=[style_selected]).filter(approved=1)
+        comments = (
+            StylesComments.objects.filter(style__in=[style_selected])
+            .filter(approved=1)
+            .order_by("-created_on")
+        )
         liked = False
         if style_selected.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -52,7 +58,7 @@ class StyleDetailView(generic.DetailView):
             request,
             self.template_name,
             {
-                "style_selected": style_selected,
+                "style": style_selected,
                 "filtered_artists": filtered_artists,
                 "liked": liked,
                 "want_to_try": want_to_try,
@@ -63,7 +69,7 @@ class StyleDetailView(generic.DetailView):
                 "can_comment": True,
             },
         )
-        
+
     def post(self, request, slug, *args, **kwargs):
         """
         Function is called when comment submitted
@@ -74,7 +80,9 @@ class StyleDetailView(generic.DetailView):
         filtered_artists = zip(artists_slug, artists_with_style)
         users_liked_styles = style_selected.likes.all()
         users_want_to_try_styles = style_selected.want_to_try.all()
-        comments = StylesComments.objects.filter(style__in=[style_selected]).filter(approved=1)
+        comments = StylesComments.objects.filter(style__in=[style_selected]).filter(
+            approved=1
+        )
         liked = False
         if style_selected.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -88,7 +96,11 @@ class StyleDetailView(generic.DetailView):
             style_comment = styles_comment_form.save(commit=False)
             style_comment.style = style_selected
             style_comment.save()
-            messages.add_message(request, messages.SUCCESS, f"You have successfully submitted comment on {style_selected.style_name} ;)")
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                f"You have successfully submitted comment on {style_selected.style_name} ;)",
+            )
         # If not valid, return form
         else:
             styles_comment_form = StylesCommentForm()
@@ -96,7 +108,7 @@ class StyleDetailView(generic.DetailView):
             request,
             self.template_name,
             {
-                "style_selected": style_selected,
+                "style": style_selected,
                 "filtered_artists": filtered_artists,
                 "liked": liked,
                 "want_to_try": want_to_try,
@@ -107,30 +119,43 @@ class StyleDetailView(generic.DetailView):
                 "can_comment": False,
             },
         )
-        
-        
+
+
 class StyleLike(LoginRequiredMixin, View):
     def post(self, request, slug):
         style = get_object_or_404(StylesAvailable, slug=slug)
-        
+
         if style.likes.filter(id=request.user.id).exists():
             style.likes.remove(request.user)
-            messages.add_message(request, messages.SUCCESS, f"You disliked {style.style_name} :( ")
+            messages.add_message(
+                request, messages.SUCCESS, f"You disliked {style.style_name} :( "
+            )
         else:
             style.likes.add(request.user)
-            messages.add_message(request, messages.SUCCESS, f"You liked {style.style_name} ;)")
-        
-        return HttpResponseRedirect(reverse('style-detail', args=[slug]))
-    
+            messages.add_message(
+                request, messages.SUCCESS, f"You liked {style.style_name} ;)"
+            )
+
+        return HttpResponseRedirect(reverse("style-detail", args=[slug]))
+
+
 class StyleTry(LoginRequiredMixin, View):
     def post(self, request, slug):
         style = get_object_or_404(StylesAvailable, slug=slug)
-        
+
         if style.want_to_try.filter(id=request.user.id).exists():
             style.want_to_try.remove(request.user)
-            messages.add_message(request, messages.SUCCESS, f"You unmarked {style.style_name} as style to try :( ")
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                f"You unmarked {style.style_name} as style to try :( ",
+            )
         else:
             style.want_to_try.add(request.user)
-            messages.add_message(request, messages.SUCCESS, f"You marked {style.style_name} as style to try :( ")
-        
-        return HttpResponseRedirect(reverse('style-detail', args=[slug]))
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                f"You marked {style.style_name} as style to try :( ",
+            )
+
+        return HttpResponseRedirect(reverse("style-detail", args=[slug]))

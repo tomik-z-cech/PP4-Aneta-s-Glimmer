@@ -1,37 +1,79 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="wrapper">
-    {% if user.is_authenticated %}
-    {% else %}
-    {% endif %}
-    <div class="container-fluid">
+    <div class="container wrapper" style="background: url('{% static "images/background-news.jpg" %}') no-repeat fixed top right / cover;">
+        <div clas="row">
+            <div class="col-12 text-center add-shadow heading">
+                <h1>News @ Aneta's Glimmer</h1>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-8">
-                <div class="row">
-                    <h1>
-                        News 
-                    </h1>
-                </div>
-                <div class="row">
-                    {% for news in news_list %}
-                        <p>
-                            Heading image : {{ news.heading_image }}
-                            <br>
-                            <a href="{% url 'news-detail' slug=news.slug %}">Title : {{ news.title }}</a>
-                            <br>
-                            Creator : {{ news.creator }}
-                            <br>
-                            Created : {{ news.created_on }}
-                            <br>
-                            Likes : {{ news.number_of_likes}}
-                            <br>
-                            Comments : {{ news.comments_num }}
-                        </p>
-                    {% endfor %}
-                </div>
+            <div class="col-12">
+                <!-- Loop to diplay all available styles -->
+                {% for news in news_list %}
+                    {% if not forloop.counter|divisibleby:2 %}
+                        <div class="list-container-left add-shadow float-start w-75">
+                    {% else %}
+                        <div class="list-container-right add-shadow float-end w-75">
+                    {% endif %}
+                        <div class="row">
+                            <!-- If odd, display on the left - even on the right -->
+                            {% if not forloop.counter|divisibleby:2 %}
+                            <div class="col-lg-4 col-sm-12 text-center">
+                            {% else %}
+                            <div class="col-lg-4 col-sm-12 order-lg-last text-center">
+                            {% endif %}
+                                <a href="{% url 'news-detail' slug=news.slug %}" aria="Details of {{ news.title }}">
+                                    <!-- Sample news image - default or existing -->
+                                    {% if "default_heading_image" in news.heading_image.url %}
+                                        <img src="{% static 'images/default_news.png' %}" class="img-fluid main-pic" alt="{{ news.title }}">
+                                    {% else %}
+                                        <img src="{{ news.heading_image.url }}" class="img-fluid main-pic" alt="{{ news.title }}">
+                                    {% endif %}
+                                    {{ news.creator }} - {{ news.created_on|date:"d.m.Y"}} 
+                                </a>
+                            </div>
+                            <div class="col-lg-8 col-sm-12 list-detail text-center">
+                                <a href="{% url 'news-detail' slug=news.slug %}" aria="Detail of {{ news.title }}">
+                                    <h2>
+                                        {{ news.title }}
+                                    </h2>
+                                </a>
+                                <hr />
+                                <div class="text-container">
+                                    <p class="long-text">
+                                        {{ news.post_body|safe }}
+                                    </p>
+                                    <a href="{% url 'news-detail' slug=news.slug %}" class="read-more-link">Read more ...</a>
+                                </div>
+                                <hr />
+                                <!-- "Likes" and comments counter -->
+                                <p>
+                                    <a href="{% url 'news-detail' slug=news.slug %}" aria="Details of {{ news.title }}">
+                                        <img src="{% static 'images/icons/like_1.png' %}" class="img-fluid custom-icon" alt="Likes icon">
+                                    </a>
+                                    &nbsp
+                                    <strong>
+                                        {{ news.number_of_likes }}
+                                    </strong>
+                                    &nbsp
+                                    &nbsp
+                                    &nbsp
+                                    &nbsp
+                                    <a href="{% url 'news-detail' slug=news.slug %}" aria="Details of {{ news.title }}">
+                                        <img src="{% static 'images/icons/comments.png' %}" class="img-fluid custom-icon" alt="Comments icon">
+                                    </a>
+                                    &nbsp
+                                    <strong>
+                                        {{ news.comments_num }}
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-</div>
 {%endblock%}

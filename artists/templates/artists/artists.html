@@ -22,23 +22,25 @@
                     <div class="row">
                         <!-- If odd iteration display profile picture left else display right -->
                         {% if not forloop.counter|divisibleby:2 %}
-                            <div class="col-lg-4 col-sm-12">
+                            <div class="col-lg-4 col-sm-12 text-center">
                         {% else %}
-                            <div class="col-lg-4 col-sm-12 order-lg-last">
+                            <div class="col-lg-4 col-sm-12 order-lg-last text-center">
                         {% endif %}
                             <a href="{% url 'artist-detail' slug=artist.artist.slug %}" aria="Details of {{ artist.name }}">
                                 <!-- If no profile picture, display default profile picture -->
                                 {% if "default_artist_pp" in artist.artist.profile_picture.url %}
-                                    <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
+                                    <img src="{% static 'images/default_pp.jpg' %}" class="img-fluid main-pic" alt="{{ artist.artist.name }}">
                                 {% else %}
-                                    <img src="{{ artist.artist.profile_picture.url }}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
+                                    <img src="{{ artist.artist.profile_picture.url }}" class="img-fluid main-pic" alt="{{ artist.artist.name }}">
                                 {% endif %}
                             </a>
                         </div>
                         <div class="col-lg-8 col-sm-12 list-detail">
-                            <h2>
-                                <a href="{% url 'artist-detail' slug=artist.artist.slug %}" aria="Details of {{ artist.name }}">{{ artist.artist.name }}</a>
-                            </h2>
+                                <a href="{% url 'artist-detail' slug=artist.artist.slug %}" aria="Details of {{ artist.name }}">
+                                    <h2>
+                                        {{ artist.artist.name }}
+                                    </h2>
+                                </a>
                             <span>
                             <!-- Star rating -->
                             {% if artist.rating >= 4.75 %}
