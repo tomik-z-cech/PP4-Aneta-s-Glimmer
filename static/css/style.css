@@ -12,7 +12,9 @@
     --lighter-black: #2a2a2a;
     --black: #000000;
     --light-gold: #ffc62c;
+    --light-gold-op: 	rgba(255, 198, 44, 0.7);
     --mid-gold: #f8b500;
+    --mid-gold-op: rgba(248, 181, 0, 0.7);
     --dark-gold: #c59000;
 
     /** FONTS **/
@@ -64,7 +66,7 @@ h2 {
 }
 
 .heading {
-    background-color: var(--light-gold);
+    background-color: var(--light-gold-op);
     margin-top: 2vh;
 }
 
@@ -73,12 +75,6 @@ hr {
     width: 96%;
     color: var(--darker-black);
     height: 2px;
-}
-
-.line {
-    float: left;
-    width: 731px;
-    height: 10px;
 }
 
 @media screen and (min-height: 600px) and (max-height: 768px) {
@@ -190,7 +186,7 @@ footer a:hover {
 
 /** LOGIN **/
 .form {
-    background-color: var(--mid-gold);
+    background-color: var(--mid-gold-op);
     padding: 1vh;
 }
 
@@ -200,7 +196,7 @@ footer a:hover {
 
 /** ---------------------------- LANDING PAGE ------------------------ **/
 .card {
-    background-color: var(--mid-gold);
+    background-color: var(--mid-gold-op);
     padding: 0;
     opacity: 0.95;
 
@@ -237,7 +233,7 @@ footer a:hover {
 /** ---------------------------- ARTISTS, STYLES ------------------------ **/
 
 .list-container-left {
-    background-color: var(--light-gold);
+    background-color: var(--light-gold-op);
     margin: 2vh;
     padding: 2vh;
 }
@@ -253,7 +249,7 @@ footer a:hover {
 }
 
 .list-container-right {
-    background-color: var(--mid-gold);
+    background-color: var(--mid-gold-op);
     margin: 2vh;
     padding: 2vh;
 }
