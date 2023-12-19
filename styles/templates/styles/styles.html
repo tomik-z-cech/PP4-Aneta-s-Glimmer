@@ -21,9 +21,9 @@
                     <div class="row">
                         <!-- If odd, display on the left - even on the right -->
                         {% if not forloop.counter|divisibleby:2 %}
-                        <div class="col-lg-4 col-sm-12">
+                        <div class="col-lg-4 col-sm-12 text-center">
                         {% else %}
-                        <div class="col-lg-4 col-sm-12 order-lg-last">
+                        <div class="col-lg-4 col-sm-12 order-lg-last text-center">
                         {% endif %}
                             <a href="{% url 'style-detail' slug=style.slug %}" aria="Details of {{ style.style_name }}">
                                 <!-- Sample image - default or existing -->

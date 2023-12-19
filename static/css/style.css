@@ -310,3 +310,33 @@ label[for="id_comment_body"] {
 .modal-content {
     background-color: var(--mid-gold);
 }
+
+
+
+
+.text-container {
+    max-height: 100px;
+    overflow: hidden;
+    position: relative;
+    background: none;
+}
+
+.long-text {
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+.read-more-link {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--dark-gold);
+    padding: 0 10px;
+    text-decoration: none;
+    display: none;
+}
+
+.text-container:hover .read-more-link {
+    display: block;
+}
