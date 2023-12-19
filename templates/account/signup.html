@@ -3,14 +3,16 @@
 {% load static %}
 
 {% block content %}
-<div class="container wrapper d-flex justify-content-center " style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
-    <div id="form-register" class="form-background w-50">
-        <h1>
-            Register
-        </h1>
-        <p>
-            {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">log in</a>.{% endblocktrans %}
-        </p>
+<div class="container wrapper d-flex justify-content-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background w-50">
+        <div class="w-100 d-flex justify-content-center p-3">
+            <h1>
+                Register
+            </h1>
+        </div>
+        <div class="w-100 d-flex justify-content-center p-3 form-heading">
+            {% blocktrans %}Already have an account? Then please &nbsp <a href="{{ login_url }}"> log in HERE </a>&nbsp.{% endblocktrans %}
+        </div>
         {% url 'account_signup' as action_url %}
         {% element form form=form method="post" action=action_url tags="entrance,signup" %}
         {% slot body %}
@@ -22,9 +24,11 @@
             {% endif %}
         {% endslot %}
         {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
-                {% trans "Register" %}
-            {% endelement %}
+            <div class="w-100 d-flex justify-content-center p-3">
+                <button tags="prominent,signup" type="submit" class="btn btn-success button-shadow">
+                    Register
+                </button>
+            </div>
         {% endslot %}
         {% endelement %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}

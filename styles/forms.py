@@ -12,4 +12,8 @@ class StylesCommentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['comment_body'].widget.attrs['rows'] = 3
+        self.fields['comment_body'].widget.attrs.update({
+            'rows': 3,
+            'placeholder': 'Type your comment here ...',
+        })
+        

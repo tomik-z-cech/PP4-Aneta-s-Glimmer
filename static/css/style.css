@@ -187,24 +187,36 @@ footer a:hover {
 
 /** ------------------------------- FORMS ---------------------------- **/
 
-/** COMMENTS **/
-
-#form-register {
-    padding: 2vh;
+input::placeholder, textarea::placeholder {
+    color: var(--lighter-black)
 }
 
-/** LOGIN **/
+/** ALLAUTH FORMS **/
+
 .form-login {
     background-color: var(--mid-gold-op);
     padding: 1vh;
 }
 
-#form-register label {
+.form-background label {
     width: 50%;
 }
 
 .form-background {
-    background-color: var(--mid-gold-op)
+    background-color: var(--mid-gold-op);
+    padding:2vh;
+}
+
+#id_email, #id_username, #id_first_name, #id_last_name, #id_phone_number, #id_password1, #id_password2 {
+    background: none;
+    border: 2px solid var(--darker-black);
+    font-family: var(--text-font);
+    padding: 2px;
+}
+
+.form-heading a {
+    text-decoration: none;
+    color: var(--darker-black);
 }
 
 /** COMMENTS **/
@@ -212,7 +224,8 @@ footer a:hover {
 #id_comment_body {
     background: none;
     border: 2px solid var(--darker-black);
-    font-family: var(--text-font)
+    font-family: var(--text-font);
+    padding: 2px;
 }
 
 label[for="id_comment_body"] {
