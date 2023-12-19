@@ -187,8 +187,14 @@ footer a:hover {
 
 /** ------------------------------- FORMS ---------------------------- **/
 
-input::placeholder, textarea::placeholder {
-    color: var(--lighter-black)
+input[type=checkbox] { 
+    outline: 2px solid var(--darker-black);
+    accent-color:  var(--darker-black); 
+    background-color: none;
+}
+
+input[type=checkbox]:checked { 
+    outline: 2px solid var(--darker-black); 
 }
 
 /** ALLAUTH FORMS **/
