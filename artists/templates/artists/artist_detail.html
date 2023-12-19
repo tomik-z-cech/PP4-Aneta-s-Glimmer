@@ -13,11 +13,11 @@
                     <img src="{{ artist_selected.profile_picture.url }}" class="img-fluid artist-profile-pic" alt="{{ artist.artist.name }}">
                 {% endif %}
             </div>
-            <div class="col-lg-8 col-sm-12 artist-detail">
+            <div class="col-lg-8 col-sm-12 artist-detail text-center">
                 <h2>
                     {{ artist_selected.name }}
                 </h2>
-                <span>
+                <span class="text-center">
                 <!-- Star rating -->
                 {% if rating >= 4.75 %}
                     {% for i in "12345" %}
@@ -61,7 +61,7 @@
                     {{ artist_selected.name }} has no reviews yet.
                 {% endif %}
                 </span>
-                <p>
+                <p class="text-center">
                 <!-- Reviews wording -->
                 {% if bookings_total == 0 %}
                 {% elif bookings_total == 1 %}
@@ -113,7 +113,10 @@
                     {% endfor %}
                 </p>
                 <hr />
-                <p>
+                <p class="text-center">
+                    <strong>
+                        Public profile : 
+                    </strong>
                     <a href="{{ artist_selected.public_profile }}" aria="Public profile of {{ artist_selected.name }}" target="_blank">
                     {{ artist_selected.public_profile }}
                     </a>

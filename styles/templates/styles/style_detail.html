@@ -4,124 +4,210 @@
 
 {% block content %}
 <div class="container wrapper" style="background: url('{% static "images/background-artists.jpg" %}') no-repeat fixed top right / cover;">
-<h1>Title : {{ style_selected.style_name }}</h1>
-<br>
-Style image : {{ style_selected.sample_image }}
-<br>
-Description : {{ style_selected.style_description }}
-<br>
-Artists : 
-{% for filtered_artist in filtered_artists %}
-    {% for detail in filtered_artist %}
-        {% if not forloop.counter|divisibleby:2 %}
-            <a href="{% url 'artist-detail' slug=detail %}">
-        {% else %}
-            {{ detail}}</a>
+    <div class="list-container-right add-shadow w-90">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12">
+                <!-- Sample image - default or existing -->
+                {% if "default_sample_image" in style.sample_image.url %}
+                    <img src="{% static 'images/default_sample_image.png' %}" class="img-fluid artist-profile-pic" alt="{{ style.style_name }}">
+                {% else %}
+                    <img src="{{ style.sample_image.url }}" class="img-fluid artist-profile-pic" alt="{{ style.style_name }}">
+                {% endif %}
+            </div>
+            <!-- Details of selected style -->
+            <div class="col-lg-8 col-sm-12 list-detail">
+                <h2>
+                    {{ style.style_name }}
+                </h2>
+                <hr />
+                <p>
+                    <strong>
+                        Description : 
+                    </strong>
+                    {{ style.style_description }}
+                </p>
+                <hr />
+                <p>
+                <strong>
+                    Artists excelling in this style :
+                </strong>
+                {% for filtered_artist in filtered_artists %}
+                    {% for detail in filtered_artist %}
+                        {% if not forloop.counter|divisibleby:2 %}
+                            <a href="{% url 'artist-detail' slug=detail %}">
+                        {% else %}
+                            {{ detail}}</a>&nbsp
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                </p>
+                <hr />
+                <!-- New booking button -->
+                <div class="container text-center">
+                    <a href="{% url 'new-booking' %}" aria="New booking for {{ style.style_name }}">
+                        <button type="button" class="btn btn-success button-shadow">New booking for {{style.style_name }}</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- If user logged in - functions like, try and comment -->
+            {% if user.is_authenticated %}
+                <div class="col-12 pt-3 d-flex  justify-content-around">
+                    <form action="{% url 'style-like' style.slug %}" method="POST" id="likeForm">
+                        {% csrf_token %}
+                        {% if liked %}
+                            <a href="#" aria="Unlike {{ style.style_name }}">
+                                <img src="{% static 'images/icons/like_1.png' %}" class="img-fluid custom-icon" alt="Unlike icon" id="likeButton">
+                            </a>
+                        {% else %}
+                            <a href="#" aria="Like {{ style.style_name }}">
+                                <img src="{% static 'images/icons/like_0.png' %}" class="img-fluid custom-icon" alt="Like icon" id="likeButton">
+                            </a>
+                        {% endif %}
+                        <!-- Open Modal with list of users - like -->
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#likesModal">
+                            <strong>
+                                <!-- If more than 3 people like, display and x more -->
+                                {% if users_liked|length < 4 %}
+                                    {% for user in users_liked %}
+                                        {{ user }}
+                                        {% if  forloop.counter < users_liked|length %}
+                                            ,
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    {% for user in users_liked|slice:":3" %}
+                                        {{ user }}
+                                        {% if  forloop.counter < 3 %}
+                                            ,
+                                        {% endif %}
+                                    {% endfor %}
+                                    and {{ users_liked|slice:"3:"|length }} more
+                                {% endif %}
+                            </strong>
+                        </a>
+                    </form>
+                    <!-- Form for marking as try -->
+                    <form action="{% url 'style-try' style.slug %}" method="POST" id="tryForm" class="w-30">
+                        {% csrf_token %}
+                        {% if want_to_try %}
+                            <a href="#" aria="Unmark {{ style.style_name }} as style you want to try">
+                                <img src="{% static 'images/icons/try_1.png' %}" class="img-fluid custom-icon" alt="Unmark as try icon" id="tryButton">
+                            </a>
+                        {% else %}
+                            <a href="#" aria="Mark {{ style.style_name }} as style you want to try">
+                                <img src="{% static 'images/icons/try_0.png' %}" class="img-fluid custom-icon" alt="Mark as try icon" id="tryButton">
+                            </a>
+                        {% endif %}
+                        <!-- Modal for list of people they marked as they want to try -->
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#triesModal">
+                            <strong>
+                                <!-- If list of people they want to try longer than 3 display "and x more" -->
+                                {% if users_want_to_try|length < 4 %}
+                                    {% for user in users_want_to_try %}
+                                        {{ user }}
+                                        {% if  forloop.counter < users_want_to_try|length %}
+                                            ,
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    {% for user in users_want_to_try|slice:":3" %}
+                                        {{ user }}
+                                        {% if  forloop.counter < 3 %}
+                                            ,
+                                        {% endif %}
+                                    {% endfor %}
+                                    and {{ users_want_to_try|slice:"3:"|length }} more
+                                {% endif %}
+                            </strong>
+                        </a>
+                    </form>
+                    <!-- Show comments anchor -->
+                    <p>
+                        <a href="#" id="showComments" aria="Show comments">
+                            <img src="{% static 'images/icons/comments.png' %}" class="img-fluid custom-icon" alt="Likes counter icon">
+                            <strong>
+                                Show comments
+                            </strong>
+                        </a>
+                    </p>
+                </div>
+                {% else %}
+                <!-- If user not logged in -->
+                <div class="col-4 pt-3 d-flex justify-content-around">
+                    <!-- Show counter of likes, tries and comments -->
+                    <p class="text-center mx-2">
+                        <img src="{% static 'images/icons/like_1.png' %}" class="img-fluid custom-icon" alt="Likes counter icon">
+                        &nbsp
+                        <strong>
+                            {{ style.number_of_likes }}
+                        </strong>
+                    </p>
+                    <p class="text-center mx-2">
+                        <img src="{% static 'images/icons/try_1.png' %}" class="img-fluid custom-icon" alt="Tries counter icon">
+                        &nbsp
+                        <strong>
+                            {{ style.number_of_tries }}
+                        </strong>
+                    </p>
+                    <p class="text-center mx-2">
+                        <img src="{% static 'images/icons/comments.png' %}" class="img-fluid custom-icon" alt="Comments icon">
+                        &nbsp
+                        <strong>
+                            {{ comments|length }}
+                        </strong>
+                    </p>
+                </div>
+                <!-- Info for user -->
+                <div class="col-8 pt-4 d-flex justify-content-around">
+                    <p class="mt-1">
+                        <strong>
+                            Please login to be able to like and comment.
+                        </strong>
+                    </p>
+                </div>
+                {% endif %}
+        </div>
+    </div>
+    <!-- Div for displaying comment form -->
+    <div id="commentForm" class="list-container-right add-shadow w-90">
+        <!-- Only for logged in users -->
+        {% if user.is_authenticated %}
+            <!-- If no comment submitted yet, display form -->
+            {% if can_comment %}
+            <div class="col-12 d-flex justify-content-start">
+                <h3>Commenting as {{ user.username }} :</h3>
+            </div>
+            <form method="post">
+                {{ styles_comment_form | crispy }}
+                {% csrf_token %}
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="Submit" class="btn btn-success button-shadow mt-2">Comment</button>
+                </div>
+            </form>
+            <br>
+            <!-- If form submitted, display message -->
+            {% else %}
+                Hold on tight, your comment is being approved !
+            {% endif %}
+    </div>
+    <!-- Div for comments -->
+    <div id="comments" class="list-container-right add-shadow w-90">
+        <!-- Loop to iterate through all comments -->
+        {% for comment in comments %}
+            {% if forloop.first %}
+            <hr>
+            {% endif %}
+            <strong>
+                Comment by {{ comment.creator }} - {{ comment.created_on|date:"d.m.Y" }}
+            </strong> 
+            <br>
+            {{ comment.comment_body }}
+            <hr>
+        {% endfor %}
         {% endif %}
-    {% endfor %}
-{% endfor %}
-<br>
-<strong>
-    {% if user.is_authenticated %}
-    <form action="{% url 'style-like' style_selected.slug %}" method="POST">
-        {% csrf_token %}
-        {% if liked %}
-            <button type="submit" name="style_like" value="{{ style_selected.slug }}" class="btn-like">
-                Unlike
-            </button>
-        {% else %}
-        <button type="submit" name="style_like" value="{{ style_selected.slug }}" class="btn-like">
-            Like
-        </button>
-        {% endif %}
-    </form>
-    {% else %}
-    <span class="text-secondary"><i class="far fa-heart"></i></span>
-    {% endif %}
-</strong>
-<br>
-<strong>
-    {% if user.is_authenticated %}
-    <form class="d-inline" action="{% url 'style-try' style_selected.slug %}" method="POST">
-        {% csrf_token %}
-        {% if want_to_try %}
-            <button type="submit" name="style-try" value="{{ style_selected.slug }}" class="btn-like">
-                Untry
-            </button>
-        {% else %}
-        <button type="submit" name="style_try" value="{{ style_selected.slug }}" class="btn-like">
-            Try
-        </button>
-        {% endif %}
-    </form>
-    {% else %}
-    <span class="text-secondary"><i class="far fa-heart"></i></span>
-    {% endif %}
-</strong>
-<br>
-Likes :
-<a href="#" data-bs-toggle="modal" data-bs-target="#likesModal">
-    {% if users_liked|length < 4 %}
-        {% for user in users_liked %}
-            {{ user }}
-            {% if  forloop.counter < users_liked|length %}
-                ,
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        {% for user in users_liked|slice:":3" %}
-            {{ user }}
-            {% if  forloop.counter < 3 %}
-                ,
-            {% endif %}
-        {% endfor %}
-        and {{ users_liked|slice:"3:"|length }} more
-    {% endif %}
-</a>
-<br>
-Tries : 
-<a href="#" data-bs-toggle="modal" data-bs-target="#triesModal">
-    {% if users_want_to_try|length < 4 %}
-        {% for user in users_want_to_try %}
-            {{ user }}
-            {% if  forloop.counter < users_want_to_try|length %}
-                ,
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        {% for user in users_want_to_try|slice:":3" %}
-            {{ user }}
-            {% if  forloop.counter < 3 %}
-                ,
-            {% endif %}
-        {% endfor %}
-        and {{ users_want_to_try|slice:"3:"|length }} more
-    {% endif %}
-</a>
-<br>
-{% if user.is_authenticated %}
-{% if can_comment %}
-<form method="post">
-    {{ styles_comment_form | crispy }}
-    {% csrf_token %}
-    <button type="submit">Comment</button>
-</form>
-<br>
-{% else %}
-Hold on tight !
-{% endif %}
-{% for comment in comments %}
-<hr>
-Created by : {{ comment.creator }}
-<br>
-Comment : {{ comment.comment_body }}
-<br>
-Create on : {{ comment.created_on }}
-<hr>
-{% endfor %}
-{% else %}
-Only logged in users can read and add comments.
-{% endif %}
+    </div>
 </div>
 <!-- Likes Modal -->
 <div class="modal fade" id="likesModal" tabindex="-1" aria-labelledby="likesModalLabel" aria-hidden="true">
@@ -167,4 +253,8 @@ Only logged in users can read and add comments.
         </div>
     </div>
 </div>
+<script>
+    let canComment = "{{ can_comment }}"
+</script>
+<script src="{% static 'js/styles.js' %}"></script>
 {%endblock%}

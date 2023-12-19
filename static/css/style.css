@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
 /** -------------------------------- VARS ---------------------------- **/
@@ -12,14 +12,14 @@
     --lighter-black: #2a2a2a;
     --black: #000000;
     --light-gold: #ffc62c;
-    --light-gold-op: 	rgba(255, 198, 44, 0.7);
+    --light-gold-op: rgba(255, 198, 44, 0.7);
     --mid-gold: #f8b500;
     --mid-gold-op: rgba(248, 181, 0, 0.7);
     --dark-gold: #c59000;
 
     /** FONTS **/
-    --text-font: 'Lato', sans-serif;
-    --header-font: 'Sriracha', sans-serif;
+    --text-font: 'Sriracha', sans-serif;
+    --header-font: 'Permanent Marker', sans-serif;
 }
 
 /** ------------------------------ GENERAL --------------------------- **/
@@ -58,11 +58,19 @@ footer {
 }
 
 h1 {
-    font-family: var(--header-font)
+    font-family: var(--text-font);
+    text-shadow: 2px 2px 4px var(--lighter-black);
 }
 
 h2 {
-    font-family: var(--header-font)
+    font-family: var(--header-font);
+    text-shadow: 2px 2px 4px var(--lighter-black);
+}
+
+
+h3 {
+    font-size: 120%;
+    font-family: var(--text-font)
 }
 
 .heading {
@@ -194,6 +202,18 @@ footer a:hover {
     width: 50%;
 }
 
+/** COMMENTS **/
+
+#id_comment_body {
+    background: none;
+    border: 2px solid var(--darker-black);
+    font-family: var(--text-font)
+}
+
+label[for="id_comment_body"] {
+    display: none;
+}
+
 /** ---------------------------- LANDING PAGE ------------------------ **/
 .card {
     background-color: var(--mid-gold-op);
@@ -241,11 +261,11 @@ footer a:hover {
 .list-container-left a {
     color: var(--darker-black);
     text-decoration: none;
-    font-family: var(--header-font);
+    font-family: var(--text-font);
 }
 
 .list-container-left p {
-    font-family: var(--header-font);
+    font-family: var(--text-font);
 }
 
 .list-container-right {
@@ -257,11 +277,11 @@ footer a:hover {
 .list-container-right a {
     color: var(--darker-black);
     text-decoration: none;
-    font-family: var(--header-font);
+    font-family: var(--text-font);
 }
 
 .list-container-right p {
-    font-family: var(--header-font);
+    font-family: var(--text-font);
 }
 
 .star {
