@@ -5,7 +5,7 @@ from styles.models import StylesAvailable, StylesComments
 @admin.register(StylesComments)
 class StylesCommentAdmin(admin.ModelAdmin):
 
-    list_display = ('username', 'comment_body', 'style', 'approved')
+    list_display = ('creator', 'comment_body', 'style', 'approved')
 @admin.register(StylesAvailable)
 class StylesAvailableAdmin(admin.ModelAdmin):
 

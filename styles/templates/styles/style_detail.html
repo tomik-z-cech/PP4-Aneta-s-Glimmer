@@ -1,17 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="container wrapper" style="background: url('{% static "images/background-artists.jpg" %}') no-repeat fixed top right / cover;">
-<h1>Title : {{ style_name }}</h1>
+<h1>Title : {{ style_selected.style_name }}</h1>
 <br>
-Style image : {{ sample_image }}
+Style image : {{ style_selected.sample_image }}
 <br>
-Description : {{ style_description }}
-<br>
-Likes : {{ likes }}
-<br>
-Tries : {{ tries }}
+Description : {{ style_selected.style_description }}
 <br>
 Artists : 
 {% for filtered_artist in filtered_artists %}
@@ -26,14 +23,14 @@ Artists :
 <br>
 <strong>
     {% if user.is_authenticated %}
-    <form class="d-inline" action="{% url 'style-like' slug %}" method="POST">
+    <form action="{% url 'style-like' style_selected.slug %}" method="POST">
         {% csrf_token %}
         {% if liked %}
-            <button type="submit" name="newspost_id" value="{{ slug }}" class="btn-like">
+            <button type="submit" name="style_like" value="{{ style_selected.slug }}" class="btn-like">
                 Unlike
             </button>
         {% else %}
-        <button type="submit" name="newspost_id" value="{{ slug }}" class="btn-like">
+        <button type="submit" name="style_like" value="{{ style_selected.slug }}" class="btn-like">
             Like
         </button>
         {% endif %}
@@ -45,14 +42,14 @@ Artists :
 <br>
 <strong>
     {% if user.is_authenticated %}
-    <form class="d-inline" action="{% url 'style-try' slug %}" method="POST">
+    <form class="d-inline" action="{% url 'style-try' style_selected.slug %}" method="POST">
         {% csrf_token %}
         {% if want_to_try %}
-            <button type="submit" name="newspost_id" value="{{ slug }}" class="btn-like">
+            <button type="submit" name="style-try" value="{{ style_selected.slug }}" class="btn-like">
                 Untry
             </button>
         {% else %}
-        <button type="submit" name="newspost_id" value="{{ slug }}" class="btn-like">
+        <button type="submit" name="style_try" value="{{ style_selected.slug }}" class="btn-like">
             Try
         </button>
         {% endif %}
@@ -62,8 +59,112 @@ Artists :
     {% endif %}
 </strong>
 <br>
-Like : {{ users_liked }}
+Likes :
+<a href="#" data-bs-toggle="modal" data-bs-target="#likesModal">
+    {% if users_liked|length < 4 %}
+        {% for user in users_liked %}
+            {{ user }}
+            {% if  forloop.counter < users_liked|length %}
+                ,
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for user in users_liked|slice:":3" %}
+            {{ user }}
+            {% if  forloop.counter < 3 %}
+                ,
+            {% endif %}
+        {% endfor %}
+        and {{ users_liked|slice:"3:"|length }} more
+    {% endif %}
+</a>
 <br>
-Try : {{ users_want_to_try}}
+Tries : 
+<a href="#" data-bs-toggle="modal" data-bs-target="#triesModal">
+    {% if users_want_to_try|length < 4 %}
+        {% for user in users_want_to_try %}
+            {{ user }}
+            {% if  forloop.counter < users_want_to_try|length %}
+                ,
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for user in users_want_to_try|slice:":3" %}
+            {{ user }}
+            {% if  forloop.counter < 3 %}
+                ,
+            {% endif %}
+        {% endfor %}
+        and {{ users_want_to_try|slice:"3:"|length }} more
+    {% endif %}
+</a>
+<br>
+{% if user.is_authenticated %}
+{% if can_comment %}
+<form method="post">
+    {{ styles_comment_form | crispy }}
+    {% csrf_token %}
+    <button type="submit">Comment</button>
+</form>
+<br>
+{% else %}
+Hold on tight !
+{% endif %}
+{% for comment in comments %}
+<hr>
+Created by : {{ comment.creator }}
+<br>
+Comment : {{ comment.comment_body }}
+<br>
+Create on : {{ comment.created_on }}
+<hr>
+{% endfor %}
+{% else %}
+Only logged in users can read and add comments.
+{% endif %}
+</div>
+<!-- Likes Modal -->
+<div class="modal fade" id="likesModal" tabindex="-1" aria-labelledby="likesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="likesModalLabel">Likes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                This people like this post :
+                <br>
+                {% for user in users_liked %}
+                    {{ user }}
+                    <br>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tries Modal -->
+<div class="modal fade" id="triesModal" tabindex="-1" aria-labelledby="triesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="triesModalLabel">Likes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                This people like this post :
+                <br>
+                {% for user in users_want_to_try %}
+                    {{ user }}
+                    <br>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+            </div>
+        </div>
+    </div>
 </div>
 {%endblock%}

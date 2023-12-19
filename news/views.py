@@ -79,11 +79,8 @@ class NewsDetailView(generic.DetailView):
         """
         Function is called when comment submitted
         """
-        search_query = NewsPosts.objects.filter(
-            is_published=1
-        )  # Get all news posts
         post = get_object_or_404(
-            search_query, slug=slug
+            NewsPosts, slug=slug
         )  # Get current news post
         comments = (
             NewsComments.objects.filter(approved=True)
