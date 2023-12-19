@@ -186,20 +186,25 @@ footer a:hover {
 }
 
 /** ------------------------------- FORMS ---------------------------- **/
-.form-wrapper {
-    height: 100%;
-    width: 100%;
-    position: absolute;
+
+/** COMMENTS **/
+
+#form-register {
+    padding: 2vh;
 }
 
 /** LOGIN **/
-.form {
+.form-login {
     background-color: var(--mid-gold-op);
     padding: 1vh;
 }
 
-.form label {
+#form-register label {
     width: 50%;
+}
+
+.form-background {
+    background-color: var(--mid-gold-op)
 }
 
 /** COMMENTS **/
