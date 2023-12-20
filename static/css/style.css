@@ -24,6 +24,19 @@
 
 /** ------------------------------ GENERAL --------------------------- **/
 
+::-webkit-scrollbar {/** Scrollbar styling **/
+    width: 10px;
+}
+::-webkit-scrollbar-track {/** Scrollbar styling **/
+    background: var(--dark-gold);
+}
+::-webkit-scrollbar-thumb {/** Scrollbar styling **/
+    background: var(--lighter-black);
+}
+::-webkit-scrollbar-thumb:hover {/** Scrollbar styling **/
+    background: var(--light-gold);
+}
+
 body {
     background-color: var(--off-white);
     font-family: var(--text-font);
