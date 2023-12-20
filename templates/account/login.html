@@ -13,7 +13,7 @@
         </div>
         <div class="w-100 d-flex justify-content-center p-3 form-heading">
             <p>
-                If you have not created an account yet, then please <a href="{{ signup_url }}">register HERE</a> first.
+                If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.
             </p>
         </div>
         {% url 'account_login' as login_url %}
@@ -31,7 +31,7 @@
             {% slot actions %}
             <!-- Custom reset link to fit the styling -->
             <div class="w-100 text-center">
-                <a href="{% url 'account_reset_password' %}" id="pass-reset-link">Forgot Your Password ?</a>
+                <a href="{% url 'account_reset_password' %}" class="custom-form-link">Forgot Your Password ?</a>
             </div>
             <div class="w-100 d-flex justify-content-center p-3">
                 <button type="submit" tags="prominent,login" class="btn btn-success button-shadow">
