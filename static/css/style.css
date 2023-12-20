@@ -187,14 +187,14 @@ footer a:hover {
 
 /** ------------------------------- FORMS ---------------------------- **/
 
-input[type=checkbox] { 
+input[type=checkbox] {
     outline: 2px solid var(--darker-black);
-    accent-color:  var(--darker-black); 
+    accent-color: var(--darker-black);
     background-color: none;
 }
 
-input[type=checkbox]:checked { 
-    outline: 2px solid var(--darker-black); 
+input[type=checkbox]:checked {
+    outline: 2px solid var(--darker-black);
 }
 
 /** ALLAUTH FORMS **/
@@ -210,10 +210,23 @@ input[type=checkbox]:checked {
 
 .form-background {
     background-color: var(--mid-gold-op);
-    padding:2vh;
+    padding: 2vh;
+    width: 50%;
 }
 
-#id_email, #id_username, #id_first_name, #id_last_name, #id_phone_number, #id_password1, #id_password2 {
+@media screen and (max-width: 991px) {
+    .form-background {
+        width: 80%;
+    }
+}
+
+#id_email,
+#id_username,
+#id_first_name,
+#id_last_name,
+#id_phone_number,
+#id_password1,
+#id_password2 {
     background: none;
     border: 2px solid var(--darker-black);
     font-family: var(--text-font);
@@ -334,9 +347,6 @@ label[for="id_comment_body"] {
 .modal-content {
     background-color: var(--mid-gold);
 }
-
-
-
 
 .text-container {
     max-height: 100px;
