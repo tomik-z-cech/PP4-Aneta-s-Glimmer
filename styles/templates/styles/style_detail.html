@@ -44,7 +44,7 @@
                 <hr />
                 <!-- New booking button -->
                 <div class="container text-center">
-                    <a href="{% url 'new-booking' %}" aria="New booking for {{ style.style_name }}">
+                    <a href="{% url 'new-booking' %}" aria-label="New booking for {{ style.style_name }}">
                         <button type="button" class="btn btn-success button-shadow">New booking for {{style.style_name }}</button>
                     </a>
                 </div>
@@ -57,11 +57,11 @@
                     <form action="{% url 'style-like' style.slug %}" method="POST" id="likeForm">
                         {% csrf_token %}
                         {% if liked %}
-                            <a href="#" aria="Unlike {{ style.style_name }}">
+                            <a href="#" aria-label="Unlike {{ style.style_name }}">
                                 <img src="{% static 'images/icons/like_1.png' %}" class="img-fluid custom-icon" alt="Unlike icon" id="likeButton">
                             </a>
                         {% else %}
-                            <a href="#" aria="Like {{ style.style_name }}">
+                            <a href="#" aria-label="Like {{ style.style_name }}">
                                 <img src="{% static 'images/icons/like_0.png' %}" class="img-fluid custom-icon" alt="Like icon" id="likeButton">
                             </a>
                         {% endif %}
@@ -92,11 +92,11 @@
                     <form action="{% url 'style-try' style.slug %}" method="POST" id="tryForm" class="w-30">
                         {% csrf_token %}
                         {% if want_to_try %}
-                            <a href="#" aria="Unmark {{ style.style_name }} as style you want to try">
+                            <a href="#" aria-label="Unmark {{ style.style_name }} as style you want to try">
                                 <img src="{% static 'images/icons/try_1.png' %}" class="img-fluid custom-icon" alt="Unmark as try icon" id="tryButton">
                             </a>
                         {% else %}
-                            <a href="#" aria="Mark {{ style.style_name }} as style you want to try">
+                            <a href="#" aria-label="Mark {{ style.style_name }} as style you want to try">
                                 <img src="{% static 'images/icons/try_0.png' %}" class="img-fluid custom-icon" alt="Mark as try icon" id="tryButton">
                             </a>
                         {% endif %}
@@ -125,7 +125,7 @@
                     </form>
                     <!-- Show comments anchor -->
                     <p>
-                        <a href="#" id="showComments" aria="Show comments">
+                        <a href="#" id="showComments" aria-label="Show comments">
                             <img src="{% static 'images/icons/comments.png' %}" class="img-fluid custom-icon" alt="Likes counter icon">
                             <strong>
                                 Show comments

@@ -105,7 +105,7 @@
                     {% for filtered_style in filtered_styles %}
                         {% for detail in filtered_style %}
                             {% if not forloop.counter|divisibleby:2 %}
-                                <a href="{% url 'style-detail' slug=detail %}" aria="{{ detail }}">
+                                <a href="{% url 'style-detail' slug=detail %}" aria-label="{{ detail }}">
                             {% else %}
                                 {{ detail}}</a>
                             {% endif %}
@@ -117,14 +117,14 @@
                     <strong>
                         Public profile : 
                     </strong>
-                    <a href="{{ artist_selected.public_profile }}" aria="Public profile of {{ artist_selected.name }}" target="_blank">
+                    <a href="{{ artist_selected.public_profile }}" aria-label="Public profile of {{ artist_selected.name }}" target="_blank">
                     {{ artist_selected.public_profile }}
                     </a>
                 </p>
                 <hr />
                 <!-- Booking button -->
                 <div class="container text-center">
-                    <a href="{% url 'new-booking' %}" aria="New booking with {{artist_selected.name }}">
+                    <a href="{% url 'new-booking' %}" aria-label="New booking with {{artist_selected.name }}">
                         <button type="button" class="btn btn-success button-shadow">New booking with {{artist_selected.name }}</button>
                     </a>
                 </div>

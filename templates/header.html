@@ -13,28 +13,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item mx-3">
-                <a  class="nav-link header-text" href="{% url 'home' %}">
+                <a  class="nav-link header-text" href="{% url 'home' %}" aria-label="Home">
                   <i class="bi bi-house-door"></i>
                   &nbsp
                   Home
                 </a>
               </li>
               <li class="nav-item mx-3">
-                <a  class="nav-link header-text" href="{% url 'all-news' %}">
+                <a  class="nav-link header-text" href="{% url 'all-news' %}" aria-label="News">
                   <i class="bi bi-newspaper"></i>
                   &nbsp
                   News
                 </a>
               </li>
               <li class="nav-item mx-3">
-                <a  class="nav-link header-text" href="{% url 'styles' %}">
+                <a  class="nav-link header-text" href="{% url 'styles' %}" aria-label="Styles">
                   <i class="bi bi-list-stars"></i>
                   &nbsp
                   Styles
                 </a>
               </li>
               <li class="nav-item mx-3">
-                <a  class="nav-link header-text" href="{% url 'artists' %}">
+                <a  class="nav-link header-text" href="{% url 'artists' %}" aria-label="Artists">
                   <i class="bi bi-people-fill"></i>
                   &nbsp
                   Team
@@ -48,7 +48,7 @@
                 <!-- SUPERUSER -->
                 {% if user.is_superuser %}
                   <li class="nav-item mx-3">
-                    <a  class="nav-link header-text" href="{% url 'all-admin' %}">
+                    <a  class="nav-link header-text" href="{% url 'all-admin' %}" aria-label="Admin">
                       <i class="bi bi-person-gear"></i>
                       &nbsp
                       Admin
@@ -57,14 +57,14 @@
                 <!-- USER -->
                 {% else %}
                   <li class="nav-item mx-3">
-                    <a  class="nav-link header-text" href="{% url 'my-bookings' %}">
+                    <a  class="nav-link header-text" href="{% url 'my-bookings' %}" aria-label="My Bookings">
                       <i class="bi bi-journal-bookmark"></i>
                       &nbsp
                       My Bookings
                     </a>
                   </li>
                   <li class="nav-item mx-3">
-                    <a  class="nav-link header-text" href="{% url 'profile-manager' %}">
+                    <a  class="nav-link header-text" href="{% url 'profile-manager' %}" aria-label="My Profile">
                       <i class="bi bi-person-check"></i>
                       &nbsp
                       My Profile
@@ -72,7 +72,7 @@
                   </li>
                 {% endif %}
                   <li class="nav-item mx-3">
-                    <a  class="nav-link header-text" href="{% url 'account_logout' %}">
+                    <a  class="nav-link header-text" href="{% url 'account_logout' %}" aria-label="Logout">
                       <i class="bi bi-box-arrow-right"></i>
                       &nbsp
                       Logout
@@ -81,14 +81,14 @@
                 <!-- If User NOT authenticated -->
                 {% else %}
                   <li class="nav-item mx-3">
-                    <a  class="nav-link header-text" href="{% url 'account_signup' %}">
+                    <a  class="nav-link header-text" href="{% url 'account_signup' %}" aria-label="Register">
                       <i class="bi bi-key-fill"></i>
                       &nbsp
                       Register
                     </a>
                   </li>
                   <li class="nav-item mx-3">
-                    <a class="nav-link header-text"  href="{% url 'account_login' %}">
+                    <a class="nav-link header-text"  href="{% url 'account_login' %}" aria-label="Login">
                       <i class="bi bi-house-lock-fill"></i>
                       &nbsp
                       Login

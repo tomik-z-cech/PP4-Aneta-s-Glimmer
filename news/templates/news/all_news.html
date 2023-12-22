@@ -24,7 +24,7 @@
                             {% else %}
                             <div class="col-lg-4 col-sm-12 order-lg-last text-center">
                             {% endif %}
-                                <a href="{% url 'news-detail' slug=news.slug %}" aria="Details of {{ news.title }}">
+                                <a href="{% url 'news-detail' slug=news.slug %}" aria-label="Details of {{ news.title }}">
                                     <!-- Sample news image - default or existing -->
                                     {% if "default_heading_image" in news.heading_image.url %}
                                         <img src="{% static 'images/default_news.png' %}" class="img-fluid main-pic" alt="{{ news.title }}">
@@ -35,7 +35,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-8 col-sm-12 list-detail text-center">
-                                <a href="{% url 'news-detail' slug=news.slug %}" aria="Detail of {{ news.title }}">
+                                <a href="{% url 'news-detail' slug=news.slug %}" aria-label="Detail of {{ news.title }}">
                                     <h2>
                                         {{ news.title }}
                                     </h2>
@@ -50,7 +50,7 @@
                                 <hr />
                                 <!-- "Likes" and comments counter -->
                                 <p>
-                                    <a href="{% url 'news-detail' slug=news.slug %}" aria="Details of {{ news.title }}">
+                                    <a href="{% url 'news-detail' slug=news.slug %}" aria-label="Details of {{ news.title }}">
                                         <img src="{% static 'images/icons/like_1.png' %}" class="img-fluid custom-icon" alt="Likes icon">
                                     </a>
                                     &nbsp
@@ -61,7 +61,7 @@
                                     &nbsp
                                     &nbsp
                                     &nbsp
-                                    <a href="{% url 'news-detail' slug=news.slug %}" aria="Details of {{ news.title }}">
+                                    <a href="{% url 'news-detail' slug=news.slug %}" aria-label="Details of {{ news.title }}">
                                         <img src="{% static 'images/icons/comments.png' %}" class="img-fluid custom-icon" alt="Comments icon">
                                     </a>
                                     &nbsp

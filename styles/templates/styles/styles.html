@@ -25,7 +25,7 @@
                         {% else %}
                         <div class="col-lg-4 col-sm-12 order-lg-last text-center">
                         {% endif %}
-                            <a href="{% url 'style-detail' slug=style.slug %}" aria="Details of {{ style.style_name }}">
+                            <a href="{% url 'style-detail' slug=style.slug %}" aria-label="Details of {{ style.style_name }}">
                                 <!-- Sample image - default or existing -->
                                 {% if "default_sample_image" in style.sample_image.url %}
                                     <img src="{% static 'images/default_sample_image.png' %}" class="img-fluid main-pic" alt="{{ style.style_name }}">
@@ -35,7 +35,7 @@
                             </a>
                         </div>
                         <div class="col-lg-8 col-sm-12 list-detail">
-                            <a href="{% url 'style-detail' slug=style.slug %}" aria="Detail of {{ style.style_name }}">
+                            <a href="{% url 'style-detail' slug=style.slug %}" aria-label="Detail of {{ style.style_name }}">
                                 <h2>
                                     {{ style.style_name }}
                                 </h2>
@@ -50,7 +50,7 @@
                             <hr />
                             <!-- "Likes", "tries" and comments counter -->
                             <p>
-                                <a href="{% url 'style-detail' slug=style.slug %}" aria="Details of {{ style.style_name }}">
+                                <a href="{% url 'style-detail' slug=style.slug %}" aria-label="Details of {{ style.style_name }}">
                                     <img src="{% static 'images/icons/like_1.png' %}" class="img-fluid custom-icon" alt="Likes icon">
                                 </a>
                                 &nbsp
@@ -60,7 +60,7 @@
                                 &nbsp
                                 &nbsp
                                 &nbsp
-                                <a href="{% url 'style-detail' slug=style.slug %}" aria="Details of {{ style.style_name }}">
+                                <a href="{% url 'style-detail' slug=style.slug %}" aria-label="Details of {{ style.style_name }}">
                                     <img src="{% static 'images/icons/try_1.png' %}" class="img-fluid custom-icon" alt="Tries icon">
                                 </a>
                                 &nbsp
@@ -70,7 +70,7 @@
                                 &nbsp
                                 &nbsp
                                 &nbsp
-                                <a href="{% url 'style-detail' slug=style.slug %}" aria="Details of {{ style.style_name }}">
+                                <a href="{% url 'style-detail' slug=style.slug %}" aria-label="Details of {{ style.style_name }}">
                                     <img src="{% static 'images/icons/comments.png' %}" class="img-fluid custom-icon" alt="Comments icon">
                                 </a>
                                 &nbsp
@@ -81,7 +81,7 @@
                             <hr />
                             <!-- New booking button -->
                             <div class="container text-center">
-                                <a href="{% url 'new-booking' %}" aria="New booking for {{ style.style_name }}">
+                                <a href="{% url 'new-booking' %}" aria-label="New booking for {{ style.style_name }}">
                                     <button type="button" class="btn btn-success button-shadow">New booking for {{style.style_name }}</button>
                                 </a>
                             </div>

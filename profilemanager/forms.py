@@ -33,3 +33,6 @@ class UpdateDetailsForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ["first_name", "last_name", "phone_number", "marketing"]
+        labels = {
+            'marketing': 'Would you like to receive marketing materials ?',
+        }

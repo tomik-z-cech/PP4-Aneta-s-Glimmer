@@ -1,37 +1,42 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="wrapper">
-<h1>My details : </h1><br>
-Changing details for user {{ username }}
-
-<form method="post" action="{% url 'profile-manager' %}">
-    {% csrf_token %}
-    {{ details_form.as_p }}
-    <button type="submit">Save Changes</button>
-</form>
-<br>
-    <a href="{% url 'account_change_password' %}" class="btn btn-primary">Change password</a><br>
-    <a href="{% url 'account_email' %}" class="btn btn-primary">Change Email</a><br>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteProfileModal">
-    Delete account
-  </button>
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
+  <div class="form-background">
+    <h1 class="text-center">My Profile</h1>
+    <p class="text-center my-3">Viewing details for user <strong>{{ username }}</strong></p>
+    <form method="post" action="{% url 'profile-manager' %}">
+        {% csrf_token %}
+        {{ details_form.as_p }}
+        <div class="d-flex justify-content-around mb-4">
+          <a href="{% url 'account_change_password' %}" class="btn btn-warning button-shadow" aria-label="Change password">Change password</a>
+          <a href="{% url 'account_email' %}" class="btn btn-warning button-shadow" aria-label="Change email">Change Email</a>
+            <!-- Button trigger modal -->
+          <button type="button" class="btn btn-danger button-shadow" data-bs-toggle="modal" data-bs-target="#deleteProfileModal" aria-label="Delete account">
+            Delete account
+          </button>
+        </div>
+        <div class="d-flex justify-content-around">
+          <button type="submit"class="btn btn-success button-shadow" aria-label="Save changes">Save Changes</button>
+        </div>
+    </form>
+  </div>
 </div>  
   <!-- Modal -->
   <div class="modal fade" id="deleteProfileModal" tabindex="-1" aria-labelledby="deleteProfileModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="deleteProfileModalLabel">Delete acount ?</h5>
+          <h2 class="modal-title" id="deleteProfileModalLabel">Delete acount ?</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           Are you sure ? Bad things will happen.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
-          <a href="{% url 'delete-profile' %}" class="btn btn-primary">Delete my account</a>
+          <button type="button" class="btn btn-warning button-shadow" data-bs-dismiss="modal">Back</button>
+          <a href="{% url 'delete-profile' %}" class="btn btn-danger button-shadow">Delete my account</a>
         </div>
       </div>
     </div>

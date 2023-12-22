@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 {% load allauth i18n %}
-{% block head_title %}
-    {% trans "Sign Out" %}
-{% endblock head_title %}
+{% load static %}
+
 {% block content %}
-<div class="d-flex align-items-center justify-content-center wrapper">
-    <div>
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    <p>{% trans 'Are you sure you want to sign out?' %}</p>
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">
+    <h1 class="text-center">
+        Log Out
+    </h1>
+        <p class="text-center">{% trans 'Are you sure you want to log out?' %}</p>
     {% url 'account_logout' as action_url %}
     {% element form method="post" action=action_url no_visible_fields=True %}
         {% slot body %}
@@ -21,9 +20,11 @@
             {% endif %}
         {% endslot %}
         {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
+        <div class="w-100 d-flex justify-content-center p-3">
+            <button type="submit" class="btn btn-success button-shadow">
+                Log Out
+            <button>
+        </div>
         {% endslot %}
     {% endelement %}
     </div>
