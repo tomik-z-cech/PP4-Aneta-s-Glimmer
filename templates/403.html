@@ -1,8 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="wrapper">
-    <h1>Oops! Access Denied!</h1>
-    <p>Sorry, but it looks like you don't have the right polish for this page. Our nail art is exclusive, and this area is reserved for authorized guests only.</p>
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-error.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">
+        <h1 class="text-center">403 - Oops! Access Denied!</h1>
+        <p class="text-center">Sorry, but it looks like you don't have the right polish for this page.</p> 
+        <p class="text-center">Our nail art is exclusive, and this area is reserved for authorized guests only.</p>
+    </div>
 </div>
 {%endblock%}
