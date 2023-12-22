@@ -217,7 +217,7 @@ input[type=checkbox]:checked {
     outline: 2px solid var(--darker-black);
 }
 
-input[type="radio"]{
+input[type="radio"] {
     accent-color: var(--darker-black);
     background-color: none;
 }
@@ -405,12 +405,6 @@ label[for="id_comment_body"] {
     width: 6vh;
 }
 
-/** ---------------------- MODALS ------------------------ **/
-
-.modal-content {
-    background-color: var(--mid-gold);
-}
-
 .text-container {
     max-height: 100px;
     overflow: hidden;
@@ -436,4 +430,18 @@ label[for="id_comment_body"] {
 
 .text-container:hover .read-more-link {
     display: block;
+}
+
+/** ---------------------- MODALS ------------------------ **/
+
+.modal-content {
+    background-color: var(--mid-gold);
+}
+
+/** ---------------------- BOOKINGS ------------------------ **/
+
+.bookings-container {
+    background-color: var(--light-gold-op);
+    margin: 2vh;
+    padding: 2vh;
 }

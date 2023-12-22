@@ -1,15 +1,27 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="wrapper">
-Sure ?
-<br>
-You are about to cancel booking for {{ booking_to_cancel.date_time }} with {{booking_to_cancel.booked_artist}} and we meant to be doing {{ booking_to_cancel.booked_style }}.
-<br>
-Proceed ?
-<br>
-<a href="{% url 'my-bookings' %}">No, take me back</a>
-<br>
-<a href="{% url 'cancel-booking' cancel_booking_pk=booking_to_cancel.pk%}">Yes, cancel</a>
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-booking.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">
+        <h1 class="text-center">
+            Are you sure ?
+        </h1>
+        <p class="text-center">
+        You are about to cancel booking for {{ booking_to_cancel.date_time|date:"d.m.Y" }} at {{ booking_to_cancel.date_time|time:"H:i" }} with {{booking_to_cancel.booked_artist}}, we meant to be doing fantastic {{ booking_to_cancel.booked_style }}.
+        </p>
+        <div class="w-100 d-flex justify-content-around p-3">
+            <a href="{% url 'my-bookings' %}" aria-label="No, take me back">
+                <button class="btn btn-success button-shadow">
+                    No, take me back
+                </button>
+            </a>
+            <a href="{% url 'cancel-booking' cancel_booking_pk=booking_to_cancel.pk%}" aria-label="Yes, cancel">
+                <button class="btn btn-danger button-shadow">
+                    Yes, cancel
+                </button>
+            </a>
+        </div>
+    </div>
 </div>
 {%endblock%}

@@ -104,8 +104,9 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
             print('Superuser')
             return redirect("all-admin")
         else:
-            user_bookings = Bookings.objects.filter(username=login_user).order_by('-date_time')  # Filter bookings
-            # ---
+            pending_bookings = Bookings.objects.filter(username=login_user).filter(booking_status=0).order_by('-date_time')  # Filter pending bookings
+            confirmed_bookings = Bookings.objects.filter(username=login_user).filter(booking_status=1).order_by('-date_time')
+            done_bookings = Bookings.objects.filter(username=login_user).filter(booking_status=2).order_by('-date_time')
             last_minutes = []
             all_artists = Artists.objects.all()
             today = timezone.now().date()
@@ -164,6 +165,7 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
                 last_minutes.append(
                     {
                         "name": artist.name,
+                        "slug": artist.slug,
                         "free_today": free_today,
                         "free_tomorrow": free_tommorrow,
                     }
@@ -172,7 +174,10 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
             return render(  # Render template
                 request,
                 self.template_name,
-                {"bookings": user_bookings, "last_minutes": last_minutes},
+                {"pending_bookings": pending_bookings,
+                 "confirmed_bookings": confirmed_bookings,
+                 "done_bookings": done_bookings,
+                 "last_minutes": last_minutes},
             )
 
     @login_required

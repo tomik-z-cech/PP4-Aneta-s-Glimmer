@@ -1,84 +1,290 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="wrapper">
-    <h2>Pending</h2>
-    {% for booking in bookings %}
-        {% if booking.booking_status == 0 %}
-            {{ booking.pk }}
-            -
-            {{ booking.booking_status }} 
-            - 
-            {{ booking.booked_style }}
-            - 
-            {{ booking.booked_artist }}
-            - 
-            {{ booking.date_time|time:"H:i" }}
-            - 
-            {{ booking.date_time|date:"d.m.Y" }}
-            -
-            <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}">Edit</a>
-            -
-            <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}">Cancel</a>
-            <br>
-        {% endif %}
-    {% endfor %}
-    <br>
-    <h2>Confirmed</h2>
-    {% for booking in bookings %}
-        {% if booking.booking_status == 1 %}
-            {{ booking.pk }}
-            -
-            {{ booking.booking_status }} 
-            - 
-            {{ booking.booked_style }}
-            - 
-            {{ booking.booked_artist }}
-            - 
-            {{ booking.date_time|time:"H:i" }}
-            - 
-            {{ booking.date_time|date:"d.m.Y" }}
-            -
-            <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}">Edit</a>
-            -
-            <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}">Cancel</a>
-            <br>
-        {% endif %}
-    {% endfor %}
-    <br>
-    <h2>Done</h2>
-    {% for booking in bookings %}
-        {% if booking.booking_status == 2 %}
-            {{ booking.pk }}
-            -
-            {{ booking.booking_status }} 
-            - 
-            {{ booking.booked_style }}
-            - 
-            {{ booking.booked_artist }}
-            - 
-            {{ booking.date_time|time:"H:i" }}
-            - 
-            {{ booking.date_time|date:"d.m.Y" }}
-            -
-            {% if booking.is_rated == False %}
-                <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=1 %}">1</a>
-                <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=2 %}">2</a>
-                <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=3 %}">3</a>
-                <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=4 %}">4</a>
-                <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=5 %}">5</a>
-            {% else %}
-                Thank you for review !
-            {% endif %}
-            <br>
-            <br>
-        {% endif %}
-    {% endfor %}
-    <br>
-    <a href="{% url 'new-booking' %}">New booking</a>
-    <br>
-    {% for last_minute in last_minutes %}
-        {{ last_minute.name }} - {{ last_minute.free_today }} - {{ last_minute.free_tomorrow }}
-        <br>
-    {% endfor %}
+<div class="container wrapper" style="background: url('{% static "images/background-booking.jpg" %}') no-repeat fixed top right / cover;">
+    <div clas="row">
+        <div class="col-12 text-center add-shadow heading">
+            <h1>Bookings</h1>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-between">
+        <div class="col-7 bookings-container">
+            <h2 class="text-center mb-5">My Bookings</h2>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Pending Bookings
+                        </button>
+                    </h3>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            {% if pending_bookings|length == 0 %}
+                                You don't have any pending bookings.
+                            {% else %}    
+                                <table class="w-100">
+                                    <th>
+                                        Ref #
+                                    </th>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Time
+                                    </th>
+                                    <th>
+                                        Booked style
+                                    </th>
+                                    <th>
+                                        Artist
+                                    </th>
+                                    <th>
+                                        Edit
+                                    </th>
+                                    <th>
+                                        Cancel
+                                    </th>
+                                    {% for booking in pending_bookings %}
+                                        <tr>
+                                            <td>
+                                                {{ booking.pk }}
+                                            </td>
+                                            <td>
+                                                {{ booking.date_time|date:"d.m.Y" }}
+                                            </td>
+                                            <td>
+                                                {{ booking.date_time|time:"H:i" }}
+                                            </td>
+                                            <td>
+                                                {{ booking.booked_style }}
+                                            </td>
+                                            <td>
+                                                {{ booking.booked_artist }}
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}">
+                                                    Edit
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}">
+                                                    Cancel
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Confirmed Bookings
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            {% if confirmed_bookings|length == 0 %}
+                                You don't have any confirmed bookings.
+                            {% else %}    
+                                <table class="w-100">
+                                    <th>
+                                        Ref #
+                                    </th>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Time
+                                    </th>
+                                    <th>
+                                        Booked style
+                                    </th>
+                                    <th>
+                                        Artist
+                                    </th>
+                                    <th>
+                                        Edit
+                                    </th>
+                                    <th>
+                                        Cancel
+                                    </th>
+                                    {% for booking in confirmed_bookings %}
+                                        <tr>
+                                            <td>
+                                                {{ booking.pk }}
+                                            </td>
+                                            <td>
+                                                {{ booking.date_time|date:"d.m.Y" }}
+                                            </td>
+                                            <td>
+                                                {{ booking.date_time|time:"H:i" }}
+                                            </td>
+                                            <td>
+                                                {{ booking.booked_style }}
+                                            </td>
+                                            <td>
+                                                {{ booking.booked_artist }}
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}">
+                                                    Edit
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}">
+                                                    Cancel
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Past Bookings
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 bookings-container">
+            <div class="row">
+                <h2 class="text-center mb-4">
+                    Last minute
+                </h2>
+            </div>
+            <div class="row">
+                <table class="w-100">
+                <tr>
+                    <th class="text-center">
+                        Artist
+                    </th>
+                    <th class="text-center">
+                        Slots today
+                    </th>
+                    <th class="text-center">
+                        Slots tomorrow
+                    </th>
+                </tr>
+                {% for last_minute in last_minutes %}
+                    <tr>
+                        <th class="text-center">
+                            <a href="{% url 'artist-detail' slug=last_minute.slug %}" aria-label="Details of {{ last_minute.name }}" class="custom-form-link">
+                                {{ last_minute.name }}
+                            </a>
+                        </th>
+                        <td class="text-center">
+                            {{ last_minute.free_today }}
+                        </td>
+                        <td class="text-center">
+                            {{ last_minute.free_tomorrow }}
+                        </td>
+                    <tr>
+                {% endfor %}
+                </table>
+            </div>
+            <p class="text-center mt-4">
+                To make a last minute booking, please ring us on 
+                <a href="tel:0872615238" aria-label="Call us" class="custom-form-link">
+                    <br />
+                    <strong>
+                        087 261 52 38
+                    </strong>
+                </a>
+                .
+            </p>
+            <p class="text-center mt-4">
+                <strong>
+                    or
+                </strong>
+            </p>
+            <div class="container text-center">
+                <a href="{% url 'new-booking' %}" aria-label="New booking">
+                    <button type="button" class="btn btn-success button-shadow">New regular booking</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 {%endblock%}
+
+<div class="row">
+    <div class="col-8">
+
+<h2>Pending</h2>
+
+<br>
+<h2>Confirmed</h2>
+{% for booking in bookings %}
+    {% if booking.booking_status == 1 %}
+        {{ booking.pk }}
+        -
+        {{ booking.booking_status }} 
+        - 
+        {{ booking.booked_style }}
+        - 
+        {{ booking.booked_artist }}
+        - 
+        {{ booking.date_time|time:"H:i" }}
+        - 
+        {{ booking.date_time|date:"d.m.Y" }}
+        -
+        <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}">Edit</a>
+        -
+        <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}">Cancel</a>
+        <br>
+    {% endif %}
+{% endfor %}
+<br>
+<h2>Done</h2>
+{% for booking in bookings %}
+    {% if booking.booking_status == 2 %}
+        {{ booking.pk }}
+        -
+        {{ booking.booking_status }} 
+        - 
+        {{ booking.booked_style }}
+        - 
+        {{ booking.booked_artist }}
+        - 
+        {{ booking.date_time|time:"H:i" }}
+        - 
+        {{ booking.date_time|date:"d.m.Y" }}
+        -
+        {% if booking.is_rated == False %}
+            <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=1 %}">1</a>
+            <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=2 %}">2</a>
+            <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=3 %}">3</a>
+            <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=4 %}">4</a>
+            <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=5 %}">5</a>
+        {% else %}
+            Thank you for review !
+        {% endif %}
+        <br>
+        <br>
+    {% endif %}
+{% endfor %}
+<br>
+<a href="{% url 'new-booking' %}">New booking</a>
+<br>
+</div>
+<div class="col-4">
+{% for last_minute in last_minutes %}
+    {{ last_minute.name }} - {{ last_minute.free_today }} - {{ last_minute.free_tomorrow }}
+    <br>
+{% endfor %}
+</div>
+</div>
