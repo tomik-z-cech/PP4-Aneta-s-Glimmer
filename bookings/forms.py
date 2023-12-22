@@ -15,15 +15,22 @@ class BookingForm(forms.ModelForm):
             "time",
         )
 
-    booked_style = forms.ModelChoiceField(queryset=StylesAvailable.objects.all())
+    booked_style = forms.ModelChoiceField(
+        queryset=StylesAvailable.objects.all(),
+        label="Style of your choice",
+        )
+    
+    booked_artist = forms.ChoiceField(
+        label="Artist of your choice",
+    )
 
     date = forms.DateField(
-        label="Date",
+        label="Date of your choice",
         widget=forms.TextInput(attrs={"type": "date"}),
     )
 
     time = forms.TimeField(
-        label="Time",
+        label="Time of your choice",
         widget=forms.Select,
     )
 

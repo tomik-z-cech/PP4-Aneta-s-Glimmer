@@ -445,3 +445,11 @@ label[for="id_comment_body"] {
     margin: 2vh;
     padding: 2vh;
 }
+
+.bookings-accordion-content {
+    background-color: var(--light-gold);
+}
+
+.bookings-accordion-head {
+    background-color: var(--mid-gold);
+}

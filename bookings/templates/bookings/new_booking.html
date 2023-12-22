@@ -2,19 +2,33 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
+{% block extra_styles %}
+<style>
+    .asteriskField {
+        display: none;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="wrapper">
-<form method="post" enctype="multipart/form-data" id="newBookingForm">
-    {% csrf_token %}
-    {{ new_booking_form | crispy }}
-
-
-
-    <input type="submit" value="Submit" id="submit-booking">
-</form>
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-booking.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">
+        <h1 class="text-center">
+            New booking
+        </h1>
+        <div class="container text-center">
+            <div class="spinner-border text-dark" role="status" id="booking-spinner">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+        <form method="post" enctype="multipart/form-data" id="newBookingForm">
+            {% csrf_token %}
+            {{ new_booking_form | crispy }}
+            <div class="container text-center">
+                <button type="submit" value="Submit" id="submit-booking" class="btn btn-success button-shadow mt-4">Create booking</button>
+            </div>
+        </form>
+    </div>
 </div>
-
 <script src="{% static 'js/new_booking.js' %}"></script>
-
-
 {%endblock%}
