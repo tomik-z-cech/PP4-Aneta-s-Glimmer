@@ -70,7 +70,7 @@ $(document).ready(function () {
         $("#id_date, #id_time, label[for='id_date'], label[for='id_time'], #submit-booking").hide();
         let selectedValue = $(this).val();
         if (selectedValue == 0) {
-            $("#id_booked_artist, #id_date, #id_time, #submit-booking, label[for='id_date'], label[for='id_time']").hide();
+            $("#id_booked_artist, #id_date, #id_time, #submit-booking, label[for='id_date'], label[for='id_time'], #booking-spinner").hide();
         }
         $.ajax({
             url: '/bookings/booking-options/',
@@ -99,7 +99,7 @@ $(document).ready(function () {
         $("#id_time, label[for='id_time'], #submit-booking").hide();
         let selectedValue = $(this).val();
         if (selectedValue == 0) {
-            $("#id_date, #id_time, #submit-booking, label[for='id_date'], label[for='id_time']").hide();
+            $("#id_date, #id_time, #submit-booking, label[for='id_date'], label[for='id_time'], #booking-spinner").hide();
         }
         $.ajax({
             url: '/bookings/booking-options/',

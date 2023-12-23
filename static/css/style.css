@@ -464,3 +464,29 @@ label[for="id_comment_body"] {
 .custom-booking-link:hover {
     color: var(--black)
 }
+
+.form-control:focus {
+    border-color: var(--dark-gold);
+    box-shadow: 0 0 0 0.2rem var(--light-gold);
+    background-color: var(--light-gold);
+}
+
+.select {
+    background: none;
+    border: 2px solid var(--darker-black)
+}
+
+select option {
+    background-color: var(--light-gold);
+    color: var(--darker-black);
+}
+
+select option:checked {
+    background-color: var(--light-gold);
+    color: var(--darker-black);
+}
+
+input[type="date"] {
+    background: none;
+    border: 2px solid var(--darker-black)
+}
