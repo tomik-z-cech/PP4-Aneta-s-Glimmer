@@ -206,6 +206,12 @@ footer a:hover {
     }
 }
 
+@media screen and (max-width: 991px) {
+    .hide-less-991px {
+        display: none;
+    }
+}
+
 /** ------------------------------- FORMS ---------------------------- **/
 
 input[type=checkbox] {
@@ -341,6 +347,7 @@ label[for="id_comment_body"] {
     color: var(--darker-black);
     text-decoration: none;
     font-family: var(--text-font);
+    font-size: 95%;
 }
 
 .landing-container p {
@@ -358,6 +365,12 @@ label[for="id_comment_body"] {
 .star-landing {
     height: 3vh;
     width: 3vh;
+}
+
+@media screen and (max-width: 400px) {
+    .landing-container {
+        font-size: 90%;
+    }
 }
 
 /** ---------------------------- ARTISTS, STYLES, NEWS ------------------------ **/

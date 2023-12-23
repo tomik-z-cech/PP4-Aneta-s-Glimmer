@@ -15,7 +15,7 @@
                             {{ search_form|crispy }}
                         </div>
                         <div class="col-2 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-success button-shadow"><i class="bi bi-search"></i>&nbsp Search</button>
+                            <button type="submit" class="btn btn-success button-shadow"><i class="bi bi-search"></i><span class="hide-less-991px">&nbsp Search</span></button>
                         </div>
                     </div>
                 </form>
@@ -24,7 +24,7 @@
     </div>
     <!-- Carousel with news -->
     <div class="row gx-0 landing-container add-shadow mt-3">
-        <div class="col-8">
+        <div class="col-xl-8 col-12">
             <div class="p-2">
                 <div id="carousel-news" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -44,7 +44,7 @@
                                         {% else %}
                                             <img src="{{ news.heading_image.url }}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
                                         {% endif %}
-                                        <div class="carousel-caption d-none d-md-block add-shadow">
+                                        <div class="carousel-caption d-md-block add-shadow">
                                             <a href="{% url 'news-detail' slug=news.slug %}">
                                                 <h5>{{ news.title }}</h5>
                                                 <p>Created by : {{ news.creator }} on {{ news.created_on }}</p>
@@ -59,7 +59,7 @@
                                         {% else %}
                                             <img src="{{ news.heading_image.url }}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
                                         {% endif %}
-                                        <div class="carousel-caption d-none d-md-block add-shadow">
+                                        <div class="carousel-caption d-md-block add-shadow">
                                             <a href="{% url 'news-detail' slug=news.slug %}">
                                                 <h5>{{ news.title }}</h5>
                                                 <p>Created by : {{ news.creator }} on {{ news.created_on }}</p>
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-xl-4 col-12">
             <div class="row gx-0">
                 <!-- Artists stats -->
                 <div class="px-2 py-2 text-center">
