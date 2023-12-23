@@ -3,6 +3,7 @@ from django.utils import timezone
 from datetime import datetime, timedelta
 from bookings.models import Bookings
 from styles.models import StylesAvailable
+from artists.models import Artists
 
 
 class BookingForm(forms.ModelForm):
@@ -20,7 +21,8 @@ class BookingForm(forms.ModelForm):
         label="Style of your choice",
         )
     
-    booked_artist = forms.ChoiceField(
+    booked_artist = forms.ModelChoiceField(
+        queryset=Artists.objects.all(),
         label="Artist of your choice",
     )
 
@@ -40,8 +42,11 @@ class BookingForm(forms.ModelForm):
         min_date = timezone.now() + timedelta(days=min_extra_days)
         self.fields["date"].widget.attrs.update({"min": min_date.date()})
         style_choices = StylesAvailable.objects.values_list("id", "style_name")
-        default_choice = [("0", "Select Style")]
-        self.fields["booked_style"].choices = default_choice + list(style_choices)
+        default_choice_styles = [("0", "Select Style")]
+        self.fields["booked_style"].choices = default_choice_styles + list(style_choices)
+        artists_choices = Artists.objects.values_list("id", "name")
+        default_choice_artists = [("0", "Select Artist")]
+        self.fields["booked_artist"].choices = default_choice_artists + list(artists_choices)
 
     def clean(self):
         cleaned_data = super().clean()

@@ -22,10 +22,21 @@
         <h1 class="text-center">
             Edit booking
         </h1>
+        <p class="text-center">
+            Please note that this booking will change status to "pending".
+        </p>
+        <!-- Spinner -->
+        <div class="container text-center">
+            <div class="spinner-border text-dark" role="status" id="booking-spinner">
+                <span class="sr-only"></span>
+            </div>
+        </div>
         <form method="post" enctype="multipart/form-data" id="newBookingForm">
         {% csrf_token %}
         {{ edit_booking_form | crispy }}
-        <input type="submit" value="Submit" id="submit-booking">
+        <div class="container d-flex justify-content-around">
+            <button type="submit" value="Submit" id="submit-booking" class="btn btn-success button-shadow mt-4">Change booking</button>
+        </div>
         </form>
     </div>
 </div>

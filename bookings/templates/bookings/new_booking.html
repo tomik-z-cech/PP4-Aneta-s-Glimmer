@@ -22,6 +22,7 @@
         <h1 class="text-center">
             New booking
         </h1>
+        <!-- Spinner -->
         <div class="container text-center">
             <div class="spinner-border text-dark" role="status" id="booking-spinner">
                 <span class="sr-only"></span>
@@ -31,7 +32,7 @@
         <form method="post" enctype="multipart/form-data" id="newBookingForm">
             {% csrf_token %}
             {{ new_booking_form | crispy }}
-            <div class="container text-center">
+            <div class="container d-flex justify-content-around">
                 <button type="submit" value="Submit" id="submit-booking" class="btn btn-success button-shadow mt-4">Create booking</button>
             </div>
         </form>
