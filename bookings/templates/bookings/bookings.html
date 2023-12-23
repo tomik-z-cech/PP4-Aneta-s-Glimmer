@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<!-- Wrapper -->
 <div class="container wrapper" style="background: url('{% static "images/background-booking.jpg" %}') no-repeat fixed top right / cover;">
     <div clas="row">
         <div class="col-12 text-center add-shadow heading">
@@ -11,6 +12,7 @@
     <div class="row d-flex justify-content-between">
         <div class="col-7 bookings-container">
             <h2 class="text-center mb-5">My Bookings</h2>
+            <!-- Accordion -->
             <div class="accordion" id="accordionBookings">
                 <div class="accordion-item ">
                     <h3 class="accordion-header" id="headingOne">
@@ -18,11 +20,14 @@
                             Pending Bookings
                         </button>
                     </h3>
+                    <!-- Pending bookings -->
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionBookings">
                         <div class="accordion-body">
+                            <!-- If no pending bookings, display message  -->
                             {% if pending_bookings|length == 0 %}
                                 You don't have any pending bookings.
                             {% else %}    
+                                <!-- Table header - pending bookings -->
                                 <table class="w-100 text-center">
                                     <th>
                                         Ref #
@@ -45,6 +50,7 @@
                                     <th>
                                         Cancel
                                     </th>
+                                    <!-- Display all pending bookings -->
                                     {% for booking in pending_bookings %}
                                         <tr>
                                             <td>
@@ -83,6 +89,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Confirmed bookings -->
                 <div class="accordion-item">
                     <h3 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -91,9 +98,11 @@
                     </h3>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionBookings">
                         <div class="accordion-body">
+                            <!-- If no confirmed bookings, display message -->
                             {% if confirmed_bookings|length == 0 %}
                                 You don't have any confirmed bookings.
                             {% else %}    
+                                <!-- Table header - confirmed bookings -->
                                 <table class="w-100 text-center">
                                     <th>
                                         Ref #
@@ -116,6 +125,7 @@
                                     <th>
                                         Cancel
                                     </th>
+                                    <!-- Display all confirmed bookings -->
                                     {% for booking in confirmed_bookings %}
                                         <tr>
                                             <td>
@@ -154,6 +164,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Done bookings -->
                 <div class="accordion-item">
                     <h3 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -162,9 +173,11 @@
                     </h3>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionBookings">
                         <div class="accordion-body">
+                            <!-- If no past bookings, display message -->
                             {% if done_bookings|length == 0 %}
                                 You don't have any past bookings.
                             {% else %}    
+                                <!-- Table header -->
                                 <table class="w-100 text-center">
                                     <th>
                                         Ref #
@@ -184,6 +197,7 @@
                                     <th>
                                         Review
                                     </th>
+                                    <!-- Display all done bookings -->
                                     {% for booking in done_bookings %}
                                         <tr>
                                             <td>
@@ -202,7 +216,9 @@
                                                 {{ booking.booked_artist }}
                                             </td>
                                             <td>
+                                                <!-- If review not submitted yet, display stars -->
                                                 {% if booking.is_rated == False %}
+                                                    <!-- Booking reviews -->
                                                     <div class="review p-2">
                                                         <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=1 %}" class="star-rating">
                                                             <img src="{% static 'images/icons/empty_star.png' %}" class="star">
@@ -221,11 +237,11 @@
                                                         </a>
                                                     </div>
                                                 {% else %}
-                                                    <strong>
-                                                        <div class="p-2">
+                                                    <div class="p-2">
+                                                        <strong>
                                                             Review submitted !
-                                                        </div>
-                                                    </strong>
+                                                        </strong>
+                                                    </div>
                                                 {% endif %}
                                             </td>
                                         </tr>
@@ -237,11 +253,14 @@
                 </div>
             </div>
             <div class="row text-center pt-3">
-                <a href="{% url 'new-booking' %}" aria-label="New booking">
-                    <button type="button" class="btn btn-success button-shadow">New booking</button>
-                </a>
+                <div>
+                    <a href="{% url 'new-booking' %}" aria-label="New booking">
+                        <button type="button" class="btn btn-success button-shadow">New booking</button>
+                    </a>
+                </div>
             </div>
         </div>
+        <!-- Last minute -->
         <div class="col-4 bookings-container">
             <div class="row">
                 <h2 class="text-center mb-4">
@@ -261,6 +280,7 @@
                         Slots tomorrow
                     </th>
                 </tr>
+                <!-- Display all artists with amount of free slots today and tomorrow -->
                 {% for last_minute in last_minutes %}
                     <tr>
                         <th class="text-center">
@@ -302,30 +322,8 @@
     </div>
 </div>
 <script>
-    $(document).ready(function() {
-        $(".review .star-rating").mouseover(function() {
-            
-            let starIndex = $(this).index();
-            let spanIndex = $('.review').index($(this).closest('.review'));
-            console.log("In" + spanIndex + "---" + starIndex)
-            $(".review:eq(" + spanIndex + ") a:lt(" + starIndex + ")").html(`<img src="{% static 'images/icons/star.png' %}" class="star">`);
-            $(".review:eq(" + spanIndex + ") a:eq(" + starIndex + ")").html(`<img src="{% static 'images/icons/star.png' %}" class="star">`);
-            $(".review:eq(" + spanIndex + ") a:gt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
-        });
-        $(".review .star-rating").mouseout(function() {
-            let starIndex = $(this).index();
-            let spanIndex = $('.review').index($(this).closest('.review'));
-            console.log("Out" + spanIndex + "---" + starIndex)
-            $(".review:lt(" + spanIndex + ") a:lt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
-            $(".review:lt(" + spanIndex + ") a:eq(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
-            $(".review:lt(" + spanIndex + ") a:gt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
-            $(".review:eq(" + spanIndex + ") a:lt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
-            $(".review:eq(" + spanIndex + ") a:eq(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
-            $(".review:eq(" + spanIndex + ") a:gt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
-            $(".review:gt(" + spanIndex + ") a:lt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
-            $(".review:gt(" + spanIndex + ") a:eq(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
-            $(".review:gt(" + spanIndex + ") a:gt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
-        });
-    });
+    let onStar = `<img src="{% static 'images/icons/star.png' %}" class="star">`;
+    let offStar = `<img src="{% static 'images/icons/empty_star.png' %}" class="star">`;
 </script>
+<script src="{% static 'js/star_rating.js' %}"></script>
 {%endblock%}
