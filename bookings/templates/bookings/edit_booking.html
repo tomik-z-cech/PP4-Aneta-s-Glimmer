@@ -2,14 +2,32 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
+{% block extra_styles %}
+<!-- Local styling to ensure this doesn't interfere with global styling of same class names -->
+<style>
+    .asteriskField {
+        display: none;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="wrapper">
-    Edit booking - set to pending message
-    <form method="post" enctype="multipart/form-data" id="newBookingForm">
-    {% csrf_token %}
-    {{ edit_booking_form | crispy }}
-    <input type="submit" value="Submit" id="submit-booking">
-</form>
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-booking.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">
+        <div class="close-button d-flex justify-content-end">
+            <a href="{% url 'my-bookings' %}" aria-label="Back to My Bookings" class="custom-booking-link">
+                <i class="bi bi-x-lg"></i>
+            </a>
+        </div>
+        <h1 class="text-center">
+            Edit booking
+        </h1>
+        <form method="post" enctype="multipart/form-data" id="newBookingForm">
+        {% csrf_token %}
+        {{ edit_booking_form | crispy }}
+        <input type="submit" value="Submit" id="submit-booking">
+        </form>
+    </div>
 </div>
 <script>
     let initialTime = "{{ initial_time }}";

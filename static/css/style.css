@@ -453,3 +453,14 @@ label[for="id_comment_body"] {
 .bookings-accordion-head {
     background-color: var(--mid-gold);
 }
+
+/** new booking and edit booking forms have local styling to ensure this doesn't interfere with global styling of same class names **/
+
+.custom-booking-link {
+    text-decoration: none;
+    color: var(--darker-black)
+}
+
+.custom-booking-link:hover {
+    color: var(--black)
+}

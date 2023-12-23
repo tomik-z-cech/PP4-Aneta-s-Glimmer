@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block extra_styles %}
+<!-- Local styling to ensure this doesn't interfere with global styling of same class names -->
 <style>
     .asteriskField {
         display: none;
@@ -13,6 +14,11 @@
 {% block content %}
 <div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-booking.jpg" %}') no-repeat fixed top right / cover;">
     <div class="form-background">
+        <div class="close-button d-flex justify-content-end">
+            <a href="{% url 'my-bookings' %}" aria-label="Back to My Bookings" class="custom-booking-link">
+                <i class="bi bi-x-lg"></i>
+            </a>
+        </div>
         <h1 class="text-center">
             New booking
         </h1>
@@ -21,6 +27,7 @@
                 <span class="sr-only"></span>
             </div>
         </div>
+        <!-- New booking form -->
         <form method="post" enctype="multipart/form-data" id="newBookingForm">
             {% csrf_token %}
             {{ new_booking_form | crispy }}
@@ -30,5 +37,6 @@
         </form>
     </div>
 </div>
+<!-- New booking JS logic -->
 <script src="{% static 'js/new_booking.js' %}"></script>
 {%endblock%}
