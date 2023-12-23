@@ -5,7 +5,8 @@ $(document).ready(function () {
     $('#likeButton').click(function () {
         $('#likeForm').submit();
     });
-    $('#showComments').click(function () {
+    $('#showComments').click(function (event) {
+        event.preventDefault();
         $('#comments, #commentForm').show();
     });
 });
