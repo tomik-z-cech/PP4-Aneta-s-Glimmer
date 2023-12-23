@@ -11,14 +11,14 @@
     <div class="row d-flex justify-content-between">
         <div class="col-7 bookings-container">
             <h2 class="text-center mb-5">My Bookings</h2>
-            <div class="accordion bookings-accordion" id="accordionBookings">
+            <div class="accordion" id="accordionBookings">
                 <div class="accordion-item ">
                     <h3 class="accordion-header" id="headingOne">
-                        <button class="accordion-button bookings-accordion-head" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             Pending Bookings
                         </button>
                     </h3>
-                    <div id="collapseOne" class="accordion-collapse collapse show bookings-accordion-content" aria-labelledby="headingOne" data-bs-parent="#accordionBookings">
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionBookings">
                         <div class="accordion-body">
                             {% if pending_bookings|length == 0 %}
                                 You don't have any pending bookings.
@@ -203,13 +203,29 @@
                                             </td>
                                             <td>
                                                 {% if booking.is_rated == False %}
-                                                    <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=1 %}">1</a>
-                                                    <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=2 %}">2</a>
-                                                    <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=3 %}">3</a>
-                                                    <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=4 %}">4</a>
-                                                    <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=5 %}">5</a>
+                                                    <div class="review p-2">
+                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=1 %}" class="star-rating">
+                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star">
+                                                        </a>
+                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=2 %}" class="star-rating">
+                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star">
+                                                        </a>
+                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=3 %}" class="star-rating">
+                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star">
+                                                        </a>
+                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=4 %}" class="star-rating">
+                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star">
+                                                        </a>
+                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=5 %}" class="star-rating">
+                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star">
+                                                        </a>
+                                                    </div>
                                                 {% else %}
-                                                    Review submitted !
+                                                    <strong>
+                                                        <div class="p-2">
+                                                            Review submitted !
+                                                        </div>
+                                                    </strong>
                                                 {% endif %}
                                             </td>
                                         </tr>
@@ -285,72 +301,31 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $(".review .star-rating").mouseover(function() {
+            
+            let starIndex = $(this).index();
+            let spanIndex = $('.review').index($(this).closest('.review'));
+            console.log("In" + spanIndex + "---" + starIndex)
+            $(".review:eq(" + spanIndex + ") a:lt(" + starIndex + ")").html(`<img src="{% static 'images/icons/star.png' %}" class="star">`);
+            $(".review:eq(" + spanIndex + ") a:eq(" + starIndex + ")").html(`<img src="{% static 'images/icons/star.png' %}" class="star">`);
+            $(".review:eq(" + spanIndex + ") a:gt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
+        });
+        $(".review .star-rating").mouseout(function() {
+            let starIndex = $(this).index();
+            let spanIndex = $('.review').index($(this).closest('.review'));
+            console.log("Out" + spanIndex + "---" + starIndex)
+            $(".review:lt(" + spanIndex + ") a:lt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
+            $(".review:lt(" + spanIndex + ") a:eq(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
+            $(".review:lt(" + spanIndex + ") a:gt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
+            $(".review:eq(" + spanIndex + ") a:lt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
+            $(".review:eq(" + spanIndex + ") a:eq(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
+            $(".review:eq(" + spanIndex + ") a:gt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
+            $(".review:gt(" + spanIndex + ") a:lt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
+            $(".review:gt(" + spanIndex + ") a:eq(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
+            $(".review:gt(" + spanIndex + ") a:gt(" + starIndex + ")").html(`<img src="{% static 'images/icons/empty_star.png' %}" class="star">`);
+        });
+    });
+</script>
 {%endblock%}
-
-<div class="row">
-    <div class="col-8">
-
-<h2>Pending</h2>
-
-<br>
-<h2>Confirmed</h2>
-{% for booking in bookings %}
-    {% if booking.booking_status == 1 %}
-        {{ booking.pk }}
-        -
-        {{ booking.booking_status }} 
-        - 
-        {{ booking.booked_style }}
-        - 
-        {{ booking.booked_artist }}
-        - 
-        {{ booking.date_time|time:"H:i" }}
-        - 
-        {{ booking.date_time|date:"d.m.Y" }}
-        -
-        <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}">Edit</a>
-        -
-        <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}">Cancel</a>
-        <br>
-    {% endif %}
-{% endfor %}
-<br>
-<h2>Done</h2>
-{% for booking in bookings %}
-    {% if booking.booking_status == 2 %}
-        {{ booking.pk }}
-        -
-        {{ booking.booking_status }} 
-        - 
-        {{ booking.booked_style }}
-        - 
-        {{ booking.booked_artist }}
-        - 
-        {{ booking.date_time|time:"H:i" }}
-        - 
-        {{ booking.date_time|date:"d.m.Y" }}
-        -
-        {% if booking.is_rated == False %}
-            <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=1 %}">1</a>
-            <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=2 %}">2</a>
-            <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=3 %}">3</a>
-            <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=4 %}">4</a>
-            <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=5 %}">5</a>
-        {% else %}
-            Thank you for review !
-        {% endif %}
-        <br>
-        <br>
-    {% endif %}
-{% endfor %}
-<br>
-<a href="{% url 'new-booking' %}">New booking</a>
-<br>
-</div>
-<div class="col-4">
-{% for last_minute in last_minutes %}
-    {{ last_minute.name }} - {{ last_minute.free_today }} - {{ last_minute.free_tomorrow }}
-    <br>
-{% endfor %}
-</div>
-</div>

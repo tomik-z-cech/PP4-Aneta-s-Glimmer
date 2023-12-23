@@ -440,18 +440,42 @@ label[for="id_comment_body"] {
 
 /** ---------------------- BOOKINGS ------------------------ **/
 
+.accordion-item {
+    background-color: var(--darker-black);
+}
+
 .bookings-container {
     background-color: var(--light-gold-op);
     margin: 2vh;
     padding: 2vh;
 }
 
-.bookings-accordion-content {
+.accordion-collapse {
     background-color: var(--light-gold);
 }
 
-.bookings-accordion-head {
+.accordion-button {
     background-color: var(--mid-gold);
+}
+
+.accordion-button:hover {
+    background-color: var(--dark-gold);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--darker-black);
+    background-color: var(--mid-gold);
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 2px var(--darker-black);
+    background-color: var(--mid-gold);
+    color: var(--darker-black);
+    text-decoration: underline;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: none;
 }
 
 /** new booking and edit booking forms have local styling to ensure this doesn't interfere with global styling of same class names **/
@@ -489,4 +513,8 @@ select option:checked {
 input[type="date"] {
     background: none;
     border: 2px solid var(--darker-black)
+}
+
+.star-rating {
+    text-decoration: none;
 }
