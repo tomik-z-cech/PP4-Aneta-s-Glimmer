@@ -117,7 +117,6 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
                     booked_artist=artist, date_time__date=tommorrow
                 ).count()
                 free_tommorrow = 8 - bookings_tommorrow
-                # ---
                 bookings_today_after_now = Bookings.objects.filter(
                     booked_artist=artist,
                     date_time__date=today,
@@ -125,6 +124,11 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
                 ).count()
                 time_now = timezone.now().time()
                 if (
+                    time_now >= datetime.strptime("00:00", "%H:%M").time()
+                    and time_now < datetime.strptime("09:00", "%H:%M").time()
+                ):
+                    slots_left_today = 8
+                elif (
                     time_now >= datetime.strptime("09:00", "%H:%M").time()
                     and time_now < datetime.strptime("10:00", "%H:%M").time()
                 ):
