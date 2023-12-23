@@ -518,3 +518,16 @@ input[type="date"] {
 .star-rating {
     text-decoration: none;
 }
+
+/** ---------------------- SEARCH ------------------------ **/
+
+label[for="id_search_query"] {
+    display: none;
+}
+
+#id_search_query {
+    background: none;
+    border: 2px solid var(--darker-black);
+    font-family: var(--text-font);
+    padding: 2px;
+}

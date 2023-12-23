@@ -3,33 +3,84 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="wrapper">
-<form method="get" action="{% url 'search' %}">
-    {{ search_form.as_p }}
-    <button type="submit">Search</button>
-</form>
-<h3>Results in news</h3>
-{% for news in news_results %}
-    <p>
-        <a href="{% url 'news-detail' slug=news.slug %}">
-            {{ news.title }}
-        </a>
+<div class="container wrapper" style="background: url('{% static "images/background-search.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="list-container-right add-shadow w-90">
+        <form method="get" action="{% url 'search' %}">
+            <div class="row d-flex align-items-center">
+                <div class="col-10">
+                    {{ search_form|crispy }}
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success button-shadow"><i class="bi bi-search"></i>&nbsp Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="list-container-right add-shadow w-90">
+        <h2 class="text-center">Results in news</h2>
+        <p class="text-center">
+            We found <strong>{{ news_results|length }}</strong> 
+            {% if artists_results|length == 1 %}
+            result 
+            {% else %}
+            results 
+            {% endif %}
+            in news.
+        </p>
+        {% if news_results|length == 0 %}
+        {% else %}
+            {% for news in news_results %}
+                <p class="text-center">
+                    <strong> 
+                        <a href="{% url 'news-detail' slug=news.slug %}">
+                            {{ news.title }}
+                        </a>
+                    </strong>
+                </p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="list-container-right add-shadow w-90">
+        <h2 class="text-center">Results in artists</h2>
+        <p class="text-center">
+            We found <strong>{{ artists_results|length }}</strong> 
+            {% if artists_results|length == 1 %}
+            result 
+            {% else %}
+            results 
+            {% endif %}
+            in artists.
+        </p>
+        {% for artist in artists_results %}
+            <p class="text-center">
+                <a href="{% url 'artist-detail' slug=artist.slug %}">
+                    <strong>
+                        {{ artist.name }}
+                    </strong>
+                </a>
+            </p>
+        {% endfor %}
+    </div>
+    <div class="list-container-right add-shadow w-90">
+    <h2 class="text-center">Results in styles</h2>
+    <p class="text-center">
+        We found <strong>{{ styles_results|length }}</strong> 
+        {% if styles_results|length == 1 %}
+        result 
+        {% else %}
+        results 
+        {% endif %}
+        in styles.
     </p>
-{% endfor %}
-<h3>Results in artists</h3>
-{% for artist in artists_results %}
-    <p>
-        <a href="{% url 'artist-detail' slug=artist.slug %}">
-            {{ artist.name }}
-        </a>
-    </p>
-{% endfor %}
-<h3>Results in styles</h3>
-{% for style in styles_results %}
-    <p>
-        <a href="{% url 'style-detail' slug=style.slug %}">
-            {{ style.style_name }}
-        </a>
-    </p>
-{% endfor %}
+    {% for style in styles_results %}
+        <p class="text-center">
+            <a href="{% url 'style-detail' slug=style.slug %}">
+                <strong>
+                    {{ style.style_name }}
+                </strong>
+            </a>
+        </p>
+    {% endfor %}
+    </div>
+</div>
 {%endblock%}
