@@ -3,7 +3,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<!-- Container -->
 <div class="container wrapper" style="background: url('{% static "images/background-search.jpg" %}') no-repeat fixed top right / cover;">
+    <!-- Search bar -->
     <div class="list-container-right add-shadow w-90">
         <form method="get" action="{% url 'search' %}">
             <div class="row d-flex align-items-center">
@@ -16,6 +18,7 @@
             </div>
         </form>
     </div>
+    <!-- Results : news -->
     <div class="list-container-right add-shadow w-90">
         <h2 class="text-center">Results in news</h2>
         <p class="text-center">
@@ -40,6 +43,7 @@
             {% endfor %}
         {% endif %}
     </div>
+    <!-- Results : artists -->
     <div class="list-container-right add-shadow w-90">
         <h2 class="text-center">Results in artists</h2>
         <p class="text-center">
@@ -61,6 +65,7 @@
             </p>
         {% endfor %}
     </div>
+    <!-- Results : styles -->
     <div class="list-container-right add-shadow w-90">
     <h2 class="text-center">Results in styles</h2>
     <p class="text-center">

@@ -3,174 +3,180 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="card add-shadow">
-                <div class="card-body">
-                    <form method="get" action="{% url 'search' %}">
-                        {{ search_form.as_p }}
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
-            </div> 
-        </div>
-        <div class="row">
-            <div class="col-8">
-                <div class="row">
-                    <div class="card add-shadow top-space" id="news-carousel">
-                        <div class="card-body">
-                            <div id="carousel-news" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                    {% if news_list|length == 0 %}
-                                        <p>No news yet.</p>
-                                    {% else %}
-                                        {% for news in news_list %}
-                                            {% if  forloop.counter == 1 %}
-                                                <div class="carousel-item active">
-                                                    {% if 'default_heading_image' in news.heading_image.url %}
-                                                        <img src="{% static 'images/default_news.png' %}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
-                                                    {% else %}
-                                                        <img src="{{ news.heading_image.url }}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
-                                                    {% endif %}
-                                                    <div class="carousel-caption d-none d-md-block add-shadow">
-                                                        <h5>{{ news.title }}</h5>
-                                                        <p>Created by : {{ news.creator }} on {{ news.created_on }}</p>
-                                                        <p>Likes : {{ news.number_of_likes}} - Comments : {{ news.comments_num }}</p>
-                                                    </div>
-                                                </div>
-                                            {% else %}
-                                                <div class="carousel-item">
-                                                    {% if 'default_heading_image' in news.heading_image.url %}
-                                                        <img src="{% static 'images/default_news.png' %}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
-                                                    {% else %}
-                                                        <img src="{{ news.heading_image.url }}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
-                                                    {% endif %}
-                                                    <div class="carousel-caption d-none d-md-block add-shadow">
-                                                        <h5>{{ news.title }}</h5>
-                                                        <p>Created by : {{ news.creator }} on {{ news.created_on }}</p>
-                                                        <p>Likes : {{ news.number_of_likes}} - Comments : {{ news.comments_num }}</p> 
-                                                    </div>
-                                                </div>
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
+<!-- Container -->
+<div class="container wrapper" style="background: url('{% static "images/background-landing.jpg" %}') no-repeat fixed top right / cover;">
+    <!-- Search bar -->
+    <div class="row">
+        <div class="col-12">
+            <div class="landing-container add-shadow w-95">
+                <form method="get" action="{% url 'search' %}">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-10">
+                            {{ search_form|crispy }}
+                        </div>
+                        <div class="col-2 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success button-shadow"><i class="bi bi-search"></i>&nbsp Search</button>
                         </div>
                     </div>
-                    <a href="{% url 'all-news' %}">All news !</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel with news -->
+    <div class="row gx-0 landing-container add-shadow mt-3">
+        <div class="col-8">
+            <div class="p-2">
+                <div id="carousel-news" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carousel-news" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        {% if news_list|length == 0 %}
+                            <p>No news yet.</p>
+                        {% else %}
+                            {% for news in news_list %}
+                                {% if  forloop.counter == 1 %}
+                                    <div class="carousel-item active">
+                                        {% if 'default_heading_image' in news.heading_image.url %}
+                                            <img src="{% static 'images/default_news.png' %}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
+                                        {% else %}
+                                            <img src="{{ news.heading_image.url }}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
+                                        {% endif %}
+                                        <div class="carousel-caption d-none d-md-block add-shadow">
+                                            <a href="{% url 'news-detail' slug=news.slug %}">
+                                                <h5>{{ news.title }}</h5>
+                                                <p>Created by : {{ news.creator }} on {{ news.created_on }}</p>
+                                                <p>Likes : {{ news.number_of_likes}} - Comments : {{ news.comments_num }}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item">
+                                        {% if 'default_heading_image' in news.heading_image.url %}
+                                            <img src="{% static 'images/default_news.png' %}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
+                                        {% else %}
+                                            <img src="{{ news.heading_image.url }}" class="d-block w-100 carousel-picture" alt="{{ news.title }}">
+                                        {% endif %}
+                                        <div class="carousel-caption d-none d-md-block add-shadow">
+                                            <a href="{% url 'news-detail' slug=news.slug %}">
+                                                <h5>{{ news.title }}</h5>
+                                                <p>Created by : {{ news.creator }} on {{ news.created_on }}</p>
+                                                <p>Likes : {{ news.number_of_likes}} - Comments : {{ news.comments_num }}</p>
+                                            </a> 
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="row">
-                    <div class="card add-shadow top-space stats-card">
-                        <h2 class="card-header">Top Artists : </h2>
-                        <div class="card-body">
-                            {% if top_artists|length == 0 %}
-                                <p>No artists to display.</p>
+        </div>
+        <div class="col-4">
+            <div class="row gx-0">
+                <!-- Artists stats -->
+                <div class="px-2 py-2 text-center">
+                    <h2 class="landing-heading">Top Artists : </h2>
+                    {% if top_artists|length == 0 %}
+                        <p>No artists to display.</p>
+                    {% else %}
+                        <!-- Stars display based on rating -->
+                        {% for top_artist in top_artists %}
+                            <a href="{% url 'artist-detail' slug=top_artist.slug %}">{{ top_artist.name }}
+                                -
+                                {% if top_artist.rating >= 4.75 %}
+                                    {% for i in "12345" %}
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    {% endfor %}
+                                {% elif top_artist.rating < 4.75  and top_artist.rating >= 4.25 %}
+                                    {% for i in "1234" %}
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    {% endfor %}
+                                    <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                {% elif top_artist.rating < 4.25  and top_artist.rating >= 3.75 %}
+                                    {% for i in "1234" %}
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    {% endfor %}
+                                {% elif top_artist.rating < 3.75  and top_artist.rating >= 3.25 %}
+                                    {% for i in "123" %}
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    {% endfor %}
+                                    <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                {% elif top_artist.rating < 3.25  and top_artist.rating >= 2.75 %}
+                                    {% for i in "123" %}
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    {% endfor %}
+                                {% elif top_artist.rating < 2.75  and top_artist.rating >= 2.25 %}
+                                    {% for i in "12" %}
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    {% endfor %}
+                                    <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                {% elif top_artist.rating < 2.25  and top_artist.rating >= 1.75 %}
+                                    {% for i in "12" %}
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    {% endfor %}
+                                {% elif top_artist.rating < 1.75  and top_artist.rating >= 1.25 %}
+                                <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                {% elif top_artist.rating < 1.25  and top_artist.rating >= 0.75 %}
+                                <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                {% elif top_artist.rating < 0.75 %}
+                                <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                {% else %}
+                                    Something went wrong.
+                                {% endif %}
+                            - 
+                            {{ top_artist.rating_count }}
+                            {% if top_artist.rating_count > 1 %}
+                                reviews
                             {% else %}
-                                {% for top_artist in top_artists %}
-                                    <a href="{% url 'artist-detail' slug=top_artist.slug %}">{{ top_artist.name }}
-                                        {% if top_artist.rating >= 4.75 %}
-                                            {% for i in "12345" %}
-                                                <i class="bi bi-star-fill"></i>
-                                            {% endfor %}
-                                        {% elif top_artist.rating < 4.75  and top_artist.rating >= 4.25 %}
-                                            {% for i in "1234" %}
-                                                <i class="bi bi-star-fill"></i>
-                                            {% endfor %}
-                                            <i class="bi bi-star-half"></i>
-                                        {% elif top_artist.rating < 4.25  and top_artist.rating >= 3.75 %}
-                                            {% for i in "1234" %}
-                                                <i class="bi bi-star-fill"></i>
-                                            {% endfor %}
-                                        {% elif top_artist.rating < 3.75  and top_artist.rating >= 3.25 %}
-                                            {% for i in "123" %}
-                                                <i class="bi bi-star-fill"></i>
-                                            {% endfor %}
-                                            <i class="bi bi-star-half"></i>
-                                        {% elif top_artist.rating < 3.25  and top_artist.rating >= 2.75 %}
-                                            {% for i in "123" %}
-                                                <i class="bi bi-star-fill"></i>
-                                            {% endfor %}
-                                        {% elif top_artist.rating < 2.75  and top_artist.rating >= 2.25 %}
-                                            {% for i in "12" %}
-                                                <i class="bi bi-star-fill"></i>
-                                            {% endfor %}
-                                            <i class="bi bi-star-half"></i>
-                                        {% elif top_artist.rating < 2.25  and top_artist.rating >= 1.75 %}
-                                            {% for i in "12" %}
-                                                <i class="bi bi-star-fill"></i>
-                                            {% endfor %}
-                                        {% elif top_artist.rating < 1.75  and top_artist.rating >= 1.25 %}
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i>
-                                        {% elif top_artist.rating < 1.25  and top_artist.rating >= 0.75 %}
-                                            <i class="bi bi-star-fill"></i>
-                                        {% elif top_artist.rating < 0.75}
-                                            <i class="bi bi-star-half"></i>
-                                        {% else %}
-                                            Something went wrong.
-                                        {% endif %}
-                                    - 
-                                    based on {{ top_artist.rating_count }}
-                                    {% if top_artist.rating_count > 1 %}
-                                        reviews
-                                    {% else %}
-                                        review
-                                    {% endif %}
-                                    </a>
-                                    <br>
-                                {% endfor %}
+                                review
                             {% endif %}
-                            <br>
-                        </div>
-                    </div>
+                            </a>
+                            <hr class="landing-hr">
+                        {% endfor %}
+                    {% endif %}
                 </div>
-                <div class="row">
-                    <div class="card add-shadow top-space stats-card">
-                        <h2 class="card-header">Top Styles : </h2>
-                        <div class="card-body">
-                            {% if top_styles_like|length == 0 %}
-                                <p>No styles to display.</p>
-                            {% else %}
-                                {% for top_style_like in top_styles_like %}
-                                <a href="{% url 'style-detail' slug=top_style_like.slug %}">Style : {{ top_style_like.style_name }} - Likes : {{ top_style_like.number_of_likes }}</a>
-                                <br>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                    </div>
+            </div>
+            <!-- Likes stats -->
+            <div class="row gx-0">
+                <div class="px-2 py-2 text-center ">
+                    <h2 class="landing-heading">Top Styles : </h2>
+                    {% if top_styles_like|length == 0 %}
+                        <p>No styles to display.</p>
+                    {% else %}
+                        {% for top_style_like in top_styles_like %}
+                        <a href="{% url 'style-detail' slug=top_style_like.slug %}">{{ top_style_like.style_name }} - {{ top_style_like.number_of_likes }} likes</a>
+                        <hr class="landing-hr">
+                        {% endfor %}
+                    {% endif %}
                 </div>
-                <div class="row">
-                    <div class="card add-shadow top-space stats-card">
-                        <h2 class="card-header">Top "Let me try" Styles : </h2>
-                        <div class="card-body">
-                            {% if top_styles_like|length == 0 %}
-                                <p>No styles to display.</p>
-                            {% else %}
-                                {% for top_style_try in top_styles_try %}
-                                <a href="{% url 'style-detail' slug=top_style_try.slug %}">Style : {{ top_style_try.style_name }} - Wants to try : {{ top_style_try.number_of_tries }}</a>
-                                <br>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                    </div>
+            </div>
+            <!-- Tries stats -->
+            <div class="row gx-0">
+                <div class="px-2 py-2 text-center">
+                    <h2 class="landing-heading">Top "Let me try" Styles : </h2>
+                    {% if top_styles_like|length == 0 %}
+                        <p>No styles to display.</p>
+                    {% else %}
+                        {% for top_style_try in top_styles_try %}
+                        <a href="{% url 'style-detail' slug=top_style_try.slug %}">{{ top_style_try.style_name }} - {{ top_style_try.number_of_tries }} likes to try</a>
+                        <hr class="landing-hr">
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 {%endblock%}

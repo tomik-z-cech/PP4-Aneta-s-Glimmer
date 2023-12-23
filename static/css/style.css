@@ -16,6 +16,7 @@
     --mid-gold: #f8b500;
     --mid-gold-op: rgba(248, 181, 0, 0.7);
     --dark-gold: #c59000;
+    --lighter-black-op: rgba(42, 42, 42, 0.2);
 
     /** FONTS **/
     --text-font: 'Sriracha', sans-serif;
@@ -315,20 +316,6 @@ label[for="id_comment_body"] {
 }
 
 /** ---------------------------- LANDING PAGE ------------------------ **/
-.card {
-    background-color: var(--mid-gold-op);
-    padding: 0;
-    opacity: 0.95;
-
-}
-
-.card-header {
-    text-align: center;
-}
-
-.top-space {
-    margin-top: 3vh;
-}
 
 #news-carousel {
     width: 95%;
@@ -337,17 +324,40 @@ label[for="id_comment_body"] {
 
 .carousel-picture {
     height: 62vh;
-    border-radius: 5px;
     border: 2px solid var(--darker-black);
 }
 
-.stats-card {
-    height: 20vh;
+.carousel-caption {
+    background-color: var(--mid-gold-op);
+    color: var(--darker-black)
 }
 
-.carousel-caption {
-    background-color: var(--lighter-black);
-    border-radius: 5px;
+.landing-container {
+    background-color: var(--light-gold-op);
+    padding: 2vh;
+}
+
+.landing-container a {
+    color: var(--darker-black);
+    text-decoration: none;
+    font-family: var(--text-font);
+}
+
+.landing-container p {
+    font-family: var(--text-font);
+}
+
+.landing-heading {
+    background-color: var(--lighter-black-op);
+}
+
+.landing-hr {
+    margin: 0;
+}
+
+.star-landing {
+    height: 3vh;
+    width: 3vh;
 }
 
 /** ---------------------------- ARTISTS, STYLES, NEWS ------------------------ **/
