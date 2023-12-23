@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container wrapper" style="background: url('{% static "images/background-artists.jpg" %}') no-repeat fixed top right / cover;">
+<div class="container wrapper" style="background: url('{% static "images/background-styles.jpg" %}') no-repeat fixed top right / cover;">
     <div class="list-container-right add-shadow w-90">
         <div class="row">
             <div class="col-lg-4 col-sm-12">
@@ -69,7 +69,9 @@
                         <a href="#" data-bs-toggle="modal" data-bs-target="#likesModal">
                             <strong>
                                 <!-- If more than 3 people like, display and x more -->
-                                {% if users_liked|length < 4 %}
+                                {% if users_liked|length == 0 %}
+                                        Be first to like
+                                {% elif users_liked|length < 4 %}
                                     {% for user in users_liked %}
                                         {{ user }}
                                         {% if  forloop.counter < users_liked|length %}
@@ -104,7 +106,9 @@
                         <a href="#" data-bs-toggle="modal" data-bs-target="#triesModal">
                             <strong>
                                 <!-- If list of people they want to try longer than 3 display "and x more" -->
-                                {% if users_want_to_try|length < 4 %}
+                                {% if users_want_to_try|length == 0 %}
+                                        Be first to try
+                                {% elif users_want_to_try|length < 4 %}
                                     {% for user in users_want_to_try %}
                                         {{ user }}
                                         {% if  forloop.counter < users_want_to_try|length %}
@@ -194,19 +198,23 @@
     </div>
     <!-- Div for comments -->
     <div id="comments" class="list-container-right add-shadow w-90">
-        <!-- Loop to iterate through all comments -->
-        {% for comment in comments %}
-            {% if forloop.first %}
-            <hr>
-            {% endif %}
-            <strong>
-                Comment by {{ comment.creator }} - {{ comment.created_on|date:"d.m.Y" }}
-            </strong> 
-            <br>
-            {{ comment.comment_body }}
-            <hr>
-        {% endfor %}
+        {% if comments|length == 0%}
+            Be first to comment ;)
+        {%else%}
+            <!-- Loop to iterate through all comments -->
+            {% for comment in comments %}
+                {% if forloop.first %}
+                <hr>
+                {% endif %}
+                <strong>
+                    Comment by {{ comment.creator }} - {{ comment.created_on|date:"d.m.Y" }}
+                </strong> 
+                <br>
+                {{ comment.comment_body }}
+                <hr>
+            {% endfor %}
         {% endif %}
+    {% endif %}
     </div>
 </div>
 <!-- Likes Modal -->
@@ -252,5 +260,5 @@
 <script>
     let canComment = "{{ can_comment }}"
 </script>
-<script src="{% static 'js/comments.js' %}"></script>
+<script src="{% static 'js/comments_styles.js' %}"></script>
 {%endblock%}

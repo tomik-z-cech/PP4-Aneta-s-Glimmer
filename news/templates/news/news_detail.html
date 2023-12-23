@@ -1,94 +1,180 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
-<div class="wrapper">
-Heading image : {{ news_detail.heading_image }}
-<br>
-<h1>Title : {{ news_detail.title }}</h1>
-<br>
-Creator : {{ news_detail.creator }}
-<br>
-Created : {{ news_detail.created_on }}
-<br>
-Post Body : {{ news_detail.post_body | safe }}
-<br>
-Likes : {{ news_detail.number_of_likes}}
-{% if user.is_authenticated %}
-{% for comment in comments %}
-<div>
-{{ comment.username }}
-{{ comment.comment_body }}
-{{ comment.created_on }}
-</div>
-{% endfor %}
-Liked by :
-<a href="#" data-bs-toggle="modal" data-bs-target="#likesModal">
-{% if users_liked|length < 4 %}
-    {% for user in users_liked %}
-        {{ user }}
-        {% if  forloop.counter < users_liked|length %}
-            ,
+<div class="container wrapper" style="background: url('{% static "images/background-news.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="list-container-right add-shadow w-90">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12">
+                <!-- Heading image - default or existing -->
+                {% if "default_heading_image" in news_detail.heading_image.url %}
+                    <img src="{% static 'images/default_news.png' %}" class="img-fluid main-pic" alt="{{ news_detail.title }}">
+                {% else %}
+                    <img src="{{ news_detail.heading_image.url }}" class="img-fluid main-pic" alt="{{ news_detail.title }}">
+                {% endif %}
+            </div>
+            <!-- Details of selected style -->
+            <div class="col-lg-8 col-sm-12 list-detail text-center">
+                <h2>
+                    {{ news_detail.title }}
+                </h2>
+                <hr />
+                <p class="text-center">
+                    {{ news_detail.creator }} - {{ news_detail.created_on|date:"d.m.Y"}}
+                </p>
+                <hr />
+                <p>
+                    {{ news_detail.post_body|safe }}
+                </p>
+                <hr />
+            </div>
+            <div class="row">
+                <!-- If user logged in - functions like and comment -->
+                {% if user.is_authenticated %}
+                    <div class="col-12 pt-3 d-flex  justify-content-around">
+                        <form action="{% url 'news-like' news_detail.slug %}" method="POST" id="likeForm">
+                            {% csrf_token %}
+                            {% if liked %}
+                                <a href="#" aria-label="Unlike {{ news_detail.title }}">
+                                    <img src="{% static 'images/icons/like_1.png' %}" class="img-fluid custom-icon" alt="Unlike icon" id="likeButton">
+                                </a>
+                            {% else %}
+                                <a href="#" aria-label="Like {{ news_detail.title }}">
+                                    <img src="{% static 'images/icons/like_0.png' %}" class="img-fluid custom-icon" alt="Like icon" id="likeButton">
+                                </a>
+                            {% endif %}
+                            <!-- Open Modal with list of users - like -->
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#likesModal">
+                                <strong>
+                                    <!-- If more than 3 people like, display and x more -->
+                                    {% if users_liked|length == 0 %}
+                                        Be first to like
+                                    {% elif users_liked|length < 4 %}
+                                        {% for user in users_liked %}
+                                            {{ user }}
+                                            {% if  forloop.counter < users_liked|length %}
+                                                ,
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for user in users_liked|slice:":3" %}
+                                            {{ user }}
+                                            {% if  forloop.counter < 3 %}
+                                                ,
+                                            {% endif %}
+                                        {% endfor %}
+                                        and {{ users_liked|slice:"3:"|length }} more
+                                    {% endif %}
+                                </strong>
+                            </a>
+                        </form>
+                        <!-- Show comments anchor -->
+                        <p>
+                            <a href="#" id="showComments" aria-label="Show comments">
+                                <img src="{% static 'images/icons/comments.png' %}" class="img-fluid custom-icon" alt="Likes counter icon">
+                                <strong>
+                                    Show comments
+                                </strong>
+                            </a>
+                        </p>
+                    </div>
+                    {% else %}
+                    <!-- If user not logged in -->
+                    <div class="col-4 pt-3 d-flex justify-content-around">
+                        <!-- Show counter of likes and comments -->
+                        <p class="text-center mx-2">
+                            <img src="{% static 'images/icons/like_1.png' %}" class="img-fluid custom-icon" alt="Likes counter icon">
+                            &nbsp
+                            <strong>
+                                {{ users_liked|length }}
+                            </strong>
+                        </p>
+                        <p class="text-center mx-2">
+                            <img src="{% static 'images/icons/comments.png' %}" class="img-fluid custom-icon" alt="Comments icon">
+                            &nbsp
+                            <strong>
+                                {{ comments|length }}
+                            </strong>
+                        </p>
+                    </div>
+                    <!-- Info for user -->
+                    <div class="col-8 pt-4 d-flex justify-content-around">
+                        <p class="mt-1">
+                            <strong>
+                                Please login to be able to like and comment.
+                            </strong>
+                        </p>
+                    </div>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Div for displaying comment form -->
+    <div id="commentForm" class="list-container-right add-shadow w-90">
+        <!-- Only for logged in users -->
+        {% if user.is_authenticated %}
+            <!-- If no comment submitted yet, display form -->
+            {% if can_comment %}
+            <div class="col-12 d-flex justify-content-start">
+                <h3>Commenting as {{ user.username }} :</h3>
+            </div>
+            <form method="post">
+                {{ news_comment_form | crispy }}
+                {% csrf_token %}
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="Submit" class="btn btn-success button-shadow mt-2">Comment</button>
+                </div>
+            </form>
+            <br>
+            <!-- If form submitted, display message -->
+            {% else %}
+                Hold on tight, your comment is being approved !
+            {% endif %}
+    </div>
+    <!-- Div for comments -->
+    <div id="comments" class="list-container-right add-shadow w-90">
+        {% if comments|length == 0%}
+            Be first to comment ;)
+        {%else%}
+            <!-- Loop to iterate through all comments -->
+            {% for comment in comments %}
+                {% if forloop.first %}
+                <hr>
+                {% endif %}
+                <strong>
+                    Comment by {{ comment.username }} - {{ comment.created_on|date:"d.m.Y" }}
+                </strong> 
+                <br>
+                {{ comment.comment_body }}
+                <hr>
+            {% endfor %}
         {% endif %}
-    {% endfor %}
-{% else %}
-    {% for user in users_liked|slice:":3" %}
-        {{ user }}
-        {% if  forloop.counter < 3 %}
-            ,
-        {% endif %}
-    {% endfor %}
-    and {{ users_liked|slice:"3:"|length }} more
-{% endif %}
-</a>
-<form method="post">
-    {{ news_comment_form | crispy }}
-    {% csrf_token %}
-    <button type="submit">Comment</button>
-</form>
-
-{% else %}
-Only logged in users can read and add comments.
-{% endif %}
-<strong>
-    {% if user.is_authenticated %}
-    <form class="d-inline" action="{% url 'news-like' news_detail.slug %}" method="POST">
-        {% csrf_token %}
-        {% if liked %}
-            <button type="submit" name="newspost_id" value="{{ news_detail.slug }}" class="btn-like">
-                Unlike
-            </button>
-        {% else %}
-        <button type="submit" name="newspost_id" value="{{ news_detail.slug }}" class="btn-like">
-            Like
-        </button>
-        {% endif %}
-    </form>
-    {% else %}
-    <span class="text-secondary"><i class="far fa-heart"></i></span>
     {% endif %}
-</strong>
+    </div>
 </div>
-<!-- Modal -->
+<!-- Likes Modal -->
 <div class="modal fade" id="likesModal" tabindex="-1" aria-labelledby="likesModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="likesModalLabel">Likes</h5>
+                <h2 class="modal-title" id="likesModalLabel">Likes</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                This people like this post :
-                <br>
+            <div class="modal-body text-center">
                 {% for user in users_liked %}
                     {{ user }}
                     <br>
                 {% endfor %}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                <button type="button" class="btn btn-warning button-shadow" data-bs-dismiss="modal">Back</button>
             </div>
         </div>
     </div>
 </div>
+<script>
+    let canComment = "{{ can_comment }}"
+</script>
+<script src="{% static 'js/comments_news.js' %}"></script>
 {%endblock%}

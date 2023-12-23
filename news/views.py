@@ -68,10 +68,10 @@ class NewsDetailView(generic.DetailView):
             {
                 "news_detail": post,
                 "comments": comments,
-                "commented": False,
                 "liked": liked,
                 "news_comment_form": NewsCommentForm(),
                 "users_liked": users_liked,
+                "can_comment": True
             },
         )
 
@@ -109,9 +109,9 @@ class NewsDetailView(generic.DetailView):
             {
                 "news_detail": post,
                 "comments": comments,
-                "commented": False,
                 "liked": liked,
                 "news_comment_form": NewsCommentForm(),
+                "can_comment": False,
             },
         )
 
