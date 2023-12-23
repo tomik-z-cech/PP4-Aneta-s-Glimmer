@@ -47,8 +47,17 @@
                                         <div class="carousel-caption d-md-block add-shadow">
                                             <a href="{% url 'news-detail' slug=news.slug %}">
                                                 <h5>{{ news.title }}</h5>
-                                                <p>Created by : {{ news.creator }} on {{ news.created_on }}</p>
-                                                <p>Likes : {{ news.number_of_likes}} - Comments : {{ news.comments_num }}</p>
+                                                <p>Created by {{ news.creator }} on {{ news.created_on|date:"d.m.Y" }}</p>
+                                                <div>
+                                                    <span>
+                                                        <img src="{% static 'images/icons/like_1.png' %}" class="img-fluid custom-icon" alt="Likes icon">
+                                                    </span> 
+                                                    {{ news.number_of_likes}}
+                                                    <span>
+                                                        <img src="{% static 'images/icons/comments.png' %}" class="img-fluid custom-icon" alt="Comments icon">
+                                                    </span>
+                                                    {{ news.comments_num }}
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -62,8 +71,17 @@
                                         <div class="carousel-caption d-md-block add-shadow">
                                             <a href="{% url 'news-detail' slug=news.slug %}">
                                                 <h5>{{ news.title }}</h5>
-                                                <p>Created by : {{ news.creator }} on {{ news.created_on }}</p>
-                                                <p>Likes : {{ news.number_of_likes}} - Comments : {{ news.comments_num }}</p>
+                                                <p>Created by {{ news.creator }} on {{ news.created_on|date:"d.m.Y" }}</p>
+                                                <div>
+                                                    <span>
+                                                        <img src="{% static 'images/icons/like_1.png' %}" class="img-fluid custom-icon" alt="Likes icon">
+                                                    </span> 
+                                                    {{ news.number_of_likes}}
+                                                    <span>
+                                                        <img src="{% static 'images/icons/comments.png' %}" class="img-fluid custom-icon" alt="Comments icon">
+                                                    </span>
+                                                    {{ news.comments_num }}
+                                                </div>
                                             </a> 
                                         </div>
                                     </div>
