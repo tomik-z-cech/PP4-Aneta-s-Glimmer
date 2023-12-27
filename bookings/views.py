@@ -235,6 +235,7 @@ class NewBookingView(LoginRequiredMixin, generic.ListView):
             new_booking.date_time = datetime.combine(
                 date_converted, time_converted
             )  # Combine date and time
+            new_booking.date_time = timezone.make_aware(new_booking.date_time)
             new_booking.save()  # Save booking into database
             # Prefixes for confirmation email
             recipient = [
