@@ -99,7 +99,7 @@ class StyleDetailView(generic.DetailView):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                f"You have successfully submitted comment on {style_selected.style_name} ;)",
+                f"Your comment on {style_selected.style_name} is awaiting approval ;)",
             )
         # If not valid, return form
         else:

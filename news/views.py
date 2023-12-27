@@ -1,5 +1,6 @@
 
 # Imports
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
@@ -100,6 +101,11 @@ class NewsDetailView(generic.DetailView):
             new_comment = news_comment_form.save(commit=False)
             new_comment.post = post
             new_comment.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                f"Your comment on post {new_comment.post} pending approval.",
+            ) # User message
         # If not valid, return form
         else:
             news_comment_form = NewsCommentForm()
@@ -130,8 +136,14 @@ class NewsPostLike(LoginRequiredMixin, View):
         # If the user already liked the post, remove like
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
+            messages.add_message(
+                request, messages.SUCCESS, f"You disliked {post.title} :( "
+            )
         # If not liked, add like
         else:
             post.likes.add(request.user)
+            messages.add_message(
+                request, messages.SUCCESS, f"You liked {post.title} ;) "
+            )
         # Reverse back to news-detail
         return HttpResponseRedirect(reverse("news-detail", args=[slug]))
