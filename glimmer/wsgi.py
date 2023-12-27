@@ -1,3 +1,4 @@
+# PEP8
 """
 WSGI config for glimmer project.
 
@@ -11,6 +12,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'glimmer.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "glimmer.settings")
 
 application = get_wsgi_application()

@@ -1,15 +1,21 @@
+# PEP8
 # Imports
 from django.contrib import messages
-from django.core.exceptions import PermissionDenied # Throws 403 
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin # Views security
-from django.contrib.auth.decorators import login_required # Methods security
-from django.utils import timezone # Time format with timezone stamp + strip tags
+from django.core.exceptions import PermissionDenied  # Throws 403
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+)  # Views security
+# Methods security
+from django.contrib.auth.decorators import login_required
+# Time format with timezone stamp + strip tags
+from django.utils import timezone
 from django.utils.html import strip_tags
-from datetime import datetime, timedelta # Time functions
-from django.core.mail import send_mail # Email
+from datetime import datetime, timedelta  # Time functions
+from django.core.mail import send_mail  # Email
 from django.template.loader import render_to_string
-from django.http import JsonResponse, Http404 # Responses
-from django.shortcuts import render, redirect, get_object_or_404 # Responses
+from django.http import JsonResponse, Http404  # Responses
+from django.shortcuts import render, redirect, get_object_or_404  # Responses
 from django.views import generic
 from bookings.models import Bookings
 from bookings.forms import BookingForm
@@ -41,7 +47,7 @@ class BookingOptionsView(generic.ListView):
             for artist in artists_with_style:  # For each artist
                 artist_id = str(artist.id)  # Stringify id field
                 options.append(
-                    '<option value="' + artist_id + '">' + artist.name + "</option>"
+                    '<option value="'+artist_id+'">'+artist.name+"</option>"
                 )  # Create a list of artists with the selected style
             data = {"options": options}  # Data to send back
         # If request comes from field #id_booked_artist
@@ -55,7 +61,8 @@ class BookingOptionsView(generic.ListView):
             options = [
                 '<option value="0">Select Time</option>'
             ]  # Heading option for Select time field
-            booked_date_new = received_value  # Save received value "booked date"
+            # Save received value "booked date"
+            booked_date_new = received_value
             bookings_artist = Bookings.objects.filter(
                 booked_artist__in=[booked_artist_new]
             )  # Queryset for bookings of selected artist
@@ -80,11 +87,13 @@ class BookingOptionsView(generic.ListView):
                         match = 1
                 # If time not yet booked - enable option
                 if match == 0:
-                    options.append('<option value="' + i + ':00">' + i + "</option>")
+                    options.append(
+                        '<option value="' + i + ':00">' + i + "</option>"
+                        )
                 # If time already booked - disable option
                 else:
                     options.append(
-                        '<option value="' + i + ':00" disabled>' + i + "</option>"
+                        '<option value="'+i+':00" disabled>' + i + "</option>"
                     )
             data = {"options": options}  # Data to send back
         return JsonResponse(data)  # Return with JSON response
@@ -102,12 +111,24 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
         """Method GET filters all bookings by user"""
         login_user = request.user  # Request logged in user
         if login_user.is_superuser:
-            print('Superuser')
+            print("Superuser")
             return redirect("all-admin")
         else:
-            pending_bookings = Bookings.objects.filter(username=login_user).filter(booking_status=0).order_by('-date_time')  # Filter pending bookings
-            confirmed_bookings = Bookings.objects.filter(username=login_user).filter(booking_status=1).order_by('-date_time')
-            done_bookings = Bookings.objects.filter(username=login_user).filter(booking_status=2).order_by('-date_time')
+            pending_bookings = (
+                Bookings.objects.filter(username=login_user)
+                .filter(booking_status=0)
+                .order_by("-date_time")
+            )  # Filter pending bookings
+            confirmed_bookings = (
+                Bookings.objects.filter(username=login_user)
+                .filter(booking_status=1)
+                .order_by("-date_time")
+            )
+            done_bookings = (
+                Bookings.objects.filter(username=login_user)
+                .filter(booking_status=2)
+                .order_by("-date_time")
+            )
             last_minutes = []
             all_artists = Artists.objects.all()
             today = timezone.now().date()
@@ -179,16 +200,19 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
             return render(  # Render template
                 request,
                 self.template_name,
-                {"pending_bookings": pending_bookings,
-                 "confirmed_bookings": confirmed_bookings,
-                 "done_bookings": done_bookings,
-                 "last_minutes": last_minutes},
+                {
+                    "pending_bookings": pending_bookings,
+                    "confirmed_bookings": confirmed_bookings,
+                    "done_bookings": done_bookings,
+                    "last_minutes": last_minutes,
+                },
             )
 
     @login_required
     def cancel_request(request, request_booking_pk):
-        
-        requested_booking = get_object_or_404(Bookings, pk=request_booking_pk)  # Get booking
+        requested_booking = get_object_or_404(
+            Bookings, pk=request_booking_pk
+        )  # Get booking
         if request.user == requested_booking.username:
             return render(  # Render template
                 request,
@@ -197,6 +221,7 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
             )
         else:
             raise PermissionDenied("You do not have permission access !")
+
 
 class NewBookingView(LoginRequiredMixin, generic.ListView):
     """
@@ -242,36 +267,49 @@ class NewBookingView(LoginRequiredMixin, generic.ListView):
                 request,
                 messages.SUCCESS,
                 f"You have successfully created booking ref {new_booking.pk}.",
-            ) # User message
+            )  # User message
             # Prefixes for confirmation email
             recipient = [
                 "anetasglimmer@gmail.com"
             ]  # Send the email to myself as confirmation
-            recipient.append(request.user.email)  # Add email of user creating booking
+            # Add email of user creating booking
+            recipient.append(request.user.email)
             subject = "New Booking at Aneta's Glimmer"  # Subject
             from_address = "anetasglimmer@gmail.com"  # From
-            date_email = date_converted.strftime("%d.%m.%Y")  # Stringify date for email
-            time_email = time_converted.strftime("%H:%M")  # Stringify time for email
+            # Stringify date for email
+            date_email = date_converted.strftime("%d.%m.%Y")
+            # Stringify time for email
+            time_email = time_converted.strftime("%H:%M")
             select_artist = Artists.objects.get(
                 id=request.POST["booked_artist"]
             )  # Queryset to select artist by id
             artist_email = select_artist.name  # Save artist's name for email
-            html_message = render_to_string('emails/new_booking_mail.html', {
-                "user": request.user.username,
-                "date": date_email,
-                "time": time_email,
-                "artist": artist_email,
-                "ref_number": new_booking.pk
-                })
+            html_message = render_to_string(
+                "emails/new_booking_mail.html",
+                {
+                    "user": request.user.username,
+                    "date": date_email,
+                    "time": time_email,
+                    "artist": artist_email,
+                    "ref_number": new_booking.pk,
+                },
+            )
             message = strip_tags(html_message)
             from_address = "anetasglimmer@gmail.com"  # From
-            send_mail(subject, message, from_address, recipient, html_message=html_message)
+            send_mail(
+                subject,
+                message,
+                from_address,
+                recipient,
+                html_message=html_message
+            )
         else:
             booking_form = self.form()
         return redirect("my-bookings")  # Redirect back to my-bookings
 
 
-class EditBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+class EditBookingView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     """
     Class for creating new bookings
     """
@@ -279,9 +317,10 @@ class EditBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
     template_name = "bookings/edit_booking.html"  # Template
     form = BookingForm  # New bookings form
     success_url = "/bookings/"  # URL to redirect after successful booking
-    
+
     def test_func(self):
-        booking = get_object_or_404(Bookings, pk=self.kwargs['edit_booking_pk'])
+        booking = get_object_or_404(
+            Bookings, pk=self.kwargs["edit_booking_pk"])
         return self.request.user == booking.username
 
     def get(self, request, edit_booking_pk, *args, **kwargs):
@@ -323,93 +362,119 @@ class EditBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
             time_converted = datetime.strptime(
                 request.POST["time"], "%H:%M:%S"
             ).time()  # Convert str time to datetime time
-            edited_booking.booked_artist = booking_form.cleaned_data["booked_artist"]
-            edited_booking.booked_style = booking_form.cleaned_data["booked_style"]
-            edited_booking.date_time = datetime.combine(date_converted, time_converted)
-            edited_booking.date_time = timezone.make_aware(edited_booking.date_time)
+            edited_booking.booked_artist = booking_form.cleaned_data[
+                "booked_artist"]
+            edited_booking.booked_style = booking_form.cleaned_data[
+                "booked_style"]
+            edited_booking.date_time = datetime.combine(
+                date_converted, time_converted)
+            edited_booking.date_time = timezone.make_aware(
+                edited_booking.date_time)
             edited_booking.booking_status = 0
             edited_booking.save()  # Save booking into database
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                f"You have successfully edited booking ref {edited_booking.pk}.",
-            ) # User message
+                f"You have edited booking ref {edited_booking.pk}.",
+            )  # User message
             # Prefixes for confirmation email
             recipient = [
                 "anetasglimmer@gmail.com"
             ]  # Send the email to myself as confirmation
-            recipient.append(request.user.email)  # Add email of user creating booking
+            # Add email of user creating booking
+            recipient.append(request.user.email)
             subject = "Changed Booking at Aneta's Glimmer"  # Subject
             from_address = "anetasglimmer@gmail.com"  # From
-            date_email = date_converted.strftime("%d.%m.%Y")  # Stringify date for email
-            time_email = time_converted.strftime("%H:%M")  # Stringify time for email
+            # Stringify date for email
+            date_email = date_converted.strftime("%d.%m.%Y")
+            # Stringify time for email
+            time_email = time_converted.strftime("%H:%M")
             select_artist = Artists.objects.get(
                 id=request.POST["booked_artist"]
             )  # Queryset to select artist by id
             artist_email = select_artist.name  # Save artist's name for email
-            html_message = render_to_string('emails/edit_booking_mail.html', {
-                "user": request.user.username,
-                "date": date_email,
-                "time": time_email,
-                "artist": artist_email,
-                "ref_number": edited_booking.pk
-                })
+            html_message = render_to_string(
+                "emails/edit_booking_mail.html",
+                {
+                    "user": request.user.username,
+                    "date": date_email,
+                    "time": time_email,
+                    "artist": artist_email,
+                    "ref_number": edited_booking.pk,
+                },
+            )
             message = strip_tags(html_message)
             from_address = "anetasglimmer@gmail.com"  # From
-            send_mail(subject, message, from_address, recipient, html_message=html_message)
+            send_mail(
+                subject,
+                message,
+                from_address,
+                recipient,
+                html_message=html_message
+            )
         else:
             booking_form = self.form()
         return redirect("my-bookings")  # Redirect back to my-bookings
 
 
-class CancelBookingView(LoginRequiredMixin,UserPassesTestMixin, generic.ListView):
-    
+class CancelBookingView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     def test_func(self):
-        booking = get_object_or_404(Bookings, pk=self.kwargs['cancel_booking_pk'])
+        booking = get_object_or_404(
+            Bookings, pk=self.kwargs["cancel_booking_pk"])
         return self.request.user == booking.username
-    
+
     def get(self, request, cancel_booking_pk, *args, **kwargs):
-        booking_to_cancel = get_object_or_404(Bookings,
-            pk=cancel_booking_pk
+        booking_to_cancel = get_object_or_404(
+            Bookings, pk=cancel_booking_pk
         )  # Queryset for booking to cancel
         # Prefixes for confirmation email
         recipient = [
             "anetasglimmer@gmail.com"
         ]  # Send the email to myself as confirmation
-        recipient.append(request.user.email)  # Add email of user creating booking
+        recipient.append(request.user.email)
+        # Add email of user creating booking
         subject = "Cancelled Booking at Aneta's Glimmer"  # Subject
         from_address = "anetasglimmer@gmail.com"  # From
         date_email = booking_to_cancel.date_time.strftime(
             "%d.%m.%Y"
-        )    # Stringify date for email
+        )  # Stringify date for email
         time_email = booking_to_cancel.date_time.strftime(
             "%H:%M"
         )  # Stringify time for email
-        html_message = render_to_string('emails/cancel_booking_mail.html', {
-            "user": request.user.username,
-            "date": date_email,
-            "time": time_email,
-            "artist": booking_to_cancel.booked_artist,
-            "ref_number": booking_to_cancel.pk
-            })
+        html_message = render_to_string(
+            "emails/cancel_booking_mail.html",
+            {
+                "user": request.user.username,
+                "date": date_email,
+                "time": time_email,
+                "artist": booking_to_cancel.booked_artist,
+                "ref_number": booking_to_cancel.pk,
+            },
+        )
         message = strip_tags(html_message)
         from_address = "anetasglimmer@gmail.com"  # From
-        send_mail(subject, message, from_address, recipient, html_message=html_message)
+        send_mail(subject,
+                  message,
+                  from_address,
+                  recipient,
+                  html_message=html_message)
         messages.add_message(
-                request,
-                messages.SUCCESS,
-                f"You have successfully canceled booking ref {booking_to_cancel.pk}.",
-            ) # User message
+            request,
+            messages.SUCCESS,
+            f"You have canceled booking ref {booking_to_cancel.pk}.",
+        )  # User message
         booking_to_cancel.delete()  # Delete booking from DB
         return redirect("my-bookings")  # Return to my bookings
 
 
-class RateBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
-    
+class RateBookingView(
+        LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     def test_func(self):
-        booking = get_object_or_404(Bookings, pk=self.kwargs['rate_booking_pk'])
+        booking = get_object_or_404(
+            Bookings, pk=self.kwargs["rate_booking_pk"])
         return self.request.user == booking.username
-    
+
     def get(self, request, rate_booking_pk, score, *args, **kwargs):
         booking_to_rate = get_object_or_404(Bookings, pk=rate_booking_pk)
         if booking_to_rate.is_rated != 1:
@@ -418,8 +483,8 @@ class RateBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                f"You have successfully rated booking ref {booking_to_rate.pk}.",
-            ) # User message
+                f"You have rated booking ref {booking_to_rate.pk}.",
+            )  # User message
             booking_to_rate.save()  # Save
             return redirect("my-bookings")  # Return to my bookings
         else:

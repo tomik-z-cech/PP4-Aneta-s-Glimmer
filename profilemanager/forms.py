@@ -1,12 +1,32 @@
+# PEP8
+# Imports
 from django import forms
 from allauth.account.forms import SignupForm
 from profilemanager.models import UserProfile
 
 
 class GlimmerSignupForm(SignupForm):
-    first_name = forms.CharField(max_length=30, label="First Name", required=True, widget=forms.TextInput(attrs={'placeholder': 'Your first name'}),)
-    last_name = forms.CharField(max_length=30, label="Last Name", required=True, widget=forms.TextInput(attrs={'placeholder': 'Your last name'}),)
-    phone_number = forms.CharField(max_length=15, label="Phone Number", required=True, widget=forms.TextInput(attrs={'placeholder': 'Your phone number'}),)
+    """
+    Register form
+    """
+    first_name = forms.CharField(
+        max_length=30,
+        label="First Name",
+        required=True,
+        widget=forms.TextInput(attrs={"placeholder": "Your first name"}),
+    )
+    last_name = forms.CharField(
+        max_length=30,
+        label="Last Name",
+        required=True,
+        widget=forms.TextInput(attrs={"placeholder": "Your last name"}),
+    )
+    phone_number = forms.CharField(
+        max_length=15,
+        label="Phone Number",
+        required=True,
+        widget=forms.TextInput(attrs={"placeholder": "Your phone number"}),
+    )
     marketing = forms.BooleanField(
         label="Would you like to receive marketing materials ?",
         required=False,
@@ -34,5 +54,5 @@ class UpdateDetailsForm(forms.ModelForm):
         model = UserProfile
         fields = ["first_name", "last_name", "phone_number", "marketing"]
         labels = {
-            'marketing': 'Would you like to receive marketing materials ?',
+            "marketing": "Would you like to receive marketing materials ?",
         }

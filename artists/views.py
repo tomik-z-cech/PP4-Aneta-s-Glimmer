@@ -1,3 +1,4 @@
+# PEP8
 # Imports
 from django.shortcuts import render
 from django.views import generic
@@ -17,7 +18,8 @@ class TeamView(generic.ListView):
         artists = Artists.objects.all().order_by(
             "start_date"
         )  # Get all artists adn order by start date
-        artists_to_send = []  # Empty array to append artists to send to template
+        # Empty array to append artists to send to template
+        artists_to_send = []
         for artist in artists:  # Do this for each artist
             valid_bookings_count = 0  # Set bookings counter
             rating_total = 0  # Set rating score total
@@ -32,8 +34,10 @@ class TeamView(generic.ListView):
                 )  # Increase rated bookings counter
                 rating_total = (
                     rating_total + valid_booking.rating
-                )  # Add score of the current booking
-                rating = rating_total / valid_bookings_count  # Count average rating
+                )
+                # Add score of the current booking
+                rating = rating_total / valid_bookings_count
+                # Count average rating
             if valid_bookings_count == 0:  # If no rated bookings for artist
                 rating = 0  # Set rating to 0 (if else statement in template)
             artists_to_send.append(  # Append to array to send to template
@@ -84,7 +88,8 @@ class TeamDetailView(generic.DetailView):
             rating_total = (
                 rating_total + valid_booking.rating
             )  # Add score of the current booking
-            rating = rating_total / valid_bookings_count  # Count average rating
+            rating = rating_total / valid_bookings_count
+            # Count average rating
         if valid_bookings_count == 0:  # If no rated bookings for artist
             rating = 0  # Set rating to 0 (if else statement in template)
         return render(  # Render template with following

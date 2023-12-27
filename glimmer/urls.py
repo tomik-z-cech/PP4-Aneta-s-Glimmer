@@ -1,3 +1,4 @@
+# PEP8
 # Aneta's Glimmer URL configuration
 
 from django.contrib import admin
@@ -15,5 +16,6 @@ urlpatterns = [
     path("profilemanager/", include("profilemanager.urls")),
     path("bookings/", include("bookings.urls")),
     path("administrator/", include("administrator.urls")),
-    path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.png'))
+    path("favicon.ico", RedirectView.as_view(
+        url="/static/images/favicon.png")),
 ]

@@ -1,4 +1,3 @@
-
 # Imports
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -72,7 +71,7 @@ class NewsDetailView(generic.DetailView):
                 "liked": liked,
                 "news_comment_form": NewsCommentForm(),
                 "users_liked": users_liked,
-                "can_comment": True
+                "can_comment": True,
             },
         )
 
@@ -80,9 +79,7 @@ class NewsDetailView(generic.DetailView):
         """
         Function is called when comment submitted
         """
-        post = get_object_or_404(
-            NewsPosts, slug=slug
-        )  # Get current news post
+        post = get_object_or_404(NewsPosts, slug=slug)  # Get current news post
         comments = (
             NewsComments.objects.filter(approved=True)
             .filter(post__in=[post])
@@ -105,7 +102,7 @@ class NewsDetailView(generic.DetailView):
                 request,
                 messages.SUCCESS,
                 f"Your comment on post {new_comment.post} pending approval.",
-            ) # User message
+            )  # User message
         # If not valid, return form
         else:
             news_comment_form = NewsCommentForm()
