@@ -320,6 +320,7 @@ class EditBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
             edited_booking.booked_artist = booking_form.cleaned_data["booked_artist"]
             edited_booking.booked_style = booking_form.cleaned_data["booked_style"]
             edited_booking.date_time = datetime.combine(date_converted, time_converted)
+            edited_booking.date_time = timezone.make_aware(edited_booking.date_time)
             edited_booking.booking_status = 0
             edited_booking.save()  # Save booking into database
             # Prefixes for confirmation email
