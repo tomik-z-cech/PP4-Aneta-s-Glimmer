@@ -1,4 +1,5 @@
 # Imports
+from django.contrib import messages
 from django.core.exceptions import PermissionDenied # Throws 403 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin # Views security
 from django.contrib.auth.decorators import login_required # Methods security
@@ -237,6 +238,11 @@ class NewBookingView(LoginRequiredMixin, generic.ListView):
             )  # Combine date and time
             new_booking.date_time = timezone.make_aware(new_booking.date_time)
             new_booking.save()  # Save booking into database
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                f"You have successfully created booking ref {new_booking.pk}.",
+            ) # User message
             # Prefixes for confirmation email
             recipient = [
                 "anetasglimmer@gmail.com"
@@ -323,6 +329,11 @@ class EditBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
             edited_booking.date_time = timezone.make_aware(edited_booking.date_time)
             edited_booking.booking_status = 0
             edited_booking.save()  # Save booking into database
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                f"You have successfully edited booking ref {edited_booking.pk}.",
+            ) # User message
             # Prefixes for confirmation email
             recipient = [
                 "anetasglimmer@gmail.com"
@@ -384,6 +395,11 @@ class CancelBookingView(LoginRequiredMixin,UserPassesTestMixin, generic.ListView
         message = strip_tags(html_message)
         from_address = "anetasglimmer@gmail.com"  # From
         send_mail(subject, message, from_address, recipient, html_message=html_message)
+        messages.add_message(
+                request,
+                messages.SUCCESS,
+                f"You have successfully canceled booking ref {booking_to_cancel.pk}.",
+            ) # User message
         booking_to_cancel.delete()  # Delete booking from DB
         return redirect("my-bookings")  # Return to my bookings
 
@@ -399,6 +415,11 @@ class RateBookingView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
         if booking_to_rate.is_rated != 1:
             booking_to_rate.is_rated = 1  # Change status
             booking_to_rate.rating = score  # Add rating
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                f"You have successfully rated booking ref {booking_to_rate.pk}.",
+            ) # User message
             booking_to_rate.save()  # Save
             return redirect("my-bookings")  # Return to my bookings
         else:
