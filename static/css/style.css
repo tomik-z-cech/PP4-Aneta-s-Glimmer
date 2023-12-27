@@ -17,6 +17,7 @@
     --mid-gold-op: rgba(248, 181, 0, 0.7);
     --dark-gold: #c59000;
     --lighter-black-op: rgba(42, 42, 42, 0.2);
+    --grey: #999999;
 
     /** FONTS **/
     --text-font: 'Sriracha', sans-serif;
@@ -554,6 +555,10 @@ select option:checked {
     background-color: var(--light-gold);
     color: var(--darker-black);
 }
+
+select option:disabled {
+    color: var(--grey);
+  }
 
 input[type="date"] {
     background: none;
