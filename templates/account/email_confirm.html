@@ -2,9 +2,8 @@
 {% load i18n %}
 {% load account %}
 {% load allauth %}
-{% block head_title %}
-    {% trans "Confirm Email Address" %}
-{% endblock head_title %}
+{% load static %}
+
 {% block content %}
 <div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-form.jpg" %}') no-repeat fixed top right / cover;">
     <div class="form-background">
@@ -15,7 +14,7 @@
             {% user_display confirmation.email_address.user as user_display %}
             {% if can_confirm %}
                 <p class="text-center">
-                    {% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email address for user {{ user_display }}.{% endblocktrans %}
+                    {% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}" class="custom-form-link">{{ email }}</a> is an email address for user {{ user_display }}.{% endblocktrans %}
                 </p>
                 {% url 'account_confirm_email' confirmation.key as action_url %}
                 {% element form method="post" action=action_url %}
