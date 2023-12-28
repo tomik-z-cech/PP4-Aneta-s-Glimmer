@@ -31,6 +31,7 @@
                 <span class="sr-only"></span>
             </div>
         </div>
+        <!-- Edit booking form -->
         <form method="post" enctype="multipart/form-data" id="newBookingForm">
         {% csrf_token %}
         {{ edit_booking_form | crispy }}
