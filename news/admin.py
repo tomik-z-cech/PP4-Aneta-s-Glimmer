@@ -19,3 +19,10 @@ class CommentAdmin(admin.ModelAdmin):
     """Class resgisters News Comments to Admin"""
 
     list_display = ("username", "comment_body", "post", "approved")
+    actions = ['approve_comments']
+
+
+    def approve_comments(self, request, queryset):
+        queryset.update(approved=True)
+    
+    approve_comments.short_description = "Approve selected comments"
