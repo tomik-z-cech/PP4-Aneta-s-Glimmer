@@ -15,7 +15,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEV_PRODUCTION", False)
+DEBUG = os.environ.get("DEV_PRODUCTION", True)
 
 # I frame security setting
 X_FRAME_OPTIONS = "SAMEORIGIN"
