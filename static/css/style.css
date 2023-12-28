@@ -496,6 +496,29 @@ label[for="id_comment_body"] {
     padding: 2vh;
 }
 
+.star-booking {
+    height: 3vh;
+    width: 3vh;
+}
+
+@media screen and (max-width: 768px) {
+    .bookings-container {
+        margin: 0;
+        margin-top: 2vh;
+        padding: 0.5vh;
+        padding-bottom: 2vh;
+    }
+
+    .booking-table {
+        font-size: 65%;
+    }
+
+    .star-booking {
+        height: 2vh;
+        width: 2vh;
+    }
+}
+
 .accordion-collapse {
     background-color: var(--light-gold);
 }
@@ -558,7 +581,7 @@ select option:checked {
 
 select option:disabled {
     color: var(--grey);
-  }
+}
 
 input[type="date"] {
     background: none;
@@ -566,6 +589,10 @@ input[type="date"] {
 }
 
 .star-rating {
+    text-decoration: none;
+}
+
+.action-link {
     text-decoration: none;
 }
 

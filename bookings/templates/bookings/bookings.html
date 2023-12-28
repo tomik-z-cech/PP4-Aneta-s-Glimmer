@@ -28,7 +28,7 @@
                                 You don't have any pending bookings.
                             {% else %}    
                                 <!-- Table header - pending bookings -->
-                                <table class="w-100 text-center">
+                                <table class="w-100 text-center booking-table">
                                     <th>
                                         Ref #
                                     </th>
@@ -45,10 +45,7 @@
                                         Artist
                                     </th>
                                     <th>
-                                        Edit
-                                    </th>
-                                    <th>
-                                        Cancel
+                                        Action
                                     </th>
                                     <!-- Display all pending bookings -->
                                     {% for booking in pending_bookings %}
@@ -69,16 +66,20 @@
                                                 {{ booking.booked_artist }}
                                             </td>
                                             <td>
-                                                <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}" aria-label="Edit booking">
-                                                    <button class="btn btn-warning button-shadow">
-                                                        Edit
+                                                <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}" aria-label="Edit booking" class="action-link">
+                                                    <button class="btn btn-sm btn-warning button-shadow">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                        <span class="hide-less-768px">
+                                                            Edit
+                                                        </span>
                                                     </button>
                                                 </a>
-                                            </td>
-                                            <td class="pb-2">
-                                                <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}" aria-label="Cancel booking">
-                                                    <button class="btn btn-danger button-shadow">
-                                                        Cancel
+                                                <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}" aria-label="Cancel booking" class="action-link">
+                                                    <button class="btn btn-sm btn-danger button-shadow">
+                                                        <i class="bi bi-x"></i>
+                                                        <span class="hide-less-768px">
+                                                            Cancel
+                                                        </span>
                                                     </button>
                                                 </a>
                                             </td>
@@ -103,7 +104,7 @@
                                 You don't have any confirmed bookings.
                             {% else %}    
                                 <!-- Table header - confirmed bookings -->
-                                <table class="w-100 text-center">
+                                <table class="w-100 text-center booking-table">
                                     <th>
                                         Ref #
                                     </th>
@@ -120,10 +121,7 @@
                                         Artist
                                     </th>
                                     <th>
-                                        Edit
-                                    </th>
-                                    <th>
-                                        Cancel
+                                        Action
                                     </th>
                                     <!-- Display all confirmed bookings -->
                                     {% for booking in confirmed_bookings %}
@@ -145,15 +143,19 @@
                                             </td>
                                             <td>
                                                 <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}" aria-label="Edit booking">
-                                                    <button class="btn btn-warning button-shadow">
-                                                        Edit
+                                                    <button class="btn btn-sm btn-warning button-shadow">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                        <span class="hide-less-768px">
+                                                            Edit
+                                                        </span>
                                                     </button>
                                                 </a>
-                                            </td>
-                                            <td class="pb-2">
                                                 <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}" aria-label="Cancel booking">
-                                                    <button class="btn btn-danger button-shadow">
-                                                        Cancel
+                                                    <button class="btn btn-sm btn-danger button-shadow">
+                                                        <i class="bi bi-x"></i>
+                                                        <span class="hide-less-768px">
+                                                            Cancel
+                                                        </span>
                                                     </button>
                                                 </a>
                                             </td>
@@ -178,7 +180,7 @@
                                 You don't have any past bookings.
                             {% else %}    
                                 <!-- Table header -->
-                                <table class="w-100 text-center">
+                                <table class="w-100 text-center booking-table">
                                     <th>
                                         Ref #
                                     </th>
@@ -221,19 +223,19 @@
                                                     <!-- Booking reviews -->
                                                     <div class="review p-2">
                                                         <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=1 %}" class="star-rating">
-                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star">
+                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star-booking">
                                                         </a>
                                                         <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=2 %}" class="star-rating">
-                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star">
+                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star-booking">
                                                         </a>
                                                         <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=3 %}" class="star-rating">
-                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star">
+                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star-booking">
                                                         </a>
                                                         <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=4 %}" class="star-rating">
-                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star">
+                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star-booking">
                                                         </a>
                                                         <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=5 %}" class="star-rating">
-                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star">
+                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star-booking">
                                                         </a>
                                                     </div>
                                                 {% else %}

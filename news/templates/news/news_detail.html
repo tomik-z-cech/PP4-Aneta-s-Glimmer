@@ -32,7 +32,7 @@
             <div class="row">
                 <!-- If user logged in - functions like and comment -->
                 {% if user.is_authenticated %}
-                    <div class="col-12 pt-3 d-flex  justify-content-around">
+                    <div class="col-12 pt-3 d-flex  justify-content-around flex-column flex-xl-row">
                         <form action="{% url 'news-like' news_detail.slug %}" method="POST" id="likeForm">
                             {% csrf_token %}
                             {% if liked %}
