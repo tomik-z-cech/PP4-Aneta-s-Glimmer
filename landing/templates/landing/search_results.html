@@ -5,6 +5,11 @@
 {% block content %}
 <!-- Container -->
 <div class="container wrapper" style="background: url('{% static "images/background-search.jpg" %}') no-repeat fixed top right / cover;">
+    <div clas="row">
+        <div class="col-12 text-center add-shadow heading">
+            <h1>Search results</h1>
+        </div>
+    </div>
     <!-- Search bar -->
     <div class="list-container-right add-shadow w-90">
         <form method="get" action="{% url 'search' %}">

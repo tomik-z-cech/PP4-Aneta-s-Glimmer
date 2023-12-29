@@ -396,6 +396,10 @@ label[for="id_comment_body"] {
     }
 }
 
+.news-carousel-heading {
+    font-size: 150%;
+}
+
 /** ---------------------------- ARTISTS, STYLES, NEWS ------------------------ **/
 
 .list-container-left {

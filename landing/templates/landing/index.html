@@ -5,6 +5,11 @@
 {% block content %}
 <!-- Container -->
 <div class="container wrapper" style="background: url('{% static "images/background-landing.jpg" %}') no-repeat fixed top right / cover;">
+    <div clas="row">
+        <div class="col-12 text-center add-shadow heading">
+            <h1>Welcome to Aneta's Glimmer</h1>
+        </div>
+    </div>
     <!-- Search bar -->
     <div class="row">
         <div class="col-12">
@@ -46,7 +51,7 @@
                                         {% endif %}
                                         <div class="carousel-caption d-md-block add-shadow">
                                             <a href="{% url 'news-detail' slug=news.slug %}">
-                                                <h5>{{ news.title }}</h5>
+                                                <h2 class="news-carousel-heading">{{ news.title }}</h2>
                                                 <p>Created by {{ news.creator }} on {{ news.created_on|date:"d.m.Y" }}</p>
                                                 <div>
                                                     <span>
@@ -70,7 +75,7 @@
                                         {% endif %}
                                         <div class="carousel-caption d-md-block add-shadow">
                                             <a href="{% url 'news-detail' slug=news.slug %}">
-                                                <h5>{{ news.title }}</h5>
+                                                <h2 class="news-carousel-heading">{{ news.title }}</h2>
                                                 <p>Created by {{ news.creator }} on {{ news.created_on|date:"d.m.Y" }}</p>
                                                 <div>
                                                     <span>
@@ -114,42 +119,42 @@
                                 -
                                 {% if top_artist.rating >= 4.75 %}
                                     {% for i in "12345" %}
-                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                     {% endfor %}
                                 {% elif top_artist.rating < 4.75  and top_artist.rating >= 4.25 %}
                                     {% for i in "1234" %}
-                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                     {% endfor %}
-                                    <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                 {% elif top_artist.rating < 4.25  and top_artist.rating >= 3.75 %}
                                     {% for i in "1234" %}
-                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                     {% endfor %}
                                 {% elif top_artist.rating < 3.75  and top_artist.rating >= 3.25 %}
                                     {% for i in "123" %}
-                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                     {% endfor %}
-                                    <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                 {% elif top_artist.rating < 3.25  and top_artist.rating >= 2.75 %}
                                     {% for i in "123" %}
-                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                     {% endfor %}
                                 {% elif top_artist.rating < 2.75  and top_artist.rating >= 2.25 %}
                                     {% for i in "12" %}
-                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                     {% endfor %}
-                                    <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                 {% elif top_artist.rating < 2.25  and top_artist.rating >= 1.75 %}
                                     {% for i in "12" %}
-                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                    <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                     {% endfor %}
                                 {% elif top_artist.rating < 1.75  and top_artist.rating >= 1.25 %}
-                                <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
-                                <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
+                                <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                 {% elif top_artist.rating < 1.25  and top_artist.rating >= 0.75 %}
-                                <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                <img src="{% static 'images/icons/star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                 {% elif top_artist.rating < 0.75 %}
-                                <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.rating }}">
+                                <img src="{% static 'images/icons/half_star.png' %}" class="star-landing" alt="{{ top_artist.name }} {{ top_artist.rating }}">
                                 {% else %}
                                     Something went wrong.
                                 {% endif %}
