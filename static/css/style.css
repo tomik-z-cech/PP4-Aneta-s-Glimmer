@@ -600,6 +600,11 @@ input[type="date"] {
     text-decoration: none;
 }
 
+.tc-list {
+    list-style: none;
+    padding-left: 0;
+}
+
 /** ---------------------- SEARCH ------------------------ **/
 
 label[for="id_search_query"] {
