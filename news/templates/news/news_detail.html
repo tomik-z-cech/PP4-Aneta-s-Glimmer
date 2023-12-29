@@ -117,7 +117,7 @@
             <!-- If no comment submitted yet, display form -->
             {% if can_comment %}
             <div class="col-12 d-flex justify-content-start">
-                <h3>Commenting as {{ user.username }} :</h3>
+                <h2>Commenting as {{ user.username }} :</h2>
             </div>
             <form method="post">
                 {{ news_comment_form | crispy }}
