@@ -17,5 +17,6 @@ class StylesCommentForm(forms.ModelForm):
             {
                 "rows": 3,
                 "placeholder": "Type your comment here ...",
+                "aria-label": "Style Comment",
             }
         )
