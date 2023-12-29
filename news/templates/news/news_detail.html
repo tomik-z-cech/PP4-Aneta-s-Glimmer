@@ -19,15 +19,15 @@
                 <h1>
                     {{ news_detail.title }}
                 </h1>
-                <hr />
+                <hr>
                 <p class="text-center">
                     {{ news_detail.creator }} - {{ news_detail.created_on|date:"d.m.Y"}}
                 </p>
-                <hr />
+                <hr>
                 <p>
                     {{ news_detail.post_body|safe }}
                 </p>
-                <hr />
+                <hr>
             </div>
             <div class="row">
                 <!-- If user logged in - functions like and comment -->

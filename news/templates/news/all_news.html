@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <!-- Loop to diplay all available styles -->
+                <!-- Loop to diplay all news -->
                 {% for news in news_list %}
                     {% if not forloop.counter|divisibleby:2 %}
                         <div class="list-container-left add-shadow float-start w-75">
@@ -40,14 +40,14 @@
                                         {{ news.title }}
                                     </h2>
                                 </a>
-                                <hr />
+                                <hr>
                                 <div class="text-container">
-                                    <p class="long-text">
+                                    <div class="long-text">
                                         {{ news.post_body|safe }}
-                                    </p>
+                                    </div>
                                     <a href="{% url 'news-detail' slug=news.slug %}" class="read-more-link">Read more ...</a>
                                 </div>
-                                <hr />
+                                <hr>
                                 <!-- "Likes" and comments counter -->
                                 <p>
                                     <a href="{% url 'news-detail' slug=news.slug %}" aria-label="Details of {{ news.title }}">
