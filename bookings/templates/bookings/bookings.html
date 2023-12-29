@@ -222,20 +222,20 @@
                                                 {% if booking.is_rated == False %}
                                                     <!-- Booking reviews -->
                                                     <div class="review p-2">
-                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=1 %}" class="star-rating">
-                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star-booking">
+                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=1 %}" class="star-rating" aria-label="Rate booking {{ booking.pk }} 1 star">
+                                                            <img src="{% static 'images/icons/star.png' %}" class="star-booking" alt="1 star rating">
                                                         </a>
-                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=2 %}" class="star-rating">
-                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star-booking">
+                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=2 %}" class="star-rating" aria-label="Rate booking {{ booking.pk }} 2 stars">
+                                                            <img src="{% static 'images/icons/star.png' %}" class="star-booking" alt="2 stars rating">
                                                         </a>
-                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=3 %}" class="star-rating">
-                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star-booking">
+                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=3 %}" class="star-rating" aria-label="Rate booking {{ booking.pk }} 3 stars">
+                                                            <img src="{% static 'images/icons/star.png' %}" class="star-booking" alt="3 stars rating">
                                                         </a>
-                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=4 %}" class="star-rating">
-                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star-booking">
+                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=4 %}" class="star-rating" aria-label="Rate booking {{ booking.pk }} 4 stars">
+                                                            <img src="{% static 'images/icons/star.png' %}" class="star-booking" alt="4 stars rating">
                                                         </a>
-                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=5 %}" class="star-rating">
-                                                            <img src="{% static 'images/icons/empty_star.png' %}" class="star-booking">
+                                                        <a href="{% url 'rate-booking' rate_booking_pk=booking.pk score=5 %}" class="star-rating" aria-label="Rate booking {{ booking.pk }} 5 stars">
+                                                            <img src="{% static 'images/icons/star.png' %}" class="star-booking" alt="5 stars rating">
                                                         </a>
                                                     </div>
                                                 {% else %}
@@ -323,9 +323,4 @@
         </div>
     </div>
 </div>
-<script>
-    let onStar = `<img src="{% static 'images/icons/star.png' %}" class="star">`;
-    let offStar = `<img src="{% static 'images/icons/empty_star.png' %}" class="star">`;
-</script>
-<script src="{% static 'js/star_rating.js' %}"></script>
 {%endblock%}
