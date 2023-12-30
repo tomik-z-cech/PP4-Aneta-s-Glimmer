@@ -29,24 +29,26 @@
                             {% else %}    
                                 <!-- Table header - pending bookings -->
                                 <table class="w-100 text-center booking-table">
-                                    <th>
-                                        Ref #
-                                    </th>
-                                    <th>
-                                        Date
-                                    </th>
-                                    <th>
-                                        Time
-                                    </th>
-                                    <th>
-                                        Booked style
-                                    </th>
-                                    <th>
-                                        Artist
-                                    </th>
-                                    <th>
-                                        Action
-                                    </th>
+                                    <tr>
+                                        <th>
+                                            Ref #
+                                        </th>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Time
+                                        </th>
+                                        <th>
+                                            Booked style
+                                        </th>
+                                        <th>
+                                            Artist
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
                                     <!-- Display all pending bookings -->
                                     {% for booking in pending_bookings %}
                                         <tr>
@@ -101,24 +103,26 @@
                             {% else %}    
                                 <!-- Table header - confirmed bookings -->
                                 <table class="w-100 text-center booking-table">
-                                    <th>
-                                        Ref #
-                                    </th>
-                                    <th>
-                                        Date
-                                    </th>
-                                    <th>
-                                        Time
-                                    </th>
-                                    <th>
-                                        Booked style
-                                    </th>
-                                    <th>
-                                        Artist
-                                    </th>
-                                    <th>
-                                        Action
-                                    </th>
+                                    <tr>
+                                        <th>
+                                            Ref #
+                                        </th>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Time
+                                        </th>
+                                        <th>
+                                            Booked style
+                                        </th>
+                                        <th>
+                                            Artist
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
                                     <!-- Display all confirmed bookings -->
                                     {% for booking in confirmed_bookings %}
                                         <tr>
@@ -173,24 +177,26 @@
                             {% else %}    
                                 <!-- Table header -->
                                 <table class="w-100 text-center booking-table">
-                                    <th>
-                                        Ref #
-                                    </th>
-                                    <th>
-                                        Date
-                                    </th>
-                                    <th>
-                                        Time
-                                    </th>
-                                    <th>
-                                        Booked style
-                                    </th>
-                                    <th>
-                                        Artist
-                                    </th>
-                                    <th>
-                                        Review
-                                    </th>
+                                    <tr>
+                                        <th>
+                                            Ref #
+                                        </th>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Time
+                                        </th>
+                                        <th>
+                                            Booked style
+                                        </th>
+                                        <th>
+                                            Artist
+                                        </th>
+                                        <th>
+                                            Review
+                                        </th>
+                                    </tr>
                                     <!-- Display all done bookings -->
                                     {% for booking in done_bookings %}
                                         <tr>
@@ -288,14 +294,14 @@
                         <td class="text-center">
                             {{ last_minute.free_tomorrow }}
                         </td>
-                    <tr>
+                    </tr>
                 {% endfor %}
                 </table>
             </div>
             <p class="text-center mt-4">
                 To make a last minute booking, please ring us on 
                 <a href="tel:0872615238" aria-label="Call us" class="custom-form-link">
-                    <br />
+                    <br>
                     <strong>
                         087 261 52 38
                     </strong>

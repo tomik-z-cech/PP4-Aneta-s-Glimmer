@@ -19,14 +19,14 @@
                 <h1>
                     {{ style.style_name }}
                 </h1>
-                <hr />
+                <hr>
                 <p>
                     <strong>
                         Description : 
                     </strong>
                     {{ style.style_description }}
                 </p>
-                <hr />
+                <hr>
                 <p>
                 <strong>
                     Artists excelling in this style :
@@ -36,12 +36,12 @@
                         {% if not forloop.counter|divisibleby:2 %}
                             <a href="{% url 'artist-detail' slug=detail %}">
                         {% else %}
-                            {{ detail}}</a>&nbsp
+                            {{ detail}}</a>&nbsp;
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
                 </p>
-                <hr />
+                <hr>
                 <!-- New booking button -->
                 <div class="container text-center">
                     <a href="{% url 'new-booking' %}" aria-label="New booking for {{ style.style_name }}" class="btn btn-success button-shadow">
