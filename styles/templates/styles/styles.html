@@ -40,14 +40,14 @@
                                     {{ style.style_name }}
                                 </h2>
                             </a>
-                            <hr />
+                            <hr>
                             <p>
                                 <strong>
                                     Description : 
                                 </strong>
                                 {{ style.style_description }}
                             </p>
-                            <hr />
+                            <hr>
                             <!-- "Likes", "tries" and comments counter -->
                             <p>
                                 <a href="{% url 'style-detail' slug=style.slug %}" aria-label="Details of {{ style.style_name }}">
@@ -78,11 +78,11 @@
                                     {{ style.comments_num }}
                                 </strong>
                             </p>
-                            <hr />
+                            <hr>
                             <!-- New booking button -->
                             <div class="container text-center">
-                                <a href="{% url 'new-booking' %}" aria-label="New booking for {{ style.style_name }}">
-                                    <button type="button" class="btn btn-success button-shadow">New booking for {{style.style_name }}</button>
+                                <a href="{% url 'new-booking' %}" aria-label="New booking for {{ style.style_name }}" class="btn btn-success button-shadow">
+                                    New booking for {{style.style_name }}
                                 </a>
                             </div>
                         </div>

@@ -11,15 +11,11 @@
         You are about to cancel booking for {{ booking_to_cancel.date_time|date:"d.m.Y" }} at {{ booking_to_cancel.date_time|time:"H:i" }} with {{booking_to_cancel.booked_artist}}, we meant to be doing fantastic {{ booking_to_cancel.booked_style }}.
         </p>
         <div class="w-100 d-flex justify-content-around p-3">
-            <a href="{% url 'my-bookings' %}" aria-label="No, take me back">
-                <button class="btn btn-success button-shadow">
-                    No, take me back
-                </button>
+            <a href="{% url 'my-bookings' %}" aria-label="No, take me back" class="btn btn-success button-shadow">
+                No, take me back
             </a>
-            <a href="{% url 'cancel-booking' cancel_booking_pk=booking_to_cancel.pk%}" aria-label="Yes, cancel">
-                <button class="btn btn-danger button-shadow">
-                    Yes, cancel
-                </button>
+            <a href="{% url 'cancel-booking' cancel_booking_pk=booking_to_cancel.pk%}" aria-label="Yes, cancel" class="btn btn-danger button-shadow">
+                Yes, cancel
             </a>
         </div>
     </div>

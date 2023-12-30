@@ -66,21 +66,17 @@
                                                 {{ booking.booked_artist }}
                                             </td>
                                             <td>
-                                                <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}" aria-label="Edit booking" class="action-link">
-                                                    <button class="btn btn-sm btn-warning button-shadow">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                        <span class="hide-less-768px">
-                                                            Edit
-                                                        </span>
-                                                    </button>
+                                                <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}" aria-label="Edit booking" class="action-link btn btn-sm btn-warning button-shadow">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                    <span class="hide-less-768px">
+                                                        Edit
+                                                    </span>
                                                 </a>
-                                                <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}" aria-label="Cancel booking" class="action-link">
-                                                    <button class="btn btn-sm btn-danger button-shadow">
-                                                        <i class="bi bi-x"></i>
-                                                        <span class="hide-less-768px">
-                                                            Cancel
-                                                        </span>
-                                                    </button>
+                                                <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}" aria-label="Cancel booking" class="action-link btn btn-sm btn-danger button-shadow">
+                                                    <i class="bi bi-x"></i>
+                                                    <span class="hide-less-768px">
+                                                        Cancel
+                                                    </span>
                                                 </a>
                                             </td>
                                         </tr>
@@ -142,21 +138,17 @@
                                                 {{ booking.booked_artist }}
                                             </td>
                                             <td>
-                                                <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}" aria-label="Edit booking">
-                                                    <button class="btn btn-sm btn-warning button-shadow">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                        <span class="hide-less-768px">
-                                                            Edit
-                                                        </span>
-                                                    </button>
+                                                <a href="{% url 'edit-booking' edit_booking_pk=booking.pk %}" aria-label="Edit booking" class="btn btn-sm btn-warning button-shadow">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                    <span class="hide-less-768px">
+                                                        Edit
+                                                    </span>
                                                 </a>
-                                                <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}" aria-label="Cancel booking">
-                                                    <button class="btn btn-sm btn-danger button-shadow">
-                                                        <i class="bi bi-x"></i>
-                                                        <span class="hide-less-768px">
-                                                            Cancel
-                                                        </span>
-                                                    </button>
+                                                <a href="{% url 'cancel-request' request_booking_pk=booking.pk %}" aria-label="Cancel booking" class="btn btn-sm btn-danger button-shadow">
+                                                    <i class="bi bi-x"></i>
+                                                    <span class="hide-less-768px">
+                                                        Cancel
+                                                    </span>
                                                 </a>
                                             </td>
                                         </tr>
@@ -256,8 +248,8 @@
             </div>
             <div class="row text-center pt-3">
                 <div>
-                    <a href="{% url 'new-booking' %}" aria-label="New booking">
-                        <button type="button" class="btn btn-success button-shadow">New booking</button>
+                    <a href="{% url 'new-booking' %}" aria-label="New booking" class="btn btn-success button-shadow">
+                        New booking
                     </a>
                 </div>
             </div>
@@ -316,8 +308,8 @@
                 </strong>
             </p>
             <div class="container text-center">
-                <a href="{% url 'new-booking' %}" aria-label="New booking">
-                    <button type="button" class="btn btn-success button-shadow">New regular booking</button>
+                <a href="{% url 'new-booking' %}" aria-label="New booking" class="btn btn-success button-shadow">
+                    New regular booking
                 </a>
             </div>
         </div>
