@@ -15,6 +15,10 @@ class TeamView(generic.ListView):
     template_name = "artists/artists.html"  # Template name
 
     def get(self, request, *args, **kwargs):
+        """
+        Method called when request = get
+        Returns list of team members
+        """
         artists = Artists.objects.all().order_by(
             "start_date"
         )  # Get all artists adn order by start date
@@ -66,6 +70,10 @@ class TeamDetailView(generic.DetailView):
     slug_field = "slug"  # Name of slug field
 
     def get(self, request, *args, **kwargs):
+        """
+        Method called when request = get
+        Returns list of team members
+        """
         artist_selected = self.get_object()  # Select artist by slug
         styles_this_artist = StylesAvailable.objects.filter(
             artists__in=[artist_selected]

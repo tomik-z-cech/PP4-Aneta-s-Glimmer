@@ -16,6 +16,7 @@ class StylesView(generic.ListView):
     template_name = "styles/styles.html"
 
     def get(self, request, *args, **kwargs):
+        """Method generates view of all styles"""
         # Select all styles, annotate cooments count
         styles_list = StylesAvailable.objects.annotate(
             comments_num=Count(
@@ -42,6 +43,7 @@ class StyleDetailView(generic.DetailView):
     context_object_name = "style_detail"
 
     def get(self, request, *args, **kwargs):
+        """Method generates view of selected style"""
         # Select style for detail
         style_selected = self.get_object()
         # Select all artists that do this style
@@ -144,6 +146,7 @@ class StyleLike(LoginRequiredMixin, View):
     Class called when like button pressed
     """
     def post(self, request, slug):
+        """Method changes like status"""
         # Get the style
         style = get_object_or_404(StylesAvailable, slug=slug)
         # If user in list of users they do like, then dislike
@@ -169,6 +172,7 @@ class StyleLike(LoginRequiredMixin, View):
 class StyleTry(LoginRequiredMixin, View):
     """Class called when try button pressed"""
     def post(self, request, slug):
+        """Method changes try status"""
         # Get the style
         style = get_object_or_404(StylesAvailable, slug=slug)
         # If user in list of users they want to try, then unmark

@@ -17,6 +17,7 @@ class AllNewsView(generic.ListView):
     template_name = "news/all_news.html"  # Template
 
     def get(self, request, *args, **kwargs):
+        """Method generates view of all news"""
         # Select all news
         news = NewsPosts.objects.annotate(
             comments_num=Count(

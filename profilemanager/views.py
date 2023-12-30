@@ -16,6 +16,7 @@ class MyDetailsView(generic.ListView):
     model = UserProfile
 
     def get(self, request, *args, **kwargs):
+        """Method generates view for profile manager"""
         # Request logged in user
         login_user = request.user
         profile_selected = login_user.userprofile
@@ -29,6 +30,7 @@ class MyDetailsView(generic.ListView):
         )
 
     def post(self, request, *args, **kwargs):
+        """Method saves updated user details"""
         updated_profile = request.user.userprofile
         # Updated details from form
         form = UpdateDetailsForm(request.POST, instance=updated_profile)
@@ -49,6 +51,7 @@ class DeleteMyProfileView(generic.ListView):
     Class deletes user profile
     """
     def get(self, request, *args, **kwargs):
+        """Method entirely deletes user profile"""
         model = User
         logged_in_user = request.user
         # Delete user profile

@@ -24,7 +24,7 @@ from artists.models import Artists
 
 class BookingOptionsView(generic.ListView):
     @login_required
-    def booking_options(request):
+    def booking_options(self, request):
         """
         Function returns data to the template based on user selection
         """
@@ -209,7 +209,8 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
             )
 
     @login_required
-    def cancel_request(request, request_booking_pk):
+    def cancel_request(self, request, request_booking_pk):
+        """This method redirects user to confirm page"""
         requested_booking = get_object_or_404(
             Bookings, pk=request_booking_pk
         )  # Get booking
@@ -319,6 +320,7 @@ class EditBookingView(
     success_url = "/bookings/"  # URL to redirect after successful booking
 
     def test_func(self):
+        """Test function to ensure user is the booking creator"""
         booking = get_object_or_404(
             Bookings, pk=self.kwargs["edit_booking_pk"])
         return self.request.user == booking.username
@@ -419,12 +421,17 @@ class EditBookingView(
 
 class CancelBookingView(
         LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    """
+    Class cancels bookings
+    """
     def test_func(self):
+        """Method test if user is the creator of booking"""
         booking = get_object_or_404(
             Bookings, pk=self.kwargs["cancel_booking_pk"])
         return self.request.user == booking.username
 
     def get(self, request, cancel_booking_pk, *args, **kwargs):
+        """Method GET cancels booking and send confirmation"""
         booking_to_cancel = get_object_or_404(
             Bookings, pk=cancel_booking_pk
         )  # Queryset for booking to cancel
@@ -454,11 +461,13 @@ class CancelBookingView(
         )
         message = strip_tags(html_message)
         from_address = "anetasglimmer@gmail.com"  # From
-        send_mail(subject,
-                  message,
-                  from_address,
-                  recipient,
-                  html_message=html_message)
+        send_mail(
+            subject,
+            message,
+            from_address,
+            recipient,
+            html_message=html_message
+            )
         messages.add_message(
             request,
             messages.SUCCESS,
@@ -470,12 +479,17 @@ class CancelBookingView(
 
 class RateBookingView(
         LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    """
+    This class view enables user to rate bookings
+    """
     def test_func(self):
+        """Method tests if user is the creator of booking"""
         booking = get_object_or_404(
             Bookings, pk=self.kwargs["rate_booking_pk"])
         return self.request.user == booking.username
 
     def get(self, request, rate_booking_pk, score, *args, **kwargs):
+        """Method GET adds score to booking"""
         booking_to_rate = get_object_or_404(Bookings, pk=rate_booking_pk)
         if booking_to_rate.is_rated != 1:
             booking_to_rate.is_rated = 1  # Change status
