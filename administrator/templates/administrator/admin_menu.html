@@ -1,20 +1,19 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="wrapper">
-    <br>
-    <br>
-    <br>
-Admin menu
-<br>
-<a href="#">Artists</a><br>
-<a href="#">Bookings</a><br>
-<a href="#">News</a><br>
-<a href="#">Comments</a><br>
-<a href="#">Styles</a><br>
-<a href="#">Users</a><br>
+<div class="container wrapper d-flex justify-content-center align-items-center" style="background: url('{% static "images/background-admin.jpg" %}') no-repeat fixed top right / cover;">
+    <div class="form-background">
+        <div class="w-100 d-flex justify-content-center p-3">
+            <h1>
+                Admin
+            </h1>
+        </div>
+        <div class="w-100 d-flex justify-content-center p-3 form-heading text-center">
+            <p>
+                Admin section is currently under constraction, please use the <a href="{% url 'admin:index' %}">Django Admin Suite</a> in the mean time.
+            </p>
+        </div>
+    </div>
 </div>
-{% block admincontent %}
-{% endblock %}
-
 {% endblock %}
