@@ -20,7 +20,8 @@
     - [3.1.1 The Idea](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [3.1.2 The Ideal User](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [3.1.3 Site Goals](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
-    - [3.1.4 EPICs](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [3.1.4 Epics](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [3.1.5 User stories](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 
 ---
 
@@ -33,7 +34,7 @@
 
 ### **3.1.2 The Ideal User**
 
-The target audience are individuals or groups that are seeking inspiration in finger nail modelling, lookingfor new trends, likes to see opinion of others in the same thread.
+The target audience are individuals or groups that are seeking inspiration in finger nail modelling, looking for new trends, likes to see opinion of others in the same thread.
 
 - Ideal user likes nail art
 - Ideal user visits nail salons
@@ -48,9 +49,9 @@ The target audience are individuals or groups that are seeking inspiration in fi
 - Create a place where users can share opinions
 - Offer users inspiration in nail art field
 
-### **3.1.4 EPICs**
+### **3.1.4 Epics**
 
-As a thought process of the strategy plane, 12 epics were created and utilized. Please see below the detil list of epics with links, or a link to the project's [Kanban Board](https://github.com/users/tomik-z-cech/projects/1/views/1) *(appendix 1)*.
+As a thought process of the strategy plane, 12 epics were created and utilized. Please see below the detail list of epics with links, or a link to the project's [Kanban Board](https://github.com/users/tomik-z-cech/projects/1/views/1) *(appendix 1)*. Those Epics were further sliced into 49 USER STORIES.
 
 *Appendix 1 - Kanban Board*
 
@@ -58,16 +59,35 @@ As a thought process of the strategy plane, 12 epics were created and utilized. 
 
 - EPIC 1 : Environment configuration - [issue #4](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/4)
 - EPIC 2 : Database models - [issue #12](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/12)
-- EPIC 3 : User Authentication and Authorisation - [issue #16](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/16)
+- EPIC 3 : User Authentication and Authorization - [issue #16](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/16)
 - EPIC 4 : User Details Change - [issue #20](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/20)
-- EPIC 5 :
-- EPIC 6 :
-- EPIC 7 :
-- EPIC 8 :
-- EPIC 9 :
-- EPIC 10 :
-- EPIC 11 :
-- EPIC 12 :    
+- EPIC 5 : News, News Commenting & Liking - [issue #24](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/24)
+- EPIC 6 : Styles Functions - [issue #31](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/31)
+- EPIC 7 : Booking Management - [issue #38](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/38)
+- EPIC 8 : Search Bar - [issue #51](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/51)
+- EPIC 9 : Business owner objectives - [issue #54](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/54)
+- EPIC 10 : Styling and design of UI - [issue #70](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/70)
+- EPIC 11 : Testing and Validation - [issue #74](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/74)
+- EPIC 12 : Custom Admin interface - [issue #79](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/79)
+
+### **3.1.5 User stories**
+
+EPIC 1 : Environment configuration
+
+<details>
+<summary>
+View User Stories for EPIC 1
+</summary>
+
+| Issue                                                               | Title                                  | User Story                                                                                                                 |
+| ------------------------------------------------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| [# 1](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/1) | USER STORY : Set up GiHub repository   | As a Developer, I need to set-up a repository on GitHub platform to be able to have control over versions of project.      |
+| [# 2](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/2) | USER STORY : Create working Django app | As a Developer, I need to install all dependencies, correctly set settings.py and create working app in local environment. |
+| [# 3](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/3) | USER STORY : Deploy to Heroku          | As a Developer I need to create a working Heroku deployement.                                                              |
+
+</details>
+---
+
 
 ## **3.2. The Scope Plane**
 
