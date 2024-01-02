@@ -115,7 +115,7 @@ View User Stories for EPIC 1 : Environment configuration
 | ------------------------------------------------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | [# 1](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/1) | USER STORY : Set up GiHub repository   | As a Developer, I need to set-up a repository on GitHub platform to be able to have control over versions of project.      |
 | [# 2](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/2) | USER STORY : Create working Django app | As a Developer, I need to install all dependencies, correctly set settings.py and create working app in local environment. |
-| [# 3](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/3) | USER STORY : Deploy to Heroku          | As a Developer I need to create a working Heroku deployement.                                                              |
+| [# 3](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/3) | USER STORY : Deploy to Heroku          | As a Developer I need to create a working Heroku deployment.                                                              |
 
 </details>
 
@@ -126,8 +126,8 @@ View User Stories for EPIC 2 : Database models
 
 | Issue                                                                 | Title                                                    | User Story                                                                                                                                                  |
 | --------------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [# 13](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/13) | USER STORY : Define Database Schema and create sub apps. | As a Developer, I need to create databse schema that fits the purpose of the project and also create all the modular apps that will be used in the project. |
-| [# 14](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/14) | USER STORY : Create database realtionships               | As a Developer, I need to define relatinships between models and import the relationships into working apps models.                                         |
+| [# 13](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/13) | USER STORY : Define Database Schema and create sub apps. | As a Developer, I need to create database schema that fits the purpose of the project and also create all the modular apps that will be used in the project. |
+| [# 14](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/14) | USER STORY : Create database relationships               | As a Developer, I need to define relationships between models and import the relationships into working apps models.                                         |
 | [# 15](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/15) | USER STORY : Implement Data Validation in Models         | As a Developer, I need implement data validation rules within Glimmer database models.                                                                      |
 
 </details>
@@ -139,7 +139,7 @@ View User Stories for EPIC 3 : User Authentication and Authorization
 
 | Issue                                                                 | Title                                       | User Story                                                                                       |
 | --------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [# 17](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/17) | USER STORY : Implement user registration    | As a Site User I am able to register to create new account and to select username and passsword. |
+| [# 17](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/17) | USER STORY : Implement user registration    | As a Site User I am able to register to create new account and to select username and password. |
 | [# 18](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/18) | USER STORY : Log In                         | As a Site User I am able to Log In to see registered user section.                               |
 | [# 19](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/19) | USER-STORY : Reset my password if forgotten | As a Site User I am able to Reset My Password to change my password if forgotten.                |
 | [# 48](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/48) | USER STORY : Log out                        | As a Site User, I am able to log out to leave the site functions for registered users.           |
@@ -153,7 +153,7 @@ View User Stories for EPIC 4 : User Details Change
 | Issue                                                                 | Title                                                          | User Story                                                                                |
 | --------------------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | [# 21](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/21) | USER STORY : Opt In/Out for Newsletter                         | As a Site User I can Opt In/Out for Newsletter to be able to change my preferences.       |
-| [# 22](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/22) | USER STORY : Change Details (Phone Nuber, Email Address, etc.) | As a Site User I can Update My Detail to be able to manage my account in case of changes. |
+| [# 22](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/22) | USER STORY : Change Details (Phone Number, Email Address, etc.) | As a Site User I can Update My Detail to be able to manage my account in case of changes. |
 | [# 23](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/23) | USER STORY : Delete my account                                 | As a Site User I can Delete My Account to be able to opt out from all services.           |
 
 </details>
@@ -165,7 +165,7 @@ View User Stories for 5 : News, News Commenting & Liking
 | Issue                                                                 | Title                                            | User Story                                                                               |
 | --------------------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------- |
 | [# 25](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/25) | USER STORY : See News Highlights on landing page | As a Site User I can See the News Highlights to see three newest news posts.             |
-| [# 26](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/26) | USER STORY : See list of all News & Details      | As a Site User I can Visit Page with all News to be able tosee all News.                 |
+| [# 26](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/26) | USER STORY : See list of all News & Details      | As a Site User I can Visit Page with all News to be able to see all News.                 |
 | [# 27](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/27) | USER STORY : Like/Unlike News                    | As a Site User I can Like or Unlike News Post to highlight the News Post as interesting. |
 | [# 28](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/28) | USER STORY : Comment on News                     | As a Site User I can Comment on News Post to share my opinion.                           |
 | [# 29](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/29) | USER STORY : See other users Comments            | As a Site User I can see other comments on News Posts to read other Users opinions.      |
@@ -183,8 +183,8 @@ View User Stories for EPIC 6 : Styles Functions
 | [# 33](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/33) | USER STORY : Styles Details                                            | As a Site User I can See Style details to see description and what artist does this particular style.        |
 | [# 34](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/34) | USER STORY : Like / Unlike Styles                                      | As a Site User I can Like / Unlike particular Style to express my opinion.                                   |
 | [# 35](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/35) | USER STORY : See who else likes the particular Style                   | As a Site User I can see who else liked the particular style to see who else has same opinion.               |
-| [# 36](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/36) | USER STORY : Mark / Unmark Styles as "Wan't to try"                    | As a Site User I can Mark / Unmark particular style to express my interest.                                  |
-| [# 37](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/37) | USER STORY : See who else marked the partucular style as "Want to try" | As a Site User I can see who else marked partulcar style as "Want to try to see who else has same interests. |
+| [# 36](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/36) | USER STORY : Mark / Un-mark Styles as "Wan't to try"                    | As a Site User I can Mark / Un-mark particular style to express my interest.                                  |
+| [# 37](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/37) | USER STORY : See who else marked the particular style as "Want to try" | As a Site User I can see who else marked particular style as "Want to try to see who else has same interests. |
 
 </details>
 <details>
@@ -239,7 +239,7 @@ View User Stories for EPIC 10 : Styling and design of UI
 | --------------------------------------------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | [# 71](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/71) | USER STORY : Intuitive navigation | As a Site Developer, I need to insure easy navigation throughout the site.                                                 |
 | [# 72](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/72) | USER STORY : Color scheme         | As a Site Developer, I need to insure same color scheme throughout the site                                                |
-| [# 73](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/73) | USER STORY : WAVE compatibility   | As a Site Developer, I need to insure that site can be easily navigated using page readers, so it doen't have WAVE issues. |
+| [# 73](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/73) | USER STORY : WAVE compatibility   | As a Site Developer, I need to insure that site can be easily navigated using page readers, so it doesn't have WAVE issues. |
 
 </details>
 <details>
@@ -262,7 +262,7 @@ View User Stories for EPIC 12 : Custom Admin interface
 
 | Issue                                                                 | Title                                                                    | User Story                                                                                                         |
 | --------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| [# 80](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/80) | USER STORY : Admin interface that copies functions of Django Admin Suite | As a Site Developer I need to come up with cusom admin interface that ensures all functions of Django Admin Suite, |
+| [# 80](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/issues/80) | USER STORY : Admin interface that copies functions of Django Admin Suite | As a Site Developer I need to come up with custom admin interface that ensures all functions of Django Admin Suite, |
 
 </details>
 
@@ -308,7 +308,7 @@ The following site-maps show how the site is structured to logged in users *( ap
 
 ### 3.3.2. Database Schemas
 
-Following schemas show intended database structure *( appendix 4 )* and the actual database structure generated by Dbeaver *( Appendix 5 )*.
+Following schemas show intended database structure *( appendix 4 )* and the actual database structure generated by DBeaver *( Appendix 5 )*.
 
 *Appendix 4 - Initial DB schema*
 
@@ -388,7 +388,7 @@ Following schemas show intended database structure *( appendix 4 )* and the actu
 
 ![My Profile Page](/docs/wireframes/profile.png)
 
-- **Search Results Page** : Provides the user with results of their search query in three groups. News Posts, Styles and Artists. user has the option to seacrh again from the same page. *( Appendix 17 )*.
+- **Search Results Page** : Provides the user with results of their search query in three groups. News Posts, Styles and Artists. user has the option to search again from the same page. *( Appendix 17 )*.
 
 *Appendix 17 - Search Results Page*
 
@@ -414,7 +414,7 @@ To create the logo, site called [Looka](https://looka.com/) was used. Few ideas 
 
 ### 3.5.2. Color pallette
 
-Based on the colors of the logo, rest of the colors were picked using the [Adobe Color Wheel](https://color.adobe.com/create/color-wheel), following colors were picked into the color pallette *( Appendix 20 )*. As some of the colors neede to be opaque, following CSS variables were established *( Appendix 21 )*.
+Based on the colors of the logo, rest of the colors were picked using the [Adobe Color Wheel](https://color.adobe.com/create/color-wheel), following colors were picked into the color pallette *( Appendix 20 )*. As some of the colors needed to be opaque, following CSS variables were established *( Appendix 21 )*.
 
 *Appendix 20 - Color pallette*
 
@@ -443,6 +443,14 @@ Two fonts were picked and saved in CSS vars *( Appendix 24)* :
 *Appendix 24 - Font Variables*
 
 ![Font Variables](/docs/font-vars.png)
+
+### 3.5.4. Icons and pictures
+
+Icons were downloaded from [Flaticon](https://www.flaticon.com/icons). Majority of icons are free to download and use under the their T&C license. Icons were user for like, try, comments and rating functions in this project.
+
+Site called [Freepik](https://www.freepik.com/) was used to download images used in this project. The site offers massive amounts of imagery that is free to download and use under their T&C license. Images from [Freepik](https://www.freepik.com/) were mainly used as background images.
+
+Profile pictures of non-existing artists in this project were created by AI called [Canva](https://www.canva.com/). Reason for this was a need of profile pictures of artists with certain parameters and they were very difficult to find under free license.
 
 ---
 
