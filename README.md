@@ -54,7 +54,10 @@
     - [4.2.10 My Details Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [4.2.11 Search Results Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [4.2.12 Forms](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
-
+  - [4.3. Future Features](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+- [5. Testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+- [6. Deployment](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+- [7. Technologies & Credits](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 
 ---
 
@@ -682,6 +685,49 @@ Profile pictures of non-existing artists in this project were created by AI call
 
 ![Forms](/docs/features/form.png)
 
+## **4.3. Future Features**
+
+This project could be significantly improved by adding more features this could include :
+
+- Toggle between light mode and dark mode (currently working on)
+- Custom Admin interface to fit within the style of project (currently working on)
+- Ability to Login with other page credentials (Google, Facebook)
+- Virtual Try On function
+- Messaging between users
+- E-Commerce section 
+
+
 ---
 
+## **5. Testing**
+
+---
+
+## **6. Deployment**
+
+---
+
+## **7. Technologies & Credits**
+
+### 7.1. Technologies used to develop and deploy this project
+
+- **Balsamiq** - to create wireframes.
+- **HTML** - main programming language for this project
+- **CSS** - styling the project via external CSS file `/asssets/css/styles.css` 
+- **CodeAnywhere** - to write and save the code
+- **GitBash** - to make commitments of progress and push the results back to GitHub
+- **ConText** - code off-line in "doodle-zone" mode
+- **GitHub** - to record all commitments and deployment the live project
+
+### 7.2. Credits
+
+- [**Magdalena Olajrz Photography**](https://www.facebook.com/profile.php?id=61553435195090) - massive credit for creating beautiful profile pictures
+- [**Canva**](https://canva.com/) - used for creating non-existent profile images
+- [**Looka**](https://looka.com/) - used for creating logo
+- [**Adobe Color Wheel**](https://color.adobe.com/create/color-wheel) - used for picking the best color schema
+- [**Google Fonts**](https://fonts.google.com/) - used for picking the best typography
+- [**FavIcon.io**](https://favicon.io/favicon-converter/) - used to compress favicon
+- [**FreePik**](https://www.freepik.com/) - used as images database
+- [**FlatIcon**](https://www.flaticon.com/icons) - used as icons database
+- [**W3Schools**](https://www.w3schools.com/) - useful information and cheat sheets
 
