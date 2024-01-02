@@ -516,6 +516,21 @@ Profile pictures of non-existing artists in this project were created by AI call
 
 ![403.html](/docs/features/403.png)
 
+*Appendix 31 - 404.html*
+
+![404.html](/docs/features/404.png)
+
+*Appendix 32 - 500.html*
+
+![500.html](/docs/features/500.png)
+
+### **4.1.5. Scroll bar**
+- Custom scroll bar was used to fit within the color theme within the project.
+
+*Appendix 33 - Scroll bar*
+
+![Scrollbar](/docs/features/scrollbar.png)
+
 ---
 
 
