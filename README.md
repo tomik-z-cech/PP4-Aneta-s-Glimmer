@@ -55,7 +55,10 @@
     - [4.2.11 Search Results Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [4.2.12 Forms](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
   - [4.3. Future Features](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
-- [5. Testing & Bugs](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+- [5. Validation, Testing & Bugs](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [5.1. Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [5.2. Testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [5.3. Bugs](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 - [6. Deployment](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
   - [6.1. Transfer of progress from IDE](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
   - [6.2. Offline cloning](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
@@ -709,9 +712,19 @@ This project could be significantly improved by adding more features this could 
 
 ---
 
-# **5. Testing & Bugs**
+# **5. Validation, Testing & Bugs**
 
-All testing, validating and bugs is documented separately in [testing.md](/testing.md) file
+## **5.1. Validation**
+
+Validation is documented separately in [validation.md](/docs/validation.md) file.
+
+## **5.2. Testing**
+
+Testing is documented separately in [testing.md](/docs/testing.md) file.
+
+## **5.3. Bugs**
+
+Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
 
 ---
 
