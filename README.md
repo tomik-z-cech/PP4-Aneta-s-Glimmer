@@ -28,6 +28,10 @@
   - [3.3. The Structure Plane](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [3.3.1 Site Maps](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [3.3.2 Database Schemas](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [3.4. The Skeleton Plane](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [3.4.1 Wire-frames](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [3.5. The Surface Plane](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [3.5.1 Logo](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 ---
 
 # **3. User Experience (UX)**
@@ -393,6 +397,30 @@ Following schemas show intended database structure *( appendix 4 )* and the actu
 ![Forms](/docs/wireframes/forms.png)
 
 ## **3.5. The Surface Plane**
+
+Once the Strategy, Scope, Structure and Skeleton Planes were in place, it was time to work on the Surface Plane (Design).
+
+### 3.5.1. Logo
+
+To create the logo, site called [Looka](https://looka.com/) was used. Few ideas were presented to the site owner and one of the logos was picked *( Appendix 19 )*
+
+*Appendix 19 - Logo*
+
+![Logo](/docs/email_logo.png)
+
+### 3.5.1. Color pallette
+
+Based on the colors of the logo, rest of the colors were picked using the [Adobe Color Wheel](https://color.adobe.com/create/color-wheel), following colors were picked into the color pallette *( Appendix 20 )*. As some of the colors neede to be opaque, following CSS variables were established *( Appendix 21 )*.
+
+*Appendix 20 - Color pallette*
+
+![Color pallette](/docs/color-palette.png)
+
+*Appendix 21 - Color variables*
+
+![Color variables](/docs/color-vars.png)
+
+
 
 ---
 
