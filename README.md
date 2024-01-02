@@ -40,6 +40,8 @@
     - [4.1.2 Footer](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [4.1.3 Favicon](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [4.1.4 Error Pages](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.1.5 Scrollbar](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [4.2. Main Content](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 
 
 ---
@@ -470,6 +472,7 @@ Profile pictures of non-existing artists in this project were created by AI call
 - Header is designed to cover full width `width: 100%` of the browsing window.
 - This will allow user to navigate through the pages and to navigate back to home page when click on logo.
 - Header appears same on all devices.
+- Header extends `base.html` in block `{% include 'header.html' %}`
 
 *Appendix 25 - Logo*
 
@@ -490,6 +493,7 @@ Profile pictures of non-existing artists in this project were created by AI call
 - Footer is designed to cover full width `width: 100%` of the browsing window.
 - This will allow user to open phone app (dial the number directly), send e-mail (open e-mail application on phone/tablet) and open Facebook link in new window.
 - Footer appears same on all devices.
+- Footer extends `base.html` in block `{% include 'footer.html' %}`
 
 *Appendix 28 - Footer*
 
@@ -531,6 +535,100 @@ Profile pictures of non-existing artists in this project were created by AI call
 
 ![Scrollbar](/docs/features/scrollbar.png)
 
+
+## **4.2. Main Content**
+
+### **4.2.1. Landing Page**
+
+- **App :** `landing`
+- **Template File :** `index.html` - extends `base.html`
+- **User :** Provides user with clear understanding of what the page is about. User is also provided with 3 newest News Post along with statistics of top artists and top styles by like and "try"  *( Appendix 34 )*.
+
+*Appendix 34 - Landing Page*
+
+![Landing Page](/docs/features/landing.png)
+
+### **4.2.2. News Page**
+
+- **App :** `news`
+- **Template File :** `all_news.html` - extends `base.html`
+- **User :** Provides user with all News Posts published along with name of creator, date created and a snippet of News Post body. Also information of amount of likes and comments is provided to both logged in and not logged in users *( Appendix 35 )*.
+
+*Appendix 35 - News Page*
+
+![News Page](/docs/features/news.png)
+
+### **4.2.3. News Detail Page**
+
+- **App :** `news`
+- **Template File :** `news_detail.html` - extends `base.html`
+- **User :** Provides user with selected News Post along with name of creator, date created and full News Post body *( Appendix 36 )*. User sees likes and amount of comments. Logged in user has ability to comment and like. *( Appendix 37 )*.
+
+*Appendix 36 - News Detail Page*
+
+![News Detail Page](/docs/features/d-news.png)
+
+*Appendix 36 - News Detail Page - comments & likes*
+
+![News Detail Page - Comments](/docs/features/cl-news.png)
+
+### **4.2.4. Styles Page**
+
+- **App :** `styles`
+- **Template File :** `styles.html` - extends `base.html`
+- **User :** Provides user with all Styles Available along with name of style, image and artists that excel in this style. Also information of amount of likes, tries and comments is provided to both logged in and not logged in users *( Appendix 37 )*.
+
+*Appendix 37 - Styles Page*
+
+![Styles Page](/docs/features/styles.png)
+
+### **4.2.5. Styles Detail Page**
+
+- **App :** `styles`
+- **Template File :** `style_detail.html` - extends `base.html`
+- **User :** Provides user with details of selected Style along with names of artists that excel in this style, other details and users have ability to create a booking from here *( Appendix 38 )*. User sees likes, tries and amount of comments. Logged in user has ability to comment like and mark to try *( Appendix 39 )*.
+
+*Appendix 38 - Style Detail Page*
+
+![Style Detail Page](/docs/features/d-styles.png)
+
+*Appendix 39 - Style Detail Page - comments, likes & tries*
+
+![Style Detail Page - Comments](/docs/features/cl-styles.png)
+
+### **4.2.6. Team Page**
+
+- **App :** `artists`
+- **Template File :** `artists.html` - extends `base.html`
+- **User :** Provides user with all Team members list along with name of artist, profile picture and artist's rating.*( Appendix 40 )*.
+
+*Appendix 40 - Team Page*
+
+![Team Page](/docs/features/team.png)
+
+### **4.2.7. Artist Detail Page**
+
+- **App :** `artists`
+- **Template File :** `artist_detail.html` - extends `base.html`
+- **User :** Provides user with details of selected team member, their bio, profile picture and list of styles this artist excels in along with option to create a booking *( Appendix 41 )*.
+
+*Appendix 41 - Artist Detail Page*
+
+![Artist Detail Page](/docs/features/d-team.png)
+
+### **4.2.8. My Bookings Page**
+
+- **App :** `bookings`
+- **Template File :** `bookings.html` - extends `base.html`
+- **User :** Provides user with information of their pending, confirmed and past bookings. Pending and confirmed bookings can be edited, past bookings can be rated *( Appendix 42 )*. User is also provided with amount of free slots for today and tomorrow for each artist *( Appendix 43 )*.
+
+*Appendix 42 - My Bookings Page*
+
+![My Bookings Page](/docs/features/bookings.png)
+
+*Appendix 43 - Last Minute Bookings*
+
+![Last Minute Bookings](/docs/features/last-minute.png)
 ---
 
 
