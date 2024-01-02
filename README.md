@@ -55,10 +55,12 @@
     - [4.2.11 Search Results Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [4.2.12 Forms](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
   - [4.3. Future Features](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
-- [5. Testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+- [5. Testing & Bugs](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 - [6. Deployment](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 - [7. Technologies & Credits](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
-
+  - [7.1. Technologies used to develop and deploy this project](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [7.2. Requirements.txt](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [7.3. Credits](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 ---
 
 # **3. User Experience (UX)**
@@ -699,11 +701,72 @@ This project could be significantly improved by adding more features this could 
 
 ---
 
-## **5. Testing**
+# **5. Testing & Bugs**
 
 ---
 
-## **6. Deployment**
+# **6. Deployment**
+
+## **6.1. Transfer of progress from IDE**
+
+- **Task :** To ensure regular commitments are done to avoid any data/progress loss.
+- **Method :** 
+   - commands `git add [filename]` was used to add specific file to staging area, alternatively command `git add .` was used to add all changed files to staging area
+   - command `git commit -m "[commit description]"` was used to add commitments into queue
+   - command `git push` was used to push all commitments to remote repository on GitHub
+
+## **6.2. Offline cloning**
+
+- **Task :** To use repository on local machine.
+- **Method :** 
+  - Navigate to GitHub and follow `Code -> HTTPS -> Copy button` . after those steps open your local coding environment and type `git clone [copied link]`.
+
+## **6.3. Deployment Prerequisites**
+
+### **6.3.1. Gmail**
+
+- **Task :** Obtain GMail username and app key (password) - GMAIL SMTP to be used as mailing client.
+- **Method :** 
+  - Navigate to `https://accounts.google.com/` and follow all steps for registering new email address
+  - Login to google with newly created email address and password.
+  - Navigate to `https://accounts.google.com/` once again
+  - Select `Security > Signing in to Google > 2-Step Verification > App Passwords`
+  - Enter a name of the app password and select `Generate`
+  - You will get app password in format `xxxx xxxx xxxx xxxx`
+  - Update `settings.py` in the project directory
+
+### **6.3.2. ElephantSQL**
+
+- **Task :** Obtain database URL to be used as project's database.
+- **Method :** 
+  - Select one of the DB providers, I did use [ElephantQSL](https://www.elephantsql.com/)
+  - Navigate to `https://www.elephantsql.com/` and follow all steps for registering new account
+  - Login to ElephantSQL with newly created account credentials
+  - Navigate to `+ Create New Instance`
+  - Select `Name, Plan and Region`
+  - Confirm the instance by pressing `Create Instance`
+  - Obtain database URL in format `postgres://NAME:PASSKEY@flora.db.elephantsql.com/NAME`
+  - Update `settings.py` in the project directory
+
+### **6.3.3. Cloudinary**
+
+- **Task :** Obtain Cloudinary URL to be used as project's static storage
+- **Method :** 
+  - Select one of the static storage providers, I did use [Cloudinary](https://console.cloudinary.com/)
+  - Navigate to `https://console.cloudinary.com/` and follow all steps for registering new account
+  - Login to Cloudinary with newly created account credentials
+  - Navigate to `+ Add a new environment`
+  - Confirm your selection
+  - Obtain Cloudinary URL in format `cloudinary://USER:PASSKEY@ENVIRONMENT`
+  - Update `settings.py` in the project directory
+
+### **6.4. Deployment to Heroku**
+
+- **Task :** To ensure users are able to view live version of **Aneta's Glimmer** project.
+- **Method :** 
+    
+
+  
 
 ---
 
@@ -725,7 +788,7 @@ This project could be significantly improved by adding more features this could 
 
 ### 7.3. Requirements.txt
 
-Following modules were used in development of **Aneta's Glimmer** website
+Following modules were used in development of **Aneta's Glimmer** website :
 
  - `asgiref==3.7.2` - ASGI reference implementation, providing a specification for asynchronous web servers and applications
 - `bleach==6.1.0` - sanitizing and cleaning HTML input
@@ -766,6 +829,8 @@ Following modules were used in development of **Aneta's Glimmer** website
 - [**Looka**](https://looka.com/) - used for creating logo
 - [**Adobe Color Wheel**](https://color.adobe.com/create/color-wheel) - used for picking the best color schema
 - [**Google Fonts**](https://fonts.google.com/) - used for picking the best typography
+- [**ElephantSQL**](https://www.elephantsql.com/) - used as a database storage
+- [**Cloudinary**](https://console.cloudinary.com/) - used as a storage of static files
 - [**FavIcon.io**](https://favicon.io/favicon-converter/) - used to compress favicon
 - [**FreePik**](https://www.freepik.com/) - used as images database
 - [**FlatIcon**](https://www.flaticon.com/icons) - used as icons database
