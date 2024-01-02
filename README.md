@@ -34,6 +34,12 @@
     - [3.5.1 Logo](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [3.5.2 Color pallette](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [3.5.1 Fonts](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+- [3. Features](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [4.1. Features used in every HTML template](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.1.1 Header](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.1.2 Footer](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.1.3 Favicon](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.1.4 Error Pages](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 
 
 ---
@@ -456,7 +462,59 @@ Profile pictures of non-existing artists in this project were created by AI call
 
 # **4. Features**
 
+## **4.1. Features used in every HTML template**
 
+### **4.1.1 Header**
+- Header contains a Logo section *( Appendix 25 )* which is also used as a link to Home page `{% url 'home' %}` in the left top corner and Menu section *( Appendix 26 )* for easy navigation through all the pages. Menu is designed to change to "hamburger menu" *( Appendix 27 )* when the resolution changes to less than 1200 pixels in width.
+- Header is designed to have fixed position on top of page `top: 0px` through all browsing.
+- Header is designed to cover full width `width: 100%` of the browsing window.
+- This will allow user to navigate through the pages and to navigate back to home page when click on logo.
+- Header appears same on all devices.
+
+*Appendix 25 - Logo*
+
+![Logo](/docs/email_logo.png)
+
+*Appendix 26 - Menu*
+
+![Menu](/docs/features/menu.png)
+
+*Appendix 27 - Hamburger Menu*
+
+![Menu](/docs/features/hamburger.png)
+
+
+### **4.1.2. Footer**
+
+- Footer  *( Appendix 28 )* is designed to reveal basic contact details of **Aneta's Glimmer** on the left hand side, phone number and email address are constructed to be clickable links that are very useful especially for mobile phone users. Right-hand side of footer is designed to bring the user to Facebook via link that opens in new browser tab.
+- Footer is designed to cover full width `width: 100%` of the browsing window.
+- This will allow user to open phone app (dial the number directly), send e-mail (open e-mail application on phone/tablet) and open Facebook link in new window.
+- Footer appears same on all devices.
+
+*Appendix 28 - Footer*
+
+![Footer](/docs/features/footer.png)
+
+### **4.1.3. Favicon**
+
+- Every template in this project is equipped with Favicon. This is to ease navigation for user in case of more tabs opened. The logo was selected as Favicon *( Appendix 29)*. 
+
+*Appendix 29 - Favicon*
+
+![Favicon](/docs/features/favicon.png)
+
+### **4.1.4. Error Pages**
+
+- This project is designed to have custom error pages. In case of user clicks on broken link, submits action that isn't supported or tries to reach certain view without permission, then user isn't completely "cut off" from browsing, instead an error page with header and footer appears and user is informed of the situation.
+
+- The following custom error pages were created :
+- - 403 - Received when user attempts to access a web resource for which they lack the necessary permissions. *( Appendix 30 )*
+- - 404 - Encountered when the requested web resource by user is not found on the server. *( Appendix 31 )*
+- - 500 - Displayed when the web server encounters an internal error while processing the request. *( Appendix 32 )*
+
+*Appendix 30 - 403.html*
+
+![403.html](/docs/features/403.png)
 
 ---
 
