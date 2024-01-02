@@ -57,6 +57,14 @@
   - [4.3. Future Features](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 - [5. Testing & Bugs](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 - [6. Deployment](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [6.1. Transfer of progress from IDE](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [6.2. Offline cloning](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [6.3. Deployment Prerequisites](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [6.3.1 Gmail](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [6.3.2 ElephantSQL](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [6.3.3 Cloudinary](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [6.3.4 Settings.py & file-tree](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+  - [6.4. Heroku Deployment](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 - [7. Technologies & Credits](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
   - [7.1. Technologies used to develop and deploy this project](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
   - [7.2. Requirements.txt](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
@@ -760,6 +768,48 @@ This project could be significantly improved by adding more features this could 
   - Obtain Cloudinary URL in format `cloudinary://USER:PASSKEY@ENVIRONMENT`
   - Update `settings.py` in the project directory
 
+### **6.3.4. Settings.py & file-tree**
+
+- **Task :** Prepare `settings.py` adn file-tree for deployment 
+- **Method :** 
+  - Create file `env.py` to keep all sensitive information in
+  - See example of `env.py` file *( Appendix 48 )*
+  - Add `env.py` into `.gitignore` file to ensure this fill won't be uploaded to GitHub
+  - update `settings.py` with `import os`
+  - for every secured variable add code `VARIABLE = os.environ.get("VARIABLE")`
+  - ensure this process for Gmail, ElephantSQL, Cloudinary, DEBUG and Django Secret Key
+  - update default database settings in `settings.py` with `
+if "DATABASE_URL" in os.environ:
+    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
+    }`
+  - update default static settings in `settings.py` with `
+  STATIC_URL = "/static/"
+STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
+MEDIA = "/media/"
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+  `
+  - update email settings in `settings.py` with `EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True`
+  - Migrate - your database models to ElephantSQL using `python manage.py migrate` command
+  - Create directories `.\static` and `.\templates`
+  - commit and push changes to GitHub 
+
+*Appendix 48 - `env.py` file*
+
+![env.py](/docs/env.png)
+
 ### **6.4. Deployment to Heroku**
 
 - **Task :** To ensure users are able to view live version of **Aneta's Glimmer** project.
@@ -824,6 +874,8 @@ Following modules were used in development of **Aneta's Glimmer** website :
 
 ### 7.3. Credits
 
+- [**Daisy McGirr**](https://www.linkedin.com/in/daisy-mcgirr/?originalSubdomain=uk) - massive shout-out for keeping me in the right direction
+- [**Alan Bushell**](https://www.linkedin.com/in/bushell23/) - thank you for all the support
 - [**Magdalena Olajrz Photography**](https://www.facebook.com/profile.php?id=61553435195090) - massive credit for creating beautiful profile pictures
 - [**Canva**](https://canva.com/) - used for creating non-existent profile images
 - [**Looka**](https://looka.com/) - used for creating logo
