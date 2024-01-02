@@ -711,6 +711,8 @@ This project could be significantly improved by adding more features this could 
 
 # **5. Testing & Bugs**
 
+All testing, validating and bugs is documented separately in [testing.md](/testing.md) file
+
 ---
 
 # **6. Deployment**
@@ -814,9 +816,28 @@ EMAIL_USE_TLS = True`
 
 - **Task :** To ensure users are able to view live version of **Aneta's Glimmer** project.
 - **Method :** 
-    
+  - Register & Log In with heroku
+  - Navigate to `New > Create New App`
+  - Select Name of the app that is unique
+  - Navigate to `Settings > Reveal Config Vars`
+  - Add all variables from `env.py` to ConfigVars of Heroku App *( Appendix 49)*
+  - Add variable pair `PORT:8000`
+  - For the testing deployment add variable pair `COLLECT_STATIC:1`
+  - Add the Heroku app URL into `ALLOWED HOSTS` in `settings.py`
+  - In root create file name `Procfile` *( Appendix 50 )*
+  - Navigate to `Deploy > GitHub > Connect`
+  - Navigate to `Deploy > Deploy Branch`
+  - Optionally, you can enable automatic deploys
+  - See the deployment log - if the deployment was successful, you will be prompted with option to see live page  
 
-  
+
+*Appendix 49 - Heroku Config Vars*
+
+![Heroku Config Vars](/docs/vars.png)
+
+*Appendix 50 - Procfile*
+
+![Procfile](/docs/procfile.png)
 
 ---
 
