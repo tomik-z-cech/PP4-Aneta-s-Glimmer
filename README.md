@@ -711,15 +711,55 @@ This project could be significantly improved by adding more features this could 
 
 ### 7.1. Technologies used to develop and deploy this project
 
-- **Balsamiq** - to create wireframes.
-- **HTML** - main programming language for this project
-- **CSS** - styling the project via external CSS file `/asssets/css/styles.css` 
-- **CodeAnywhere** - to write and save the code
-- **GitBash** - to make commitments of progress and push the results back to GitHub
-- **ConText** - code off-line in "doodle-zone" mode
-- **GitHub** - to record all commitments and deployment the live project
+- [**Django**](https://docs.djangoproject.com/en/5.0/) - main Framework of the project
+- [**Python**](https://www.python.org/) - main BackEnd programming language of the project
+- [**HTML**](https://developer.mozilla.org/en-US/docs/Web/HTML) - templates programming language of this project (FrontEnd)
+- [**CSS**](https://developer.mozilla.org/en-US/docs/Web/CSS) - styling the project via external CSS file `./static/css/style.css`
+- [**Java Script**](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - dynamic templates programming language of this project (FrontEnd)
+- [**jQuery**](https://api.jquery.com/) - API for JavaScript - dynamic templates programming language of this project (FrontEnd)
+- [**Bootstrap v. 5.3**](https://getbootstrap.com/) - styling framework used in this project (FrontEnd)
+- [**Heroku**](https://heroku.com) - to deploy this project
+- [**Balsamiq**](https://balsamiq.com/support/) - to create wireframes
+- [**Git**](https://git-scm.com/doc) - to make commitments of progress and push the results back to GitHub
+- [**GitHub**](https://github.com/) - to keep the track of version control
 
-### 7.2. Credits
+### 7.3. Requirements.txt
+
+Following modules were used in development of **Aneta's Glimmer** website
+
+ - `asgiref==3.7.2` - ASGI reference implementation, providing a specification for asynchronous web servers and applications
+- `bleach==6.1.0` - sanitizing and cleaning HTML input
+- `certifi==2023.7.22` - validating SSL certificates.
+- `cffi==1.16.0` - way to call C functions from Python
+- `charset-normalizer==3.3.2` - normalizing character encodings
+- `cloudinary==1.36.0` - SDK for interacting with the Cloudinary media management service, facilitating image and video uploads
+- `cryptography==41.0.5` - cryptographic recipes, including encryption, hashing, and key management
+- `defusedxml==0.7.1` - library for safely parsing XML documents
+- `dj-database-url==0.5.0` - utility for using database URLs in Django settings, simplifying database configuration
+- `dj3-cloudinary-storage==0.0.6` - Django storage backend for Cloudinary, allowing seamless integration of Cloudinary as a storage solution for media files
+- `Django==4.2.7` - framework that encourages rapid development and clean, pragmatic design
+- `django-allauth==0.58.2` - package providing a set of authentication views, templates, and adapters for handling user registration, authentication, and account management
+- `django-crispy-forms==1.14.0` - application that lets you easily build and customize crispy forms using Bootstrap styles
+- `django-summernote==0.8.20.0` - application for integrating the Summernote WYSIWYG editor into Django admin forms
+- `gunicorn==21.2.0` -  WSGI HTTP server for running Django applications in production
+- `idna==3.4` - handling Internationalized Domain Names in Applications
+- `oauthlib==3.2.2` - reusable Python library for implementing OAuth1 and OAuth2 providers
+- `packaging==23.2` - core utility for Python packaging, providing functions for reading metadata, version parsing, and more
+- `psycopg2==2.9.9` - PostgreSQL adapter for Python, allowing Python applications to interact with PostgreSQL databases
+- `pycparser==2.21` - C parser in Python, used by cffi and other Python libraries to parse C code
+- `PyJWT==2.8.0` - Python library for JSON encoding and decoding
+- `python3-openid==3.2.0` - set of Python modules for OpenID authentication
+- `pytz==2023.3.post1` - Python library for working with time zones
+- `requests==2.31.0` -  Python library for making HTTP requests
+- `requests-oauthlib==1.3.1` - Python library for OAuth1 and OAuth2 authentication
+- `six==1.16.0` - Python 2 and 3 compatibility library
+- `sqlparse==0.4.4` - library for parsing SQL statements
+- `tzdata==2023.3` - Time zone database for Python
+- `urllib3==2.1.0` - HTTP library for making requests in Python
+- `webencodings==0.5.1` - library for working with HTML, XML, and other web encodings
+
+
+### 7.3. Credits
 
 - [**Magdalena Olajrz Photography**](https://www.facebook.com/profile.php?id=61553435195090) - massive credit for creating beautiful profile pictures
 - [**Canva**](https://canva.com/) - used for creating non-existent profile images
