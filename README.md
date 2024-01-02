@@ -42,6 +42,18 @@
     - [4.1.4 Error Pages](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [4.1.5 Scrollbar](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
   - [4.2. Main Content](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.1 Landing Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.2 News Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.3 News Detail Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.4 Style Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.5 Style Detail Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.6 Team Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.7 Artist Detail Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.8 My Bookings Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.9 Booking Forms](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.10 My Details Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.11 Search Results Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [4.2.12 Forms](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
 
 
 ---
@@ -629,6 +641,47 @@ Profile pictures of non-existing artists in this project were created by AI call
 *Appendix 43 - Last Minute Bookings*
 
 ![Last Minute Bookings](/docs/features/last-minute.png)
+
+### **4.2.9. Bookings Forms**
+
+- **App :** `bookings`
+- **Template File :** `new_booking.html` and `edit_booking.html` - extends `base.html`
+- **User :** Provides user with selection of booked style, booked artist, date and time of booking. Logic is used so user can only book artist that excels in style selected, also bookings of other users are taken into consideration to ensure multiple bookings fo same date/time can't be submitted *( Appendix 44 )*.
+
+*Appendix 44 - Bookings Forms*
+
+![Booking Forms](/docs/features/booking-form.png)
+
+### **4.2.10. My Profile Page**
+
+- **App :** `profilemanager`
+- **Template File :** `my_details.html` - extends `base.html`
+- **User :** Gives user the ability to change their details and preferences. The form is pre-populated with existing details. It also gives the user ability to delete their account entirely. *( Appendix 45 )*.
+
+*Appendix 45 - My Details Page*
+
+![My Details Page](/docs/features/my_profile.png)
+
+### **4.2.11. Search Results Page**
+
+- **App :** `landing`
+- **Template File :** `search_results.html` - extends `base.html`
+- **User :** Provides the user with results of their search query in three groups. News Posts, Styles and Artists. user has the option to search again from the same page *( Appendix 46 )*.
+
+*Appendix 46 - Search Results Page*
+
+![Search Results Page](/docs/features/results.png)
+
+### **4.2.12. Forms**
+
+- **App :** `AllAuth` extension
+- **Template File :** `*.html` in `./templates/account` - extends `base.html`
+- **User :** Forms do interact with user. They are designed to be clear and to the point, always in center of the screen. *( Appendix 47 )*.
+
+*Appendix 47 - Forms*
+
+![Forms](/docs/features/form.png)
+
 ---
 
 
