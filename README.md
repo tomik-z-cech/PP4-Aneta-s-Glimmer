@@ -32,6 +32,10 @@
     - [3.4.1 Wire-frames](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
   - [3.5. The Surface Plane](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
     - [3.5.1 Logo](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [3.5.2 Color pallette](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+    - [3.5.1 Fonts](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
+
+
 ---
 
 # **3. User Experience (UX)**
@@ -408,7 +412,7 @@ To create the logo, site called [Looka](https://looka.com/) was used. Few ideas 
 
 ![Logo](/docs/email_logo.png)
 
-### 3.5.1. Color pallette
+### 3.5.2. Color pallette
 
 Based on the colors of the logo, rest of the colors were picked using the [Adobe Color Wheel](https://color.adobe.com/create/color-wheel), following colors were picked into the color pallette *( Appendix 20 )*. As some of the colors neede to be opaque, following CSS variables were established *( Appendix 21 )*.
 
@@ -420,11 +424,29 @@ Based on the colors of the logo, rest of the colors were picked using the [Adobe
 
 ![Color variables](/docs/color-vars.png)
 
+### 3.5.3. Fonts
 
+[Google Fonts](https://fonts.google.com/) site was used to pick the best typography style. The most importance was given to balance between style and readability. As a developer I needed to ensure that all text is displayed clear.
+
+Two fonts were picked and saved in CSS vars *( Appendix 24)* :
+ - Permanent Marker (Sans Serif fallback) -  *( Appendix 22 )*
+ - Sriracha (Sans Serif fallback) - *( Appendix 23 )*
+
+*Appendix 22 - Permanent Marker Font*
+
+![Permanent Marker Font](/docs/marker.png)
+
+*Appendix 23 - Sriracha Font*
+
+![Sriracha Font](/docs/sriracha.png)
+
+*Appendix 24 - Font Variables*
+
+![Font Variables](/docs/font-vars.png)
 
 ---
 
-# **3. Features**
+# **4. Features**
 
 
 
