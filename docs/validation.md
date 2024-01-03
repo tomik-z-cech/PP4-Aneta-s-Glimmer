@@ -15,49 +15,49 @@
   - [CI Python Linter](https://pep8ci.herokuapp.com/) - Visualizing PY linter
 - **Method :** 
    - Install `Black` using `pip install black` in terminal
-   - Use command `black --linelength 79 DIRECTORY_NAME/` to format `*.py` files in the selected directory or use `black --linelength 79 .` to format all files
+   - Use command `black --line-length 79 DIRECTORY_NAME/` to format `*.py` files in the selected directory or use `black --line-length 79 .` to format all files
    - See in the terminal window result of this operation *( Appendix 51 )*
    - Double check the results in `CI Python Linter` by copying and pasting the Python code as black doesn't wrap lines of comments. See result on the right hand side of the input field *( Appendix 52 )*
 - **Results :**
 The only file failing the PEP8 standard is `glimmer/settings.py` due length of lines of module names.
 
-| Directory      | File            | Errors | Warnings | Result                                                   |
-| -------------- | --------------- | ------ | -------- | -------------------------------------------------------- |
-| administrator  | \`admin.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| administrator  | \`urls.py\`     | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| administrator  | \`views.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| artists        | \`admin.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| artists        | \`models.py\`   | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| artists        | \`urls.py\`     | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| artists        | \`views.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| bookings       | \`admin.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| bookings       | \`forms.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| bookings       | \`models.py\`   | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| bookings       | \`urls.py\`     | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| bookings       | \`views.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| landing        | \`admin.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| landing        | \`forms.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| landing        | \`urls.py\`     | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| landing        | \`views.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| news           | \`admin.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| news           | \`forms.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| news           | \`models.py\`   | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| news           | \`urls.py\`     | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| news           | \`views.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| profilemanager | \`admin.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| profilemanager | \`forms.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| profilemanager | \`models.py\`   | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| profilemanager | \`urls.py\`     | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| profilemanager | \`views.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| styles         | \`admin.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| styles         | \`forms.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| styles         | \`models.py\`   | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| styles         | \`urls.py\`     | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| styles         | \`views.py\`    | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| glimmer        | \`asgi.py\`     | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| glimmer        | \`settings.py\` | 6      | 0        | <span style="color:red;">FAIL</span> \*( Appendix 53 )\* |
-| glimmer        | \`urls.py\`     | 0      | 0        | <span style="color:green;">PASS</span>                   |
-| glimmer        | \`wsgi.py\`     | 0      | 0        | <span style="color:green;">PASS</span>                   |
+| Directory      | File            | Result                                                   |
+| -------------- | --------------- | -------------------------------------------------------- |
+| administrator  | \`admin.py\`    | <span style="color:green;">PASS</span>                   |
+| administrator  | \`urls.py\`     | <span style="color:green;">PASS</span>                   |
+| administrator  | \`views.py\`    | <span style="color:green;">PASS</span>                   |
+| artists        | \`admin.py\`    | <span style="color:green;">PASS</span>                   |
+| artists        | \`models.py\`   | <span style="color:green;">PASS</span>                   |
+| artists        | \`urls.py\`     | <span style="color:green;">PASS</span>                   |
+| artists        | \`views.py\`    | <span style="color:green;">PASS</span>                   |
+| bookings       | \`admin.py\`    | <span style="color:green;">PASS</span>                   |
+| bookings       | \`forms.py\`    | <span style="color:green;">PASS</span>                   |
+| bookings       | \`models.py\`   | <span style="color:green;">PASS</span>                   |
+| bookings       | \`urls.py\`     | <span style="color:green;">PASS</span>                   |
+| bookings       | \`views.py\`    | <span style="color:green;">PASS</span>                   |
+| landing        | \`admin.py\`    | <span style="color:green;">PASS</span>                   |
+| landing        | \`forms.py\`    | <span style="color:green;">PASS</span>                   |
+| landing        | \`urls.py\`     | <span style="color:green;">PASS</span>                   |
+| landing        | \`views.py\`    | <span style="color:green;">PASS</span>                   |
+| news           | \`admin.py\`    | <span style="color:green;">PASS</span>                   |
+| news           | \`forms.py\`    | <span style="color:green;">PASS</span>                   |
+| news           | \`models.py\`   | <span style="color:green;">PASS</span>                   |
+| news           | \`urls.py\`     | <span style="color:green;">PASS</span>                   |
+| news           | \`views.py\`    | <span style="color:green;">PASS</span>                   |
+| profilemanager | \`admin.py\`    | <span style="color:green;">PASS</span>                   |
+| profilemanager | \`forms.py\`    | <span style="color:green;">PASS</span>                   |
+| profilemanager | \`models.py\`   | <span style="color:green;">PASS</span>                   |
+| profilemanager | \`urls.py\`     | <span style="color:green;">PASS</span>                   |
+| profilemanager | \`views.py\`    | <span style="color:green;">PASS</span>                   |
+| styles         | \`admin.py\`    | <span style="color:green;">PASS</span>                   |
+| styles         | \`forms.py\`    | <span style="color:green;">PASS</span>                   |
+| styles         | \`models.py\`   | <span style="color:green;">PASS</span>                   |
+| styles         | \`urls.py\`     | <span style="color:green;">PASS</span>                   |
+| styles         | \`views.py\`    | <span style="color:green;">PASS</span>                   |
+| glimmer        | \`asgi.py\`     | <span style="color:green;">PASS</span>                   |
+| glimmer        | \`settings.py\` | <span style="color:red;">FAIL</span> *( Appendix 53 )* |
+| glimmer        | \`urls.py\`     | <span style="color:green;">PASS</span>                   |
+| glimmer        | \`wsgi.py\`     | <span style="color:green;">PASS</span>                   |
 
 *Appendix 51 - Black result message*
 
@@ -72,6 +72,56 @@ The only file failing the PEP8 standard is `glimmer/settings.py` due length of l
 ![`glimmer/settings.py`](/docs/validation/settings_pep8.png)
 
 ## **5.1.3. HTML Validation**
+
+- **Task :** To ensure source code generated from all `*.html` templates is compliant with W3C standards.
+- **Tools :** 
+  - [W3C HTML Validator](https://validator.w3.org/) - HTML Validator
+- **Method :** 
+   - Open each page of the project
+   - In Chrome : Right click on page background and select `View Page Source`
+   - Copy and Paste the generated code from browser to validator
+   - See results *( Appendix 54 )*
+   - Please not this needs to be done for all states of the template (i.e. Logged In / Logged Out, etc.)
+- **Results :**
+Two files (`all_news.html` and `news_detail.html`) are failing this validation due SummerNote that inserts inline variables that this validator isn't able to parse and comes up with `Parse error`.
+
+
+| Directory      | File                            | State                   | Result                                                                 |
+| -------------- | ------------------------------- | ----------------------- | ---------------------------------------------------------------------- |
+| administrator  | \`admin_menu.html\`             | Only Logged in as admin | <span style="color:green;">PASS</span>                                 |
+| artists        | \`artist_detail.html\`          | Not Applicable          | <span style="color:green;">PASS</span>                                 |
+| artists        | \`artists.html\`                | Not Applicable          | <span style="color:green;">PASS</span>                                 |
+| bookings       | \`booking_cancel_confirm.html\` | Only Logged in          | <span style="color:green;">PASS</span>                                 |
+| bookings       | \`bookings.html\`               | Only Logged in          | <span style="color:green;">PASS</span>                                 |
+| bookings       | \`edit_booking.html\`           | Only Logged in          | <span style="color:green;">PASS</span>                                 |
+| bookings       | \`new_booking.html\`            | Only Logged in          | <span style="color:green;">PASS</span>                                 |
+| landing        | \`index.html\`                  | Not Applicable          | <span style="color:green;">PASS</span>                                 |
+| landing        | \`search_results.html\`         | Not Applicable          | <span style="color:green;">PASS</span>                                 |
+| news           | \`all_news.html\`               | Not Applicable          | <span style="color:red;">FAIL 1000 + errors</span> *( Appendix 55 )* |
+| news           | \`news_detail.html\`            | Logged In               | <span style="color:red;">FAIL 400 + errors</span> *( Appendix 55 )*  |
+| news           | \`news_detail.html\`            | Logged Out              | <span style="color:red;">FAIL 400 + errors</span> *( Appendix 55 )*  |
+| profilemanager | \`my_details.html\`             | Only Logged In          | <span style="color:green;">PASS</span>                                 |
+| styles         | \`style_detail.html\`           | Logged In               | <span style="color:green;">PASS</span>                                 |
+| styles         | \`style_detail.html\`           | Logged Out              | <span style="color:green;">PASS</span>                                 |
+| styles         | \`styles.html\`                 | Not Applicable          | <span style="color:green;">PASS</span>                                 |
+| templates      | \`403.html\`                    | Not Applicable          | <span style="color:green;">PASS</span>                                 |
+| templates      | \`404.html\`                    | Not Applicable          | <span style="color:green;">PASS</span>                                 |
+| templates      | \`500.html\`                    | Not Applicable          | <span style="color:green;">PASS</span>                                 |
+| templates      | \`base.html\`                   | Not Applicable          | <span style="color:green;">PASS</span>                                 |
+| templates      | \`footer.html\`                 | Not Applicable          | <span style="color:green;">PASS</span>                                 |
+| templates      | \`header.html\`                 | Logged In               | <span style="color:green;">PASS</span>                                 |
+| templates      | \`header.html\`                 | Logged Out              | <span style="color:green;">PASS</span>                                 |
+| account        | \`\*.html\`                     | Logged In               | <span style="color:green;">PASS</span>                                 |
+| account        | \`\*.html\`                     | Logged Out              | <span style="color:green;">PASS</span>                                 |
+
+
+*Appendix 54 - W3C HTML Validator*
+
+![W3C HTML Validator](/docs/validation/w3c_html.png)
+
+*Appendix 55 - SummerNote errors*
+
+![SummerNote Errors](/docs/validation/sum_err.png)
 
 ## **5.1.4 CSS Validation**
 
