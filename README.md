@@ -702,6 +702,7 @@ Profile pictures of non-existing artists in this project were created by AI call
 
 This project could be significantly improved by adding more features this could include :
 
+- Force image format to go to webp format in DB Cloudinary fields, this would improve loading times
 - Toggle between light mode and dark mode (currently working on)
 - Custom Admin interface to fit within the style of project (currently working on)
 - Ability to Login with other page credentials (Google, Facebook)
