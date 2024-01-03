@@ -210,7 +210,7 @@ All `*.js` files passed without errors *( Appendix 58 )*.
    - See results on the left hand panel *( Appendix 60 )*
    - Please note this needs to be done for all states of the pages (i.e. Logged In / Logged Out, etc.)
 - **Results :**
-In the project, I have got no Alert's or Contrast Errors, each page got multiple warnings due to Redundant links.
+In the project, I have got no Alert's or Contrast Errors, each page got multiple warnings due to Redundant links & Nearby similar ALT text on images.
 
 | Directory      | File                            | State                   | Errors | Alerts | Nature of problem | Result                                 |
 | -------------- | ------------------------------- | ----------------------- | ------ | ------ | ----------------- | -------------------------------------- |
