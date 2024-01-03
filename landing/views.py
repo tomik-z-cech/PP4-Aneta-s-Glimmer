@@ -87,7 +87,7 @@ class LandingPageView(generic.ListView):
             },
         )
 
-    def search(self, request):
+    def search(request):
         """
         Search method - returns template with results
         """

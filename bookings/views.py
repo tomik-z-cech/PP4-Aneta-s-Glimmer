@@ -24,7 +24,7 @@ from artists.models import Artists
 
 class BookingOptionsView(generic.ListView):
     @login_required
-    def booking_options(self, request):
+    def booking_options(request):
         """
         Function returns data to the template based on user selection
         """

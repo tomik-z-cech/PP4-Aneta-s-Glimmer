@@ -74,6 +74,7 @@ The only file failing the PEP8 standard is `glimmer/settings.py` due length of l
 ![`glimmer/settings.py`](/docs/validation/settings_pep8.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+
 [Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
 
 ---
@@ -131,6 +132,7 @@ Two files (`all_news.html` and `news_detail.html`) are failing this validation d
 ![SummerNote Errors](/docs/validation/sum_err.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+
 [Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
 
 ---
@@ -162,6 +164,7 @@ Reasons for this result :
 ![CSS Validation - warnings](/docs/validation/css_war.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+
 [Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
 
 ---
@@ -191,6 +194,7 @@ All `*.js` files passed without errors *( Appendix 58 )*.
 ![CSS Validation](/docs/validation/jshint.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+
 [Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
 
 ---
@@ -245,6 +249,7 @@ In the project, I have got no Alert's or Contrast Errors, each page got multiple
 ![WAVE Results](/docs/validation/wave.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+
 [Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
 
 ---
@@ -264,11 +269,12 @@ Suggestion was made on pages `News`, `Styles` and `Artists` to use `webp` image 
 
 ![Lighthouse](/docs/validation/lighthouse.png)
 
-*Appendix 60 - Lighthouse Results*
+*Appendix 62 - Lighthouse Results*
 
 ![Lighthouse Results](/docs/validation/lighhouse_result.png)
 
 [Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+
 [Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
 
 ---
