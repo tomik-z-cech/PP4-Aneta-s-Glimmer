@@ -209,7 +209,7 @@ class MyBookingsView(LoginRequiredMixin, generic.ListView):
             )
 
     @login_required
-    def cancel_request(self, request, request_booking_pk):
+    def cancel_request(request, request_booking_pk):
         """This method redirects user to confirm page"""
         requested_booking = get_object_or_404(
             Bookings, pk=request_booking_pk
