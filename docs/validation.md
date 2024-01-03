@@ -125,6 +125,30 @@ Two files (`all_news.html` and `news_detail.html`) are failing this validation d
 
 ## **5.1.4 CSS Validation**
 
+- **Task :** To ensure the code in `style.css` compliant with W3C standards.
+- **Tools :** 
+  - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - CSS Validator
+- **Method :** 
+   - Open the `style.css` file
+   - Copy and Paste the code from IDE to validator
+   - See results
+- **Results :**
+
+My `style.css` file did pass with <span style="color:green;">NO ERRORS</span> *( Appendix 56 )* and <span style="color:yellow;">24 WARNINGS</span> *( Appendix 57 )*.
+
+Reasons for this result : 
+- Validator isn't able to check imports - *Imported style sheets are not checked in direct input and file upload modes*
+- Validator isn't able to check vendor pseudo elements - *`::-webkit-scrollbar` is a vendor extended pseudo-element*
+- Validator isn't able to check dynamic states of elements - *Due to their dynamic nature, CSS variables are currently not statically checked*
+
+*Appendix 56 - CSS Validation - errors*
+
+![CSS Validation - errors](/docs/validation/css_err.png)
+
+*Appendix 57 - CSS Validation - warnings*
+
+![CSS Validation - warnings](/docs/validation/css_war.png)
+
 ## **5.1.5 JS Validation**
 
 ## **5.1.6 WAVE Validation**
