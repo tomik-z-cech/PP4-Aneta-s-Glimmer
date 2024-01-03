@@ -1,13 +1,13 @@
 # **5.1. Validation**
 
 ## **5.1.1. Table of Content - Validation**
-- [5.1.1. Table of Content - Validation]()
-- [5.1.2. PEP8 Validation]()
-- [5.1.3. HTML Validation]()
-- [5.1.4. CSS Validation]()
-- [5.1.5. JS Validation]()
-- [5.1.6. WAVE Validation]()
-- [5.1.7. Lighthouse]()
+- [5.1.1. Table of Content - Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#511-table-of-content---validation)
+- [5.1.2. PEP8 Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#512-pep8-validation)
+- [5.1.3. HTML Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#513-html-validation)
+- [5.1.4. CSS Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#514-css-validation)
+- [5.1.5. JS Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#515-js-validation)
+- [5.1.6. WAVE Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#516-wave-validation)
+- [5.1.7. Lighthouse](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#517-lighthouse)
 
 ## **5.1.2. PEP8 Validation**
 
@@ -73,6 +73,11 @@ The only file failing the PEP8 standard is `glimmer/settings.py` due length of l
 
 ![`glimmer/settings.py`](/docs/validation/settings_pep8.png)
 
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
+
 ## **5.1.3. HTML Validation**
 
 - **Task :** To ensure source code generated from all `*.html` templates is compliant with W3C standards.
@@ -125,6 +130,11 @@ Two files (`all_news.html` and `news_detail.html`) are failing this validation d
 
 ![SummerNote Errors](/docs/validation/sum_err.png)
 
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
+
 ## **5.1.4. CSS Validation**
 
 - **Task :** To ensure the code in `style.css` is compliant with W3C standards.
@@ -151,6 +161,11 @@ Reasons for this result :
 
 ![CSS Validation - warnings](/docs/validation/css_war.png)
 
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
+
 ## **5.1.5. JS Validation**
 
 - **Task :** To ensure the code in `*.js` has no errors.
@@ -174,6 +189,11 @@ All `*.js` files passed without errors *( Appendix 58 )*.
 *Appendix 58 - JS Validation*
 
 ![CSS Validation](/docs/validation/jshint.png)
+
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
 
 ## **5.1.6. WAVE Validation**
 
@@ -224,6 +244,11 @@ In the project, I have got no Alert's or Contrast Errors, each page got multiple
 
 ![WAVE Results](/docs/validation/wave.png)
 
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
+
 ## **5.1.7. Lighthouse**
 
 - **Task :** To ensure that speeds of project loading are viable.
@@ -242,3 +267,8 @@ Suggestion was made on pages `News`, `Styles` and `Artists` to use `webp` image 
 *Appendix 60 - Lighthouse Results*
 
 ![Lighthouse Results](/docs/validation/lighhouse_result.png)
+
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#51-validation)
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
