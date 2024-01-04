@@ -229,10 +229,104 @@
 ![Appendix 100](/docs/testing/test-100.png)
 
 
+## **5.2.4. Test Cases**
+
+Part ot this testing was to ensure user cannot access restricted content to registered users or user cannot change content that was created by another user. This was achieved by using `LoginRequiredMixin` for classes and `@login_required` for methods when user needs to be logged in for certain view.
+
+For user not being able to change content that isn't created by user was used following Mixin and test function. 
+
+`UserPassesTestMixin`
+
+`    def test_func(self):
+        """Test function to ensure user is the booking creator"""
+        booking = get_object_or_404(
+            Bookings, pk=self.kwargs["edit_booking_pk"])
+        return self.request.user == booking.username`
+
+### **Test case 001 - General Site Navigation ( Appendix 101 )**
+
+General functionality of the project tested.
+
+*Appendix 101 - Test Case 001*
+
+![Test Case 001](/docs/testing/case-001.png)
+
+### **Test case 002 - Search Function ( Appendix 102 )**
+
+Search functionality of the project tested.
+
+*Appendix 102 - Test Case 002*
+
+![Test Case 002](/docs/testing/case-002.png)
+
+### **Test case 003 - Registering New User ( Appendix 103 )**
+
+Registering New User functionality tested.
+
+*Appendix 103 - Test Case 003*
+
+![Test Case 003](/docs/testing/case-003.png)
+
+### **Test case 004 - Changing User Details ( Appendix 104 )**
+
+Changing User Details functionality tested.
+
+*Appendix 104 - Test Case 004*
+
+![Test Case 004](/docs/testing/case-004.png)
+
+### **Test case 005 - Changing Email Address ( Appendix 105 )**
+
+Changing User's email address functionality tested.
+
+*Appendix 105 - Test Case 005*
+
+![Test Case 005](/docs/testing/case-005.png)
+
+### **Test case 006 - Changing Password ( Appendix 106 )**
+
+Changing User's password functionality tested.
+
+*Appendix 106 - Test Case 006*
+
+![Test Case 006](/docs/testing/case-006.png)
+
+### **Test case 007 - Bookings CRUD ( Appendix 107 )**
+
+Bookings CRUD functionality tested.
+
+*Appendix 107 - Test Case 007*
+
+![Test Case 007](/docs/testing/case-007.png)
+
+### **Test case 008 - Commenting ( Appendix 108 )**
+
+Commenting functionality tested.
+
+*Appendix 108 - Test Case 008*
+
+![Test Case 008](/docs/testing/case-008.png)
+
+### **Test case 009 - Liking ( Appendix 109 )**
+
+Liking functionality tested.
+
+*Appendix 109 - Test Case 009*
+
+![Test Case 009](/docs/testing/case-009.png)
+
+### **Test case 010 - Deleting User Profile ( Appendix 110 )**
+
+Deleting User Profile functionality tested.
+
+*Appendix 110 - Test Case 010*
+
+![Test Case 010](/docs/testing/case-010.png)
+
 ## **5.2.4. Viewport Testing**
 
 - **Task :** To physically test the final project responsiveness on different devices with different view-port.
-- **Method :** Project was tested on following devices : 
+- **Method :** All test cases listed above were tested on following devices : 
   - IPhone 8 - mobile phone with small view-port
   - Samsung Fold Z4 - mobile phone with large view-port
   - FireHD 8 - tablet with small view-port
@@ -246,7 +340,7 @@
 ## **5.2.5. Compatibility Testing**
 
 - **Task :** To physically test the final project functionality in different browsing applications.
-- **Method :** Project was tested in following applications : 
+- **Method :** All test cases listed above were tested in following applications : 
   - Google Chrome
   - Mozilla Firefox
   - Microsoft Edge

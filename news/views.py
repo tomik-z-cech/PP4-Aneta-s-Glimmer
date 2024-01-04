@@ -87,6 +87,7 @@ class NewsDetailView(generic.DetailView):
             .order_by("created_on")
         )
         liked = False  # Pre-set variable like
+        users_liked = post.likes.all()
         # If current user likes
         if post.likes.filter(id=self.request.user.id).exists():
             # Set like to True
@@ -115,6 +116,7 @@ class NewsDetailView(generic.DetailView):
                 "comments": comments,
                 "liked": liked,
                 "news_comment_form": NewsCommentForm(),
+                "users_liked": users_liked,
                 "can_comment": False,
             },
         )
