@@ -16,47 +16,47 @@
 
 - [1. Key project information](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#1key-project-information)
 - [2. Table of content](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#2table-of-content)
-- [3. User Experience (UX)]()
-  - [3.1. The Strategy Plane]()
-    - [3.1.1. The Idea]()
-    - [3.1.2. The Ideal User]()
-    - [3.1.3. Site Goals]()
-    - [3.1.4. Epics]()
-    - [3.1.5. User stories]()
-  - [3.2. The Scope Plane]()
-    - [3.2.1. Features to be implemented]()
-  - [3.3. The Structure Plane]()
-    - [3.3.1. Site Maps]()
-    - [3.3.2. Database Schemas]()
-  - [3.4. The Skeleton Plane]()
-    - [3.4.1. Wire-frames]()
-  - [3.5. The Surface Plane]()
-    - [3.5.1. Logo]()
-    - [3.5.2. Color pallette]()
-    - [3.5.1. Fonts]()
-- [3. Features]()
-  - [4.1. Features used in every HTML template]()
-    - [4.1.1. Header]()
-    - [4.1.2. Footer]()
-    - [4.1.3. Favicon]()
-    - [4.1.4. Error Pages]()
-    - [4.1.5. Scrollbar]()
-  - [4.2. Main Content]()
-    - [4.2.1. Landing Page]()
-    - [4.2.2. News Page]()
-    - [4.2.3. News Detail Page]()
-    - [4.2.4. Style Page]()
-    - [4.2.5. Style Detail Page]()
-    - [4.2.6. Team Page]()
-    - [4.2.7. Artist Detail Page]()
-    - [4.2.8. My Bookings Page]()
-    - [4.2.9. Booking Forms]()
-    - [4.2.10. My Details Page]()
-    - [4.2.11. Search Results Page]()
-    - [4.2.12. Forms]()
-  - [4.3. Future Features]()
-- [5. Validation, Testing & Bugs]()
-  - [5.1. Validation]()
+- [3. User Experience (UX)](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#3-user-experience-ux)
+  - [3.1. The Strategy Plane](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#31-the-strategy-plane)
+    - [3.1.1. The Idea](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#311-the-idea)
+    - [3.1.2. The Ideal User](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#312-the-ideal-user)
+    - [3.1.3. Site Goals](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#313-site-goals)
+    - [3.1.4. Epics](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#314-epics)
+    - [3.1.5. User stories](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#315-user-stories)
+  - [3.2. The Scope Plane](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#32-the-scope-plane)
+    - [3.2.1. Features to be implemented](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#321-features-to-be-implemented)
+  - [3.3. The Structure Plane](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#33-the-structure-plane)
+    - [3.3.1. Site Maps](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#331-site-maps)
+    - [3.3.2. Database Schemas](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#332-database-schemas)
+  - [3.4. The Skeleton Plane](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#34-the-skeleton-plane)
+    - [3.4.1. Wire-frames](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#341-wire-frames)
+  - [3.5. The Surface Plane](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#35-the-surface-plane)
+    - [3.5.1. Logo](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#351-logo)
+    - [3.5.2. Color pallette](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#352-color-pallette)
+    - [3.5.3. Fonts](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#353-fonts)
+- [4. Features](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#4-features)
+  - [4.1. Features used in every HTML template](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#41-features-used-in-every-html-template)
+    - [4.1.1. Header](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#411-header)
+    - [4.1.2. Footer](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#412-footer)
+    - [4.1.3. Favicon](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#413-favicon)
+    - [4.1.4. Error Pages](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#414-error-pages)
+    - [4.1.5. Scrollbar](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#415-scroll-bar)
+  - [4.2. Main Content](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#42-main-content)
+    - [4.2.1. Landing Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#421-landing-page)
+    - [4.2.2. News Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#422-news-page)
+    - [4.2.3. News Detail Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#423-news-detail-page)
+    - [4.2.4. Styles Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#424-styles-page)
+    - [4.2.5. Styles Detail Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#425-styles-detail-page)
+    - [4.2.6. Team Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#426-team-page)
+    - [4.2.7. Artist Detail Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#427-artist-detail-page)
+    - [4.2.8. My Bookings Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#428-my-bookings-page)
+    - [4.2.9. Booking Forms](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#429-bookings-forms)
+    - [4.2.10. My Details Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#4210-my-profile-page)
+    - [4.2.11. Search Results Page](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#4211-search-results-page)
+    - [4.2.12. Forms](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#4212-forms)
+  - [4.3. Future Features](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#43-future-features)
+- [5. Validation, Testing & Bugs](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#5-validation-testing--bugs)
+  - [5.1. Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#51-validation)
     - [5.1.1. Table of Content - Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#511-table-of-content---validation)
     - [5.1.2. PEP8 Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#512-pep8-validation)
     - [5.1.3. HTML Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#513-html-validation)
@@ -64,28 +64,32 @@
     - [5.1.5. JS Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#515-js-validation)
     - [5.1.6. WAVE Validation](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#516-wave-validation)
     - [5.1.7. Lighthouse](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/validation.md#517-lighthouse)
-  - [5.2. Testing]()
+  - [5.2. Testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#52-testing)
     - [5.2.1. Table of Content - Testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#521-table-of-content---testing)
     - [5.2.2. User stories testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#522-user-stories-testing)
     - [5.2.3. Test Cases](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#524-test-cases)
     - [5.2.4. Viewport Testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#524-viewport-testing)
     - [5.2.5. Compatibility Testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#525-compatibility-testing)
-  - [5.3. Bugs]()
+  - [5.3. Bugs](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#53-bugs)
     - [5.3.1. Fixed Bugs](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/bugs.md#531-fixed-bugs)
     - [5.3.2. Unfixed Bugs](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/bugs.md#532-unfixed-bugs)
-- [6. Deployment]()
-  - [6.1. Transfer of progress from IDE]()
-  - [6.2. Offline cloning]()
-  - [6.3. Deployment Prerequisites]()
-    - [6.3.1. Gmail]()
-    - [6.3.2. ElephantSQL]()
-    - [6.3.3. Cloudinary]()
-    - [6.3.4. Settings.py & file-tree]()
-  - [6.4. Heroku Deployment]()
-- [7. Technologies & Credits]()
+- [6. Deployment](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#6-deployment)
+  - [6.1. Transfer of progress from IDE](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#61-transfer-of-progress-from-ide)
+  - [6.2. Offline cloning](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#62-offline-cloning)
+  - [6.3. Deployment Prerequisites](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#63-deployment-prerequisites)
+    - [6.3.1. Gmail](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#631-gmail)
+    - [6.3.2. ElephantSQL](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#632-elephantsql)
+    - [6.3.3. Cloudinary](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#633-cloudinary)
+    - [6.3.4. Settings.py & file-tree](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#634-settingspy--file-tree)
+  - [6.4. Heroku Deployment](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#64-deployment-to-heroku)
+- [7. Technologies & Credits](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#7-technologies--credits)
   - [7.1. Technologies used to develop and deploy this project]()
-  - [7.2. Requirements.txt]()
-  - [7.3. Credits]()
+  - [7.2. Requirements.txt](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#73-requirementstxt)
+  - [7.3. Credits](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/README.md#73-credits)
+ 
+
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#1key-project-information)
+  
 ---
 
 # **3. User Experience (UX)**
@@ -502,6 +506,8 @@ Site called [Freepik](https://www.freepik.com/) was used to download images used
 
 Profile pictures of non-existing artists in this project were created by AI called [Canva](https://www.canva.com/). Reason for this was a need of profile pictures of artists with certain parameters and they were very difficult to find under free license.
 
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#1key-project-information)
+
 ---
 
 # **4. Features**
@@ -725,6 +731,8 @@ This project could be significantly improved by adding more features this could 
 - E-Commerce section 
 
 
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#1key-project-information)
+
 ---
 
 # **5. Validation, Testing & Bugs**
@@ -740,6 +748,9 @@ Testing is documented separately in [testing.md](/docs/testing.md) file.
 ## **5.3. Bugs**
 
 Bugs are documented separately in [bugs.md](/docs/bugs.md) file.
+
+
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#1key-project-information)
 
 ---
 
@@ -867,13 +878,16 @@ EMAIL_USE_TLS = True`
 
 ![Procfile](/docs/procfile.png)
 
+
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#1key-project-information)
+
 ---
 
 ## **7. Technologies & Credits**
 
 ### 7.1. Technologies used to develop and deploy this project
 
-- [**Django**](https://docs.djangoproject.com/en/5.0/) - main Framework of the project
+- [**Django/Jinja**](https://docs.djangoproject.com/en/5.0/) - main Framework of the project
 - [**Python**](https://www.python.org/) - main BackEnd programming language of the project
 - [**HTML**](https://developer.mozilla.org/en-US/docs/Web/HTML) - templates programming language of this project (FrontEnd)
 - [**CSS**](https://developer.mozilla.org/en-US/docs/Web/CSS) - styling the project via external CSS file `./static/css/style.css`
@@ -938,4 +952,7 @@ Following modules were used in development of **Aneta's Glimmer** website :
 - [**FreePik**](https://www.freepik.com/) - used as images database
 - [**FlatIcon**](https://www.flaticon.com/icons) - used as icons database
 - [**W3Schools**](https://www.w3schools.com/) - useful information and cheat sheets
+
+
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer#1key-project-information)
 
