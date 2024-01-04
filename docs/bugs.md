@@ -51,3 +51,9 @@
 ## **5.3.2. Unfixed bugs**
 
 There are no know unfixed bugs as of 3.1.2024.
+
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/bugs.md#53-bugs)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
