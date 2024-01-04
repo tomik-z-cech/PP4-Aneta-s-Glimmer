@@ -20,7 +20,6 @@ class ProfileAdmin(admin.ModelAdmin):
         "username",
         "phone_number",
         "marketing",
-        "email",
     )
 
     def first_name(self, obj):
