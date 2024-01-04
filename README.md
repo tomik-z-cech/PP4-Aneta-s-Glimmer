@@ -879,6 +879,8 @@ EMAIL_USE_TLS = True`
 - [**Balsamiq**](https://balsamiq.com/support/) - to create wireframes
 - [**Git**](https://git-scm.com/doc) - to make commitments of progress and push the results back to GitHub
 - [**GitHub**](https://github.com/) - to keep the track of version control
+- [**CodeAnywhere**](https://codeanywhere.com/) - online IDE - CodeAnywhere was initially used to create this project
+- [**VS Code**](https://code.visualstudio.com/) - local IDE - after starting the project in CodeAnywhere, I had to migrate to VS Code due to CodeAnywhere speed connection issues. This did create commits from 2 different usernames (still same person) in very early stages of the project.
 
 ### 7.3. Requirements.txt
 
