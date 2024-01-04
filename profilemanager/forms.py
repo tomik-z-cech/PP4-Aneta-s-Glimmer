@@ -37,6 +37,9 @@ class GlimmerSignupForm(SignupForm):
     )
 
     def save(self, request):
+        """
+        Save user profile
+        """
         user = super(GlimmerSignupForm, self).save(request)
         user_profile = UserProfile.objects.create(
             user=user,
@@ -50,6 +53,10 @@ class GlimmerSignupForm(SignupForm):
 
 
 class UpdateDetailsForm(forms.ModelForm):
+    """
+    User details form
+    """
+
     class Meta:
         model = UserProfile
         fields = ["first_name", "last_name", "phone_number", "marketing"]

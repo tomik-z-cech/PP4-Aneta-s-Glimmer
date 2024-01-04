@@ -4,6 +4,9 @@ from django import forms
 
 
 class SearchBarForm(forms.Form):
+    """
+    Search Bar field
+    """
     search_query = forms.CharField(
         max_length=255,
         required=True,

@@ -61,6 +61,9 @@ class BookingForm(forms.ModelForm):
         )
 
     def clean(self):
+        """
+        Function cleans date and combines to date_time with time zone aware
+        """
         cleaned_data = super().clean()
         date = cleaned_data.get("date")
         time = cleaned_data.get("time")
