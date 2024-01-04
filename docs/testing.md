@@ -2,11 +2,11 @@
 
 ## **5.2.1. Table of Content - Testing**
 
-- [5.2.1. Table of Content - Testing]()
-- [5.2.2. User stories testing]()
-- [5.2.3. Test Cases]()
-- [5.2.4. Viewport Testing]()
-- [5.2.5. Compatibility Testing]()
+- [5.2.1. Table of Content - Testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#521-table-of-content---testing)
+- [5.2.2. User stories testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#522-user-stories-testing)
+- [5.2.3. Test Cases](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#524-test-cases)
+- [5.2.4. Viewport Testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#524-viewport-testing)
+- [5.2.5. Compatibility Testing](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#525-compatibility-testing)
 
 ## **5.2.2. User stories testing**
 
@@ -229,6 +229,14 @@
 ![Appendix 100](/docs/testing/test-100.png)
 
 
+
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#52-testing)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
+
+
 ## **5.2.4. Test Cases**
 
 Part ot this testing was to ensure user cannot access restricted content to registered users or user cannot change content that was created by another user. This was achieved by using `LoginRequiredMixin` for classes and `@login_required` for methods when user needs to be logged in for certain view.
@@ -323,6 +331,12 @@ Deleting User Profile functionality tested.
 
 ![Test Case 010](/docs/testing/case-010.png)
 
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#52-testing)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
+
 ## **5.2.4. Viewport Testing**
 
 - **Task :** To physically test the final project responsiveness on different devices with different view-port.
@@ -337,6 +351,12 @@ Deleting User Profile functionality tested.
 - **Actual result :**  No content is distorted on any of the listed devices.
 - **Overall result :** Pass
 
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#52-testing)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
+
 ## **5.2.5. Compatibility Testing**
 
 - **Task :** To physically test the final project functionality in different browsing applications.
@@ -349,3 +369,9 @@ Deleting User Profile functionality tested.
 - **Expected result :** Project does function in all web browsers.
 - **Actual result :**  No content is distorted in any of the listed browsers and project keeps functionality, all navigation links are working and form is responsive to empty fields.
 - **Overall result :** Pass
+
+[Back to top](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/blob/main/docs/testing.md#52-testing)
+
+[Back to README.md](https://github.com/tomik-z-cech/PP4-Aneta-s-Glimmer/tree/main#1-key-project-information)
+
+---
